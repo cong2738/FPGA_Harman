@@ -8,7 +8,7 @@ module stopwatch_dp (
     output [6:0] msec,
     output [6:0] sec,
     output [6:0] min,
-    output [6:0] hour
+    output [4:0] hour
 );
 
     wire w_100hz;
@@ -17,14 +17,16 @@ module stopwatch_dp (
     ) Tick_Generator100hz (
         .clk(clk),
         .reset(reset),
+        .run(run),
+        .clear(clear),
         .o_clk(w_100hz) // period:0.01sec = 10msec
     );
 
     wire w_msec, w_1hz;
     time_counter #(
         .TICK_COUNT(100),
-        .BIT_WIDTH(7)
-    ) msec_counter(
+        .BIT_WIDTH($clog2(100))
+    ) Msec_Counter(
         .clk(clk),
         .reset(reset),
         .tick(w_100hz),
@@ -32,40 +34,40 @@ module stopwatch_dp (
         .o_tick(w_1hz) // period:1sec
     );
 
-    wire w_sec, w_sec_fq;
+    wire w_sec, w_secCounter_tick;
     time_counter #(
         .TICK_COUNT(60),
-        .BIT_WIDTH(7)
-    ) sec_counter(
+        .BIT_WIDTH($clog2(60))
+    ) Sec_Counter(
         .clk(clk),
         .reset(reset),
         .tick(w_1hz),
         .count(w_sec),
-        .o_tick(w_sec_fq) // period:1min
+        .o_tick(w_secCounter_tick) // period:1min
     );
 
-    wire w_min, w_min_fq;
+    wire w_min, w_minCounter_tick;
     time_counter #(
         .TICK_COUNT(60),
-        .BIT_WIDTH(7)
-    ) min_counter(
+        .BIT_WIDTH($clog2(60))
+    ) Min_Counter(
         .clk(clk),
         .reset(reset),
-        .tick(w_sec_fq),
+        .tick(w_secCounter_tick),
         .count(w_min),
-        .o_tick(w_min_fq) // period:1hour
+        .o_tick(w_minCounter_tick) // period:1hour
     );
 
-    wire w_hour, w_hour_fq;
+    wire w_hour, w_hourCounter_tick;
     time_counter #(
         .TICK_COUNT(24),
-        .BIT_WIDTH(7)
-    ) hour_counter(
+        .BIT_WIDTH($clog2(24))
+    ) Hour_Counter(
         .clk(clk),
         .reset(reset),
-        .tick(w_min_fq),
+        .tick(w_minCounter_tick),
         .count(w_hour),
-        .o_tick(w_hour_fq) // period:1day
+        .o_tick(w_hourCounter_tick) // period:1day
     );
 
     assign msec = w_msec;
@@ -86,7 +88,7 @@ module time_counter #(
     input count,
     input o_tick
 );
-    reg [$clog2(TICK_COUNT):0] count_reg, count_next;
+    reg [$clog2(TICK_COUNT) - 1:0] count_reg, count_next;
     reg tick_reg, tick_next;
 
     always @(posedge clk, posedge reset) begin

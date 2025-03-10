@@ -11,7 +11,13 @@ module stopwatch_dp (
     output [6:0] hour
 );
 
-    
+clk_divider #(
+    .FCOUNT(1_000_000)
+) (
+    .clk(),
+    .reset(),
+    .o_clk()
+);
 
 endmodule
 
@@ -38,10 +44,13 @@ module clk_divider #(
     always @(*) begin
         if (count_next == FCOUNT - 1) begin
             count_next = 0;
-            clk_next   = clk_reg;
+            clk_next   = 1'b1;
         end else begin
             count_next = count_next + 1;
+            clk_next = 1'b0;
         end
     end
+
+    assign o_clk = clk_reg;
 
 endmodule

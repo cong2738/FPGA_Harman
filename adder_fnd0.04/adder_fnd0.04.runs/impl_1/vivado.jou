@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Tue Mar  4 12:30:15 2025
+# Process ID: 13844
+# Current directory: C:/Users/kccistc/Desktop/FPGA_Harman/adder_fnd0.04/adder_fnd0.04.runs/impl_1
+# Command line: vivado.exe -log bit8_calculator.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source bit8_calculator.tcl -notrace
+# Log file: C:/Users/kccistc/Desktop/FPGA_Harman/adder_fnd0.04/adder_fnd0.04.runs/impl_1/bit8_calculator.vdi
+# Journal file: C:/Users/kccistc/Desktop/FPGA_Harman/adder_fnd0.04/adder_fnd0.04.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source bit8_calculator.tcl -notrace

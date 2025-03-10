@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Thu Mar  6 16:16:57 2025
+# Process ID: 18724
+# Current directory: C:/Users/kccistc/Desktop/FPGA_Harman/fsm_10000counter/fsm_10000counter.runs/synth_1
+# Command line: vivado.exe -log top_upcounter.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_upcounter.tcl
+# Log file: C:/Users/kccistc/Desktop/FPGA_Harman/fsm_10000counter/fsm_10000counter.runs/synth_1/top_upcounter.vds
+# Journal file: C:/Users/kccistc/Desktop/FPGA_Harman/fsm_10000counter/fsm_10000counter.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source top_upcounter.tcl -notrace

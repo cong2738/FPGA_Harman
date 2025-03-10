@@ -1,0 +1,7 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"tb_add4bit_func_synth.v" \
+"../../../../../../project_4/project_4.srcs/sim_1/new/tb_add4bit.v" \
+
+# Do not sort compile order
+nosort

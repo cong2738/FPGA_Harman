@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1741029204">
+  <File Type="PA-TCL" Name="bit8_calculator.tcl"/>
+  <File Type="REPORTS-TCL" Name="bit8_calculator_reports.tcl"/>
+  <File Type="INIT-TIMING" Name="bit8_calculator_timing_summary_init.rpt"/>
+  <File Type="OPT-DCP" Name="bit8_calculator_opt.dcp"/>
+  <File Type="OPT-DRC" Name="bit8_calculator_drc_opted.rpt"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="bit8_calculator_methodology_drc_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="bit8_calculator.hwdef"/>
+  <File Type="OPT-TIMING" Name="bit8_calculator_timing_summary_opted.rpt"/>
+  <File Type="OPT-RQA-PB" Name="bit8_calculator_rqa_opted.pb"/>
+  <File Type="PWROPT-DCP" Name="bit8_calculator_pwropt.dcp"/>
+  <File Type="PWROPT-DRC" Name="bit8_calculator_drc_pwropted.rpt"/>
+  <File Type="PWROPT-TIMING" Name="bit8_calculator_timing_summary_pwropted.rpt"/>
+  <File Type="PLACE-DCP" Name="bit8_calculator_placed.dcp"/>
+  <File Type="PLACE-IO" Name="bit8_calculator_io_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="bit8_calculator_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL" Name="bit8_calculator_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="bit8_calculator_utilization_placed.pb"/>
+  <File Type="PLACE-CTRL" Name="bit8_calculator_control_sets_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="bit8_calculator_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="bit8_calculator_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-TIMING" Name="bit8_calculator_timing_summary_placed.rpt"/>
+  <File Type="PLACE-RQA-PB" Name="bit8_calculator_rqa_placed.pb"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="bit8_calculator_postplace_pwropt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="bit8_calculator_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="bit8_calculator_physopt.dcp"/>
+  <File Type="PHYSOPT-DRC" Name="bit8_calculator_drc_physopted.rpt"/>
+  <File Type="PHYSOPT-TIMING" Name="bit8_calculator_timing_summary_physopted.rpt"/>
+  <File Type="ROUTE-ERROR-DCP" Name="bit8_calculator_routed_error.dcp"/>
+  <File Type="ROUTE-DCP" Name="bit8_calculator_routed.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="bit8_calculator_routed_bb.dcp"/>
+  <File Type="ROUTE-DRC" Name="bit8_calculator_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="bit8_calculator_drc_routed.pb"/>
+  <File Type="ROUTE-DRC-RPX" Name="bit8_calculator_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="bit8_calculator_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="bit8_calculator_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="bit8_calculator_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="bit8_calculator_power_routed.rpt"/>
+  <File Type="ROUTE-PWR-SUM" Name="bit8_calculator_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR-RPX" Name="bit8_calculator_power_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="bit8_calculator_route_status.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="bit8_calculator_route_status.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="bit8_calculator_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-TIMING-PB" Name="bit8_calculator_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMING-RPX" Name="bit8_calculator_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-SIMILARITY" Name="bit8_calculator_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-CLK" Name="bit8_calculator_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW" Name="bit8_calculator_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="bit8_calculator_bus_skew_routed.pb"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="bit8_calculator_bus_skew_routed.rpx"/>
+  <File Type="ROUTE-RQS-PB" Name="bit8_calculator_rqs_routed.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="bit8_calculator_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="bit8_calculator_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="calculator_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="calculator_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="calculator_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="calculator_bus_skew_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="calculator_bus_skew_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="calculator_bus_skew_postroute_physopted.rpx"/>
+  <File Type="BG-BIT" Name="bit8_calculator.bit"/>
+  <File Type="BG-BIN" Name="bit8_calculator.bin"/>
+  <File Type="BITSTR-MSK" Name="bit8_calculator.msk"/>
+  <File Type="BITSTR-RBT" Name="bit8_calculator.rbt"/>
+  <File Type="BITSTR-NKY" Name="bit8_calculator.nky"/>
+  <File Type="BITSTR-BMM" Name="bit8_calculator_bd.bmm"/>
+  <File Type="BITSTR-MMI" Name="bit8_calculator.mmi"/>
+  <File Type="PDI-FILE" Name="bit8_calculator.pdi"/>
+  <File Type="BOOT-PDI-FILE" Name="bit8_calculator_boot.pdi"/>
+  <File Type="PL-PDI-FILE" Name="bit8_calculator_pld.pdi"/>
+  <File Type="RCFI_FILE" Name="bit8_calculator.rcfi"/>
+  <File Type="CFI_FILE" Name="bit8_calculator.cfi"/>
+  <File Type="RNPI_FILE" Name="bit8_calculator.rnpi"/>
+  <File Type="NPI_FILE" Name="bit8_calculator.npi"/>
+  <File Type="RBD_FILE" Name="bit8_calculator.rbd"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="bit8_calculator.ltx"/>
+  <File Type="BITSTR-SYSDEF" Name="bit8_calculator.sysdef"/>
+  <File Type="BG-BGN" Name="bit8_calculator.bgn"/>
+  <File Type="BG-DRC" Name="bit8_calculator.drc"/>
+  <File Type="RDI-RDI" Name="bit8_calculator.vdi"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="ROUTE-RQS" Name="bit8_calculator_routed.rqs"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS" Name="bit8_calculator_postroute_physopted.rqs"/>
+  <File Type="ROUTE-RQS-RPT" Name="route_report_qor_suggestions_0.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS-RPT" Name="postroute_physopt_report_qor_suggestions_0.rpt"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/added/add4bit.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/added/adder.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/added/full_adder.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/added/fnd_controlloer.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/added/seven_segment.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="bit8_calculator"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/8bit_add_seg" RelGenDir="$PGENDIR/8bit_add_seg">
+    <File Path="$PSRCDIR/8bit_add_seg/imports/FPGA_Harman/Basys-3-Master.xdc">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PSRCDIR/constrs_1/imports/FPGA_Harman/Basys-3-Master.xdc"/>
+        <Attr Name="ImportTime" Val="1741019477"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
+    <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/bit4adder.dcp">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
+      <Desc>Default settings for Implementation.</Desc>
+    </StratHandle>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+</GenRun>

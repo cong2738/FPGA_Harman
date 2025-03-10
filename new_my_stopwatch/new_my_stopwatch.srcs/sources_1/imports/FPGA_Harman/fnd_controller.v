@@ -1,12 +1,14 @@
 `timescale 1ns / 1ps
 
 module fnd_controller#(
-  parameter LOW_MAX = 100, HIGH_MAX = 100
+  parameter BCD_MAX = 100
 ) (
     input clk,
     input reset,
-    input [$clog2(LOW_MAX)-1:0] bcd_low,
-    input [$clog2(HIGH_MAX)-1:0] bcd_high,
+    input [$clog2(BCD_MAX)-1:0] msec,
+    input [$clog2(BCD_MAX)-1:0] sec,
+    input [$clog2(BCD_MAX)-1:0] min,
+    input [$clog2(BCD_MAX)-1:0] hour,
     output [7:0] seg,
     output [3:0] seg_comm
 );
@@ -30,27 +32,41 @@ module fnd_controller#(
         .seg_comm(seg_comm)
     );
 
-    wire [$clog2(LOW_MAX)-1:0] w_low_1, w_low_10;
-    digit_splitter U_Digit_Splitter_Low (
-        .bcd(bcd_low),
-        .digit_1(w_low_1),
-        .digit_10(w_low_10)
+    wire [$clog2(BCD_MAX)-1:0] w_msec_1, w_msec_10;
+    digit_splitter U_Digit_Splitter_Msec (
+        .bcd(msec),
+        .digit_1(w_msec_1),
+        .digit_10(w_msec_10)
     );
 
-    wire [$clog2(HIGH_MAX)-1:0] w_high_1, w_high_10;
+    wire [$clog2(BCD_MAX)-1:0] w_sec_1, w_sec_10;
+    digit_splitter U_Digit_Splitter_Sec (
+        .bcd(sec),
+        .digit_1(w_sec_1),
+        .digit_10(w_sec_10)
+    );
+
+    wire [$clog2(BCD_MAX)-1:0] w_min_1, w_min_10;
+    digit_splitter U_Digit_Splitter_Min (
+        .bcd(min),
+        .digit_1(w_min_1),
+        .digit_10(w_min_10)
+    );
+
+    wire [$clog2(BCD_MAX)-1:0] w_hour_1, w_hour_10;
     digit_splitter U_Digit_Splitter_High (
-        .bcd(bcd_high),
-        .digit_1(w_high_1),
-        .digit_10(w_high_10)
+        .bcd(hour),
+        .digit_1(w_hour_1),
+        .digit_10(w_hour_10)
     );
 
     wire [3:0] w_bcd;
     mux_4x1 U_Mux_4x1 (
         .sel(w_seg_sel),
-        .digit_1(w_low_1),
-        .digit_10(w_low_10),
-        .digit_100(w_high_1),
-        .digit_1000(w_high_10),
+        .digit_1(w_msec_1),
+        .digit_10(w_msec_10),
+        .digit_100(w_sec_1),
+        .digit_1000(w_sec_10),
         .bcd(w_bcd)
     );
 

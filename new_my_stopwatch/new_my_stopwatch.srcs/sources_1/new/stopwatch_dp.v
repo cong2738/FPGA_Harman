@@ -4,77 +4,80 @@ module stopwatch_dp (
     input clk,
     input reset,
     input i_run_stop,
-    output[7:0] msec,sec,min,hour
+    input i_clear,
+    output [6:0] msec,
+    sec,
+    min,
+    hour
 );
-    // 100Hz tick generator
     wire w_tick_100hz;
+    // 100Hz tick generator
     tick_100hz U_Tick_100hz (
         .clk(clk),  // 100Mhz
         .reset(reset),
-        .run_stop(w_run_stop),
+        .run_stop(i_run_stop),
         .o_tick_100hz(w_tick_100hz)
     );
 
     localparam TENMSEC_MAX = 100;
     wire [$clog2(TENMSEC_MAX):0] w_msec;
-    wire msec_tick;
+    wire w_msec_clk;
     counter_tick #(
         .TICK_COUNT(TENMSEC_MAX)
-    ) U_Count_10msec (  // msec
+    ) U_Count_Msec (  // msec
         .clk(clk),
         .reset(reset),
-        .clear(w_clear),
-        .tick(w_tick_100hz),  //100hz => 0.01sec(10msec)
+        .clear(i_clear),
+        .tick(w_tick_100hz),  //100hz => 0.01sec
         .counter(w_msec),
-        .o_tick(msec_tick)  // 100hz/100 = 1hz => 1sec
+        .o_tick(w_msec_clk)  // 100hz/100 = 1hz => 1sec
     );
 
     localparam SEC_MAX = 60;
     wire [$clog2(SEC_MAX):0] w_sec;
-    wire w_sec_tick;
+    wire w_sec_clk;
     counter_tick #(
         .TICK_COUNT(SEC_MAX)
-    ) U_Count_Sec (  // sec
+    ) U_Count_sec (  // sec
         .clk(clk),
         .reset(reset),
-        .clear(w_clear),
-        .tick(msec_tick),  //1hz
+        .clear(i_clear),
+        .tick(w_msec_clk),  //1hz
         .counter(w_sec),
-        .o_tick(w_sec_tick)  // 1/60hz => 60sec
+        .o_tick(w_sec_clk)  // 1/60hz => 60sec
     );
 
     localparam MIN_MAX = 60;
     wire [$clog2(MIN_MAX):0] w_min;
-    wire w_min_tick;
+    wire w_min_clk;
     counter_tick #(
         .TICK_COUNT(MIN_MAX)
     ) U_Count_Min (
         .clk(clk),
         .reset(reset),
-        .clear(w_clear),
-        .tick(w_sec_tick),
+        .clear(i_clear),
+        .tick(w_sec_clk),
         .counter(w_min),
-        .o_tick(w_min_tick)  //60min
+        .o_tick(w_min_clk)  //60min
     );
 
-    localparam HOUR_MAX = 24;
-    wire [$clog2(HOUR_MAX):0] w_hour;
-    wire w_hour_tick;
+    localparam HOUR_MAX = 60;
+    wire [$clog2(MIN_MAX):0] w_hour;
+    wire w_hour_clk;
     counter_tick #(
-        .TICK_COUNT(HOUR_MAX)
+        .TICK_COUNT(MIN_MAX)
     ) U_Count_Hour (
         .clk(clk),
         .reset(reset),
-        .clear(w_clear),
-        .tick(w_min_tick),
+        .clear(i_clear),
+        .tick(w_min_clk),
         .counter(w_hour),
-        .o_tick(w_hour_tick)  //60min
+        .o_tick(w_hour_clk)  //60min
     );
-
     assign msec = w_msec;
-    assign sec = w_sec;
-    assign min = w_min;
-    assign hour =w_hour;
+    assign sec  = w_sec;
+    assign min  = w_min;
+    assign hour = w_hour;
 endmodule
 
 // 100Hz tick generator
@@ -110,8 +113,8 @@ module tick_100hz (
 endmodule
 
 module counter_tick #(
-    parameter TICK_COUNT = 10_000 
-) (  
+    parameter TICK_COUNT = 10_000
+) (
     input clk,
     input reset,
     input tick,

@@ -2,16 +2,17 @@
 
 module tb_clk_divider ();
     reg clk, reset, run, clear;
-    wire o_clk;
+    wire[6:0] msec,sec,min,hour;
 
-    clk_divider #(
-        .FCOUNT(1_000_000)
-    ) DUT (
-        .clk  (clk),
+    stopwatch_dp#(10_000) dut(
+        .clk(clk),
         .reset(reset),
-        .run  (run),
+        .run(run),
         .clear(clear),
-        .o_clk(o_clk)
+        .msec(msec),
+        .sec(sec),
+        .min(min),
+        .hour(hour)
     );
 
     always #5 clk = ~clk;
@@ -21,8 +22,11 @@ module tb_clk_divider ();
         reset = 1;
         run   = 1;
         clear = 0;
+
         #10 reset = 0;
-        #100; run = 0;
+        wait(sec == 2);
+
+        #10; run = 0;
         
 
     end

@@ -1,28 +1,24 @@
 `timescale 1ns / 1ps
 
-module fnd_controller #(
-    parameter BCD_BIT = 16,
-    parameter FCOUNT  = 10_000
+module fnd_controller#(
+  parameter LOW_MAX = 100, HIGH_MAX = 60
 ) (
     input clk,
     input reset,
-    input [BCD_BIT - 1:0] bcd,
+    input [$clog2(LOW_MAX)-1:0] bcd_low,
+    input [$clog2(HIGH_MAX)-1:0] bcd_high,
     output [7:0] seg,
     output [3:0] seg_comm
 );
 
-    wire [3:0] w_bcd, w_digit_1, w_digit_10, w_digit_100, w_digit_1000;
-    wire [1:0] w_seg_sel;
     wire w_clk_100hz;
-
-    clk_divider #(
-        .FCOUNT(FCOUNT)
-    ) U_Clk_Divider (
+    clk_divider U_Clk_Divider (
         .clk  (clk),
         .reset(reset),
         .o_clk(w_clk_100hz)
     );
 
+    wire [1:0] w_seg_sel;
     counter_4 U_Counter_4 (
         .clk  (w_clk_100hz),
         .reset(reset),
@@ -34,22 +30,27 @@ module fnd_controller #(
         .seg_comm(seg_comm)
     );
 
-    digit_splitter #(
-        .BCD_BIT(BCD_BIT)
-    ) U_Digit_Splitter (
-        .bcd(bcd),
-        .digit_1(w_digit_1),
-        .digit_10(w_digit_10),
-        .digit_100(w_digit_100),
-        .digit_1000(w_digit_1000)
+    wire [$clog2(LOW_MAX)-1:0] w_low_1, w_low_10;
+    digit_splitter U_Digit_Splitter_Low (
+        .bcd(bcd_low),
+        .digit_1(w_low_1),
+        .digit_10(w_low_10)
     );
 
+    wire [$clog2(HIGH_MAX)-1:0] w_high_1, w_high_10;
+    digit_splitter U_Digit_Splitter_High (
+        .bcd(bcd_high),
+        .digit_1(w_high_1),
+        .digit_10(w_high_10)
+    );
+
+    wire [3:0] w_bcd;
     mux_4x1 U_Mux_4x1 (
         .sel(w_seg_sel),
-        .digit_1(w_digit_1),
-        .digit_10(w_digit_10),
-        .digit_100(w_digit_100),
-        .digit_1000(w_digit_1000),
+        .digit_1(w_low_1),
+        .digit_10(w_low_10),
+        .digit_100(w_high_1),
+        .digit_1000(w_high_10),
         .bcd(w_bcd)
     );
 
@@ -60,13 +61,12 @@ module fnd_controller #(
 
 endmodule
 
-module clk_divider #(
-    parameter FCOUNT = 10_000  // 이름을 상수화하여 사용.
-) (
+module clk_divider (
     input  clk,
     input  reset,
     output o_clk
 );
+    parameter FCOUNT = 500_000;  // 이름을 상수화하여 사용.
     // $clog2 : 수를 나타내는데 필요한 비트수 계산
     reg [$clog2(FCOUNT)-1:0] r_counter;
     reg r_clk;
@@ -128,20 +128,13 @@ module decoder_2x4 (
 
 endmodule
 
-module digit_splitter #(
-    parameter BCD_BIT = 16
-) (
-    input [BCD_BIT - 1:0] bcd,
-    output [3:0] digit_1,
-    output [3:0] digit_10,
-    output [3:0] digit_100,
-    output [3:0] digit_1000
+module digit_splitter (
+    input  [13:0] bcd,
+    output [ 3:0] digit_1,
+    output [ 3:0] digit_10
 );
-    assign digit_1 = bcd % 10;  // 10의 1의 자리
+    assign digit_1  = bcd % 10;  // 10의 1의 자리
     assign digit_10 = bcd / 10 % 10;  // 10의 10의 자리
-    assign digit_100 = bcd / 100 % 10;  // 10의 100의 자리
-    assign digit_1000 = bcd / 1000 % 10;  // 10의 1000의 자리
-
 endmodule
 
 module mux_4x1 (

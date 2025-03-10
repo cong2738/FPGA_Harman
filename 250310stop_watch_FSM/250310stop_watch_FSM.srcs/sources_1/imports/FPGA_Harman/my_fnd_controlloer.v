@@ -1,28 +1,24 @@
 `timescale 1ns / 1ps
 
-module fnd_controller #(
-    parameter BCD_BIT = 16,
-    parameter FCOUNT  = 10_000
-) (
+module fnd_controller (
     input clk,
     input reset,
-    input [BCD_BIT - 1:0] bcd,
-    output [7:0] seg,
-    output [3:0] seg_comm
+    input [7-1:0] msec,
+    input [7-1:0] sec,
+    input [7-1:0] min,
+    input [7-1:0] hour,
+    output [7:0] fnd_font,
+    output [3:0] fnd_comm
 );
 
-    wire [3:0] w_bcd, w_digit_1, w_digit_10, w_digit_100, w_digit_1000;
-    wire [1:0] w_seg_sel;
     wire w_clk_100hz;
-
-    clk_divider #(
-        .FCOUNT(FCOUNT)
-    ) U_Clk_Divider (
+    clk_divider U_Clk_Divider (
         .clk  (clk),
         .reset(reset),
         .o_clk(w_clk_100hz)
     );
 
+    wire [1:0] w_seg_sel;
     counter_4 U_Counter_4 (
         .clk  (w_clk_100hz),
         .reset(reset),
@@ -31,42 +27,60 @@ module fnd_controller #(
 
     decoder_2x4 U_decoder_2x4 (
         .seg_sel (w_seg_sel),
-        .seg_comm(seg_comm)
+        .fnd_comm(fnd_comm)
     );
 
-    digit_splitter #(
-        .BCD_BIT(BCD_BIT)
-    ) U_Digit_Splitter (
-        .bcd(bcd),
-        .digit_1(w_digit_1),
-        .digit_10(w_digit_10),
-        .digit_100(w_digit_100),
-        .digit_1000(w_digit_1000)
+    wire [8-1:0] w_msec_1, w_msec_10;
+    digit_splitter #(.BIT_WIDTH(8)) U_Msec_DS (
+        .bcd(msec),
+        .digit_1(w_msec_1),
+        .digit_10(w_msec_10)
     );
 
+    wire [8-1:0] w_sec_1, w_sec_10;
+    digit_splitter #(.BIT_WIDTH(8)) U_Sec_DS (
+        .bcd(sec),
+        .digit_1(w_sec_1),
+        .digit_10(w_sec_10)
+    );
+
+    wire [8-1:0] w_min_1, w_min_10;
+    digit_splitter #(.BIT_WIDTH(8)) U_Min_DS (
+        .bcd(min),
+        .digit_1(w_min_1),
+        .digit_10(w_min_10)
+    );
+
+    wire [8-1:0] w_hour_1, w_hour_10;
+    digit_splitter #(.BIT_WIDTH(7)) U_Hour_DS (
+        .bcd(hour),
+        .digit_1(w_hour_1),
+        .digit_10(w_hour_10)
+    );
+
+    wire [3:0] w_bcd;
     mux_4x1 U_Mux_4x1 (
         .sel(w_seg_sel),
-        .digit_1(w_digit_1),
-        .digit_10(w_digit_10),
-        .digit_100(w_digit_100),
-        .digit_1000(w_digit_1000),
+        .digit_1(w_msec_1),
+        .digit_10(w_msec_10),
+        .digit_100(w_sec_1),
+        .digit_1000(w_sec_10),
         .bcd(w_bcd)
     );
 
     bcdtoseg U_bcdtoseg (
         .bcd(w_bcd),  // [3:0] sum 값 
-        .seg(seg)
+        .fnd_font(fnd_font)
     );
 
 endmodule
 
-module clk_divider #(
-    parameter FCOUNT = 10_000  // 이름을 상수화하여 사용.
-) (
+module clk_divider (
     input  clk,
     input  reset,
     output o_clk
 );
+    parameter FCOUNT = 500_000;  // 이름을 상수화하여 사용.
     // $clog2 : 수를 나타내는데 필요한 비트수 계산
     reg [$clog2(FCOUNT)-1:0] r_counter;
     reg r_clk;
@@ -112,36 +126,31 @@ endmodule
 
 module decoder_2x4 (
     input [1:0] seg_sel,
-    output reg [3:0] seg_comm
+    output reg [3:0] fnd_comm
 );
 
     // 2x4 decoder
     always @(seg_sel) begin
         case (seg_sel)
-            2'b00:   seg_comm = 4'b1110;
-            2'b01:   seg_comm = 4'b1101;
-            2'b10:   seg_comm = 4'b1011;
-            2'b11:   seg_comm = 4'b0111;
-            default: seg_comm = 4'b1110;
+            2'b00:   fnd_comm = 4'b1110;
+            2'b01:   fnd_comm = 4'b1101;
+            2'b10:   fnd_comm = 4'b1011;
+            2'b11:   fnd_comm = 4'b0111;
+            default: fnd_comm = 4'b1110;
         endcase
     end
 
 endmodule
 
 module digit_splitter #(
-    parameter BCD_BIT = 16
+    parameter BIT_WIDTH = 14
 ) (
-    input [BCD_BIT - 1:0] bcd,
+    input [BIT_WIDTH - 1:0] bcd,
     output [3:0] digit_1,
-    output [3:0] digit_10,
-    output [3:0] digit_100,
-    output [3:0] digit_1000
+    output [3:0] digit_10
 );
-    assign digit_1 = bcd % 10;  // 10의 1의 자리
+    assign digit_1  = bcd % 10;  // 10의 1의 자리
     assign digit_10 = bcd / 10 % 10;  // 10의 10의 자리
-    assign digit_100 = bcd / 100 % 10;  // 10의 100의 자리
-    assign digit_1000 = bcd / 1000 % 10;  // 10의 1000의 자리
-
 endmodule
 
 module mux_4x1 (
@@ -170,29 +179,29 @@ endmodule
 
 module bcdtoseg (
     input [3:0] bcd,  // [3:0] sum 값 
-    output reg [7:0] seg
+    output reg [7:0] fnd_font
 );
     // always 구문 출력으로 reg type을 가져야 한다.
     always @(bcd) begin
 
         case (bcd)
-            4'h0: seg = 8'hc0;
-            4'h1: seg = 8'hF9;
-            4'h2: seg = 8'hA4;
-            4'h3: seg = 8'hB0;
-            4'h4: seg = 8'h99;
-            4'h5: seg = 8'h92;
-            4'h6: seg = 8'h82;
-            4'h7: seg = 8'hf8;
-            4'h8: seg = 8'h80;
-            4'h9: seg = 8'h90;
-            4'hA: seg = 8'h88;
-            4'hB: seg = 8'h83;
-            4'hC: seg = 8'hc6;
-            4'hD: seg = 8'ha1;
-            4'hE: seg = 8'h86;
-            4'hF: seg = 8'h8E;
-            default: seg = 8'hff;
+            4'h0: fnd_font = 8'hc0;
+            4'h1: fnd_font = 8'hF9;
+            4'h2: fnd_font = 8'hA4;
+            4'h3: fnd_font = 8'hB0;
+            4'h4: fnd_font = 8'h99;
+            4'h5: fnd_font = 8'h92;
+            4'h6: fnd_font = 8'h82;
+            4'h7: fnd_font = 8'hf8;
+            4'h8: fnd_font = 8'h80;
+            4'h9: fnd_font = 8'h90;
+            4'hA: fnd_font = 8'h88;
+            4'hB: fnd_font = 8'h83;
+            4'hC: fnd_font = 8'hc6;
+            4'hD: fnd_font = 8'ha1;
+            4'hE: fnd_font = 8'h86;
+            4'hF: fnd_font = 8'h8E;
+            default: fnd_font = 8'hff;
         endcase
     end
 endmodule

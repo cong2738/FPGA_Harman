@@ -1,6 +1,12 @@
 `timescale 1ns / 1ps
 
-module Top_Upcounter (
+module Top_Upcounter #(
+    parameter COUNT_100HZ = 1_000_000,
+    parameter MSEC_MAX = 100,
+    parameter SEC_MAX = 60,
+    parameter MIN_MAX = 60,
+    parameter HOUR_MAX = 24
+) (
     input clk,
     input reset,
     input sw_mod,
@@ -33,10 +39,17 @@ module Top_Upcounter (
         .o_clear(w_clear)
     );
 
-    wire [$clog2(100)-1:0] w_msec;
-    wire [$clog2(60)-1:0] w_sec, w_min;
-    wire [$clog2(24)-1:0] w_hour;
-    stopwatch_dp U_DP (
+    wire [$clog2(MSEC_MAX)-1:0] w_msec;
+    wire [$clog2(SEC_MAX)-1:0] w_sec;
+    wire [$clog2(MIN_MAX)-1:0]  w_min;
+    wire [$clog2(HOUR_MAX)-1:0] w_hour;
+    stopwatch_dp #(
+        .COUNT_100HZ(COUNT_100HZ),
+        .MSEC_MAX(MSEC_MAX),
+        .SEC_MAX(SEC_MAX),
+        .MIN_MAX(MIN_MAX),
+        .HOUR_MAX(HOUR_MAX)
+    ) U_DP (
         .clk(clk),
         .reset(reset),
         .i_run_stop(w_run_stop),
@@ -48,10 +61,11 @@ module Top_Upcounter (
     );
 
     fnd_controller #(
-        .MSEC_MAX(100),
-        .SEC_MAX(60),
-        .MIN_MAX(60),
-        .HOUR_MAX(24)
+        .MSEC_MAX(MSEC_MAX),
+        .SEC_MAX (SEC_MAX),
+        .MIN_MAX (MIN_MAX),
+        .HOUR_MAX(HOUR_MAX),
+        .COUNT_100HZ(COUNT_100HZ)
     ) U_fnd_cntl (
         .clk(clk),
         .reset(reset),

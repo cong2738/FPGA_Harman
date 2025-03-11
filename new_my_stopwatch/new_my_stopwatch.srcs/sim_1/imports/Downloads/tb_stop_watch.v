@@ -1,8 +1,6 @@
-`timescale 10ns / 10ns
-
+`timescale 1ns / 1ps
 
 module tb_stopwatch ();
-
     reg clk;
     reg reset;
     reg sw_mod;
@@ -11,7 +9,13 @@ module tb_stopwatch ();
     wire [3:0] fnd_comm;
     wire [7:0] fnd_font;
 
-    Top_Upcounter DUC (
+    Top_Upcounter #(
+        .COUNT_100HZ(100),
+        .MSEC_MAX(100),
+        .SEC_MAX(60),
+        .MIN_MAX(60),
+        .HOUR_MAX(24)
+    ) DUC (
     .clk(clk),
     .reset(reset),
     .sw_mod(sw_mod),
@@ -27,12 +31,13 @@ module tb_stopwatch ();
 
         clk = 0;
         reset = 1;
-        btn_run_stop = 0;
+        btn_run_stop = 1;
         btn_clear = 0;
         sw_mod = 0;
-        btn_run_stop = 1;
         #10;
         reset = 0;
+        wait(DUC.U_DP.min == 1);
+        sw_mod = 1;
     end
 
 endmodule

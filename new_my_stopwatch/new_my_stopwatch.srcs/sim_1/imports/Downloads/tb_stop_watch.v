@@ -3,53 +3,49 @@
 
 module tb_stopwatch ();
 
-    reg clk, reset, run, clear;
-    wire [6:0] msec, sec, min, hour;
+    reg clk, reset, run, clear, sw_mod;
     wire [3:0] fnd_comm;
     wire [7:0] fnd_font;
 
 
-    top_stopwatch uclk (
+    Top_Upcounter DUT_Top (
         .clk(clk),
         .reset(reset),
+        .sw_mod(sw_mod),
         .btn_run_stop(run),
         .btn_clear(clear),
         .fnd_comm(fnd_comm),
         .fnd_font(fnd_font)
     );
-    stopwatch_dp udp (
-        .clk  (clk),
+
+    wire w_msec,w_sec,w_min,w_hour;
+    fnd_controller #(.BCD_MAX(100)) DUT_Fnd_Controller (
+        .clk(clk),
         .reset(reset),
-        .run  (run),
-        .clear(clear),
-        .msec (msec),
-        .sec  (sec),
-        .min  (min),
-        .hour (hour)
+        .sw_mod(sw_mod),
+        .msec(w_msec),
+        .sec(w_sec),
+        .min(w_min),
+        .hour(w_hour),
+        .fnd_font(fnd_font),
+        .fnd_comm(fnd_comm)
     );
-
-
-    always #0.05 clk = ~clk;
+    integer i;
+    always #5 clk = ~clk;
     initial begin
-        clk   = 0;
+        clk = 0;
         reset = 1;
-        run   = 0;
+        run = 0;
         clear = 0;
+        sw_mod = 0;
+        run = 1;
         #10;
         reset = 0;
-        run   = 1;
         #10;
-        wait (min == 1);
-        #1000000;
+        wait(w_min ==1);
+
         run   = 0;
         clear = 1;
-
-
-        #100000;
-        #10;
-
-
-
     end
 
 endmodule

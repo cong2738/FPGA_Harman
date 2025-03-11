@@ -156,7 +156,6 @@ module mux_2x1 (
             1'b1: bcd = bcd_in2;
             default: bcd = bcd_in1;
         endcase
-
     end
 
 endmodule
@@ -348,5 +347,5 @@ module light_dot #(
     end
 
     assign dot = w_dot;
-    
+
 endmodule

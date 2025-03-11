@@ -332,7 +332,7 @@ module light_dot #(
     always @(posedge clk, posedge reset) begin
         if (reset) begin
             count <= 0;
-            w_dot <= 0;
+            w_dot <= 1;
         end else begin
             if (count == COUNT_MAX - 1) begin
                 count <= 0;

@@ -1,4 +1,5 @@
-`timescale 10ns / 1ns
+`timescale 10ns / 1ns 
+//기본클럭 100Mhz -> 10ns 기준으로 단위시간, 정확도는1ns
 
 module tb_stopwatch ();
     reg clk;

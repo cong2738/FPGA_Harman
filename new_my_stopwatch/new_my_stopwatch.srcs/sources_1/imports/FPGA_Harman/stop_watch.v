@@ -9,7 +9,6 @@ module Top_Upcounter (
     output [3:0] fnd_comm,
     output [7:0] fnd_font
 );
-// test
     wire w_run_stop, w_clear;
     wire o_btn_run_stop, o_btn_clear;
     btn_debounce U_BTN_Debounce_RUN_STOP (

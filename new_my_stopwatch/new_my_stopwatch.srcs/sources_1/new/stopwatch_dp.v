@@ -5,10 +5,10 @@ module stopwatch_dp (
     input reset,
     input i_run_stop,
     input i_clear,
-    output [$clog2(100):0] msec,
-    output [$clog2(60):0]sec,
-    output [$clog2(60):0]min,
-    output [$clog2(24):0]hour
+    output [$clog2(100)-1:0] msec,
+    output [$clog2(60)-1:0]sec,
+    output [$clog2(60)-1:0]min,
+    output [$clog2(24)-1:0]hour
 );
     wire w_tick_100hz;
     // 100Hz tick generator
@@ -20,7 +20,7 @@ module stopwatch_dp (
     );
 
     localparam TENMSEC_MAX = 100;
-    wire [$clog2(TENMSEC_MAX):0] w_msec;
+    wire [$clog2(TENMSEC_MAX)-1:0] w_msec;
     wire w_msec_clk;
     counter_tick #(
         .TICK_COUNT(TENMSEC_MAX)
@@ -34,7 +34,7 @@ module stopwatch_dp (
     );
 
     localparam SEC_MAX = 60;
-    wire [$clog2(SEC_MAX):0] w_sec;
+    wire [$clog2(SEC_MAX)-1:0] w_sec;
     wire w_sec_clk;
     counter_tick #(
         .TICK_COUNT(SEC_MAX)
@@ -48,7 +48,7 @@ module stopwatch_dp (
     );
 
     localparam MIN_MAX = 60;
-    wire [$clog2(MIN_MAX):0] w_min;
+    wire [$clog2(MIN_MAX)-1:0] w_min;
     wire w_min_clk;
     counter_tick #(
         .TICK_COUNT(MIN_MAX)
@@ -62,7 +62,7 @@ module stopwatch_dp (
     );
 
     localparam HOUR_MAX = 24;
-    wire [$clog2(MIN_MAX):0] w_hour;
+    wire [$clog2(MIN_MAX)-1:0] w_hour;
     wire w_hour_clk;
     counter_tick #(
         .TICK_COUNT(MIN_MAX)

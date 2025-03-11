@@ -1,4 +1,4 @@
-`timescale 10ns / 10ns
+`timescale 1ns / 1ps
 
 
 module tb_stopwatch ();
@@ -27,12 +27,13 @@ module tb_stopwatch ();
 
         clk = 0;
         reset = 1;
-        btn_run_stop = 0;
+        btn_run_stop = 1;
         btn_clear = 0;
         sw_mod = 0;
-        btn_run_stop = 1;
         #10;
         reset = 0;
+        wait(DUC.U_DP.msec == 1);
+        btn_run_stop = 0;
     end
 
 endmodule

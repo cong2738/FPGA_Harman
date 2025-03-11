@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="45,051.022 ns"></ZoomEndTime>
-      <Cursor1Time time="1,000.000 ns"></Cursor1Time>
+      <ZoomStartTime time="71,574,735.658 ns"></ZoomStartTime>
+      <ZoomEndTime time="71,681,022.469 ns"></ZoomEndTime>
+      <Cursor1Time time="71,663,308.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="292"></NameColumnWidth>
-      <ValueColumnWidth column_width="104"></ValueColumnWidth>
+      <ValueColumnWidth column_width="92"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="11" />
+   <WVObjectSize size="14" />
    <wvobject fp_name="/tb_stopwatch/reset" type="logic">
       <obj_property name="ElementShortName">reset</obj_property>
       <obj_property name="ObjectShortName">reset</obj_property>
@@ -48,21 +48,32 @@
       <obj_property name="ElementShortName">[7]</obj_property>
       <obj_property name="ObjectShortName">[7]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_stopwatch/DUT/U_DP/msec" type="array">
+   <wvobject fp_name="/tb_stopwatch/DUC/U_fnd_cntl/U_MUX2x1/bcd" type="array">
+      <obj_property name="ElementShortName">bcd[3:0]</obj_property>
+      <obj_property name="ObjectShortName">bcd[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_stopwatch/DUC/U_DP/msec" type="array">
       <obj_property name="ElementShortName">msec[6:0]</obj_property>
       <obj_property name="ObjectShortName">msec[6:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_stopwatch/DUT/U_DP/sec" type="array">
+   <wvobject fp_name="/tb_stopwatch/DUC/U_DP/sec" type="array">
       <obj_property name="ElementShortName">sec[5:0]</obj_property>
       <obj_property name="ObjectShortName">sec[5:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_stopwatch/DUT/U_DP/min" type="array">
+   <wvobject fp_name="/tb_stopwatch/DUC/U_DP/min" type="array">
       <obj_property name="ElementShortName">min[5:0]</obj_property>
       <obj_property name="ObjectShortName">min[5:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_stopwatch/DUT/U_fnd_cntl/U_MUX2x1/bcd" type="array">
-      <obj_property name="ElementShortName">bcd[3:0]</obj_property>
-      <obj_property name="ObjectShortName">bcd[3:0]</obj_property>
+   <wvobject fp_name="/tb_stopwatch/DUC/U_DP/hour" type="array">
+      <obj_property name="ElementShortName">hour[4:0]</obj_property>
+      <obj_property name="ObjectShortName">hour[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_stopwatch/DUC/U_fnd_cntl/w_bcd_in1" type="array">
+      <obj_property name="ElementShortName">w_bcd_in1[3:0]</obj_property>
+      <obj_property name="ObjectShortName">w_bcd_in1[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_stopwatch/DUC/U_fnd_cntl/w_bcd_in2" type="array">
+      <obj_property name="ElementShortName">w_bcd_in2[3:0]</obj_property>
+      <obj_property name="ObjectShortName">w_bcd_in2[3:0]</obj_property>
    </wvobject>
 </wave_config>

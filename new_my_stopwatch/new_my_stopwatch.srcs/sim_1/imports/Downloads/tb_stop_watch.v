@@ -29,7 +29,6 @@ module tb_stopwatch ();
     always #1 clk = ~clk;
 
     initial begin
-
         clk = 0;
         reset = 1;
         btn_run_stop = 1;

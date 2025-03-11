@@ -5,10 +5,10 @@ module stopwatch_dp (
     input reset,
     input i_run_stop,
     input i_clear,
-    output [6:0] msec,
-    sec,
-    min,
-    hour
+    output [$clog2(100):0] msec,
+    output [$clog2(60):0]sec,
+    output [$clog2(60):0]min,
+    output [$clog2(24):0]hour
 );
     wire w_tick_100hz;
     // 100Hz tick generator
@@ -61,7 +61,7 @@ module stopwatch_dp (
         .o_tick(w_min_clk)  //60min
     );
 
-    localparam HOUR_MAX = 60;
+    localparam HOUR_MAX = 24;
     wire [$clog2(MIN_MAX):0] w_hour;
     wire w_hour_clk;
     counter_tick #(

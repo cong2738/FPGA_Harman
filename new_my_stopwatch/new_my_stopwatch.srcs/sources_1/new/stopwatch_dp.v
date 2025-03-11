@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module stopwatch_dp #(
-    parameter COUNT_MAX = 1_000_000,
+    parameter COUNT_100HZ = 1_000_000,
     parameter MSEC_MAX  = 100,
     parameter SEC_MAX   = 60,
     parameter MIN_MAX   = 60,
@@ -19,7 +19,7 @@ module stopwatch_dp #(
     wire w_tick_100hz;
     // 100Hz tick generator
     tick_100hz #(
-        .COUNT_MAX(COUNT_MAX)
+        .COUNT_100HZ(COUNT_100HZ)
     ) U_Tick_100hz (
         .clk(clk),  // 100Mhz
         .reset(reset),
@@ -86,7 +86,7 @@ endmodule
 
 // 100Hz tick generator
 module tick_100hz #(
-    parameter COUNT_MAX = 1_000_000
+    parameter COUNT_100HZ = 1_000_000
 ) (
     input clk,  // 100Mhz
     input reset,
@@ -94,7 +94,7 @@ module tick_100hz #(
     output o_tick_100hz
 );
 
-    reg [$clog2(COUNT_MAX)-1:0] r_counter;
+    reg [$clog2(COUNT_100HZ)-1:0] r_counter;
     reg r_tick_100hz;
 
     assign o_tick_100hz = r_tick_100hz;
@@ -105,7 +105,7 @@ module tick_100hz #(
             r_tick_100hz <= 0;
         end else begin
             if (run_stop == 1'b1) begin
-                if (r_counter == (COUNT_MAX - 1)) begin // 100_000_000 / 1_000_000 = 100hz
+                if (r_counter == (COUNT_100HZ - 1)) begin // 100_000_000 / 1_000_000 = 100hz
                     r_counter <= 0;
                     r_tick_100hz <= 1'b1;
                 end else begin

@@ -33,7 +33,9 @@ module Top_Upcounter (
         .o_clear(w_clear)
     );
 
-    wire [6:0] w_msec, w_sec, w_min, w_hour;
+    wire [$clog2(100)-1:0] w_msec;
+    wire [$clog2(60)-1:0] w_sec, w_min;
+    wire [$clog2(24)-1:0] w_hour;
     stopwatch_dp U_DP (
         .clk(clk),
         .reset(reset),
@@ -46,7 +48,10 @@ module Top_Upcounter (
     );
 
     fnd_controller #(
-        .BCD_MAX(100)
+        .MSEC_MAX(100),
+        .SEC_MAX(60),
+        .MIN_MAX(60),
+        .HOUR_MAX(24)
     ) U_fnd_cntl (
         .clk(clk),
         .reset(reset),

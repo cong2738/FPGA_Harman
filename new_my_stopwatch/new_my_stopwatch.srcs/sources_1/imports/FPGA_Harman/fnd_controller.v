@@ -1,15 +1,18 @@
 `timescale 1ns / 1ps
 
 module fnd_controller #(
-    parameter BCD_MAX = 100
+    parameter   MSEC_MAX = 100,
+                SEC_MAX = 60,
+                MIN_MAX = 60,
+                HOUR_MAX = 24
 ) (
     input clk,
     input reset,
     input sw_mod,
-    input [$clog2(BCD_MAX)-1:0] msec,
-    input [$clog2(BCD_MAX)-1:0] sec,
-    input [$clog2(BCD_MAX)-1:0] min,
-    input [$clog2(BCD_MAX)-1:0] hour,
+    input [$clog2(MSEC_MAX)-1:0] msec,
+    input [$clog2(SEC_MAX)-1:0] sec,
+    input [$clog2(MIN_MAX)-1:0] min,
+    input [$clog2(HOUR_MAX)-1:0] hour,
     output [7:0] fnd_font,
     output [3:0] fnd_comm
 );
@@ -35,28 +38,28 @@ module fnd_controller #(
         .seg_comm(fnd_comm)
     );
 
-    wire [$clog2(BCD_MAX)-1:0] w_msec_1, w_msec_10;
+    wire [$clog2(MSEC_MAX)-1:0] w_msec_1, w_msec_10;
     digit_splitter U_Digit_Splitter_Msec (
         .bcd(msec),
         .digit_1(w_msec_1),
         .digit_10(w_msec_10)
     );
 
-    wire [$clog2(BCD_MAX)-1:0] w_sec_1, w_sec_10;
+    wire [$clog2(SEC_MAX)-1:0] w_sec_1, w_sec_10;
     digit_splitter U_Digit_Splitter_Sec (
         .bcd(sec),
         .digit_1(w_sec_1),
         .digit_10(w_sec_10)
     );
 
-    wire [$clog2(BCD_MAX)-1:0] w_min_1, w_min_10;
+    wire [$clog2(MIN_MAX)-1:0] w_min_1, w_min_10;
     digit_splitter U_Digit_Splitter_Min (
         .bcd(min),
         .digit_1(w_min_1),
         .digit_10(w_min_10)
     );
 
-    wire [$clog2(BCD_MAX)-1:0] w_hour_1, w_hour_10;
+    wire [$clog2(HOUR_MAX)-1:0] w_hour_1, w_hour_10;
     digit_splitter U_Digit_Splitter_Hour (
         .bcd(hour),
         .digit_1(w_hour_1),

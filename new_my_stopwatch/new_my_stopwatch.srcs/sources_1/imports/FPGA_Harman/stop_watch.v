@@ -78,7 +78,6 @@ module Top_Upcounter #(
         .fnd_comm(fnd_comm)
     );
 
-
 endmodule
 
 module control_unit (
@@ -101,7 +100,6 @@ module control_unit (
             state <= next;
         end
     end
-
 
     // next combinational logic
     always @(*) begin

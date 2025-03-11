@@ -103,7 +103,6 @@ module fnd_controller #(
         .bcd(w_bcd_in2)
     );
 
-
     wire [3:0] w_bcd;
     mux_2x1 U_MUX2x1 (
         .sw_mod(sw_mod),
@@ -142,6 +141,7 @@ module fnd_controller #(
         .seg_font(w_seg),
         .fnd_font(fnd_font)
     );
+
 endmodule
 
 module mux_2x1 (
@@ -187,6 +187,7 @@ module mux_8x1 (
             default: bcd = 4'hf;
         endcase
     end
+
 endmodule
 
 
@@ -225,7 +226,6 @@ module counter_8 (
     input        reset,
     output [2:0] o_sel
 );
-
     reg [2:0] r_counter;
     assign o_sel = r_counter;
 
@@ -236,7 +236,6 @@ module counter_8 (
             r_counter <= r_counter + 1;
         end
     end
-
 
 endmodule
 
@@ -271,6 +270,7 @@ module digit_splitter #(
 );
     assign digit_1  = bcd % 10;  // 10의 1의 자리
     assign digit_10 = bcd / 10 % 10;  // 10의 10의 자리
+
 endmodule
 
 module bcdtoseg (
@@ -279,7 +279,6 @@ module bcdtoseg (
 );
     // always 구문 출력으로 reg type을 가져야 한다.
     always @(bcd) begin
-
         case (bcd)
             4'h0: seg = 8'hc0;
             4'h1: seg = 8'hF9;
@@ -300,6 +299,7 @@ module bcdtoseg (
             default: seg = 8'hff;
         endcase
     end
+
 endmodule
 
 module mux_dot (
@@ -318,6 +318,7 @@ module mux_dot (
             default: fnd_font = seg_font;
         endcase
     end
+
 endmodule
 
 module light_dot #(
@@ -347,4 +348,5 @@ module light_dot #(
     end
 
     assign dot = w_dot;
+    
 endmodule

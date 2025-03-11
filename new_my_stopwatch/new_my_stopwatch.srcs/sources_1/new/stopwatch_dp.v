@@ -1,29 +1,36 @@
 `timescale 1ns / 1ps
 
-module stopwatch_dp (
+module stopwatch_dp #(
+    parameter COUNT_MAX = 1_000_000,
+    parameter MSEC_MAX  = 100,
+    parameter SEC_MAX   = 60,
+    parameter MIN_MAX   = 60,
+    parameter HOUR_MAX  = 24
+) (
     input clk,
     input reset,
     input i_run_stop,
     input i_clear,
-    output [$clog2(100)-1:0] msec,
-    output [$clog2(60)-1:0]sec,
-    output [$clog2(60)-1:0]min,
-    output [$clog2(24)-1:0]hour
+    output [$clog2(MSEC_MAX)-1:0] msec,
+    output [$clog2(SEC_MAX)-1:0] sec,
+    output [$clog2(SEC_MAX)-1:0] min,
+    output [$clog2(HOUR_MAX)-1:0] hour
 );
     wire w_tick_100hz;
     // 100Hz tick generator
-    tick_100hz U_Tick_100hz (
+    tick_100hz #(
+        .COUNT_MAX(COUNT_MAX)
+    ) U_Tick_100hz (
         .clk(clk),  // 100Mhz
         .reset(reset),
         .run_stop(i_run_stop),
         .o_tick_100hz(w_tick_100hz)
     );
 
-    localparam TENMSEC_MAX = 100;
-    wire [$clog2(TENMSEC_MAX)-1:0] w_msec;
+    wire [$clog2(MSEC_MAX)-1:0] w_msec;
     wire w_msec_clk;
     counter_tick #(
-        .TICK_COUNT(TENMSEC_MAX)
+        .TICK_COUNT(MSEC_MAX)
     ) U_Count_Msec (  // msec
         .clk(clk),
         .reset(reset),
@@ -33,7 +40,6 @@ module stopwatch_dp (
         .o_tick(w_msec_clk)  // 100hz/100 = 1hz => 1sec
     );
 
-    localparam SEC_MAX = 60;
     wire [$clog2(SEC_MAX)-1:0] w_sec;
     wire w_sec_clk;
     counter_tick #(
@@ -47,7 +53,6 @@ module stopwatch_dp (
         .o_tick(w_sec_clk)  // 1/60hz => 60sec
     );
 
-    localparam MIN_MAX = 60;
     wire [$clog2(MIN_MAX)-1:0] w_min;
     wire w_min_clk;
     counter_tick #(
@@ -61,7 +66,6 @@ module stopwatch_dp (
         .o_tick(w_min_clk)  //60min
     );
 
-    localparam HOUR_MAX = 24;
     wire [$clog2(MIN_MAX)-1:0] w_hour;
     wire w_hour_clk;
     counter_tick #(
@@ -81,14 +85,16 @@ module stopwatch_dp (
 endmodule
 
 // 100Hz tick generator
-module tick_100hz (
+module tick_100hz #(
+    parameter COUNT_MAX = 1_000_000
+) (
     input clk,  // 100Mhz
     input reset,
     input run_stop,
     output o_tick_100hz
 );
 
-    reg [$clog2(1_000_000)-1:0] r_counter;
+    reg [$clog2(COUNT_MAX)-1:0] r_counter;
     reg r_tick_100hz;
 
     assign o_tick_100hz = r_tick_100hz;
@@ -99,7 +105,7 @@ module tick_100hz (
             r_tick_100hz <= 0;
         end else begin
             if (run_stop == 1'b1) begin
-                if (r_counter == (1_000_000 - 1)) begin // 100_000_000 / 1_000_000 = 100hz
+                if (r_counter == (COUNT_MAX - 1)) begin // 100_000_000 / 1_000_000 = 100hz
                     r_counter <= 0;
                     r_tick_100hz <= 1'b1;
                 end else begin

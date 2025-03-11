@@ -39,28 +39,39 @@ module fnd_controller #(
     );
 
     wire [$clog2(MSEC_MAX)-1:0] w_msec_1, w_msec_10;
-    digit_splitter U_Digit_Splitter_Msec (
+    digit_splitter 
+    #(
+        .BCD_MAX(MSEC_MAX)
+    )
+    U_Digit_Splitter_Msec (
         .bcd(msec),
         .digit_1(w_msec_1),
         .digit_10(w_msec_10)
     );
 
     wire [$clog2(SEC_MAX)-1:0] w_sec_1, w_sec_10;
-    digit_splitter U_Digit_Splitter_Sec (
+    digit_splitter 
+    #(
+        .BCD_MAX(SEC_MAX)
+    )U_Digit_Splitter_Sec (
         .bcd(sec),
         .digit_1(w_sec_1),
         .digit_10(w_sec_10)
     );
 
     wire [$clog2(MIN_MAX)-1:0] w_min_1, w_min_10;
-    digit_splitter U_Digit_Splitter_Min (
+    digit_splitter #(
+        .BCD_MAX(MIN_MAX)
+    ) U_Digit_Splitter_Min (
         .bcd(min),
         .digit_1(w_min_1),
         .digit_10(w_min_10)
     );
 
     wire [$clog2(HOUR_MAX)-1:0] w_hour_1, w_hour_10;
-    digit_splitter U_Digit_Splitter_Hour (
+    digit_splitter #(
+        .BCD_MAX(HOUR_MAX)
+    ) U_Digit_Splitter_Hour (
         .bcd(hour),
         .digit_1(w_hour_1),
         .digit_10(w_hour_10)
@@ -252,8 +263,10 @@ module decoder_3x8 (
 
 endmodule
 
-module digit_splitter (
-    input  [13:0] bcd,
+module digit_splitter #(
+    parameter BCD_MAX = 100
+)(
+    input  [$clog2(BCD_MAX)-1:0] bcd,
     output [ 3:0] digit_1,
     output [ 3:0] digit_10
 );

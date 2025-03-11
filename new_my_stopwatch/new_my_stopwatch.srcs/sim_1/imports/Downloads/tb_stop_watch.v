@@ -10,7 +10,7 @@ module tb_stopwatch ();
     wire [7:0] fnd_font;
 
     Top_Upcounter #(
-        .COUNT_MAX(100),
+        .COUNT_100HZ(100),
         .MSEC_MAX(100),
         .SEC_MAX(60),
         .MIN_MAX(60),

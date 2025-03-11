@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module Top_Upcounter #(
-    parameter COUNT_MAX = 1_000_000,
+    parameter COUNT_100HZ = 1_000_000,
     parameter MSEC_MAX = 100,
     parameter SEC_MAX = 60,
     parameter MIN_MAX = 60,
@@ -44,7 +44,7 @@ module Top_Upcounter #(
     wire [$clog2(MIN_MAX)-1:0]  w_min;
     wire [$clog2(HOUR_MAX)-1:0] w_hour;
     stopwatch_dp #(
-        .COUNT_MAX(COUNT_MAX),
+        .COUNT_100HZ(COUNT_100HZ),
         .MSEC_MAX(MSEC_MAX),
         .SEC_MAX(SEC_MAX),
         .MIN_MAX(MIN_MAX),
@@ -64,7 +64,8 @@ module Top_Upcounter #(
         .MSEC_MAX(MSEC_MAX),
         .SEC_MAX (SEC_MAX),
         .MIN_MAX (MIN_MAX),
-        .HOUR_MAX(HOUR_MAX)
+        .HOUR_MAX(HOUR_MAX),
+        .COUNT_100HZ(COUNT_100HZ)
     ) U_fnd_cntl (
         .clk(clk),
         .reset(reset),

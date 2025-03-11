@@ -1,10 +1,11 @@
 `timescale 1ns / 1ps
 
 module fnd_controller #(
-    parameter   MSEC_MAX = 100,
-                SEC_MAX = 60,
-                MIN_MAX = 60,
-                HOUR_MAX = 24
+    parameter MSEC_MAX = 100,
+    parameter SEC_MAX = 60,
+    parameter MIN_MAX = 60,
+    parameter HOUR_MAX = 24,
+    parameter COUNT_100HZ = 1_000_000
 ) (
     input clk,
     input reset,
@@ -19,8 +20,8 @@ module fnd_controller #(
 
     wire w_tick;
     clk_divider #(
-        .FCOUNT(10_000) //100_000_000/10_000 = 10_000hz
-    )U_Clk_Divider (
+        .FCOUNT(10_000)  //100_000_000/10_000 = 10_000hz
+    ) U_Clk_Divider (
         .clk  (clk),
         .reset(reset),
         .o_clk(w_tick)
@@ -39,21 +40,18 @@ module fnd_controller #(
     );
 
     wire [$clog2(MSEC_MAX)-1:0] w_msec_1, w_msec_10;
-    digit_splitter 
-    #(
+    digit_splitter #(
         .BCD_MAX(MSEC_MAX)
-    )
-    U_Digit_Splitter_Msec (
+    ) U_Digit_Splitter_Msec (
         .bcd(msec),
         .digit_1(w_msec_1),
         .digit_10(w_msec_10)
     );
 
     wire [$clog2(SEC_MAX)-1:0] w_sec_1, w_sec_10;
-    digit_splitter 
-    #(
+    digit_splitter #(
         .BCD_MAX(SEC_MAX)
-    )U_Digit_Splitter_Sec (
+    ) U_Digit_Splitter_Sec (
         .bcd(sec),
         .digit_1(w_sec_1),
         .digit_10(w_sec_10)
@@ -128,11 +126,22 @@ module fnd_controller #(
         .seg(w_seg)
     );
 
-    wire w_dot;
-    light_dot U_Light_Dot (
-        .clk  (w_tick), //10Khz
+    wire w_100hz;
+    clk_divider #(
+        .FCOUNT(COUNT_100HZ)  //100_000_000/1_000_000 = 100hz
+    ) U_100hz_Gen (
+        .clk  (clk),
         .reset(reset),
-        .dot  (w_dot)
+        .o_clk(w_100hz)
+    );
+
+    wire w_dot;
+    light_dot #(
+        .COUNT_MAX(100)
+    ) U_Light_Dot (
+        .clk  (clk),    //100Mhz
+        .reset(reset),
+        .dot  (w_dot)   //1hz
     );
 
     mux_dot U_Mux_dot (
@@ -193,7 +202,7 @@ endmodule
 
 module clk_divider #(
     parameter FCOUNT = 100_000  // 이름을 상수화하여 사용.
-)(
+) (
     input  clk,
     input  reset,
     output o_clk
@@ -265,10 +274,10 @@ endmodule
 
 module digit_splitter #(
     parameter BCD_MAX = 100
-)(
-    input  [$clog2(BCD_MAX)-1:0] bcd,
-    output [ 3:0] digit_1,
-    output [ 3:0] digit_10
+) (
+    input [$clog2(BCD_MAX)-1:0] bcd,
+    output [3:0] digit_1,
+    output [3:0] digit_10
 );
     assign digit_1  = bcd % 10;  // 10의 1의 자리
     assign digit_10 = bcd / 10 % 10;  // 10의 10의 자리
@@ -346,10 +355,10 @@ module mux_dot (
 endmodule
 
 module light_dot #(
-    parameter COUNT_MAX = 10_000    // 10_000/20_000 => period = 1sec
+    parameter COUNT_MAX = 100  // 10_000/20_000 => period = 1sec
 ) (
-    input clk,
-    input reset,
+    input  clk,
+    input  reset,
     output dot
 );
     reg w_dot;
@@ -361,7 +370,7 @@ module light_dot #(
         end else begin
             if (count == COUNT_MAX - 1) begin
                 count <= 0;
-                w_dot   <= 1;
+                w_dot <= 1;
             end else if (count == ((COUNT_MAX / 2) - 1)) begin
                 w_dot <= 0;
                 count <= count + 1;

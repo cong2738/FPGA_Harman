@@ -111,14 +111,6 @@ module fnd_controller #(
         .bcd_in2(w_bcd_in2),
         .bcd(w_bcd)
     );
-    // mux_4x1 U_Mux_4x1 (
-    //     .sel(w_seg_sel),
-    //     .digit_1(w_msec_1),
-    //     .digit_10(w_msec_10),
-    //     .digit_100(w_sec_1),
-    //     .digit_1000(w_sec_10),
-    //     .bcd(w_bcd)
-    // );
 
     wire [7:0] w_seg;
     bcdtoseg U_bcdtoseg (
@@ -139,7 +131,7 @@ module fnd_controller #(
     light_dot #(
         .COUNT_MAX(100)
     ) U_Light_Dot (
-        .clk  (clk),    //100Mhz
+        .clk  (w_100hz),    //100Mhz
         .reset(reset),
         .dot  (w_dot)   //1hz
     );
@@ -182,8 +174,6 @@ module mux_8x1 (
     input [3:0] digit_10_h,
     output reg [3:0] bcd
 );
-
-
     always @(*) begin
         case (sel)
             3'b000:  bcd = digit_1_ms;
@@ -281,30 +271,6 @@ module digit_splitter #(
 );
     assign digit_1  = bcd % 10;  // 10의 1의 자리
     assign digit_10 = bcd / 10 % 10;  // 10의 10의 자리
-endmodule
-
-module mux_4x1 (
-    input  [1:0] sel,
-    input  [3:0] digit_1,
-    input  [3:0] digit_10,
-    input  [3:0] digit_100,
-    input  [3:0] digit_1000,
-    output [3:0] bcd
-);
-    reg [3:0] r_bcd;
-    assign bcd = r_bcd;
-    // * : input 모두 감시, 아니면 개별 입력 선택 할 수 있다.
-    // alwasys : 항상 감시한다 @이벤트 이하를 ()의 변화가 있으면, begin - end를 수행해라.
-    always @(sel, digit_1, digit_10, digit_100, digit_1000) begin
-        case (sel)
-            2'b00:   r_bcd = digit_1;
-            2'b01:   r_bcd = digit_10;
-            2'b10:   r_bcd = digit_100;
-            2'b11:   r_bcd = digit_1000;
-            default: r_bcd = 4'bx;
-        endcase
-    end
-
 endmodule
 
 module bcdtoseg (

@@ -3,11 +3,11 @@
 module Top_Upcounter (
     input clk,
     input reset,
-    //    input [2:0] sw,
+    input sw_mod,
     input btn_run_stop,
     input btn_clear,
-    output [3:0] seg_comm,
-    output [7:0] seg
+    output [3:0] fnd_comm,
+    output [7:0] fnd_font
 );
     wire w_run_stop, w_clear;
     wire o_btn_run_stop, o_btn_clear;
@@ -33,7 +33,7 @@ module Top_Upcounter (
         .o_clear(w_clear)
     );
 
-    wire[6:0] w_msec,w_sec,w_min,w_hour;
+    wire [6:0] w_msec, w_sec, w_min, w_hour;
     stopwatch_dp U_DP (
         .clk(clk),
         .reset(reset),
@@ -46,16 +46,17 @@ module Top_Upcounter (
     );
 
     fnd_controller #(
-        .BCD_MAX (100)
+        .BCD_MAX(100)
     ) U_fnd_cntl (
         .clk(clk),
         .reset(reset),
+        .sw_mod(sw_mod),
         .msec(w_msec),
         .sec(w_sec),
-        .min(min),
-        .hour(hour),
-        .seg(seg),
-        .seg_comm(seg_comm)
+        .min(w_min),
+        .hour(w_hour),
+        .fnd_font(fnd_font),
+        .fnd_comm(fnd_comm)
     );
 
 

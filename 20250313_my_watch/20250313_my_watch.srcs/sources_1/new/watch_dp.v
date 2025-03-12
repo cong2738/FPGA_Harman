@@ -2,16 +2,14 @@
 
 module watch_dp #(
     parameter COUNT_100HZ = 1_000_000,
-    parameter MSEC_MAX  = 100,
-    parameter SEC_MAX   = 60,
-    parameter MIN_MAX   = 60,
-    parameter HOUR_MAX  = 24
+    parameter MSEC_MAX = 100,
+    parameter SEC_MAX = 60,
+    parameter MIN_MAX = 60,
+    parameter HOUR_MAX = 24
 ) (
     input clk,
     input reset,
-    output sec_add,
-    output min_add,
-    output hour_add,
+    input [2:0] hms,
     output [$clog2(MSEC_MAX)-1:0] msec,
     output [$clog2(SEC_MAX)-1:0] sec,
     output [$clog2(SEC_MAX)-1:0] min,
@@ -19,63 +17,62 @@ module watch_dp #(
 );
     wire w_tick_100hz;
     // 100Hz tick generator
-    tick_100hz #(
+    watch_tick_100hz #(
         .COUNT_100HZ(COUNT_100HZ)
     ) U_Tick_100hz (
         .clk(clk),  // 100Mhz
         .reset(reset),
-        .run_stop(i_run_stop),
         .o_tick_100hz(w_tick_100hz)
     );
 
     wire [$clog2(MSEC_MAX)-1:0] w_msec;
     wire w_msec_clk;
-    counter_tick #(
+    watch_counter_tick #(
         .TICK_COUNT(MSEC_MAX)
     ) U_Count_Msec (  // msec
         .clk(clk),
         .reset(reset),
-        .tick(w_tick_100hz),  //100hz => 0.01sec
         .add_time(0),
+        .tick(w_tick_100hz),  //100hz => 0.01sec
         .counter(w_msec),
         .o_tick(w_msec_clk)  // 100hz/100 = 1hz => 1sec
     );
 
     wire [$clog2(SEC_MAX)-1:0] w_sec;
     wire w_sec_clk;
-    counter_tick #(
+    watch_counter_tick #(
         .TICK_COUNT(SEC_MAX)
-    ) U_Count_sec (  // sec
+    ) U_Count_sec0 (  // sec
         .clk(clk),
         .reset(reset),
+        .add_time(hms[0]),
         .tick(w_msec_clk),  //1hz
-        .add_time(sec_add),
         .counter(w_sec),
         .o_tick(w_sec_clk)  // 1/60hz => 60sec
     );
 
     wire [$clog2(MIN_MAX)-1:0] w_min;
     wire w_min_clk;
-    counter_tick #(
+    watch_counter_tick #(
         .TICK_COUNT(MIN_MAX)
-    ) U_Count_Min (
+    ) U_Count_Min0 (
         .clk(clk),
         .reset(reset),
+        .add_time(hms[1]),
         .tick(w_sec_clk),
-        .add_time(min_add),
         .counter(w_min),
         .o_tick(w_min_clk)  //60min
     );
 
     wire [$clog2(MIN_MAX)-1:0] w_hour;
     wire w_hour_clk;
-    counter_tick #(
+    watch_counter_tick #(
         .TICK_COUNT(MIN_MAX)
-    ) U_Count_Hour (
+    ) U_Count_Hour0 (
         .clk(clk),
         .reset(reset),
+        .add_time(hms[2]),
         .tick(w_min_clk),
-        .add_time(hour_add),
         .counter(w_hour),
         .o_tick(w_hour_clk)  //60min
     );
@@ -86,12 +83,11 @@ module watch_dp #(
 endmodule
 
 // 100Hz tick generator
-module tick_100hz #(
+module watch_tick_100hz #(
     parameter COUNT_100HZ = 1_000_000
 ) (
     input clk,  // 100Mhz
     input reset,
-    input run_stop,
     output o_tick_100hz
 );
 
@@ -105,21 +101,19 @@ module tick_100hz #(
             r_counter <= 0;
             r_tick_100hz <= 0;
         end else begin
-            if (run_stop == 1'b1) begin
-                if (r_counter == (COUNT_100HZ - 1)) begin // 100_000_000 / 1_000_000 = 100hz
-                    r_counter <= 0;
-                    r_tick_100hz <= 1'b1;
-                end else begin
-                    r_counter <= r_counter + 1;
-                    r_tick_100hz <= 1'b0;
-                end
+            if (r_counter == (COUNT_100HZ - 1)) begin // 100_000_000 / 1_000_000 = 100hz
+                r_counter <= 0;
+                r_tick_100hz <= 1'b1;
+            end else begin
+                r_counter <= r_counter + 1;
+                r_tick_100hz <= 1'b0;
             end
         end
     end
 
 endmodule
 
-module counter_tick #(
+module watch_counter_tick #(
     parameter TICK_COUNT = 10_000
 ) (
     input clk,
@@ -142,9 +136,7 @@ module counter_tick #(
             counter_reg <= 0;
         end else begin
             counter_reg <= counter_next;
-            if(counter_reg == TICK_COUNT - 1) begin
-                counter_reg <= 0;
-            end else begin
+            if (counter_reg < TICK_COUNT) begin
                 counter_reg <= counter_reg + add_time;
             end
         end

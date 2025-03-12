@@ -18,10 +18,6 @@ module top_my_watch #(
     output [7:0] fnd_font,
     output [3:0] mod_indicate_led
 );
-    wire btn_run_stop;
-    wire btn_clear;
-    assign btn_run_stop = btnL;
-    assign btn_clear = btnR;
 
     wire btn_sec;
     wire btn_min;
@@ -33,7 +29,7 @@ module top_my_watch #(
     mod_indicator U_Mod_Indicator (
         .hs_mod_sw(hs_mod_sw),
         .watch_mod_sw(watch_mod_sw),
-        .mod_indicate_led(mod_indicate_led)
+        .led(mod_indicate_led)
     );
 
     wire [$clog2(MSEC_MAX)-1:0] stopwatch_msec;
@@ -49,8 +45,9 @@ module top_my_watch #(
     ) U_Stopwatch (
         .clk(clk),
         .reset(reset),
-        .btn_run_stop(btn_run_stop),
-        .btn_clear(btn_clear),
+        .btn_run_stop(btnL),
+        .btn_clear(btnR),
+        .watch_mod_sw(watch_mod_sw),
         .w_msec(stopwatch_msec),
         .w_sec(stopwatch_sec),
         .w_min(stopwatch_min),
@@ -70,9 +67,10 @@ module top_my_watch #(
     ) U_Watch (
         .clk(clk),
         .reset(reset),
-        .sec_btn(btn_sec),
-        .min_btn(btn_min),
-        .hour_btn(btn_hour),
+        .btn_sec(btnD),
+        .btn_min(btnL),
+        .btn_hour(btnU),
+        .watch_mod_sw(watch_mod_sw),
         .w_msec(watch_msec),
         .w_sec(watch_sec),
         .w_min(watch_min),

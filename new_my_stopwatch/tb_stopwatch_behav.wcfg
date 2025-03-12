@@ -11,94 +11,139 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="327,169.172627 us"></ZoomStartTime>
-      <ZoomEndTime time="329,082.928696 us"></ZoomEndTime>
-      <Cursor1Time time="327,773.816869 us"></Cursor1Time>
+      <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
+      <ZoomEndTime time="1,345.792543747 ms"></ZoomEndTime>
+      <Cursor1Time time="228.729630000 ms"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="292"></NameColumnWidth>
-      <ValueColumnWidth column_width="68"></ValueColumnWidth>
+      <NameColumnWidth column_width="282"></NameColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="17" />
-   <wvobject fp_name="/tb_stopwatch/sw_mod" type="logic">
-      <obj_property name="ElementShortName">sw_mod</obj_property>
-      <obj_property name="ObjectShortName">sw_mod</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_stopwatch/btn_run_stop" type="logic">
-      <obj_property name="ElementShortName">btn_run_stop</obj_property>
-      <obj_property name="ObjectShortName">btn_run_stop</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_stopwatch/btn_clear" type="logic">
-      <obj_property name="ElementShortName">btn_clear</obj_property>
-      <obj_property name="ObjectShortName">btn_clear</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_stopwatch/DUC/U_fnd_cntl/U_MUX2x1/bcd" type="array">
-      <obj_property name="ElementShortName">bcd[3:0]</obj_property>
-      <obj_property name="ObjectShortName">bcd[3:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   <WVObjectSize size="21" />
+   <wvobject fp_name="/tb_stopwatch/DUT/U_Watch/U_watch_DP/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
       <obj_property name="CustomSignalColor">#F0E68C</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_stopwatch/DUC/U_fnd_cntl/w_bcd_in1" type="array">
-      <obj_property name="ElementShortName">w_bcd_in1[3:0]</obj_property>
-      <obj_property name="ObjectShortName">w_bcd_in1[3:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   <wvobject fp_name="/tb_stopwatch/DUT/U_Watch/U_watch_DP/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
       <obj_property name="CustomSignalColor">#F0E68C</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_stopwatch/DUC/U_fnd_cntl/w_bcd_in2" type="array">
-      <obj_property name="ElementShortName">w_bcd_in2[3:0]</obj_property>
-      <obj_property name="ObjectShortName">w_bcd_in2[3:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   <wvobject fp_name="/tb_stopwatch/DUT/U_Watch/U_watch_DP/hms" type="array">
+      <obj_property name="ElementShortName">hms[2:0]</obj_property>
+      <obj_property name="ObjectShortName">hms[2:0]</obj_property>
       <obj_property name="CustomSignalColor">#F0E68C</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_stopwatch/fnd_font[7]" type="logic">
-      <obj_property name="ElementShortName">[7]</obj_property>
-      <obj_property name="ObjectShortName">[7]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_stopwatch/DUC/U_DP/msec" type="array">
+   <wvobject fp_name="/tb_stopwatch/DUT/U_Watch/U_watch_DP/msec" type="array">
       <obj_property name="ElementShortName">msec[6:0]</obj_property>
       <obj_property name="ObjectShortName">msec[6:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_stopwatch/DUC/U_DP/sec" type="array">
+   <wvobject fp_name="/tb_stopwatch/DUT/U_Watch/U_watch_DP/sec" type="array">
       <obj_property name="ElementShortName">sec[5:0]</obj_property>
       <obj_property name="ObjectShortName">sec[5:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_stopwatch/DUC/U_DP/min" type="array">
+   <wvobject fp_name="/tb_stopwatch/DUT/U_Watch/U_watch_DP/min" type="array">
       <obj_property name="ElementShortName">min[5:0]</obj_property>
       <obj_property name="ObjectShortName">min[5:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_stopwatch/DUC/U_DP/hour" type="array">
+   <wvobject fp_name="/tb_stopwatch/DUT/U_Watch/U_watch_DP/hour" type="array">
       <obj_property name="ElementShortName">hour[4:0]</obj_property>
       <obj_property name="ObjectShortName">hour[4:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_stopwatch/DUC/fnd_comm" type="array">
-      <obj_property name="ElementShortName">fnd_comm[3:0]</obj_property>
-      <obj_property name="ObjectShortName">fnd_comm[3:0]</obj_property>
+   <wvobject fp_name="/tb_stopwatch/DUT/U_Watch/U_watch_DP/w_tick_100hz" type="logic">
+      <obj_property name="ElementShortName">w_tick_100hz</obj_property>
+      <obj_property name="ObjectShortName">w_tick_100hz</obj_property>
+      <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_stopwatch/DUC/fnd_font" type="array">
-      <obj_property name="ElementShortName">fnd_font[7:0]</obj_property>
-      <obj_property name="ObjectShortName">fnd_font[7:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_stopwatch/DUC/w_msec" type="array">
+   <wvobject fp_name="/tb_stopwatch/DUT/U_Watch/U_watch_DP/w_msec" type="array">
       <obj_property name="ElementShortName">w_msec[6:0]</obj_property>
       <obj_property name="ObjectShortName">w_msec[6:0]</obj_property>
+      <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_stopwatch/DUC/w_sec" type="array">
+   <wvobject fp_name="/tb_stopwatch/DUT/U_Watch/U_watch_DP/w_msec_clk" type="logic">
+      <obj_property name="ElementShortName">w_msec_clk</obj_property>
+      <obj_property name="ObjectShortName">w_msec_clk</obj_property>
+      <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_stopwatch/DUT/U_Watch/U_watch_DP/w_sec" type="array">
       <obj_property name="ElementShortName">w_sec[5:0]</obj_property>
       <obj_property name="ObjectShortName">w_sec[5:0]</obj_property>
+      <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_stopwatch/DUC/w_min" type="array">
+   <wvobject fp_name="/tb_stopwatch/DUT/U_Watch/U_watch_DP/w_sec_clk" type="logic">
+      <obj_property name="ElementShortName">w_sec_clk</obj_property>
+      <obj_property name="ObjectShortName">w_sec_clk</obj_property>
+      <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_stopwatch/DUT/U_Watch/U_watch_DP/w_min" type="array">
       <obj_property name="ElementShortName">w_min[5:0]</obj_property>
       <obj_property name="ObjectShortName">w_min[5:0]</obj_property>
+      <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_stopwatch/DUC/w_hour" type="array">
-      <obj_property name="ElementShortName">w_hour[4:0]</obj_property>
-      <obj_property name="ObjectShortName">w_hour[4:0]</obj_property>
+   <wvobject fp_name="/tb_stopwatch/DUT/U_Watch/U_watch_DP/w_min_clk" type="logic">
+      <obj_property name="ElementShortName">w_min_clk</obj_property>
+      <obj_property name="ObjectShortName">w_min_clk</obj_property>
+      <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_stopwatch/DUT/U_Watch/U_watch_DP/w_hour" type="array">
+      <obj_property name="ElementShortName">w_hour[5:0]</obj_property>
+      <obj_property name="ObjectShortName">w_hour[5:0]</obj_property>
+      <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_stopwatch/DUT/U_Watch/U_watch_DP/w_hour_clk" type="logic">
+      <obj_property name="ElementShortName">w_hour_clk</obj_property>
+      <obj_property name="ObjectShortName">w_hour_clk</obj_property>
+      <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_stopwatch/DUT/U_Watch/U_watch_DP/COUNT_100HZ" type="array">
+      <obj_property name="ElementShortName">COUNT_100HZ[31:0]</obj_property>
+      <obj_property name="ObjectShortName">COUNT_100HZ[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_stopwatch/DUT/U_Watch/U_watch_DP/MSEC_MAX" type="array">
+      <obj_property name="ElementShortName">MSEC_MAX[31:0]</obj_property>
+      <obj_property name="ObjectShortName">MSEC_MAX[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_stopwatch/DUT/U_Watch/U_watch_DP/SEC_MAX" type="array">
+      <obj_property name="ElementShortName">SEC_MAX[31:0]</obj_property>
+      <obj_property name="ObjectShortName">SEC_MAX[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_stopwatch/DUT/U_Watch/U_watch_DP/MIN_MAX" type="array">
+      <obj_property name="ElementShortName">MIN_MAX[31:0]</obj_property>
+      <obj_property name="ObjectShortName">MIN_MAX[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_stopwatch/DUT/U_Watch/U_watch_DP/HOUR_MAX" type="array">
+      <obj_property name="ElementShortName">HOUR_MAX[31:0]</obj_property>
+      <obj_property name="ObjectShortName">HOUR_MAX[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
 </wave_config>

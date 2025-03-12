@@ -9,6 +9,7 @@ module stopwatch #(
     input reset,
     input btn_run_stop,
     input btn_clear,
+    input watch_mod_sw,
     output [$clog2(MSEC_MAX)-1:0] w_msec,
     output [$clog2(SEC_MAX)-1:0] w_sec,
     output [$clog2(MIN_MAX)-1:0] w_min,
@@ -34,6 +35,7 @@ module stopwatch #(
         .reset(reset),
         .i_run_stop(o_btn_run_stop),  // input 
         .i_clear(o_btn_clear),
+        .i_mod(watch_mod_sw),
         .o_run_stop(w_run_stop),
         .o_clear(w_clear)
     );
@@ -44,7 +46,7 @@ module stopwatch #(
         .SEC_MAX(SEC_MAX),
         .MIN_MAX(MIN_MAX),
         .HOUR_MAX(HOUR_MAX)
-    ) U_DP (
+    ) U_Stopwatch_DP (
         .clk(clk),
         .reset(reset),
         .i_run_stop(w_run_stop),
@@ -61,6 +63,7 @@ module stopwatch_control_unit (
     input reset,
     input i_run_stop,  // input 
     input i_clear,
+    input i_mod,  //0:stopwatch, 1:watch
     output reg o_run_stop,
     output reg o_clear
 );
@@ -82,7 +85,7 @@ module stopwatch_control_unit (
         next = state;
         case (state)
             STOP: begin
-                if (i_run_stop == 1'b1) begin
+                if (!i_mod && i_run_stop == 1'b1) begin
                     next = RUN;
                 end else if (i_clear == 1'b1) begin
                     next = CLEAR;
@@ -91,14 +94,14 @@ module stopwatch_control_unit (
                 end
             end
             RUN: begin
-                if (i_run_stop == 1'b1) begin
+                if (!i_mod && i_run_stop == 1'b1) begin
                     next = STOP;
                 end else begin
                     next = state;
                 end
             end
             CLEAR: begin
-                if (i_clear == 1'b0) begin
+                if (!i_mod && i_clear == 1'b0) begin
                     next = STOP;
                 end
             end

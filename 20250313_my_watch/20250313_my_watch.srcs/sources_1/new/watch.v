@@ -1,5 +1,3 @@
-`timescale 1ns / 1ps
-
 module watch #(
     parameter COUNT_100HZ = 1_000_000,
     parameter MSEC_MAX = 100,
@@ -9,42 +7,46 @@ module watch #(
 ) (
     input clk,
     input reset,
-    input sec_btn,
-    input min_btn,
-    input hour_btn,
+    input btn_sec,
+    input btn_min,
+    input btn_hour,
+    input watch_mod_sw,
     output [$clog2(MSEC_MAX)-1:0] w_msec,
     output [$clog2(SEC_MAX)-1:0] w_sec,
     output [$clog2(MIN_MAX)-1:0] w_min,
     output [$clog2(HOUR_MAX)-1:0] w_hour
 );
-    wire w_run_stop, w_clear;
-    wire o_sec_btn, o_min_btn, o_hour_btn;
+    wire d_sec_add;
     btn_debounce U_BTN_Debounce_Sec (
         .clk  (clk),
         .reset(reset),
-        .i_btn(sec_btn),   // from btn
-        .o_btn(o_sec_btn)  // to control unit
+        .i_btn(btn_sec),   // from btn
+        .o_btn(d_sec_add)  // to control unit
     );
+    wire d_min_add;
     btn_debounce U_BTN_Debounce_Min (
         .clk  (clk),
         .reset(reset),
-        .i_btn(min_btn),   // from btn
-        .o_btn(o_min_btn)  // to control unit
+        .i_btn(btn_min),   // from btn
+        .o_btn(d_min_add)  // to control unit
     );
+    wire d_hour_add;
     btn_debounce U_BTN_Debounce_Hour (
         .clk  (clk),
         .reset(reset),
-        .i_btn(hour_btn),   // from btn
-        .o_btn(o_hour_btn)  // to control unit
+        .i_btn(btn_hour),   // from btn
+        .o_btn(d_hour_add)  // to control unit
     );
 
-    watch_control_unit U_Watch_CU (
+    wire [2:0] w_hms;
+    watch_control_unit U_watch_CU (
         .clk(clk),
         .reset(reset),
-        .i_run_stop(o_btn_run_stop),  // input 
-        .i_clear(o_btn_clear),
-        .o_run_stop(w_run_stop),
-        .o_clear(w_clear)
+        .sec_add(d_sec_add),
+        .min_add(d_min_add),
+        .hour_add(d_hour_add),
+        .i_mod(watch_mod_sw),
+        .o_hms(w_hms)
     );
 
     watch_dp #(
@@ -53,29 +55,28 @@ module watch #(
         .SEC_MAX(SEC_MAX),
         .MIN_MAX(MIN_MAX),
         .HOUR_MAX(HOUR_MAX)
-    ) U_DP (
-        .clk(clk),
+    ) U_watch_DP (
+        .clk  (clk),
         .reset(reset),
-        .i_run_stop(w_run_stop),
-        .i_clear(w_clear),
-        .msec(w_msec),
-        .sec(w_sec),
-        .min(w_min),
-        .hour(w_hour)
+        .hms  (w_hms),
+        .msec (w_msec),
+        .sec  (w_sec),
+        .min  (w_min),
+        .hour (w_hour)
     );
 endmodule
 
 module watch_control_unit (
-    input  clk,
-    input  reset,
-    input  i_sec_add,
-    input  i_min_add,
-    input  i_hour_add,
-    output o_sec_add,
-    output o_min_add,
-    output o_hour_add
+    input clk,
+    input reset,
+    input sec_add,
+    input min_add,
+    input hour_add,
+    input i_mod,
+    output reg [2:0] o_hms
 );
     parameter STOP = 3'b000, SEC = 3'b001, MIN = 3'b010, HOUR = 3'b100;
+
     // state 관리
     reg [2:0] state, next;
 
@@ -89,73 +90,71 @@ module watch_control_unit (
     end
 
     // next combinational logic
-    reg [2:0] i_smh;
+    reg [2:0] i_hms;
     always @(*) begin
+        i_hms = {sec_add, min_add, hour_add};
         next  = state;
-        i_smh = {i_sec_add, i_min_add, i_hour_add};
-        case (state)
-            STOP: begin
-                case (i_smh)
-                    SEC: next = SEC;
-                    MIN: next = MIN;
-                    HOUR: next = HOUR;
-                    default: next = STOP;
-                endcase
-            end
-            SEC:  next = STOP;
-            MIN:  next = STOP;
-            HOUR: next = STOP;
-            default: begin
-                next = STOP;
-            end
-        endcase
+        if (i_mod) begin
+            case (state)
+                STOP: begin
+                    case (i_hms)
+                        SEC: begin
+                            next = SEC;
+                        end
+                        MIN: begin
+                            next = MIN;
+                        end
+                        HOUR: begin
+                            next = HOUR;
+                        end
+                    endcase
+                end
+
+                SEC: begin
+                    if (i_hms == STOP) begin
+                        next = STOP;
+                    end else next = state;
+                end
+
+                MIN: begin
+                    if (i_hms == STOP) begin
+                        next = STOP;
+                    end else next = state;
+                end
+
+                HOUR: begin
+                    if (i_hms == STOP) begin
+                        next = STOP;
+                    end else next = state;
+                end
+
+                default: begin
+                    next = state;
+                end
+            endcase
+        end else next = state;
     end
 
-    reg r_sec_add;
-    reg r_min_add;
-    reg r_hour_add;
     // combinational output logic
     always @(*) begin
         // 초기화 필요.
-        r_sec_add  = 0;
-        r_min_add  = 0;
-        r_hour_add = 0;
+        o_hms = 0;
         case (state)
-            STOP: begin
-                r_sec_add  = 0;
-                r_min_add  = 0;
-                r_hour_add = 0;
-            end
-
             SEC: begin
-                r_sec_add  = SEC;
-                r_min_add  = SEC;
-                r_hour_add = SEC;
+                o_hms = SEC;
             end
 
             MIN: begin
-                r_sec_add  = MIN;
-                r_min_add  = MIN;
-                r_hour_add = MIN;
+                o_hms = MIN;
             end
 
             HOUR: begin
-                r_sec_add  = HOUR;
-                r_min_add  = HOUR;
-                r_hour_add = HOUR;
+                o_hms = HOUR;
             end
 
             default: begin
-                r_sec_add  = 0;
-                r_min_add  = 0;
-                r_hour_add = 0;
+                o_hms = STOP;
             end
         endcase
     end
-
-    assign o_sec_add  = r_sec_add;
-    assign o_min_add  = r_min_add;
-    assign o_hour_add = r_hour_add;
-
 endmodule
-

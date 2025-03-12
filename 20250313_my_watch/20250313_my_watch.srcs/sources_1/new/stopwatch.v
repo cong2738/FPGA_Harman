@@ -29,7 +29,7 @@ module stopwatch #(
         .o_btn(o_btn_clear)  // to control unit
     );
 
-    control_unit U_Control_unit (
+    stopwatch_control_unit U_Stopwatch_CU (
         .clk(clk),
         .reset(reset),
         .i_run_stop(o_btn_run_stop),  // input 
@@ -56,7 +56,7 @@ module stopwatch #(
     );
 endmodule
 
-module control_unit (
+module stopwatch_control_unit (
     input clk,
     input reset,
     input i_run_stop,  // input 

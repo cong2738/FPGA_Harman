@@ -57,6 +57,7 @@ if {$::dispatch::connected} {
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 2
+set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
@@ -76,6 +77,8 @@ read_verilog -library xil_defaultlib {
   D:/harman/FPGA_Harman/20250313_my_watch/20250313_my_watch.srcs/sources_1/imports/FPGA_Harman/fnd_controller.v
   D:/harman/FPGA_Harman/20250313_my_watch/20250313_my_watch.srcs/sources_1/new/stopwatch.v
   D:/harman/FPGA_Harman/20250313_my_watch/20250313_my_watch.srcs/sources_1/new/stopwatch_dp.v
+  D:/harman/FPGA_Harman/20250313_my_watch/20250313_my_watch.srcs/sources_1/new/watch.v
+  D:/harman/FPGA_Harman/20250313_my_watch/20250313_my_watch.srcs/sources_1/new/watch_dp.v
   D:/harman/FPGA_Harman/20250313_my_watch/20250313_my_watch.srcs/sources_1/new/top_my_watch.v
 }
 OPTRACE "Adding files" END { }

@@ -111,35 +111,21 @@ module fnd_controller #(
         .bcd(w_bcd)
     );
 
+    wire w_dot;
+    compare_dot #(
+        .MSEC_MAX (100),
+        .COUNT_MAX(50)
+    ) U_Dot (
+        .msec(msec),
+        .seg_sel(w_seg_sel),
+        .o_dot(w_dot)
+    );
+
     wire [7:0] w_seg;
     bcdtoseg U_bcdtoseg (
         .bcd(w_bcd),  // [3:0] sum 값 
-        .seg(w_seg)
-    );
-
-    wire w_100hz;
-    clk_divider #(
-        .FCOUNT(COUNT_100HZ)  //100_000_000/1_000_000 = 100hz
-    ) U_100hz_Gen (
-        .clk  (clk),
-        .reset(reset),
-        .o_clk(w_100hz)
-    );
-
-    wire w_dot;
-    light_dot #(
-        .COUNT_MAX(100)
-    ) U_Light_Dot (
-        .clk  (w_100hz),    //100Mhz
-        .reset(reset),
-        .dot  (w_dot)   //1hz
-    );
-
-    mux_dot U_Mux_dot (
         .dot(w_dot),
-        .seg_sel(w_seg_sel),
-        .seg_font(w_seg),
-        .fnd_font(fnd_font)
+        .seg(w_seg)
     );
 
 endmodule
@@ -274,6 +260,7 @@ endmodule
 
 module bcdtoseg (
     input [3:0] bcd,  // [3:0] sum 값 
+    input dot,
     output reg [7:0] seg
 );
     // always 구문 출력으로 reg type을 가져야 한다.
@@ -297,55 +284,25 @@ module bcdtoseg (
             // 4'hF: seg = 8'h8E;
             default: seg = 8'hff;
         endcase
+        seg[7] = dot;
     end
 
 endmodule
 
-module mux_dot (
-    input dot,
-    input [2:0] seg_sel,
-    input [7:0] seg_font,
-    output reg [7:0] fnd_font
-);
-    reg [7:0] dot_led;
-    always @(*) begin
-        dot_led = {dot, 7'b0000000};
-        case (seg_sel)
-            3'b010:
-            fnd_font = seg_font - dot_led;  //seg[7]을 켠다. 8'b0000000
-            3'b110: fnd_font = seg_font - dot_led;
-            default: fnd_font = seg_font;
-        endcase
-    end
-
-endmodule
-
-module light_dot #(
-    parameter COUNT_MAX = 100  // 10_000/20_000 => period = 1sec
+module compare_dot #(
+    parameter MSEC_MAX  = 100,
+    parameter COUNT_MAX = 50
 ) (
-    input  clk,
-    input  reset,
-    output dot
+    input [$clog2(MSEC_MAX)-1:0] msec,
+    input [2:0] seg_sel,
+    output o_dot
 );
-    reg w_dot;
-    reg [$clog2(COUNT_MAX)-1:0] count;
-    always @(posedge clk, posedge reset) begin
-        if (reset) begin
-            count <= 0;
-            w_dot <= 1;
-        end else begin
-            if (count == COUNT_MAX - 1) begin
-                count <= 0;
-                w_dot <= 1;
-            end else if (count == ((COUNT_MAX / 2) - 1)) begin
-                w_dot <= 0;
-                count <= count + 1;
-            end else begin
-                count <= count + 1;
-            end
+    reg r_dot;
+    always @(*) begin
+        if ((msec == COUNT_MAX - 1) && (seg_sel == 3'b010 || seg_sel == 3'b110)) begin
+            r_dot = 1;
         end
     end
 
-    assign dot = w_dot;
-
+    assign o_dot = r_dot;
 endmodule

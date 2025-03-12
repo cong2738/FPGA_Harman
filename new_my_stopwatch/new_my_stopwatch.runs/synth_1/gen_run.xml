@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1741786008">
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1741786821">
   <File Type="PA-TCL" Name="Top_Upcounter.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="Top_Upcounter_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="Top_Upcounter_reports.tcl"/>
   <File Type="RDS-RDS" Name="Top_Upcounter.vds"/>
+  <File Type="RDS-PROPCONSTRS" Name="Top_Upcounter_drc_synth.rpt"/>
   <File Type="RDS-UTIL" Name="Top_Upcounter_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="Top_Upcounter_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="Top_Upcounter.dcp"/>

@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
-      <ZoomEndTime time="5,819.140660001 ms"></ZoomEndTime>
-      <Cursor1Time time="0.000000000 ms"></Cursor1Time>
+      <ZoomStartTime time="327,169.172627 us"></ZoomStartTime>
+      <ZoomEndTime time="329,082.928696 us"></ZoomEndTime>
+      <Cursor1Time time="327,773.816869 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="292"></NameColumnWidth>
-      <ValueColumnWidth column_width="72"></ValueColumnWidth>
+      <ValueColumnWidth column_width="68"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="12" />
+   <WVObjectSize size="17" />
    <wvobject fp_name="/tb_stopwatch/sw_mod" type="logic">
       <obj_property name="ElementShortName">sw_mod</obj_property>
       <obj_property name="ObjectShortName">sw_mod</obj_property>
@@ -57,12 +57,6 @@
       <obj_property name="ElementShortName">[7]</obj_property>
       <obj_property name="ObjectShortName">[7]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_stopwatch/DUC/U_fnd_cntl/U_Mux_dot/dot" type="logic">
-      <obj_property name="ElementShortName">dot</obj_property>
-      <obj_property name="ObjectShortName">dot</obj_property>
-      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
    <wvobject fp_name="/tb_stopwatch/DUC/U_DP/msec" type="array">
       <obj_property name="ElementShortName">msec[6:0]</obj_property>
       <obj_property name="ObjectShortName">msec[6:0]</obj_property>
@@ -82,5 +76,29 @@
       <obj_property name="ElementShortName">hour[4:0]</obj_property>
       <obj_property name="ObjectShortName">hour[4:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_stopwatch/DUC/fnd_comm" type="array">
+      <obj_property name="ElementShortName">fnd_comm[3:0]</obj_property>
+      <obj_property name="ObjectShortName">fnd_comm[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_stopwatch/DUC/fnd_font" type="array">
+      <obj_property name="ElementShortName">fnd_font[7:0]</obj_property>
+      <obj_property name="ObjectShortName">fnd_font[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_stopwatch/DUC/w_msec" type="array">
+      <obj_property name="ElementShortName">w_msec[6:0]</obj_property>
+      <obj_property name="ObjectShortName">w_msec[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_stopwatch/DUC/w_sec" type="array">
+      <obj_property name="ElementShortName">w_sec[5:0]</obj_property>
+      <obj_property name="ObjectShortName">w_sec[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_stopwatch/DUC/w_min" type="array">
+      <obj_property name="ElementShortName">w_min[5:0]</obj_property>
+      <obj_property name="ObjectShortName">w_min[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_stopwatch/DUC/w_hour" type="array">
+      <obj_property name="ElementShortName">w_hour[4:0]</obj_property>
+      <obj_property name="ObjectShortName">w_hour[4:0]</obj_property>
    </wvobject>
 </wave_config>

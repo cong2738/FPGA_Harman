@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1741591424">
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1741789344">
   <File Type="PA-TCL" Name="top_stopwatch.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="top_stopwatch_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="top_stopwatch_reports.tcl"/>
   <File Type="RDS-RDS" Name="top_stopwatch.vds"/>
+  <File Type="RDS-PROPCONSTRS" Name="top_stopwatch_drc_synth.rpt"/>
   <File Type="RDS-UTIL" Name="top_stopwatch_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="top_stopwatch_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="top_stopwatch.dcp"/>
@@ -53,7 +53,7 @@
       <Option Name="TopModule" Val="top_stopwatch"/>
     </Config>
   </FileSet>
-  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
     <Filter Type="Constrs"/>
     <File Path="$PSRCDIR/constrs_1/imports/FPGA_Harman/Basys-3-Master.xdc">
       <FileInfo>
@@ -67,16 +67,14 @@
       <Option Name="ConstrsType" Val="XDC"/>
     </Config>
   </FileSet>
-  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
     <Filter Type="Utils"/>
     <Config>
       <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>

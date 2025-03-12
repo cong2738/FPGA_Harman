@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1741786821">
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1741789651">
+  <File Type="ROUTE-PWR" Name="Top_Upcounter_power_routed.rpt"/>
   <File Type="PA-TCL" Name="Top_Upcounter.tcl"/>
+  <File Type="ROUTE-PWR-SUM" Name="Top_Upcounter_power_summary_routed.pb"/>
+  <File Type="OPT-RQA-PB" Name="Top_Upcounter_rqa_opted.pb"/>
   <File Type="REPORTS-TCL" Name="Top_Upcounter_reports.tcl"/>
   <File Type="INIT-TIMING" Name="Top_Upcounter_timing_summary_init.rpt"/>
   <File Type="OPT-DCP" Name="Top_Upcounter_opt.dcp"/>
@@ -8,7 +11,6 @@
   <File Type="OPT-METHODOLOGY-DRC" Name="Top_Upcounter_methodology_drc_opted.rpt"/>
   <File Type="OPT-HWDEF" Name="Top_Upcounter.hwdef"/>
   <File Type="OPT-TIMING" Name="Top_Upcounter_timing_summary_opted.rpt"/>
-  <File Type="OPT-RQA-PB" Name="Top_Upcounter_rqa_opted.pb"/>
   <File Type="PWROPT-DCP" Name="Top_Upcounter_pwropt.dcp"/>
   <File Type="PWROPT-DRC" Name="Top_Upcounter_drc_pwropted.rpt"/>
   <File Type="PWROPT-TIMING" Name="Top_Upcounter_timing_summary_pwropted.rpt"/>
@@ -20,12 +22,16 @@
   <File Type="PLACE-CTRL" Name="Top_Upcounter_control_sets_placed.rpt"/>
   <File Type="PLACE-SIMILARITY" Name="Top_Upcounter_incremental_reuse_placed.rpt"/>
   <File Type="PLACE-PRE-SIMILARITY" Name="Top_Upcounter_incremental_reuse_pre_placed.rpt"/>
+  <File Type="BG-BIN" Name="Top_Upcounter.bin"/>
   <File Type="PLACE-TIMING" Name="Top_Upcounter_timing_summary_placed.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="Top_Upcounter_power_routed.rpx"/>
   <File Type="PLACE-RQA-PB" Name="Top_Upcounter_rqa_placed.pb"/>
   <File Type="POSTPLACE-PWROPT-DCP" Name="Top_Upcounter_postplace_pwropt.dcp"/>
+  <File Type="BITSTR-MSK" Name="Top_Upcounter.msk"/>
   <File Type="POSTPLACE-PWROPT-TIMING" Name="Top_Upcounter_timing_summary_postplace_pwropted.rpt"/>
   <File Type="PHYSOPT-DCP" Name="Top_Upcounter_physopt.dcp"/>
   <File Type="PHYSOPT-DRC" Name="Top_Upcounter_drc_physopted.rpt"/>
+  <File Type="BITSTR-RBT" Name="Top_Upcounter.rbt"/>
   <File Type="PHYSOPT-TIMING" Name="Top_Upcounter_timing_summary_physopted.rpt"/>
   <File Type="ROUTE-ERROR-DCP" Name="Top_Upcounter_routed_error.dcp"/>
   <File Type="ROUTE-DCP" Name="Top_Upcounter_routed.dcp"/>
@@ -36,9 +42,7 @@
   <File Type="ROUTE-METHODOLOGY-DRC" Name="Top_Upcounter_methodology_drc_routed.rpt"/>
   <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="Top_Upcounter_methodology_drc_routed.rpx"/>
   <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="Top_Upcounter_methodology_drc_routed.pb"/>
-  <File Type="ROUTE-PWR" Name="Top_Upcounter_power_routed.rpt"/>
-  <File Type="ROUTE-PWR-SUM" Name="Top_Upcounter_power_summary_routed.pb"/>
-  <File Type="ROUTE-PWR-RPX" Name="Top_Upcounter_power_routed.rpx"/>
+  <File Type="ROUTE-RQS-PB" Name="Top_Upcounter_rqs_routed.pb"/>
   <File Type="ROUTE-STATUS" Name="Top_Upcounter_route_status.rpt"/>
   <File Type="ROUTE-STATUS-PB" Name="Top_Upcounter_route_status.pb"/>
   <File Type="ROUTE-TIMINGSUMMARY" Name="Top_Upcounter_timing_summary_routed.rpt"/>
@@ -49,19 +53,15 @@
   <File Type="ROUTE-BUS-SKEW" Name="Top_Upcounter_bus_skew_routed.rpt"/>
   <File Type="ROUTE-BUS-SKEW-PB" Name="Top_Upcounter_bus_skew_routed.pb"/>
   <File Type="ROUTE-BUS-SKEW-RPX" Name="Top_Upcounter_bus_skew_routed.rpx"/>
-  <File Type="ROUTE-RQS-PB" Name="Top_Upcounter_rqs_routed.pb"/>
   <File Type="POSTROUTE-PHYSOPT-DCP" Name="Top_Upcounter_postroute_physopt.dcp"/>
   <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="Top_Upcounter_postroute_physopt_bb.dcp"/>
   <File Type="POSTROUTE-PHYSOPT-TIMING" Name="Top_Upcounter_timing_summary_postroute_physopted.rpt"/>
   <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="Top_Upcounter_timing_summary_postroute_physopted.pb"/>
   <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="Top_Upcounter_timing_summary_postroute_physopted.rpx"/>
   <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="Top_Upcounter_bus_skew_postroute_physopted.rpt"/>
+  <File Type="BG-BIT" Name="Top_Upcounter.bit"/>
   <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="Top_Upcounter_bus_skew_postroute_physopted.pb"/>
   <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="Top_Upcounter_bus_skew_postroute_physopted.rpx"/>
-  <File Type="BG-BIT" Name="Top_Upcounter.bit"/>
-  <File Type="BG-BIN" Name="Top_Upcounter.bin"/>
-  <File Type="BITSTR-MSK" Name="Top_Upcounter.msk"/>
-  <File Type="BITSTR-RBT" Name="Top_Upcounter.rbt"/>
   <File Type="BITSTR-NKY" Name="Top_Upcounter.nky"/>
   <File Type="BITSTR-BMM" Name="Top_Upcounter_bd.bmm"/>
   <File Type="BITSTR-MMI" Name="Top_Upcounter.mmi"/>
@@ -86,19 +86,26 @@
   <File Type="POSTROUTE-PHYSOPT-RQS-RPT" Name="postroute_physopt_report_qor_suggestions_0.rpt"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
-    <File Path="$PSRCDIR/sources_1/imports/FPGA_Harman/btn_debounce.v">
+    <File Path="$PSRCDIR/sources_1/imports/FPGA_Harman/my_btn_debounce.v">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../btn_debounce.v"/>
-        <Attr Name="ImportTime" Val="1741333312"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/../my_btn_debounce.v"/>
+        <Attr Name="ImportTime" Val="1741329084"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/imports/FPGA_Harman/fnd_controller.v">
+    <File Path="$PSRCDIR/sources_1/imports/FPGA_Harman/my_fnd_controlloer.v">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../fnd_controller.v"/>
-        <Attr Name="ImportTime" Val="1741541105"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/../my_fnd_controlloer.v"/>
+        <Attr Name="ImportTime" Val="1741577457"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/stopwatch_cu.v">
+      <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -111,10 +118,10 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/imports/FPGA_Harman/stop_watch.v">
+    <File Path="$PSRCDIR/sources_1/imports/FPGA_Harman/my_wathc.v">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../stop_watch.v"/>
-        <Attr Name="ImportTime" Val="1741541269"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/../my_wathc.v"/>
+        <Attr Name="ImportTime" Val="1741573074"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>

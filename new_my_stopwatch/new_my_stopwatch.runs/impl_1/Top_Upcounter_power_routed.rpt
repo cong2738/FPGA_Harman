@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.2.1 (win64) Build 5266912 Sun Dec 15 09:03:24 MST 2024
-| Date             : Wed Mar 12 22:42:28 2025
+| Date             : Wed Mar 12 23:29:36 2025
 | Host             : PKLT running 64-bit major release  (build 9200)
 | Command          : report_power -file Top_Upcounter_power_routed.rpt -pb Top_Upcounter_power_summary_routed.pb -rpx Top_Upcounter_power_routed.rpx
 | Design           : Top_Upcounter
@@ -30,7 +30,7 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.084        |
+| Total On-Chip Power (W)  | 0.085        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
 | Dynamic (W)              | 0.013        |
@@ -53,15 +53,15 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |    <0.001 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |       49 |       --- |             --- |
-|   LUT as Logic |    <0.001 |       14 |     20800 |            0.07 |
-|   Register     |    <0.001 |       17 |     41600 |            0.04 |
-|   CARRY4       |    <0.001 |        4 |      8150 |            0.05 |
+| Slice Logic    |    <0.001 |       63 |       --- |             --- |
+|   LUT as Logic |    <0.001 |       27 |     20800 |            0.13 |
+|   Register     |    <0.001 |       22 |     41600 |            0.05 |
+|   CARRY4       |    <0.001 |        5 |      8150 |            0.06 |
 |   Others       |     0.000 |        5 |       --- |             --- |
-| Signals        |    <0.001 |       41 |       --- |             --- |
+| Signals        |    <0.001 |       55 |       --- |             --- |
 | I/O            |     0.012 |       14 |       106 |           13.21 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.084 |          |           |                 |
+| Total          |     0.085 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,7 +71,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.010 |       0.001 |      0.010 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.011 |       0.001 |      0.010 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.004 |       0.003 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -141,6 +141,7 @@ Table of Contents
 | Name          | Power (W) |
 +---------------+-----------+
 | Top_Upcounter |     0.013 |
+|   U_fnd_cntl  |     0.001 |
 +---------------+-----------+
 
 

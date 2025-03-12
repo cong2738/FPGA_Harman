@@ -59,7 +59,7 @@
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="DSABoardId" Val="basys3"/>
-    <Option Name="WTXSimLaunchSim" Val="176"/>
+    <Option Name="WTXSimLaunchSim" Val="0"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
@@ -90,19 +90,26 @@
   <FileSets Version="1" Minor="32">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sources_1/imports/FPGA_Harman/btn_debounce.v">
+      <File Path="$PSRCDIR/sources_1/imports/FPGA_Harman/my_btn_debounce.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../btn_debounce.v"/>
-          <Attr Name="ImportTime" Val="1741333312"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../my_btn_debounce.v"/>
+          <Attr Name="ImportTime" Val="1741329084"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/FPGA_Harman/fnd_controller.v">
+      <File Path="$PSRCDIR/sources_1/imports/FPGA_Harman/my_fnd_controlloer.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../fnd_controller.v"/>
-          <Attr Name="ImportTime" Val="1741541105"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../my_fnd_controlloer.v"/>
+          <Attr Name="ImportTime" Val="1741577457"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/stopwatch_cu.v">
+        <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -115,10 +122,10 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/FPGA_Harman/stop_watch.v">
+      <File Path="$PSRCDIR/sources_1/imports/FPGA_Harman/my_wathc.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../stop_watch.v"/>
-          <Attr Name="ImportTime" Val="1741541269"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../my_wathc.v"/>
+          <Attr Name="ImportTime" Val="1741573074"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -146,32 +153,11 @@
     </FileSet>
     <FileSet Name="sim_1" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_1" RelGenDir="$PGENDIR/sim_1">
       <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sim_1/imports/Downloads/tb_stop_watch.v">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../Downloads/tb_stop_watch.v"/>
-          <Attr Name="ImportTime" Val="1741677655"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sim_1/new/tb fnd_controller.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/tb_stopwatch_behav.wcfg">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="tb_stopwatch"/>
+        <Option Name="TopModule" Val="Top_Upcounter"/>
         <Option Name="TopLib" Val="xil_defaultlib"/>
+        <Option Name="TopAutoSet" Val="TRUE"/>
         <Option Name="TransportPathDelay" Val="0"/>
         <Option Name="TransportIntDelay" Val="0"/>
         <Option Name="SelectedSimModel" Val="rtl"/>
@@ -180,7 +166,6 @@
         <Option Name="PamSignalDriverFile" Val="xil_bypass_driver"/>
         <Option Name="PamPseudoTop" Val="pseudo_tb"/>
         <Option Name="SrcSet" Val="sources_1"/>
-        <Option Name="XSimWcfgFile" Val="$PPRDIR/tb_stopwatch_behav.wcfg"/>
         <Option Name="CosimPdi" Val=""/>
         <Option Name="CosimPlatform" Val=""/>
         <Option Name="CosimElf" Val=""/>

@@ -1,0 +1,135 @@
+`timescale 1ns / 1ps
+module top_my_watch #(
+    parameter COUNT_100HZ = 1_000_000,
+    parameter MSEC_MAX = 100,
+    parameter SEC_MAX = 60,
+    parameter MIN_MAX = 60,
+    parameter HOUR_MAX = 24
+) (
+    input clk,
+    input reset,
+    input hs_mod_sw,
+    input watch_mod_sw,
+    input btn_run_stop,
+    input btn_clear,
+    output [3:0] fnd_comm,
+    output [7:0] fnd_font
+);
+    wire [$clog2(MSEC_MAX)-1:0] stopwatch_msec;
+    wire [ $clog2(SEC_MAX)-1:0] stopwatch_sec;
+    wire [ $clog2(MIN_MAX)-1:0] stopwatch_min;
+    wire [$clog2(HOUR_MAX)-1:0] stopwatch_hour;
+    stopwatch #(
+        .COUNT_100HZ(COUNT_100HZ),
+        .MSEC_MAX(MSEC_MAX),
+        .SEC_MAX(SEC_MAX),
+        .MIN_MAX(MIN_MAX),
+        .HOUR_MAX(HOUR_MAX)
+    ) U_Stopwatch (
+        .clk(clk),
+        .reset(reset),
+        .hs_mod_sw(hs_mod_sw),
+        .btn_run_stop(btn_run_stop),
+        .btn_clear(btn_clear),
+        .w_msec(stopwatch_msec),
+        .w_sec(stopwatch_sec),
+        .w_min(stopwatch_min),
+        .w_hour(stopwatch_hour)
+    );
+
+    wire [$clog2(MSEC_MAX)-1:0] w_msec;
+    wire [ $clog2(SEC_MAX)-1:0] w_sec;
+    wire [ $clog2(MIN_MAX)-1:0] w_min;
+    wire [$clog2(HOUR_MAX)-1:0] w_hour;
+    
+    watch_mod_mux #(
+        .COUNT_100HZ(COUNT_100HZ),
+        .MSEC_MAX(MSEC_MAX),
+        .SEC_MAX(SEC_MAX),
+        .MIN_MAX(MIN_MAX),
+        .HOUR_MAX(HOUR_MAX)
+    ) U_W_Mod_Mux (
+        .i_watch_mod_sw(watch_mod_sw),
+        .stopwatch_msec(stopwatch_msec),
+        .stopwatch_sec(stopwatch_sec),
+        .stopwatch_min(stopwatch_min),
+        .stopwatch_hour(stopwatch_hour),
+        .watch_msec(),
+        .watch_sec(),
+        .watch_min(),
+        .watch_hour(),
+        .o_msec(w_msec),
+        .o_sec(w_sec),
+        .o_min(w_min),
+        .o_hour(w_hour)
+    );
+
+    fnd_controller #(
+        .MSEC_MAX(MSEC_MAX),
+        .SEC_MAX(SEC_MAX),
+        .MIN_MAX(MIN_MAX),
+        .HOUR_MAX(HOUR_MAX),
+        .COUNT_100HZ(COUNT_100HZ)
+    ) U_fnd_cntl (
+        .clk(clk),
+        .reset(reset),
+        .hs_mod_sw(hs_mod_sw),
+        .msec(w_msec),
+        .sec(w_sec),
+        .min(w_min),
+        .hour(w_hour),
+        .fnd_font(fnd_font),
+        .fnd_comm(fnd_comm)
+    );
+
+endmodule
+
+module watch_mod_mux #(
+    parameter COUNT_100HZ = 1_000_000,
+    parameter MSEC_MAX = 100,
+    parameter SEC_MAX = 60,
+    parameter MIN_MAX = 60,
+    parameter HOUR_MAX = 24
+) (
+    input i_watch_mod_sw,
+
+    input [$clog2(MSEC_MAX)-1:0] stopwatch_msec,
+    input [ $clog2(SEC_MAX)-1:0] stopwatch_sec,
+    input [ $clog2(MIN_MAX)-1:0] stopwatch_min,
+    input [$clog2(HOUR_MAX)-1:0] stopwatch_hour,
+
+    input [$clog2(MSEC_MAX)-1:0] watch_msec,
+    input [ $clog2(SEC_MAX)-1:0] watch_sec,
+    input [ $clog2(MIN_MAX)-1:0] watch_min,
+    input [$clog2(HOUR_MAX)-1:0] watch_hour,
+
+    output [$clog2(MSEC_MAX)-1:0] o_msec,
+    output [ $clog2(SEC_MAX)-1:0] o_sec,
+    output [ $clog2(MIN_MAX)-1:0] o_min,
+    output [$clog2(HOUR_MAX)-1:0] o_hour
+);
+
+    reg [$clog2(MSEC_MAX)-1:0] w_msec;
+    reg [ $clog2(SEC_MAX)-1:0] w_sec;
+    reg [ $clog2(MIN_MAX)-1:0] w_min;
+    reg [$clog2(HOUR_MAX)-1:0] w_hour;
+    always @(*) begin
+        if (i_watch_mod_sw) begin
+            w_msec = watch_msec;
+            w_sec  = watch_sec;
+            w_min  = watch_min;
+            w_hour = watch_hour;
+        end else begin
+            w_msec = stopwatch_msec;
+            w_sec  = stopwatch_sec;
+            w_min  = stopwatch_min;
+            w_hour = stopwatch_hour;
+        end
+    end
+
+    assign o_msec = w_msec;
+    assign o_sec  = w_sec;
+    assign o_min  = w_min;
+    assign o_hour = w_hour;
+
+endmodule

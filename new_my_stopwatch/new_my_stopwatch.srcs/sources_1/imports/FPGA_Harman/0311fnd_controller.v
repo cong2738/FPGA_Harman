@@ -107,8 +107,6 @@ module counter_4 (
         end
     end
 
-endmodule
-
 module counter_8 (
     input        clk,
     input        reset,

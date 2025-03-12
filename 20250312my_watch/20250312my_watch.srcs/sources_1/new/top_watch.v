@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module top_my_watch #(
+module Top_Watch #(
     parameter COUNT_100HZ = 1_000_000,
     parameter MSEC_MAX = 100,
     parameter SEC_MAX = 60,
@@ -14,63 +14,6 @@ module top_my_watch #(
     input btn_clear,
     output [3:0] fnd_comm,
     output [7:0] fnd_font
-);
-    wire [$clog2(MSEC_MAX)-1:0] stopwatch_msec;
-    wire [ $clog2(SEC_MAX)-1:0] stopwatch_sec;
-    wire [ $clog2(MIN_MAX)-1:0] stopwatch_min;
-    wire [$clog2(HOUR_MAX)-1:0] stopwatch_hour;
-    stopwatch #(
-        .COUNT_100HZ(COUNT_100HZ),
-        .MSEC_MAX(MSEC_MAX),
-        .SEC_MAX(SEC_MAX),
-        .MIN_MAX(MIN_MAX),
-        .HOUR_MAX(HOUR_MAX)
-    ) U_Stopwatch (
-        .clk(clk),
-        .reset(reset),
-        .btn_run_stop(btn_run_stop),
-        .btn_clear(btn_clear),
-        .o_msec(stopwatch_msec),
-        .o_sec(stopwatch_sec),
-        .o_min(stopwatch_min),
-        .o_hour(stopwatch_hour)
-    );
-
-    fnd_controller #(
-        .MSEC_MAX(MSEC_MAX),
-        .SEC_MAX(SEC_MAX),
-        .MIN_MAX(MIN_MAX),
-        .HOUR_MAX(HOUR_MAX),
-        .COUNT_100HZ(COUNT_100HZ)
-    ) U_fnd_cntl (
-        .clk(clk),
-        .reset(reset),
-        .sw_mod(sw_mod),
-        .msec(w_msec),
-        .sec(w_sec),
-        .min(w_min),
-        .hour(w_hour),
-        .fnd_font(fnd_font),
-        .fnd_comm(fnd_comm)
-    );
-
-endmodule
-
-module stopwatch #(
-    parameter COUNT_100HZ = 1_000_000,
-    parameter MSEC_MAX = 100,
-    parameter SEC_MAX = 60,
-    parameter MIN_MAX = 60,
-    parameter HOUR_MAX = 24
-) (
-    input clk,
-    input reset,
-    input btn_run_stop,
-    input btn_clear,
-    output [$clog2(MSEC_MAX)-1:0] o_msec,
-    output [$clog2(SEC_MAX)-1:0] o_sec,
-    output [$clog2(MIN_MAX)-1:0] o_min,
-    output [$clog2(HOUR_MAX)-1:0] o_hour
 );
     wire w_run_stop, w_clear;
     wire o_btn_run_stop, o_btn_clear;
@@ -97,8 +40,8 @@ module stopwatch #(
     );
 
     wire [$clog2(MSEC_MAX)-1:0] w_msec;
-    wire [ $clog2(SEC_MAX)-1:0] w_sec;
-    wire [ $clog2(MIN_MAX)-1:0] w_min;
+    wire [$clog2(SEC_MAX)-1:0] w_sec;
+    wire [$clog2(MIN_MAX)-1:0]  w_min;
     wire [$clog2(HOUR_MAX)-1:0] w_hour;
     stopwatch_dp #(
         .COUNT_100HZ(COUNT_100HZ),
@@ -117,14 +60,27 @@ module stopwatch #(
         .hour(w_hour)
     );
 
-    assign o_msec = w_msec;
-    assign o_sec  = w_sec;
-    assign o_min  = w_min;
-    assign o_hour = w_hour;
+    fnd_controller #(
+        .MSEC_MAX(MSEC_MAX),
+        .SEC_MAX (SEC_MAX),
+        .MIN_MAX (MIN_MAX),
+        .HOUR_MAX(HOUR_MAX),
+        .COUNT_100HZ(COUNT_100HZ)
+    ) U_fnd_cntl (
+        .clk(clk),
+        .reset(reset),
+        .sw_mod(sw_mod),
+        .msec(w_msec),
+        .sec(w_sec),
+        .min(w_min),
+        .hour(w_hour),
+        .fnd_font(fnd_font),
+        .fnd_comm(fnd_comm)
+    );
 
 endmodule
 
-module sotpwatch_control_unit (
+module control_unit (
     input clk,
     input reset,
     input i_run_stop,  // input 

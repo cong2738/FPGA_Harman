@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.2.1 (win64) Build 5266912 Sun Dec 15 09:03:24 MST 2024
-| Date         : Wed Mar 12 22:42:27 2025
+| Date         : Wed Mar 12 23:29:35 2025
 | Host         : PKLT running 64-bit major release  (build 9200)
 | Command      : report_methodology -file Top_Upcounter_methodology_drc_routed.rpt -pb Top_Upcounter_methodology_drc_routed.pb -rpx Top_Upcounter_methodology_drc_routed.rpx
 | Design       : Top_Upcounter
@@ -35,12 +35,12 @@ Table of Contents
 -----------------
 TIMING-17#1 Critical Warning
 Non-clocked sequential cell  
-The clock pin U_fnd_cntl/U_Counter_8/r_counter_reg[0]/C is not reached by a timing clock
+The clock pin U_fnd_cntl/U_Counter_4/r_counter_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#2 Critical Warning
 Non-clocked sequential cell  
-The clock pin U_fnd_cntl/U_Counter_8/r_counter_reg[1]/C is not reached by a timing clock
+The clock pin U_fnd_cntl/U_Counter_4/r_counter_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-18#1 Warning

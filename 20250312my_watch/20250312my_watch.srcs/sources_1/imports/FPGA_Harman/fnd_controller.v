@@ -5,7 +5,7 @@ module fnd_controller #(
     parameter SEC_MAX = 60,
     parameter MIN_MAX = 60,
     parameter HOUR_MAX = 24,
-    parameter COUNT_100HZ = 1_000_000
+    parameter COUNT_100HZ = 1_000_000 //시뮬레이션 출력을 빠르게 나오게 하기 위한 탑 모듈 기준 타이머에 동기화 된 파라미터
 ) (
     input clk,
     input reset,
@@ -111,23 +111,21 @@ module fnd_controller #(
         .bcd(w_bcd)
     );
 
-    wire w_dot;
     compare_dot #(
-        .MSEC_MAX (100),
-        .COUNT_MAX(50)
-    ) U_Dot (
+        .MSEC_MAX (100)
+    ) U_Compare_Dot (
         .msec(msec),
         .seg_sel(w_seg_sel),
-        .o_dot(w_dot)
+        .o_dot(dot)
     );
 
     wire [7:0] w_seg;
     bcdtoseg U_bcdtoseg (
         .bcd(w_bcd),  // [3:0] sum 값 
-        .dot(w_dot),
+        .dot(dot),
         .seg(w_seg)
     );
-    
+
     assign fnd_font = w_seg;
 
 endmodule
@@ -286,14 +284,14 @@ module bcdtoseg (
             // 4'hF: seg = 8'h8E;
             default: seg = 8'hff;
         endcase
+
         seg[7] = dot;
     end
 
 endmodule
 
 module compare_dot #(
-    parameter MSEC_MAX  = 100,
-    parameter COUNT_MAX = 50
+    parameter MSEC_MAX  = 100
 ) (
     input [$clog2(MSEC_MAX)-1:0] msec,
     input [2:0] seg_sel,
@@ -301,10 +299,25 @@ module compare_dot #(
 );
     reg r_dot;
     always @(*) begin
-        if ((msec == COUNT_MAX - 1) && (seg_sel == 3'b010 || seg_sel == 3'b110)) begin
+        if ((msec == MSEC_MAX/2 - 1) && (seg_sel == 3'b010 || seg_sel == 3'b110)) begin
             r_dot = 1;
         end else r_dot = 0;
     end
 
     assign o_dot = r_dot;
+endmodule
+
+module mux_dot (
+    input i_dot,
+    input [2:0] seg_sel,
+    output reg o_dot
+);
+    always @(*) begin
+        case (seg_sel)
+            3'b010:  o_dot = i_dot;
+            3'b110:  o_dot = i_dot;
+            default: o_dot = 1;
+        endcase
+    end
+
 endmodule

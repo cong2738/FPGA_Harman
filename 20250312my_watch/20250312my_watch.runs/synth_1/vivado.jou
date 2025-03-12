@@ -3,11 +3,11 @@
 # SW Build 5266912 on Sun Dec 15 09:03:24 MST 2024
 # IP Build 5264866 on Sun Dec 15 16:27:47 MST 2024
 # SharedData Build 5264680 on Wed Dec 11 12:48:36 MST 2024
-# Start of session at: Wed Mar 12 23:08:51 2025
-# Process ID         : 14884
+# Start of session at: Thu Mar 13 00:27:05 2025
+# Process ID         : 34268
 # Current directory  : D:/harman/FPGA_Harman/20250312my_watch/20250312my_watch.runs/synth_1
-# Command line       : vivado.exe -log Top_Upcounter.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top_Upcounter.tcl
-# Log file           : D:/harman/FPGA_Harman/20250312my_watch/20250312my_watch.runs/synth_1/Top_Upcounter.vds
+# Command line       : vivado.exe -log Top_Watch.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top_Watch.tcl
+# Log file           : D:/harman/FPGA_Harman/20250312my_watch/20250312my_watch.runs/synth_1/Top_Watch.vds
 # Journal file       : D:/harman/FPGA_Harman/20250312my_watch/20250312my_watch.runs/synth_1\vivado.jou
 # Running On         : PKLT
 # Platform           : Windows Server 2016 or Windows 10
@@ -19,6 +19,6 @@
 # Host memory        : 34069 MB
 # Swap memory        : 2147 MB
 # Total Virtual      : 36216 MB
-# Available Virtual  : 14857 MB
+# Available Virtual  : 15149 MB
 #-----------------------------------------------------------
-source Top_Upcounter.tcl -notrace
+source Top_Watch.tcl -notrace

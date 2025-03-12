@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1741786821">
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1741789651">
   <File Type="PA-TCL" Name="Top_Upcounter.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="Top_Upcounter_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="Top_Upcounter_reports.tcl"/>
   <File Type="RDS-RDS" Name="Top_Upcounter.vds"/>
-  <File Type="RDS-PROPCONSTRS" Name="Top_Upcounter_drc_synth.rpt"/>
   <File Type="RDS-UTIL" Name="Top_Upcounter_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="Top_Upcounter_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="Top_Upcounter.dcp"/>
@@ -11,19 +11,26 @@
   <File Type="VDS-TIMING-PB" Name="Top_Upcounter_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
-    <File Path="$PSRCDIR/sources_1/imports/FPGA_Harman/btn_debounce.v">
+    <File Path="$PSRCDIR/sources_1/imports/FPGA_Harman/my_btn_debounce.v">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../btn_debounce.v"/>
-        <Attr Name="ImportTime" Val="1741333312"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/../my_btn_debounce.v"/>
+        <Attr Name="ImportTime" Val="1741329084"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/imports/FPGA_Harman/fnd_controller.v">
+    <File Path="$PSRCDIR/sources_1/imports/FPGA_Harman/my_fnd_controlloer.v">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../fnd_controller.v"/>
-        <Attr Name="ImportTime" Val="1741541105"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/../my_fnd_controlloer.v"/>
+        <Attr Name="ImportTime" Val="1741577457"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/stopwatch_cu.v">
+      <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -36,10 +43,10 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/imports/FPGA_Harman/stop_watch.v">
+    <File Path="$PSRCDIR/sources_1/imports/FPGA_Harman/my_wathc.v">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../stop_watch.v"/>
-        <Attr Name="ImportTime" Val="1741541269"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/../my_wathc.v"/>
+        <Attr Name="ImportTime" Val="1741573074"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>

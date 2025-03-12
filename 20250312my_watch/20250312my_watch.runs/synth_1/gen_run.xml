@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1741788528">
-  <File Type="PA-TCL" Name="Top_Upcounter.tcl"/>
-  <File Type="REPORTS-TCL" Name="Top_Upcounter_reports.tcl"/>
-  <File Type="RDS-RDS" Name="Top_Upcounter.vds"/>
-  <File Type="RDS-PROPCONSTRS" Name="Top_Upcounter_drc_synth.rpt"/>
-  <File Type="RDS-UTIL" Name="Top_Upcounter_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="Top_Upcounter_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="Top_Upcounter.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="Top_Upcounter_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="Top_Upcounter_timing_summary_synth.pb"/>
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1741793222">
+  <File Type="PA-TCL" Name="Top_Watch.tcl"/>
+  <File Type="REPORTS-TCL" Name="Top_Watch_reports.tcl"/>
+  <File Type="RDS-RDS" Name="Top_Watch.vds"/>
+  <File Type="RDS-PROPCONSTRS" Name="Top_Watch_drc_synth.rpt"/>
+  <File Type="RDS-UTIL" Name="Top_Watch_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="Top_Watch_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="Top_Watch.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="Top_Watch_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="Top_Watch_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/imports/FPGA_Harman/btn_debounce.v">
@@ -36,16 +36,14 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/imports/FPGA_Harman/stop_watch.v">
+    <File Path="$PSRCDIR/sources_1/new/top_watch.v">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../stop_watch.v"/>
-        <Attr Name="ImportTime" Val="1741541269"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/top_watch.v">
+    <File Path="$PSRCDIR/sources_1/new/stopwatch.v">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -53,9 +51,19 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/imports/FPGA_Harman/stop_watch.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/../stop_watch.v"/>
+        <Attr Name="ImportTime" Val="1741541269"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="Top_Upcounter"/>
+      <Option Name="TopModule" Val="Top_Watch"/>
       <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>
   </FileSet>

@@ -1,12 +1,24 @@
 #-----------------------------------------------------------
-# Vivado v2020.2 (64-bit)
-# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
-# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Wed Mar 12 11:26:59 2025
-# Process ID: 12792
-# Current directory: C:/Users/kccistc/Desktop/FPGA_Harman/2025-03-12_stopwatch/2025-03-12_stopwatch.runs/synth_1
-# Command line: vivado.exe -log Top_Upcounter.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top_Upcounter.tcl
-# Log file: C:/Users/kccistc/Desktop/FPGA_Harman/2025-03-12_stopwatch/2025-03-12_stopwatch.runs/synth_1/Top_Upcounter.vds
-# Journal file: C:/Users/kccistc/Desktop/FPGA_Harman/2025-03-12_stopwatch/2025-03-12_stopwatch.runs/synth_1\vivado.jou
+# Vivado v2024.2.1 (64-bit)
+# SW Build 5266912 on Sun Dec 15 09:03:24 MST 2024
+# IP Build 5264866 on Sun Dec 15 16:27:47 MST 2024
+# SharedData Build 5264680 on Wed Dec 11 12:48:36 MST 2024
+# Start of session at: Wed Mar 12 23:32:45 2025
+# Process ID         : 32136
+# Current directory  : D:/harman/FPGA_Harman/2025-03-12_stopwatch/2025-03-12_stopwatch.runs/synth_1
+# Command line       : vivado.exe -log Top_Upcounter.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top_Upcounter.tcl
+# Log file           : D:/harman/FPGA_Harman/2025-03-12_stopwatch/2025-03-12_stopwatch.runs/synth_1/Top_Upcounter.vds
+# Journal file       : D:/harman/FPGA_Harman/2025-03-12_stopwatch/2025-03-12_stopwatch.runs/synth_1\vivado.jou
+# Running On         : PKLT
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26100
+# Processor Detail   : 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+# CPU Frequency      : 2419 MHz
+# CPU Physical cores : 4
+# CPU Logical cores  : 8
+# Host memory        : 34069 MB
+# Swap memory        : 2147 MB
+# Total Virtual      : 36216 MB
+# Available Virtual  : 16029 MB
 #-----------------------------------------------------------
 source Top_Upcounter.tcl -notrace

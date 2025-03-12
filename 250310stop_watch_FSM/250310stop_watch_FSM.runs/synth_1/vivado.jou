@@ -21,3 +21,4 @@
 # Total Virtual      : 36216 MB
 # Available Virtual  : 14466 MB
 #-----------------------------------------------------------
+source top_stopwatch.tcl -notrace

@@ -1,12 +1,12 @@
-Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
-------------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Wed Mar 12 11:28:11 2025
-| Host         : DESKTOP-7CFQ9ND running 64-bit major release  (build 9200)
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2.1 (win64) Build 5266912 Sun Dec 15 09:03:24 MST 2024
+| Date         : Wed Mar 12 23:34:24 2025
+| Host         : PKLT running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file Top_Upcounter_control_sets_placed.rpt
 | Design       : Top_Upcounter
 | Device       : xc7a35t
-------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------
 
 Control Set Information
 
@@ -27,7 +27,7 @@ Table of Contents
 |    Minimum number of control sets                        |    11 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    27 |
+| Unused register locations in slices containing registers |    26 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -59,10 +59,10 @@ Table of Contents
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | No           | No                    | No                     |               0 |            0 |
-| No           | No                    | Yes                    |              96 |           31 |
+| No           | No                    | Yes                    |              97 |           29 |
 | No           | Yes                   | No                     |               0 |            0 |
 | Yes          | No                    | No                     |               0 |            0 |
-| Yes          | No                    | Yes                    |              53 |           20 |
+| Yes          | No                    | Yes                    |              53 |           19 |
 | Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
@@ -70,20 +70,20 @@ Table of Contents
 4. Detailed Control Set Information
 -----------------------------------
 
-+--------------------------------------+----------------------------------------------------+------------------+------------------+----------------+--------------+
-|             Clock Signal             |                    Enable Signal                   | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
-+--------------------------------------+----------------------------------------------------+------------------+------------------+----------------+--------------+
-|  U_fnd_cntl/U_100hz_Gen/CLK          |                                                    | reset_IBUF       |                1 |              1 |         1.00 |
-|  U_fnd_cntl/U_Clk_Divider/CLK        |                                                    | reset_IBUF       |                2 |              3 |         1.50 |
-|  clk_IBUF_BUFG                       | U_Control_unit/E[0]                                | reset_IBUF       |                2 |              6 |         3.00 |
-|  clk_IBUF_BUFG                       | U_DP/U_Tick_100hz/FSM_sequential_state_reg[1][0]   | reset_IBUF       |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG                       | U_DP/U_Tick_100hz/FSM_sequential_state_reg[1]_0[0] | reset_IBUF       |                2 |              6 |         3.00 |
-|  U_fnd_cntl/U_100hz_Gen/CLK          | U_Control_unit/FSM_sequential_state_reg[0]_0[0]    | reset_IBUF       |                3 |              7 |         2.33 |
-|  clk_IBUF_BUFG                       | U_Control_unit/r_tick_100hz_reg[0]                 | reset_IBUF       |                4 |              7 |         1.75 |
-|  U_BTN_Debounce_CLEAR/r_1khz_reg_n_0 |                                                    | reset_IBUF       |                1 |              8 |         8.00 |
-|  U_BTN_Debounce_RUN_STOP/r_1khz      |                                                    | reset_IBUF       |                3 |              8 |         2.67 |
-|  clk_IBUF_BUFG                       | U_Control_unit/FSM_sequential_state_reg[0]_0[0]    | reset_IBUF       |                6 |             21 |         3.50 |
-|  clk_IBUF_BUFG                       |                                                    | reset_IBUF       |               24 |             76 |         3.17 |
-+--------------------------------------+----------------------------------------------------+------------------+------------------+----------------+--------------+
++-----------------------------------------+------------------------------------------------+------------------+------------------+----------------+--------------+
+|               Clock Signal              |                  Enable Signal                 | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
++-----------------------------------------+------------------------------------------------+------------------+------------------+----------------+--------------+
+|  U_fnd_cntl/U_100hz_Gen/CLK             |                                                | reset_IBUF       |                1 |              1 |         1.00 |
+|  U_fnd_cntl/U_Clk_Divider/CLK           |                                                | reset_IBUF       |                1 |              3 |         3.00 |
+|  clk_IBUF_BUFG                          | U_DP/U_Tick_100hz/r_tick_100hz_reg_0[0]        | reset_IBUF       |                2 |              6 |         3.00 |
+|  clk_IBUF_BUFG                          | U_DP/U_Count_Msec/E[0]                         | reset_IBUF       |                3 |              6 |         2.00 |
+|  clk_IBUF_BUFG                          | U_DP/U_Count_Msec/FSM_onehot_state_reg[2]_0[0] | reset_IBUF       |                2 |              6 |         3.00 |
+|  U_fnd_cntl/U_100hz_Gen/CLK             | U_Control_unit/w_run_stop                      | reset_IBUF       |                3 |              7 |         2.33 |
+|  clk_IBUF_BUFG                          | U_Control_unit/E[0]                            | reset_IBUF       |                3 |              7 |         2.33 |
+|  U_BTN_Debounce_CLEAR/r_1khz_reg_n_0    |                                                | reset_IBUF       |                1 |              8 |         8.00 |
+|  U_BTN_Debounce_RUN_STOP/r_1khz_reg_n_0 |                                                | reset_IBUF       |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG                          | U_Control_unit/w_run_stop                      | reset_IBUF       |                6 |             21 |         3.50 |
+|  clk_IBUF_BUFG                          |                                                | reset_IBUF       |               24 |             77 |         3.21 |
++-----------------------------------------+------------------------------------------------+------------------+------------------+----------------+--------------+
 
 

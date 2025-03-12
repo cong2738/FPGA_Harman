@@ -56,8 +56,6 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 2
-set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
@@ -73,10 +71,11 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  D:/harman/FPGA_Harman/new_my_stopwatch/new_my_stopwatch.srcs/sources_1/imports/FPGA_Harman/btn_debounce.v
-  D:/harman/FPGA_Harman/new_my_stopwatch/new_my_stopwatch.srcs/sources_1/imports/FPGA_Harman/fnd_controller.v
+  D:/harman/FPGA_Harman/new_my_stopwatch/new_my_stopwatch.srcs/sources_1/imports/FPGA_Harman/my_btn_debounce.v
+  D:/harman/FPGA_Harman/new_my_stopwatch/new_my_stopwatch.srcs/sources_1/imports/FPGA_Harman/my_fnd_controlloer.v
+  D:/harman/FPGA_Harman/new_my_stopwatch/new_my_stopwatch.srcs/sources_1/new/stopwatch_cu.v
   D:/harman/FPGA_Harman/new_my_stopwatch/new_my_stopwatch.srcs/sources_1/new/stopwatch_dp.v
-  D:/harman/FPGA_Harman/new_my_stopwatch/new_my_stopwatch.srcs/sources_1/imports/FPGA_Harman/stop_watch.v
+  D:/harman/FPGA_Harman/new_my_stopwatch/new_my_stopwatch.srcs/sources_1/imports/FPGA_Harman/my_wathc.v
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being

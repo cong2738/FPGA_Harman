@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.2.1 (win64) Build 5266912 Sun Dec 15 09:03:24 MST 2024
-| Date         : Thu Mar 13 06:24:14 2025
+| Date         : Thu Mar 13 06:31:17 2025
 | Host         : PKLT running 64-bit major release  (build 9200)
 | Command      : report_methodology -file top_my_watch_methodology_drc_routed.rpt -pb top_my_watch_methodology_drc_routed.pb -rpx top_my_watch_methodology_drc_routed.rpx
 | Design       : top_my_watch

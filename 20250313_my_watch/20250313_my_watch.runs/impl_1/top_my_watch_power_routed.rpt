@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.2.1 (win64) Build 5266912 Sun Dec 15 09:03:24 MST 2024
-| Date             : Thu Mar 13 06:24:15 2025
+| Date             : Thu Mar 13 06:31:18 2025
 | Host             : PKLT running 64-bit major release  (build 9200)
 | Command          : report_power -file top_my_watch_power_routed.rpt -pb top_my_watch_power_summary_routed.pb -rpx top_my_watch_power_routed.rpx
 | Design           : top_my_watch
@@ -53,13 +53,13 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.002 |        3 |       --- |             --- |
-| Slice Logic    |     0.001 |      581 |       --- |             --- |
-|   LUT as Logic |     0.001 |      223 |     20800 |            1.07 |
-|   CARRY4       |    <0.001 |       29 |      8150 |            0.36 |
-|   Register     |    <0.001 |      224 |     41600 |            0.54 |
-|   Others       |     0.000 |       16 |       --- |             --- |
-| Signals        |     0.001 |      512 |       --- |             --- |
-| I/O            |     0.028 |       24 |       106 |           22.64 |
+| Slice Logic    |     0.001 |      678 |       --- |             --- |
+|   LUT as Logic |     0.001 |      267 |     20800 |            1.28 |
+|   CARRY4       |    <0.001 |       34 |      8150 |            0.42 |
+|   Register     |    <0.001 |      252 |     41600 |            0.61 |
+|   Others       |     0.000 |       22 |       --- |             --- |
+| Signals        |     0.002 |      590 |       --- |             --- |
+| I/O            |     0.027 |       24 |       106 |           22.64 |
 | Static Power   |     0.072 |          |           |                 |
 | Total          |     0.104 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
@@ -71,7 +71,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.014 |       0.004 |      0.010 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.015 |       0.005 |      0.010 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.014 |       0.001 |      0.013 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.009 |       0.008 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -137,12 +137,13 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+---------------+-----------+
-| Name          | Power (W) |
-+---------------+-----------+
-| top_my_watch  |     0.032 |
-|   U_Stopwatch |     0.001 |
-|   U_Watch     |     0.002 |
-+---------------+-----------+
++----------------+-----------+
+| Name           | Power (W) |
++----------------+-----------+
+| top_my_watch   |     0.032 |
+|   U_Stopwatch  |     0.001 |
+|   U_Watch      |     0.003 |
+|     U_watch_DP |     0.001 |
++----------------+-----------+
 
 

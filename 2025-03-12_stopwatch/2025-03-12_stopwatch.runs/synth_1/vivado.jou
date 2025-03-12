@@ -9,3 +9,4 @@
 # Log file: C:/Users/kccistc/Desktop/FPGA_Harman/2025-03-12_stopwatch/2025-03-12_stopwatch.runs/synth_1/Top_Upcounter.vds
 # Journal file: C:/Users/kccistc/Desktop/FPGA_Harman/2025-03-12_stopwatch/2025-03-12_stopwatch.runs/synth_1\vivado.jou
 #-----------------------------------------------------------
+source Top_Upcounter.tcl -notrace

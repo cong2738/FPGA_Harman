@@ -9,3 +9,9 @@
 # Log file: C:/Users/kccistc/Desktop/FPGA_Harman/2025-03-12_stopwatch/2025-03-12_stopwatch.runs/synth_1/Top_Upcounter.vds
 # Journal file: C:/Users/kccistc/Desktop/FPGA_Harman/2025-03-12_stopwatch/2025-03-12_stopwatch.runs/synth_1\vivado.jou
 #-----------------------------------------------------------
+source Top_Upcounter.tcl -notrace
+Command: synth_design -top Top_Upcounter -part xc7a35tcpg236-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1

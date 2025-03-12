@@ -70,7 +70,6 @@ module Top_Upcounter #(
         .clk(clk),
         .reset(reset),
         .sw_mod(sw_mod),
-        .run_stop(w_run_stop),
         .msec(w_msec),
         .sec(w_sec),
         .min(w_min),

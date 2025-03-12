@@ -336,19 +336,19 @@ module mux_dot (
     output reg o_dot
 );
     always @(*) begin
-        if (!run) begin
+        if (run) begin
             case (seg_sel)
                 3'b010:  o_dot = i_dot;
                 3'b110:  o_dot = i_dot;
                 default: o_dot = 1;
             endcase
-        end else o_dot = 1;
+        end else o_dot = 0;
     end
 
 endmodule
 
 module light_dot #(
-    parameter COUNT_MAX = 100  // 10_000/20_000 => period = 1sec
+    parameter COUNT_MAX = 100  // 100/100 => period = 1sec
 ) (
     input  clk,
     input  reset,

@@ -10,6 +10,7 @@ module fnd_controller #(
     input clk,
     input reset,
     input sw_mod,
+    input run_stop,
     input [$clog2(MSEC_MAX)-1:0] msec,
     input [$clog2(SEC_MAX)-1:0] sec,
     input [$clog2(MIN_MAX)-1:0] min,
@@ -130,9 +131,10 @@ module fnd_controller #(
     light_dot #(
         .COUNT_MAX(100)
     ) U_Light_Dot (
-        .clk  (w_100hz),    //100Mhz
+        .clk(w_100hz),  //100Mhz
         .reset(reset),
-        .dot  (w_dot)   //1hz
+        .run_stop(run_stop),
+        .dot(w_dot)  //1hz
     );
 
     mux_dot U_Mux_dot (
@@ -325,6 +327,7 @@ module light_dot #(
 ) (
     input  clk,
     input  reset,
+    input  run_stop,
     output dot
 );
     reg w_dot;
@@ -334,7 +337,9 @@ module light_dot #(
             count <= 0;
             w_dot <= 1;
         end else begin
-            if (count == COUNT_MAX - 1) begin
+            if (run_stop == 0) begin //정지상태면 점띄워놓고 멈춘상태
+                w_dot <= 1;
+            end else if (count == COUNT_MAX - 1) begin
                 count <= 0;
                 w_dot <= 1;
             end else if (count == ((COUNT_MAX / 2) - 1)) begin

@@ -3,8 +3,8 @@
 # SW Build 5266912 on Sun Dec 15 09:03:24 MST 2024
 # IP Build 5264866 on Sun Dec 15 16:27:47 MST 2024
 # SharedData Build 5264680 on Wed Dec 11 12:48:36 MST 2024
-# Start of session at: Thu Mar 13 01:09:46 2025
-# Process ID         : 30056
+# Start of session at: Thu Mar 13 01:15:39 2025
+# Process ID         : 32620
 # Current directory  : D:/harman/FPGA_Harman/20250313_my_watch/20250313_my_watch.runs/synth_1
 # Command line       : vivado.exe -log top_my_watch.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_my_watch.tcl
 # Log file           : D:/harman/FPGA_Harman/20250313_my_watch/20250313_my_watch.runs/synth_1/top_my_watch.vds
@@ -19,6 +19,6 @@
 # Host memory        : 34069 MB
 # Swap memory        : 2147 MB
 # Total Virtual      : 36216 MB
-# Available Virtual  : 13603 MB
+# Available Virtual  : 14931 MB
 #-----------------------------------------------------------
 source top_my_watch.tcl -notrace

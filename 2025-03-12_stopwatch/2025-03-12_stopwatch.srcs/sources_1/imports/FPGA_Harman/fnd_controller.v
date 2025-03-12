@@ -130,16 +130,17 @@ module fnd_controller #(
         .dot(w_dot)  //1hz
     );
 
+    wire dot;
     mux_dot U_Mux_dot (
         .run(run),
         .seg_sel(w_seg_sel),
-        .o_dot(w_dot)
+        .o_dot(dot)
     );
 
     wire [7:0] w_seg;
     bcdtoseg U_bcdtoseg (
         .bcd(w_bcd),  // [3:0] sum 값 
-        .dot(w_dot),
+        .dot(dot),
         .seg(w_seg)
     );
 

@@ -5,7 +5,7 @@ module fnd_controller #(
     parameter SEC_MAX = 60,
     parameter MIN_MAX = 60,
     parameter HOUR_MAX = 24,
-    parameter COUNT_100HZ = 1_000_000
+    parameter COUNT_100HZ = 1_000_000 //시뮬레이션 출력을 빠르게 나오게 하기 위한 탑 모듈 기준 타이머에 동기화 된 파라미터
 ) (
     input clk,
     input reset,
@@ -133,6 +133,7 @@ module fnd_controller #(
 
     wire dot;
     mux_dot U_Mux_dot (
+        .i_dot(w_dot),
         .run(run),
         .seg_sel(w_seg_sel),
         .o_dot(dot)
@@ -328,7 +329,7 @@ endmodule
 
 // endmodule
 
-module mux_dot1 (
+module mux_dot (
     input i_dot,
     input run,
     input [2:0] seg_sel,

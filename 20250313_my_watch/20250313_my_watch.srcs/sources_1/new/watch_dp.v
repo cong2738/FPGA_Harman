@@ -64,10 +64,10 @@ module watch_dp #(
         .o_tick(w_min_clk)  //60min
     );
 
-    wire [$clog2(MIN_MAX)-1:0] w_hour;
+    wire [$clog2(HOUR_MAX)-1:0] w_hour;
     wire w_hour_clk;
     watch_counter_tick #(
-        .TICK_COUNT(MIN_MAX)
+        .TICK_COUNT(HOUR_MAX)
     ) U_Count_Hour0 (
         .clk(clk),
         .reset(reset),
@@ -135,9 +135,9 @@ module watch_counter_tick #(
         if (reset) begin
             counter_reg <= 0;
         end else begin            
-            if (counter_reg < TICK_COUNT - 1) begin
-                counter_reg <= counter_next + add_time;
-            end else counter_reg <= counter_next;
+            if (counter_reg == TICK_COUNT) begin
+                counter_reg <= 0;
+            end else counter_reg <= counter_next + add_time;
         end
     end
 

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.2.1 (win64) Build 5266912 Sun Dec 15 09:03:24 MST 2024
-| Date             : Thu Mar 13 01:17:28 2025
+| Date             : Thu Mar 13 01:21:20 2025
 | Host             : PKLT running 64-bit major release  (build 9200)
 | Command          : report_power -file top_my_watch_power_routed.rpt -pb top_my_watch_power_summary_routed.pb -rpx top_my_watch_power_routed.rpx
 | Design           : top_my_watch
@@ -58,7 +58,7 @@ Table of Contents
 |   CARRY4       |    <0.001 |       17 |      8150 |            0.21 |
 |   Register     |    <0.001 |      121 |     41600 |            0.29 |
 |   Others       |     0.000 |        9 |       --- |             --- |
-| Signals        |    <0.001 |      306 |       --- |             --- |
+| Signals        |    <0.001 |      304 |       --- |             --- |
 | I/O            |     0.027 |       18 |       106 |           16.98 |
 | Static Power   |     0.072 |          |           |                 |
 | Total          |     0.102 |          |           |                 |

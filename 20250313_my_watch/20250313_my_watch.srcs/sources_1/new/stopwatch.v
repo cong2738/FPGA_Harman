@@ -7,7 +7,6 @@ module stopwatch #(
 ) (
     input clk,
     input reset,
-    input hs_mod_sw,
     input btn_run_stop,
     input btn_clear,
     output [$clog2(MSEC_MAX)-1:0] w_msec,

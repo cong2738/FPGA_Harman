@@ -13,8 +13,15 @@ module top_my_watch #(
     input btn_run_stop,
     input btn_clear,
     output [3:0] fnd_comm,
-    output [7:0] fnd_font
+    output [7:0] fnd_font,
+    output [3:0] mod_indicate_led
 );
+    mod_indicator U_Mod_Indicator (
+        .hs_mod_sw(hs_mod_sw),
+        .watch_mod_sw(watch_mod_sw),
+        .mod_indicate_led(mod_indicate_led)
+    );
+
     wire [$clog2(MSEC_MAX)-1:0] stopwatch_msec;
     wire [ $clog2(SEC_MAX)-1:0] stopwatch_sec;
     wire [ $clog2(MIN_MAX)-1:0] stopwatch_min;
@@ -28,7 +35,6 @@ module top_my_watch #(
     ) U_Stopwatch (
         .clk(clk),
         .reset(reset),
-        .hs_mod_sw(hs_mod_sw),
         .btn_run_stop(btn_run_stop),
         .btn_clear(btn_clear),
         .w_msec(stopwatch_msec),
@@ -36,12 +42,31 @@ module top_my_watch #(
         .w_min(stopwatch_min),
         .w_hour(stopwatch_hour)
     );
+    
+    wire [$clog2(MSEC_MAX)-1:0] watch_msec;
+    wire [ $clog2(SEC_MAX)-1:0] watch_sec;
+    wire [ $clog2(MIN_MAX)-1:0] watch_min;
+    wire [$clog2(HOUR_MAX)-1:0] watch_hour;
+    watch #(
+        .COUNT_100HZ(COUNT_100HZ),
+        .MSEC_MAX(MSEC_MAX),
+        .SEC_MAX(SEC_MAX),
+        .MIN_MAX(MIN_MAX),
+        .HOUR_MAX(HOUR_MAX)
+    ) U_Watch (
+        .clk(clk),
+        .reset(reset),
+        .w_msec(watch_msec),
+        .w_sec(watch_sec),
+        .w_min(watch_min),
+        .w_hour(watch_hour)
+    );
 
     wire [$clog2(MSEC_MAX)-1:0] w_msec;
     wire [ $clog2(SEC_MAX)-1:0] w_sec;
     wire [ $clog2(MIN_MAX)-1:0] w_min;
     wire [$clog2(HOUR_MAX)-1:0] w_hour;
-    
+
     watch_mod_mux #(
         .COUNT_100HZ(COUNT_100HZ),
         .MSEC_MAX(MSEC_MAX),
@@ -54,10 +79,10 @@ module top_my_watch #(
         .stopwatch_sec(stopwatch_sec),
         .stopwatch_min(stopwatch_min),
         .stopwatch_hour(stopwatch_hour),
-        .watch_msec(),
-        .watch_sec(),
-        .watch_min(),
-        .watch_hour(),
+        .watch_msec(watch_msec),
+        .watch_sec(watch_sec),
+        .watch_min(watch_min),
+        .watch_hour(watch_hour),
         .o_msec(w_msec),
         .o_sec(w_sec),
         .o_min(w_min),
@@ -81,6 +106,24 @@ module top_my_watch #(
         .fnd_font(fnd_font),
         .fnd_comm(fnd_comm)
     );
+
+endmodule
+
+module mod_indicator (
+    input hs_mod_sw,
+    input watch_mod_sw,
+    output reg [3:0] led
+);
+    wire sw = {hs_mod_sw, watch_mod_sw};
+    always @(*) begin
+        case (sw)
+            2'b00:   led = 4'b0001;
+            2'b01:   led = 4'b0010;
+            2'b10:   led = 4'b0100;
+            2'b11:   led = 4'b1000;
+            default: led = 0;
+        endcase
+    end
 
 endmodule
 

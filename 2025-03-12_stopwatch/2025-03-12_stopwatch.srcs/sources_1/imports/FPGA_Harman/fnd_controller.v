@@ -134,9 +134,9 @@ module fnd_controller #(
 
     wire dot;
     mux_dot U_Mux_dot (
-        .i_dot(w_dot),
+        .i_dot  (w_dot),
         .seg_sel(w_seg_sel),
-        .o_dot(dot)
+        .o_dot  (dot)
     );
 
     wire [7:0] w_seg;
@@ -324,10 +324,10 @@ module light_dot #(
         if (reset) begin
             count <= 0;
             w_dot <= 1;
-        end if (!run) begin
-            w_dot <= 0;
         end else begin
-            if (count == COUNT_MAX - 1) begin
+            if (!run) begin
+                w_dot <= 0;
+            end else if (count == COUNT_MAX - 1) begin
                 count <= 0;
                 w_dot <= 1;
             end else if (count == ((COUNT_MAX / 2) - 1)) begin

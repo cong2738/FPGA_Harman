@@ -10,7 +10,7 @@ module fnd_controller #(
     input clk,
     input reset,
     input sw_mod,
-    input run_stop,
+    input run,
     input [$clog2(MSEC_MAX)-1:0] msec,
     input [$clog2(SEC_MAX)-1:0] sec,
     input [$clog2(MIN_MAX)-1:0] min,
@@ -112,12 +112,6 @@ module fnd_controller #(
         .bcd(w_bcd)
     );
 
-    wire [7:0] w_seg;
-    bcdtoseg U_bcdtoseg (
-        .bcd(w_bcd),  // [3:0] sum 값 
-        .seg(w_seg)
-    );
-
     wire w_100hz;
     clk_divider #(
         .FCOUNT(COUNT_100HZ)  //100_000_000/1_000_000 = 100hz
@@ -133,16 +127,23 @@ module fnd_controller #(
     ) U_Light_Dot (
         .clk(w_100hz),  //100Mhz
         .reset(reset),
-        .run_stop(run_stop),
         .dot(w_dot)  //1hz
     );
 
     mux_dot U_Mux_dot (
-        .dot(w_dot),
+        .run(run),
         .seg_sel(w_seg_sel),
-        .seg_font(w_seg),
-        .fnd_font(fnd_font)
+        .o_dot(w_dot)
     );
+
+    wire [7:0] w_seg;
+    bcdtoseg U_bcdtoseg (
+        .bcd(w_bcd),  // [3:0] sum 값 
+        .dot(w_dot),
+        .seg(w_seg)
+    );
+
+    assign fnd_font = w_seg;
 
 endmodule
 
@@ -276,6 +277,7 @@ endmodule
 
 module bcdtoseg (
     input [3:0] bcd,  // [3:0] sum 값 
+    input dot,
     output reg [7:0] seg
 );
     // always 구문 출력으로 reg type을 가져야 한다.
@@ -299,25 +301,45 @@ module bcdtoseg (
             // 4'hF: seg = 8'h8E;
             default: seg = 8'hff;
         endcase
+
+        seg[7] = dot;
     end
 
 endmodule
 
-module mux_dot (
-    input dot,
+// module mux_dot (
+//     input dot,
+//     input [2:0] seg_sel,
+//     input [7:0] seg_font,
+//     output reg [7:0] fnd_font
+// );
+//     reg [7:0] dot_led;
+//     always @(*) begin
+//         dot_led = {dot, 7'b0000000};
+//         case (seg_sel)
+//             3'b010:
+//             fnd_font = seg_font - dot_led;  //seg[7]을 켠다. 8'b0000000
+//             3'b110: fnd_font = seg_font - dot_led;
+//             default: fnd_font = seg_font;
+//         endcase
+//     end
+
+// endmodule
+
+module mux_dot1 (
+    input i_dot,
+    input run,
     input [2:0] seg_sel,
-    input [7:0] seg_font,
-    output reg [7:0] fnd_font
+    output reg o_dot
 );
-    reg [7:0] dot_led;
     always @(*) begin
-        dot_led = {dot, 7'b0000000};
-        case (seg_sel)
-            3'b010:
-            fnd_font = seg_font - dot_led;  //seg[7]을 켠다. 8'b0000000
-            3'b110: fnd_font = seg_font - dot_led;
-            default: fnd_font = seg_font;
-        endcase
+        if (!run) begin
+            case (seg_sel)
+                3'b010:  o_dot = i_dot;
+                3'b110:  o_dot = i_dot;
+                default: o_dot = 1;
+            endcase
+        end else o_dot = 1;
     end
 
 endmodule
@@ -327,7 +349,6 @@ module light_dot #(
 ) (
     input  clk,
     input  reset,
-    input  run_stop,
     output dot
 );
     reg w_dot;
@@ -337,9 +358,7 @@ module light_dot #(
             count <= 0;
             w_dot <= 1;
         end else begin
-            if (run_stop == 0) begin //정지상태면 점띄워놓고 멈춘상태
-                w_dot <= 1;
-            end else if (count == COUNT_MAX - 1) begin
+            if (count == COUNT_MAX - 1) begin
                 count <= 0;
                 w_dot <= 1;
             end else if (count == ((COUNT_MAX / 2) - 1)) begin

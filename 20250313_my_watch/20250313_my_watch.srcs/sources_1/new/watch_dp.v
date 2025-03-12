@@ -134,11 +134,10 @@ module watch_counter_tick #(
     always @(posedge clk, posedge reset) begin
         if (reset) begin
             counter_reg <= 0;
-        end else begin
-            counter_reg <= counter_next;
-            if (counter_reg < TICK_COUNT) begin
-                counter_reg <= counter_reg + add_time;
-            end
+        end else begin            
+            if (counter_reg < TICK_COUNT - 1) begin
+                counter_reg <= counter_next + add_time;
+            end else counter_reg <= counter_next;
         end
     end
 

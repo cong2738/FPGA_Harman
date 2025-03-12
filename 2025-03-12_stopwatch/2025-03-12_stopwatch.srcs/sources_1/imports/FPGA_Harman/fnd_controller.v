@@ -113,7 +113,8 @@ module fnd_controller #(
     );
 
     wire w_100hz;
-    clk_divider #(
+    //시뮬레이션 출력을 빠르게 나오게 하기 위한 타이머에 파라미터가 동기화 된 클럭발생기
+    clk_divider #( 
         .FCOUNT(COUNT_100HZ)  //100_000_000/1_000_000 = 100hz
     ) U_100hz_Gen (
         .clk  (clk),

@@ -114,7 +114,7 @@ module fnd_controller #(
 
     wire w_100hz;
     //시뮬레이션 출력을 빠르게 나오게 하기 위한 타이머에 파라미터가 동기화 된 클럭발생기
-    clk_divider #( 
+    clk_divider #(
         .FCOUNT(COUNT_100HZ)  //100_000_000/1_000_000 = 100hz
     ) U_100hz_Gen (
         .clk  (clk),
@@ -128,13 +128,13 @@ module fnd_controller #(
     ) U_Light_Dot (
         .clk(w_100hz),  //100Mhz
         .reset(reset),
+        .run(run),
         .dot(w_dot)  //1hz
     );
 
     wire dot;
     mux_dot U_Mux_dot (
         .i_dot(w_dot),
-        .run(run),
         .seg_sel(w_seg_sel),
         .o_dot(dot)
     );
@@ -310,48 +310,12 @@ module bcdtoseg (
 
 endmodule
 
-// module mux_dot (
-//     input dot,
-//     input [2:0] seg_sel,
-//     input [7:0] seg_font,
-//     output reg [7:0] fnd_font
-// );
-//     reg [7:0] dot_led;
-//     always @(*) begin
-//         dot_led = {dot, 7'b0000000};
-//         case (seg_sel)
-//             3'b010:
-//             fnd_font = seg_font - dot_led;  //seg[7]을 켠다. 8'b0000000
-//             3'b110: fnd_font = seg_font - dot_led;
-//             default: fnd_font = seg_font;
-//         endcase
-//     end
-
-// endmodule
-
-module mux_dot (
-    input i_dot,
-    input run,
-    input [2:0] seg_sel,
-    output reg o_dot
-);
-    always @(*) begin
-        if (run) begin
-            case (seg_sel)
-                3'b010:  o_dot = i_dot;
-                3'b110:  o_dot = i_dot;
-                default: o_dot = 1;
-            endcase
-        end else o_dot = 0;
-    end
-
-endmodule
-
 module light_dot #(
     parameter COUNT_MAX = 100  // 100/100 => period = 1sec
 ) (
     input  clk,
     input  reset,
+    input  run,
     output dot
 );
     reg w_dot;
@@ -360,6 +324,8 @@ module light_dot #(
         if (reset) begin
             count <= 0;
             w_dot <= 1;
+        end if (!run) begin
+            w_dot <= 0;
         end else begin
             if (count == COUNT_MAX - 1) begin
                 count <= 0;
@@ -374,5 +340,20 @@ module light_dot #(
     end
 
     assign dot = w_dot;
+
+endmodule
+
+module mux_dot (
+    input i_dot,
+    input [2:0] seg_sel,
+    output reg o_dot
+);
+    always @(*) begin
+        case (seg_sel)
+            3'b010:  o_dot = i_dot;
+            3'b110:  o_dot = i_dot;
+            default: o_dot = 1;
+        endcase
+    end
 
 endmodule

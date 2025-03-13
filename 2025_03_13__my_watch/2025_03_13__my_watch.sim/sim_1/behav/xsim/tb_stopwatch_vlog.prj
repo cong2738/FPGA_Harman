@@ -1,0 +1,16 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../2025_03_13__my_watch.srcs/sources_1/imports/FPGA_Harman/btn_debounce.v" \
+"../../../../2025_03_13__my_watch.srcs/sources_1/imports/FPGA_Harman/fnd_controller.v" \
+"../../../../2025_03_13__my_watch.srcs/sources_1/new/stopwatch.v" \
+"../../../../2025_03_13__my_watch.srcs/sources_1/new/stopwatch_dp.v" \
+"../../../../2025_03_13__my_watch.srcs/sources_1/new/top_my_watch.v" \
+"../../../../2025_03_13__my_watch.srcs/sources_1/new/watch.v" \
+"../../../../2025_03_13__my_watch.srcs/sources_1/new/watch_dp.v" \
+"../../../../2025_03_13__my_watch.srcs/sim_1/imports/Downloads/tb_stop_watch.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

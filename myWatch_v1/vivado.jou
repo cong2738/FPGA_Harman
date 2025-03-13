@@ -26,3 +26,48 @@ set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property PROGRAM.FILE {C:/harman/FPGA_Harman-1/myWatch_v1/myWatch_v1.runs/impl_1/top_my_watch.bit} [get_hw_devices xc7a35t_0]
 program_hw_devices [get_hw_devices xc7a35t_0]
 refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/harman/FPGA_Harman-1/myWatch_v1/myWatch_v1.runs/impl_1/top_my_watch.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/harman/FPGA_Harman-1/myWatch_v1/myWatch_v1.runs/impl_1/top_my_watch.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+close_project
+open_project C:/harman/FPGA_Harman-1/20250313_my_watch/20250313_my_watch.xpr
+update_compile_order -fileset sources_1
+save_project_as project_1 C:/harman/FPGA_Harman-1/project_1 -force
+launch_simulation
+open_wave_config C:/harman/FPGA_Harman-1/new_my_stopwatch/tb_stopwatch_behav.wcfg
+source tb_stopwatch.tcl
+run all
+close_sim
+launch_simulation
+open_wave_config C:/harman/FPGA_Harman-1/new_my_stopwatch/tb_stopwatch_behav.wcfg
+source tb_stopwatch.tcl
+run all
+close_sim
+close_project
+open_project C:/harman/FPGA_Harman-1/20250313_my_watch/20250313_my_watch.xpr
+update_compile_order -fileset sources_1
+save_project_as 2025_03_13__my_watch C:/harman/FPGA_Harman-1/2025_03_13__my_watch -force
+launch_simulation
+open_wave_config C:/harman/FPGA_Harman-1/new_my_stopwatch/tb_stopwatch_behav.wcfg
+source tb_stopwatch.tcl
+close_sim
+launch_simulation
+open_wave_config C:/harman/FPGA_Harman-1/new_my_stopwatch/tb_stopwatch_behav.wcfg
+source tb_stopwatch.tcl
+run all
+close_sim

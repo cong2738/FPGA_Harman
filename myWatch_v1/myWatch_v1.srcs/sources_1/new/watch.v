@@ -97,7 +97,7 @@ module watch_control_unit (
     always @(*) begin
         i_hms = {sec_add, min_add, hour_add};
         next  = state;
-        if (i_mod && setting_sw) begin
+        if (i_mod && !setting_sw) begin
             case (state)
                 STOP: begin
                     case (i_hms)

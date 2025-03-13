@@ -1,24 +1,32 @@
 `timescale 1ns / 1ps
 
 module uart (
-    input clk,
-    input rst,
-    input btn_start,
+    input  clk,
+    input  rst,
+    input  btn_start,
     output tx
 );
-    wire  tick;
+    wire tick;
     boud_tick_gen U_BTG (
         .clk(clk),
         .rst(rst),
         .baud_tick(tick)
     );
 
+    wire d_btn;
+    btn_debounce U_Btn_DB (
+        .clk  (clk),
+        .reset(reset),
+        .i_btn(btn_start),
+        .o_btn(d_btn)
+    );
+
     uart_tx U_Tx (
         .clk(clk),
         .rst(rst),
         .tick(tick),
-        .start_triger(btn_start),
-        .i_data(8'b00110000), // 8'h30 => "0"
+        .start_triger(d_btn),
+        .i_data(8'b00110000),  // 8'h30 => "0"
         .o_tx(tx)
     );
 endmodule

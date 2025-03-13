@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Thu Mar 13 13:29:35 2025
+# Process ID: 11284
+# Current directory: C:/harman/FPGA_Harman-1/myWatch_v1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent14484 C:\harman\FPGA_Harman-1\myWatch_v1\myWatch_v1.xpr
+# Log file: C:/harman/FPGA_Harman-1/myWatch_v1/vivado.log
+# Journal file: C:/harman/FPGA_Harman-1/myWatch_v1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/harman/FPGA_Harman-1/myWatch_v1/myWatch_v1.xpr

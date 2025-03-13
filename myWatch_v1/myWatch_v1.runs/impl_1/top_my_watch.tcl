@@ -17,7 +17,7 @@ proc create_report { reportName command } {
   }
 }
 namespace eval ::optrace {
-  variable script "C:/harman/FPGA_Harman/myWatch_v1/myWatch_v1.runs/impl_1/top_my_watch.tcl"
+  variable script "C:/harman/FPGA_Harman-1/myWatch_v1/myWatch_v1.runs/impl_1/top_my_watch.tcl"
   variable category "vivado_impl"
 }
 
@@ -115,8 +115,6 @@ proc step_failed { step } {
 OPTRACE "impl_1" END { }
 }
 
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 
 OPTRACE "impl_1" START { ROLLUP_1 }
 OPTRACE "Phase: Init Design" START { ROLLUP_AUTO }
@@ -125,23 +123,21 @@ set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 4
-  set_param synth.incrementalSynthesisCache C:/Users/kccistc/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-13716-DESKTOP-7CFQ9ND/incrSyn
-  set_param xicom.use_bs_reader 1
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7a35tcpg236-1
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir C:/harman/FPGA_Harman/myWatch_v1/myWatch_v1.cache/wt [current_project]
-  set_property parent.project_path C:/harman/FPGA_Harman/myWatch_v1/myWatch_v1.xpr [current_project]
-  set_property ip_output_repo C:/harman/FPGA_Harman/myWatch_v1/myWatch_v1.cache/ip [current_project]
+  set_property webtalk.parent_dir C:/harman/FPGA_Harman-1/myWatch_v1/myWatch_v1.cache/wt [current_project]
+  set_property parent.project_path C:/harman/FPGA_Harman-1/myWatch_v1/myWatch_v1.xpr [current_project]
+  set_property ip_output_repo C:/harman/FPGA_Harman-1/myWatch_v1/myWatch_v1.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet C:/harman/FPGA_Harman/myWatch_v1/myWatch_v1.runs/synth_1/top_my_watch.dcp
+  add_files -quiet C:/harman/FPGA_Harman-1/myWatch_v1/myWatch_v1.runs/synth_1/top_my_watch.dcp
 OPTRACE "read constraints: implementation" START { }
-  read_xdc C:/harman/FPGA_Harman/myWatch_v1/myWatch_v1.srcs/constrs_1/imports/FPGA_Harman/Basys-3-Master.xdc
+  read_xdc C:/harman/FPGA_Harman-1/myWatch_v1/myWatch_v1.srcs/constrs_1/imports/FPGA_Harman/Basys-3-Master.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }

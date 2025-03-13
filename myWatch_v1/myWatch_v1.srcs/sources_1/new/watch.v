@@ -69,13 +69,15 @@ module watch #(
         .MIN_MAX(MIN_MAX),
         .HOUR_MAX(HOUR_MAX)
     ) U_watch_DP (
-        .clk  (clk),
+        .clk(clk),
         .reset(reset),
-        .hms  (w_hms),
-        .msec (w_msec),
-        .sec  (w_sec),
-        .min  (w_min),
-        .hour (w_hour)
+        .hms(w_hms),
+        .updown(updown),
+        .cursor(cursor),
+        .msec(w_msec),
+        .sec(w_sec),
+        .min(w_min),
+        .hour(w_hour)
     );
 endmodule
 

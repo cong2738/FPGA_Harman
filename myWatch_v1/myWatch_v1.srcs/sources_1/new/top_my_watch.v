@@ -21,14 +21,6 @@ module top_my_watch #(
     output [7:0] fnd_font,
     output [3:0] mod_indicate_led
 );
-
-    wire btn_sec;
-    wire btn_min;
-    wire btn_hour;
-    assign btn_sec  = btnD;
-    assign btn_min  = btnL;
-    assign btn_hour = btnU;
-
     mod_indicator U_Mod_Indicator (
         .hs_mod_sw(hs_mod_sw),
         .watch_mod_sw(watch_mod_sw),

@@ -143,11 +143,15 @@ module watch_counter_tick #(
             counter_reg <= 0;
         end else begin
             if (cursor_on) begin
-                if (counter_reg == TICK_COUNT) counter_reg <= 0;
-                else if (counter_reg == 0) counter_reg <= TICK_COUNT - 1;
-                else if (updown == 1) counter_reg <= counter_next + 1;
-                else if (updown == 2) counter_reg <= counter_next - 1;
-                else counter_reg = counter_reg;
+                if (cursor_on != 0) begin
+                    if (counter_reg == TICK_COUNT) counter_reg <= 0;
+                    else if (counter_reg < 0) counter_reg <= TICK_COUNT - 1;
+                    else if (updown == 1) counter_reg <= counter_next + 1;
+                    else if (updown == 2) counter_reg <= counter_next - 1;
+                    else counter_reg = counter_reg;
+                end else begin
+                    counter_reg = counter_next;
+                end
             end
         end
     end

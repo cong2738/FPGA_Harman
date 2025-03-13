@@ -8,6 +8,7 @@ module top_my_watch #(
 ) (
     input clk,
     input reset,
+    input setting_sw,
     input hs_mod_sw,
     input watch_mod_sw,
     input btnU,

@@ -10,6 +10,7 @@ module watch #(
     input btn_sec,
     input btn_min,
     input btn_hour,
+    input setting_sw,
     input watch_mod_sw,
     output [$clog2(MSEC_MAX)-1:0] w_msec,
     output [$clog2(SEC_MAX)-1:0] w_sec,
@@ -46,6 +47,7 @@ module watch #(
         .min_add(d_min_add),
         .hour_add(d_hour_add),
         .i_mod(watch_mod_sw),
+        .setting_sw(setting_sw),
         .o_hms(w_hms)
     );
 
@@ -73,6 +75,7 @@ module watch_control_unit (
     input min_add,
     input hour_add,
     input i_mod,
+    input setting_sw,
     output reg [2:0] o_hms
 );
     parameter STOP = 3'b000, SEC = 3'b001, MIN = 3'b010, HOUR = 3'b100;
@@ -94,7 +97,7 @@ module watch_control_unit (
     always @(*) begin
         i_hms = {sec_add, min_add, hour_add};
         next  = state;
-        if (i_mod) begin
+        if (i_mod && setting_sw) begin
             case (state)
                 STOP: begin
                     case (i_hms)

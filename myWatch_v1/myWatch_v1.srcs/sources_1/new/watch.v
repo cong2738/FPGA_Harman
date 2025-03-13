@@ -7,9 +7,10 @@ module watch #(
 ) (
     input clk,
     input reset,
-    input btn_sec,
-    input btn_min,
-    input btn_hour,
+    input btn_l,
+    input btn_r,
+    input btn_u,
+    input btn_d,
     input setting_sw,
     input watch_mod_sw,
     output [$clog2(MSEC_MAX)-1:0] w_msec,
@@ -17,38 +18,48 @@ module watch #(
     output [$clog2(MIN_MAX)-1:0] w_min,
     output [$clog2(HOUR_MAX)-1:0] w_hour
 );
-    wire d_sec_add;
-    btn_debounce U_BTN_Debounce_Sec (
+    wire d_btn_l;
+    btn_debounce U_BTN_Debounce_btn_l (
         .clk  (clk),
         .reset(reset),
-        .i_btn(btn_sec),   // from btn
-        .o_btn(d_sec_add)  // to control unit
+        .i_btn(btn_l),   // from btn
+        .o_btn(d_btn_l)  // to control unit
     );
-    wire d_min_add;
-    btn_debounce U_BTN_Debounce_Min (
+    wire d_btn_r;
+    btn_debounce U_BTN_Debounce_btn_r (
         .clk  (clk),
         .reset(reset),
-        .i_btn(btn_min),   // from btn
-        .o_btn(d_min_add)  // to control unit
+        .i_btn(btn_r),   // from btn
+        .o_btn(d_btn_r)  // to control unit
     );
-    wire d_hour_add;
-    btn_debounce U_BTN_Debounce_Hour (
+    wire d_btn_u;
+    btn_debounce U_BTN_Debounce_btn_u (
         .clk  (clk),
         .reset(reset),
-        .i_btn(btn_hour),   // from btn
-        .o_btn(d_hour_add)  // to control unit
+        .i_btn(btn_u),   // from btn
+        .o_btn(d_btn_u)  // to control unit
+    );
+    wire d_btn_d;
+    btn_debounce U_BTN_Debounce_btn_d (
+        .clk  (clk),
+        .reset(reset),
+        .i_btn(btn_d),   // from btn
+        .o_btn(d_btn_d)  // to control unit
     );
 
-    wire [2:0] w_hms;
+    wire [1:0] updown;
+    wire [3:0] cursor;
     watch_control_unit U_watch_CU (
         .clk(clk),
         .reset(reset),
-        .sec_add(d_sec_add),
-        .min_add(d_min_add),
-        .hour_add(d_hour_add),
+        .left(d_btn_l),
+        .right(d_btn_r),
+        .up(d_btn_u),
+        .down(d_btn_d),
         .i_mod(watch_mod_sw),
         .setting_sw(setting_sw),
-        .o_hms(w_hms)
+        .updown(updown),
+        .cursor(cursor)
     );
 
     watch_dp #(
@@ -69,21 +80,21 @@ module watch #(
 endmodule
 
 module watch_control_unit (
-    input  clk,
-    input  reset,
-    input  left,
-    input  right,
-    input  up,
-    input  down,
-    input  i_mod,
-    input  setting_sw,
-    output reg updown,
-    output reg [3:0]cursor
+    input clk,
+    input reset,
+    input left,
+    input right,
+    input up,
+    input down,
+    input i_mod,
+    input setting_sw,
+    output reg [1:0] updown,
+    output reg [3:0] cursor
 );
     parameter STOP = 4'b0000, MIN1 = 4'b0001, MIN10 = 4'b0010,  HOUR1 = 4'b0100, HOUR10 = 4'b1000;
     // state 관리
-    reg [2:0] state, next;
-    reg r_updown, n_updown;
+    reg [3:0] state, next;
+    reg [1:0] r_updown, n_updown;
 
     // state sequencial logic
     always @(posedge clk, posedge reset) begin
@@ -97,7 +108,6 @@ module watch_control_unit (
     end
 
     // next combinational logic
-    reg [2:0] i_hms;
     always @(*) begin
         next = state;
         n_updown = r_updown;
@@ -121,7 +131,7 @@ module watch_control_unit (
                     end else if (up) begin
                         n_updown = 1;
                     end else if (down) begin
-                        n_updown = -1;
+                        n_updown = 2;
                     end else begin
                         next = state;
                         n_updown = r_updown;
@@ -136,7 +146,7 @@ module watch_control_unit (
                     end else if (up) begin
                         n_updown = 1;
                     end else if (down) begin
-                        n_updown = -1;
+                        n_updown = 2;
                     end else begin
                         next = state;
                         n_updown = r_updown;
@@ -151,7 +161,7 @@ module watch_control_unit (
                     end else if (up) begin
                         n_updown = 1;
                     end else if (down) begin
-                        n_updown = -1;
+                        n_updown = 2;
                     end else begin
                         next = state;
                         n_updown = r_updown;
@@ -166,7 +176,7 @@ module watch_control_unit (
                     end else if (up) begin
                         n_updown = 1;
                     end else if (down) begin
-                        n_updown = -1;
+                        n_updown = 2;
                     end else begin
                         next = state;
                         n_updown = r_updown;
@@ -202,7 +212,7 @@ module watch_control_unit (
                 updown = r_updown;
                 cursor = MIN10;
             end
-            
+
             HOUR1: begin
                 updown = r_updown;
                 cursor = HOUR1;

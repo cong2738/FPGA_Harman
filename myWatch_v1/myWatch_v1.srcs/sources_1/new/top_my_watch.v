@@ -15,6 +15,8 @@ module top_my_watch #(
     input btnL,
     input btnR,
     input btnD,
+    input [1:0] updown,
+    input [3:0] cursor,
     output [3:0] fnd_comm,
     output [7:0] fnd_font,
     output [3:0] mod_indicate_led
@@ -68,11 +70,14 @@ module top_my_watch #(
     ) U_Watch (
         .clk(clk),
         .reset(reset),
-        .btn_sec(btnD),
-        .btn_min(btnL),
-        .btn_hour(btnU),
+        .btn_l(btnL),
+        .btn_r(btnR),
+        .btn_u(btnU),
+        .btn_d(btnD),
         .setting_sw(setting_sw),
         .watch_mod_sw(watch_mod_sw),
+        .updown(),
+        .cursor(),
         .w_msec(watch_msec),
         .w_sec(watch_sec),
         .w_min(watch_min),
@@ -131,7 +136,7 @@ module mod_indicator (
     input watch_mod_sw,
     output reg [3:0] led
 );
-    wire[1:0] sw = {hs_mod_sw, watch_mod_sw};
+    wire [1:0] sw = {hs_mod_sw, watch_mod_sw};
     always @(*) begin
         case (sw)
             2'b00:   led = 4'b0001;

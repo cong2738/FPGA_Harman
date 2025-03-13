@@ -10,6 +10,8 @@ module watch_dp #(
     input clk,
     input reset,
     input [2:0] hms,
+    input [1:0] updown,
+    input [3:0] cursor,
     output [$clog2(MSEC_MAX)-1:0] msec,
     output [$clog2(SEC_MAX)-1:0] sec,
     output [$clog2(SEC_MAX)-1:0] min,
@@ -32,7 +34,8 @@ module watch_dp #(
     ) U_Count_Msec (  // msec
         .clk(clk),
         .reset(reset),
-        .add_time(0),
+        .updown(updown),
+        .cursor_on(0),
         .tick(w_tick_100hz),  //100hz => 0.01sec
         .counter(w_msec),
         .o_tick(w_msec_clk)  // 100hz/100 = 1hz => 1sec
@@ -45,7 +48,8 @@ module watch_dp #(
     ) U_Count_sec0 (  // sec
         .clk(clk),
         .reset(reset),
-        .add_time(hms[0]),
+        .updown(updown),
+        .cursor_on(0),
         .tick(w_msec_clk),  //1hz
         .counter(w_sec),
         .o_tick(w_sec_clk)  // 1/60hz => 60sec
@@ -58,7 +62,8 @@ module watch_dp #(
     ) U_Count_Min0 (
         .clk(clk),
         .reset(reset),
-        .add_time(hms[1]),
+        .updown(updown),
+        .cursor_on(cursor[1:0]),
         .tick(w_sec_clk),
         .counter(w_min),
         .o_tick(w_min_clk)  //60min
@@ -71,7 +76,8 @@ module watch_dp #(
     ) U_Count_Hour0 (
         .clk(clk),
         .reset(reset),
-        .add_time(hms[2]),
+        .updown(updown),
+        .cursor_on(cursor[3:2]),
         .tick(w_min_clk),
         .counter(w_hour),
         .o_tick(w_hour_clk)  //60min
@@ -119,7 +125,8 @@ module watch_counter_tick #(
     input clk,
     input reset,
     input tick,
-    input add_time,
+    input [1:0] updown,
+    input cursor_on,
     output [$clog2(TICK_COUNT)-1 : 0] counter,
     output o_tick
 );
@@ -134,10 +141,14 @@ module watch_counter_tick #(
     always @(posedge clk, posedge reset) begin
         if (reset) begin
             counter_reg <= 0;
-        end else begin            
-            if (counter_reg == TICK_COUNT) begin
-                counter_reg <= 0;
-            end else counter_reg <= counter_next + add_time;
+        end else begin
+            if (cursor_on) begin
+                if (counter_reg == TICK_COUNT) counter_reg <= 0;
+                else if (counter_reg == 0) counter_reg <= TICK_COUNT - 1;
+                else if (updown == 1) counter_reg <= counter_next + 1;
+                else if (updown == 2) counter_reg <= counter_next - 1;
+                else counter_reg = counter_reg;
+            end
         end
     end
 

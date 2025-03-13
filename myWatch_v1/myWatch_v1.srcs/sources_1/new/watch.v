@@ -69,94 +69,152 @@ module watch #(
 endmodule
 
 module watch_control_unit (
-    input clk,
-    input reset,
-    input sec_add,
-    input min_add,
-    input hour_add,
-    input i_mod,
-    input setting_sw,
-    output reg [2:0] o_hms
+    input  clk,
+    input  reset,
+    input  left,
+    input  right,
+    input  up,
+    input  down,
+    input  i_mod,
+    input  setting_sw,
+    output reg updown,
+    output reg [3:0]cursor
 );
-    parameter STOP = 3'b000, SEC = 3'b001, MIN = 3'b010, HOUR = 3'b100;
-
+    parameter STOP = 4'b0000, MIN1 = 4'b0001, MIN10 = 4'b0010,  HOUR1 = 4'b0100, HOUR10 = 4'b1000;
     // state 관리
     reg [2:0] state, next;
+    reg r_updown, n_updown;
 
     // state sequencial logic
     always @(posedge clk, posedge reset) begin
         if (reset) begin
             state <= STOP;
+            r_updown <= 0;
         end else begin
             state <= next;
+            r_updown <= n_updown;
         end
     end
 
     // next combinational logic
     reg [2:0] i_hms;
     always @(*) begin
-        i_hms = {sec_add, min_add, hour_add};
-        next  = state;
-        if (i_mod && !setting_sw) begin
+        next = state;
+        n_updown = r_updown;
+        if (i_mod && setting_sw) begin
             case (state)
                 STOP: begin
-                    case (i_hms)
-                        SEC: begin
-                            next = SEC;
-                        end
-                        MIN: begin
-                            next = MIN;
-                        end
-                        HOUR: begin
-                            next = HOUR;
-                        end
-                    endcase
+                    if (setting_sw) begin
+                        next = MIN1;
+                        n_updown = 0;
+                    end else begin
+                        next = state;
+                        n_updown = r_updown;
+                    end
                 end
 
-                SEC: begin
-                    if (i_hms == STOP) begin
-                        next = STOP;
-                    end else next = state;
+                MIN1: begin
+                    if (left) begin
+                        next = MIN10;
+                    end else if (right) begin
+                        next = HOUR10;
+                    end else if (up) begin
+                        n_updown = 1;
+                    end else if (down) begin
+                        n_updown = -1;
+                    end else begin
+                        next = state;
+                        n_updown = r_updown;
+                    end
                 end
 
-                MIN: begin
-                    if (i_hms == STOP) begin
-                        next = STOP;
-                    end else next = state;
+                MIN10: begin
+                    if (left) begin
+                        next = HOUR1;
+                    end else if (right) begin
+                        next = MIN1;
+                    end else if (up) begin
+                        n_updown = 1;
+                    end else if (down) begin
+                        n_updown = -1;
+                    end else begin
+                        next = state;
+                        n_updown = r_updown;
+                    end
                 end
 
-                HOUR: begin
-                    if (i_hms == STOP) begin
-                        next = STOP;
-                    end else next = state;
+                HOUR1: begin
+                    if (left) begin
+                        next = HOUR10;
+                    end else if (right) begin
+                        next = MIN1;
+                    end else if (up) begin
+                        n_updown = 1;
+                    end else if (down) begin
+                        n_updown = -1;
+                    end else begin
+                        next = state;
+                        n_updown = r_updown;
+                    end
+                end
+
+                HOUR10: begin
+                    if (left) begin
+                        next = MIN1;
+                    end else if (right) begin
+                        next = HOUR1;
+                    end else if (up) begin
+                        n_updown = 1;
+                    end else if (down) begin
+                        n_updown = -1;
+                    end else begin
+                        next = state;
+                        n_updown = r_updown;
+                    end
                 end
 
                 default: begin
                     next = state;
+                    n_updown = r_updown;
                 end
             endcase
-        end else next = state;
+        end else begin
+            next = state;
+            n_updown = r_updown;
+        end
     end
 
     // combinational output logic
     always @(*) begin
         // 초기화 필요.
-        o_hms = 0;
+        updown = 0;
         case (state)
-            SEC: begin
-                o_hms = SEC;
+            STOP: begin
+                updown = 0;
+                cursor = 0;
             end
 
-            MIN: begin
-                o_hms = MIN;
+            MIN1: begin
+                updown = r_updown;
+                cursor = MIN1;
             end
-
-            HOUR: begin
-                o_hms = HOUR;
+            MIN10: begin
+                updown = r_updown;
+                cursor = MIN10;
+            end
+            
+            HOUR1: begin
+                updown = r_updown;
+                cursor = HOUR1;
+            end
+            HOUR10: begin
+                updown = r_updown;
+                cursor = HOUR10;
             end
 
             default: begin
-                o_hms = STOP;
+                updown = 0;
+                cursor = 0;
             end
         endcase
     end

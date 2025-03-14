@@ -6,15 +6,9 @@ module uart #(
     input  clk,
     input  rst,
     input  btn_start,
-    output tx
+    output tx,
+    output tx_busy
 );
-    wire d_btn;
-    btn_debounce U_BTN_DB (
-        .clk  (clk),
-        .reset(rst),
-        .i_btn(btn_start),
-        .o_btn(d_start)
-    );
 
     wire tick;
     boud_tick_gen U_BTG (
@@ -27,9 +21,10 @@ module uart #(
         .clk(clk),
         .rst(rst),
         .tick(tick),
-        .start_triger(d_start),
+        .start_triger(btn_start),
         .i_data(8'h30),
-        .o_tx(tx)
+        .o_tx(tx),
+        .tx_busy(tx_busy)
     );
 endmodule
 
@@ -77,7 +72,7 @@ module uart_tx (
             IDLE: begin
                 busy_next = 0;
                 tx_next   = 1;
-                if (start_triger) begin
+                if (start_triger && tick) begin
                     busy_next = 1;
                     next = START;
                 end

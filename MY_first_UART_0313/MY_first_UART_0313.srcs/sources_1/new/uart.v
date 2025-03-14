@@ -6,6 +6,7 @@ module uart #(
     input  clk,
     input  rst,
     input  btn_start,
+    input [7:0]uart_data,
     output tx,
     output tx_busy
 );
@@ -22,7 +23,7 @@ module uart #(
         .rst(rst),
         .tick(tick),
         .start_triger(btn_start),
-        .i_data(8'h30),
+        .i_data(uart_data),
         .o_tx(tx),
         .tx_busy(tx_busy)
     );
@@ -72,7 +73,7 @@ module uart_tx (
             IDLE: begin
                 busy_next = 0;
                 tx_next   = 1;
-                if (start_triger && tick) begin
+                if (start_triger) begin
                     busy_next = 1;
                     next = START;
                 end
@@ -134,6 +135,7 @@ module uart_tx (
             STOP: begin
                 if (tick) begin
                     tx_next = 1;
+                    busy_next = 0;
                     next = IDLE;
                 end
             end

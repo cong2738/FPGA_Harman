@@ -10,7 +10,9 @@ module tb ();
         .clk(clk),
         .rst(rst),
         .btn_start(btn),
-        .tx(tx)
+        .uart_data(8'h30),
+        .tx(tx),
+        .tx_busy()
     );
 
     always #10 clk = ~clk;
@@ -26,3 +28,5 @@ module tb ();
         btn = 0;
     end
 endmodule
+
+

@@ -40,7 +40,7 @@ module uart_tx (
     input start_triger,
     input [7:0] i_data,
     output o_tx,
-    output tx_done
+    output tx_busy
 );
     //fs,
     parameter   IDLE = 4'h0, START = 4'h1, 
@@ -52,36 +52,37 @@ module uart_tx (
 
     reg [3:0] state, next;
     reg tx_reg, tx_next;
-    reg done_reg, done_next;
+    reg busy_reg, busy_next;
 
     assign o_tx = tx_reg;
-    assign tx_done = done_reg;
+    assign tx_busy = busy_reg;
 
     always @(posedge clk, posedge rst) begin
         if (rst) begin
             state <= 0;
-            tx_reg = 1;
-            done_reg = 0;
+            tx_reg   <= 1;
+            busy_reg <= 0;
         end else begin
-            state  = next;
-            tx_reg = tx_next;
-            done_reg = done_next;
+            state <= next;
+            tx_reg <= tx_next;
+            busy_reg <= busy_next;
         end
     end
 
     always @(*) begin
         next = state;
         tx_next = tx_reg;
+        busy_next = busy_reg;
         case (state)
             IDLE: begin
-                done_next = 0;
+                busy_next = 0;
+                tx_next   = 1;
                 if (start_triger) begin
-                    tx_next = 1;
+                    busy_next = 1;
                     next = START;
                 end
             end
             START: begin
-                done_next = 1;
                 if (tick == 1) begin
                     tx_next = 0;
                     next = D0;

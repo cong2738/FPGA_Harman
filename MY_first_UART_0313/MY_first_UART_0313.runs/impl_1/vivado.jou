@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Fri Mar 14 13:38:44 2025
+# Process ID: 8924
+# Current directory: C:/harman/FPGA_Harman-1/MY_first_UART_0313/MY_first_UART_0313.runs/impl_1
+# Command line: vivado.exe -log uart.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source uart.tcl -notrace
+# Log file: C:/harman/FPGA_Harman-1/MY_first_UART_0313/MY_first_UART_0313.runs/impl_1/uart.vdi
+# Journal file: C:/harman/FPGA_Harman-1/MY_first_UART_0313/MY_first_UART_0313.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source uart.tcl -notrace

@@ -11,14 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="5796042297fs"></ZoomEndTime>
-      <Cursor1Time time="20656108184fs"></Cursor1Time>
+      <ZoomStartTime time="158207253179fs"></ZoomStartTime>
+      <ZoomEndTime time="180539388496fs"></ZoomEndTime>
+      <Cursor1Time time="160001900000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
+      <NameColumnWidth column_width="106"></NameColumnWidth>
       <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="6" />
+   <WVObjectSize size="8" />
    <wvobject fp_name="/tb/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -39,8 +40,17 @@
       <obj_property name="ElementShortName">o_btn</obj_property>
       <obj_property name="ObjectShortName">o_btn</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb/DUT/U_BTG/baud_tick" type="logic">
-      <obj_property name="ElementShortName">baud_tick</obj_property>
-      <obj_property name="ObjectShortName">baud_tick</obj_property>
+   <wvobject fp_name="/tb/DUT/U_Tx/tick" type="logic">
+      <obj_property name="ElementShortName">tick</obj_property>
+      <obj_property name="ObjectShortName">tick</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/DUT/U_Tx/state" type="array">
+      <obj_property name="ElementShortName">state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">state[3:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/DUT/U_Tx/tx_done" type="logic">
+      <obj_property name="ElementShortName">tx_done</obj_property>
+      <obj_property name="ObjectShortName">tx_done</obj_property>
    </wvobject>
 </wave_config>

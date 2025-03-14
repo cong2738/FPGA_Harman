@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module send_tx_btn1 (
+module send_tx_btn1 #(parameter BAUD_RATE = 9600)(
     input  clk,
     input  rst,
     input  btn_start,
@@ -17,7 +17,7 @@ module send_tx_btn1 (
     wire w_tx_busy;
     wire [7:0] i_uart_data;
     uart #(
-        .BAUD_RATE(9600)
+        .BAUD_RATE(BAUD_RATE)
     ) U_Uart (
         .clk(clk),
         .rst(rst),

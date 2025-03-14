@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/harman/FPGA_Harman-1/MY_first_UART_0313/MY_first_UART_0313.runs/synth_1/uart.tcl"
+  variable script "C:/harman/FPGA_Harman-1/MY_first_UART_0313/MY_first_UART_0313.runs/synth_1/send_tx_btn1.tcl"
   variable category "vivado_synth"
 }
 
@@ -70,6 +70,11 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
+set_param chipscope.maxJobs 4
+set_param synth.incrementalSynthesisCache C:/Users/kccistc/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-12356-DESKTOP-7CFQ9ND/incrSyn
+set_param xicom.use_bs_reader 1
+set_msg_config -id {Synth 8-256} -limit 10000
+set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
@@ -89,6 +94,7 @@ OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
   C:/harman/FPGA_Harman-1/MY_first_UART_0313/MY_first_UART_0313.srcs/sources_1/imports/FPGA_Harman-1/my_btn_debounce.v
   C:/harman/FPGA_Harman-1/MY_first_UART_0313/MY_first_UART_0313.srcs/sources_1/new/uart.v
+  C:/harman/FPGA_Harman-1/MY_first_UART_0313/MY_first_UART_0313.srcs/sources_1/new/send_tx_btn.v
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -106,7 +112,7 @@ set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
-synth_design -top uart -part xc7a35tcpg236-1
+synth_design -top send_tx_btn1 -part xc7a35tcpg236-1
 OPTRACE "synth_design" END { }
 if { [get_msg_config -count -severity {CRITICAL WARNING}] > 0 } {
  send_msg_id runtcl-6 info "Synthesis results are not added to the cache due to CRITICAL_WARNING"
@@ -116,10 +122,10 @@ if { [get_msg_config -count -severity {CRITICAL WARNING}] > 0 } {
 OPTRACE "write_checkpoint" START { CHECKPOINT }
 # disable binary constraint mode for synth run checkpoints
 set_param constraints.enableBinaryConstraints false
-write_checkpoint -force -noxdef uart.dcp
+write_checkpoint -force -noxdef send_tx_btn1.dcp
 OPTRACE "write_checkpoint" END { }
 OPTRACE "synth reports" START { REPORT }
-create_report "synth_1_synth_report_utilization_0" "report_utilization -file uart_utilization_synth.rpt -pb uart_utilization_synth.pb"
+create_report "synth_1_synth_report_utilization_0" "report_utilization -file send_tx_btn1_utilization_synth.rpt -pb send_tx_btn1_utilization_synth.pb"
 OPTRACE "synth reports" END { }
 file delete __synthesis_is_running__
 close [open __synthesis_is_complete__ w]

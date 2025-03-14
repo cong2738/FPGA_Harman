@@ -22,7 +22,7 @@ module tb ();
         rst = 0;
         #10;
         btn = 1;
-        wait(DUT.U_BTN_DB.o_btn == 1);
+        wait(DUT.tx == 0);
         btn = 0;
     end
 endmodule

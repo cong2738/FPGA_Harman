@@ -54,14 +54,14 @@ module btn_debounce (
 
 endmodule
 
-module m_1khz (
+module m_1khz #(parameter COUNT_MAX = 100_000)(
     input  clk,
     input  reset,
     output o_1khz
 );
     // 1khz clk
     //state
-    reg [$clog2(100_000) - 1:0] counter;
+    reg [$clog2(COUNT_MAX) - 1:0] counter;
     reg r_1khz;
 
     always @(posedge clk, posedge reset) begin
@@ -69,7 +69,7 @@ module m_1khz (
             counter <= 0;
             r_1khz  <= 0;
         end else begin
-            if (counter == 100_000) begin
+            if (counter == COUNT_MAX) begin
                 counter <= 0;
                 r_1khz  <= 1'b1;
             end else begin

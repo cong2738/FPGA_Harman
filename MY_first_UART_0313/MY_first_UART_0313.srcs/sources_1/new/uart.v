@@ -13,7 +13,7 @@ module uart #(
         .clk  (clk),
         .reset(rst),
         .i_btn(btn_start),
-        .o_btn(d_btn)
+        .o_btn(d_start)
     );
 
     wire tick;
@@ -27,7 +27,7 @@ module uart #(
         .clk(clk),
         .rst(rst),
         .tick(tick),
-        .start_triger(d_btn),
+        .start_triger(d_start),
         .i_data(8'h30),
         .o_tx(tx)
     );

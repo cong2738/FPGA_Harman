@@ -18,11 +18,11 @@ module tb ();
     initial begin
         clk = 0;    
         rst = 1;
-        wait(DUT.tx == 0);
+        wait(DUT.tx == 1);
         rst = 0;
         #10;
         btn = 1;
-        wait(DUT.tx == 1);
+        wait(DUT.U_BTN_DB.o_btn == 1);
         btn = 0;
     end
 endmodule

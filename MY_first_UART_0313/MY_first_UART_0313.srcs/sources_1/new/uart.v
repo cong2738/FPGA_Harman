@@ -1,11 +1,21 @@
 `timescale 1ns / 1ps
 
-module uart (
+module uart #(
+    BAUD_RATE = 9600
+) (
     input  clk,
     input  rst,
     input  btn_start,
     output tx
 );
+    wire d_btn;
+    btn_debounce U_BTN_DB (
+        .clk  (clk),
+        .reset(rst),
+        .i_btn(btn_start),
+        .o_btn(d_btn)
+    );
+
     wire tick;
     boud_tick_gen U_BTG (
         .clk(clk),
@@ -13,20 +23,12 @@ module uart (
         .baud_tick(tick)
     );
 
-    wire d_btn;
-    btn_debounce U_Btn_DB (
-        .clk  (clk),
-        .reset(reset),
-        .i_btn(btn_start),
-        .o_btn(d_btn)
-    );
-
     uart_tx U_Tx (
         .clk(clk),
         .rst(rst),
         .tick(tick),
         .start_triger(d_btn),
-        .i_data(8'b00110000),  // 8'h30 => "0"
+        .i_data(8'h30),
         .o_tx(tx)
     );
 endmodule
@@ -36,7 +38,7 @@ module uart_tx (
     input rst,
     input tick,
     input start_triger,
-    input [8:0] i_data,
+    input [7:0] i_data,
     output o_tx
 );
     //fs,
@@ -55,76 +57,75 @@ module uart_tx (
     always @(posedge clk, posedge rst) begin
         if (rst) begin
             state <= 0;
-            tx_reg = 0;
+            tx_reg = 1;
         end else begin
             state  = next;
             tx_reg = tx_next;
         end
     end
 
-    reg [8:0] data;
     always @(*) begin
         next = state;
         tx_next = tx_reg;
         case (state)
             IDLE: begin
                 if (start_triger) begin
+                    tx_next = 1;
                     next = START;
                 end
             end
             START: begin
-                tx_next = 0;
                 if (tick == 1) begin
-                    tx_next = 1;
+                    tx_next = 0;
                     next = D0;
                 end
             end
             D0: begin
                 if (tick) begin
-                    tx_next = data[0];
+                    tx_next = i_data[0];
                     next = D1;
                 end
             end
             D1: begin
                 if (tick) begin
-                    tx_next = data[1];
-                    next = D1;
+                    tx_next = i_data[1];
+                    next = D2;
                 end
             end
             D2: begin
                 if (tick) begin
-                    tx_next = data[2];
-                    next = D2;
+                    tx_next = i_data[2];
+                    next = D3;
                 end
             end
             D3: begin
                 if (tick) begin
-                    tx_next = data[3];
-                    next = D3;
+                    tx_next = i_data[3];
+                    next = D4;
                 end
             end
             D4: begin
                 if (tick) begin
-                    tx_next = data[4];
-                    next = D4;
+                    tx_next = i_data[4];
+                    next = D5;
                 end
             end
             D5: begin
                 if (tick) begin
-                    tx_next = data[5];
-                    next = D5;
+                    tx_next = i_data[5];
+                    next = D6;
                 end
             end
             D6: begin
                 if (tick) begin
-                    tx_next = data[6];
-                    next = D6;
+                    tx_next = i_data[6];
+                    next = D7;
                 end
             end
             D7: begin
                 if (tick) begin
-                    tx_next = data[7];
-                    next = D7;
+                    tx_next = i_data[7];
+                    next = STOP;
                 end
             end
             STOP: begin
@@ -139,12 +140,13 @@ module uart_tx (
 
 endmodule
 
-module boud_tick_gen (
+module boud_tick_gen #(
+    parameter BAUD_RATE = 9600
+) (
     input  clk,
     input  rst,
     output baud_tick
 );
-    parameter BAUD_RATE = 9600;
     localparam BUAD_COUNT = 100_000_000 / BAUD_RATE;
     reg [$clog2(BUAD_COUNT)-1:0] count_reg, count_next;
     reg tick_reg, tick_next;

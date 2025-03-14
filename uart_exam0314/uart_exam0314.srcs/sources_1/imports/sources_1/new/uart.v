@@ -53,10 +53,12 @@ module uart_tx (
             state <= 0;
             tx_reg <= 1;
             busy_reg <= 0;
+            count_reg <= 0;
         end else begin
             state <= next;
             tx_reg <= tx_next;
             busy_reg <= busy_next;
+            count_reg <= count_next;
         end
     end
 
@@ -64,6 +66,7 @@ module uart_tx (
         next = state;
         tx_next = tx_reg;
         busy_next = busy_reg;
+        count_next = count_reg;
         case (state)
             IDLE: begin
                 busy_next = 0;
@@ -75,18 +78,20 @@ module uart_tx (
             end
             START: begin
                 if (tick == 1) begin
+                    count_next = 0;
                     tx_next = 0;
                     next = RUN;
                 end
             end
             RUN: begin
                 if (tick) begin
-                    if (count_reg != 8) begin
-                        tx_next = i_data[0];
-                        count_next = count_reg + 1;
-                    end else begin
+                    tx_next = i_data[count_next];
+                    if (count_reg == 8) begin
+                        count_next = 0;
                         tx_next = 1;
                         next = STOP;
+                    end else begin
+                        count_next = count_reg + 1;
                     end
                 end
             end

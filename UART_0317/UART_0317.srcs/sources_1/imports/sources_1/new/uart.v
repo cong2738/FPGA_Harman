@@ -79,12 +79,12 @@ module uart_tx (
                 end
             end
             SEND: begin
-                if (tick) begin                    
+                if (tick) begin
                     next = START;
                 end
             end
             START: begin
-                tx_next = 0;
+                tx_next   = 0;
                 busy_next = 1;
                 if (tick) begin
                     count_next = 0;

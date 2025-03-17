@@ -12,14 +12,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="400001000001fs"></ZoomEndTime>
-      <Cursor1Time time="400001000000fs"></Cursor1Time>
+      <ZoomEndTime time="600001000001fs"></ZoomEndTime>
+      <Cursor1Time time="419912545768fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="143"></NameColumnWidth>
+      <NameColumnWidth column_width="139"></NameColumnWidth>
       <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="8" />
+   <WVObjectSize size="9" />
    <wvobject fp_name="/tb/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -51,5 +51,9 @@
    <wvobject fp_name="/tb/DUT/w_tx_busy" type="logic">
       <obj_property name="ElementShortName">w_tx_busy</obj_property>
       <obj_property name="ObjectShortName">w_tx_busy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/DUT/U_Uart/U_Tx/i_data" type="array">
+      <obj_property name="ElementShortName">i_data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">i_data[7:0]</obj_property>
    </wvobject>
 </wave_config>

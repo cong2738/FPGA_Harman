@@ -26,10 +26,10 @@ module tb ();
         btn = 1;
         wait (DUT.U_btn_Debounce.o_btn == 1);
         btn = 0;
-        #10000000;
-        btn = 1;
-        wait (DUT.U_btn_Debounce.o_btn == 1);
-        btn = 0;
+        // #10000000;
+        // btn = 1;
+        // wait (DUT.U_btn_Debounce.o_btn == 1);
+        // btn = 0;
     end
 endmodule
 

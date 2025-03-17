@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/harman/FPGA_Harman-1/uart_exam0314/uart_exam0314.runs/synth_1/send_tx_btn.tcl"
+  variable script "C:/harman/FPGA_Harman-1/UART_0317/UART_0317.runs/synth_1/send_tx_btn.tcl"
   variable category "vivado_synth"
 }
 
@@ -70,30 +70,23 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 4
-set_param xicom.use_bs_reader 1
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir C:/harman/FPGA_Harman-1/uart_exam0314/uart_exam0314.cache/wt [current_project]
-set_property parent.project_path C:/harman/FPGA_Harman-1/uart_exam0314/uart_exam0314.xpr [current_project]
+set_property webtalk.parent_dir C:/harman/FPGA_Harman-1/UART_0317/UART_0317.cache/wt [current_project]
+set_property parent.project_path C:/harman/FPGA_Harman-1/UART_0317/UART_0317.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property board_part_repo_paths {C:/Users/kccistc/AppData/Roaming/Xilinx/Vivado/2020.2/xhub/board_store/xilinx_board_store} [current_project]
-set_property board_part digilentinc.com:basys3:part0:1.1 [current_project]
-set_property ip_output_repo c:/harman/FPGA_Harman-1/uart_exam0314/uart_exam0314.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  C:/harman/FPGA_Harman-1/uart_exam0314/uart_exam0314.srcs/sources_1/imports/sources_1/imports/FPGA_Harman-1/my_btn_debounce.v
-  C:/harman/FPGA_Harman-1/uart_exam0314/uart_exam0314.srcs/sources_1/imports/sources_1/new/uart.v
-  C:/harman/FPGA_Harman-1/uart_exam0314/uart_exam0314.srcs/sources_1/imports/sources_1/new/send_tx_btn.v
+  C:/harman/FPGA_Harman-1/UART_0317/UART_0317.srcs/sources_1/imports/sources_1/imports/FPGA_Harman-1/my_btn_debounce.v
+  C:/harman/FPGA_Harman-1/UART_0317/UART_0317.srcs/sources_1/imports/sources_1/new/uart.v
+  C:/harman/FPGA_Harman-1/UART_0317/UART_0317.srcs/sources_1/imports/sources_1/new/send_tx_btn.v
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -104,8 +97,8 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/harman/FPGA_Harman-1/uart_exam0314/uart_exam0314.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc
-set_property used_in_implementation false [get_files C:/harman/FPGA_Harman-1/uart_exam0314/uart_exam0314.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc]
+read_xdc C:/harman/FPGA_Harman-1/UART_0317/UART_0317.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc
+set_property used_in_implementation false [get_files C:/harman/FPGA_Harman-1/UART_0317/UART_0317.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]

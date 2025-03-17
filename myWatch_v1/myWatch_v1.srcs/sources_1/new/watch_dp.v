@@ -9,7 +9,6 @@ module watch_dp #(
 ) (
     input clk,
     input reset,
-    input [2:0] hms,
     input [1:0] updown,
     input [3:0] cursor,
     output [$clog2(MSEC_MAX)-1:0] msec,
@@ -17,6 +16,7 @@ module watch_dp #(
     output [$clog2(SEC_MAX)-1:0] min,
     output [$clog2(HOUR_MAX)-1:0] hour
 );
+    localparam MIN1 = 4'b0001, MIN10 = 4'b0010,  HOUR1 = 4'b0100, HOUR10 = 4'b1000;
     wire w_tick_100hz;
     // 100Hz tick generator
     watch_tick_100hz #(
@@ -35,7 +35,7 @@ module watch_dp #(
         .clk(clk),
         .reset(reset),
         .updown(updown),
-        .cursor_on(0),
+        .cursor(0),
         .tick(w_tick_100hz),  //100hz => 0.01sec
         .counter(w_msec),
         .o_tick(w_msec_clk)  // 100hz/100 = 1hz => 1sec
@@ -125,8 +125,8 @@ module watch_counter_tick #(
     input clk,
     input reset,
     input tick,
-    input [1:0] updown,
-    input cursor_on,
+    input [$clog2(11)-1:0] updown,
+    input [2:0] cursor_on,
     output [$clog2(TICK_COUNT)-1 : 0] counter,
     output o_tick
 );
@@ -142,17 +142,29 @@ module watch_counter_tick #(
         if (reset) begin
             counter_reg <= 0;
         end else begin
-            if (cursor_on) begin
-                if (cursor_on != 0) begin
-                    if (counter_reg == TICK_COUNT) counter_reg <= 0;
-                    else if (counter_reg < 0) counter_reg <= TICK_COUNT - 1;
-                    else if (updown == 1) counter_reg <= counter_next + 1;
-                    else if (updown == 2) counter_reg <= counter_next - 1;
-                    else counter_reg = counter_reg;
-                end else begin
-                    counter_reg = counter_next;
+            if (cursor_on != 0) begin
+                if (cursor_on[0] == 1) begin
+                    if (updown == 1) begin
+                        counter_reg = counter_next + updown;
+                    end else if (updown == 2) begin
+                        counter_reg = counter_next - 1;
+                    end
+                end else if (cursor_on[1] == 1) begin
+                    if (updown == 1) begin
+                        if (counter_reg < TICK_COUNT - 10)begin
+                            counter_reg = counter_next + 10;
+                        end else begin
+                            counter_reg = 0;
+                        end
+                    end else if (updown == 2) begin
+                        if( counter_reg >= 10) begin
+                            counter_reg = counter_next - 10;
+                        end else begin
+                            counter_reg = TICK_COUNT - 10 + (counter_next % 10);
+                        end
+                    end
                 end
-            end
+            end else counter_reg = counter_next;
         end
     end
 
@@ -164,7 +176,10 @@ module watch_counter_tick #(
             if (counter_reg == TICK_COUNT - 1) begin
                 counter_next = 0;
                 r_tick = 1'b1;
-            end else begin
+            end else if(cursor_on) begin
+                counter_next = counter_reg;
+            end
+            else begin
                 counter_next = counter_reg + 1;
                 r_tick = 1'b0;
             end

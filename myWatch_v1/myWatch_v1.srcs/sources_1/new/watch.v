@@ -71,7 +71,6 @@ module watch #(
     ) U_watch_DP (
         .clk(clk),
         .reset(reset),
-        .hms(w_hms),
         .updown(updown),
         .cursor(cursor),
         .msec(w_msec),
@@ -90,22 +89,25 @@ module watch_control_unit (
     input down,
     input i_mod,
     input setting_sw,
-    output reg [1:0] updown,
-    output reg [3:0] cursor
+    output [1:0] updown,
+    output [3:0] cursor
 );
     parameter STOP = 4'b0000, MIN1 = 4'b0001, MIN10 = 4'b0010,  HOUR1 = 4'b0100, HOUR10 = 4'b1000;
     // state 관리
-    reg [3:0] state, next;
     reg [1:0] r_updown, n_updown;
+    reg [3:0] state, next;
+
+    assign updown = r_updown;
+    assign cursor = state;
 
     // state sequencial logic
     always @(posedge clk, posedge reset) begin
         if (reset) begin
-            state <= STOP;
             r_updown <= 0;
+            state <= STOP;
         end else begin
-            state <= next;
             r_updown <= n_updown;
+            state <= next;
         end
     end
 
@@ -121,7 +123,7 @@ module watch_control_unit (
                         n_updown = 0;
                     end else begin
                         next = state;
-                        n_updown = r_updown;
+                        n_updown = 0;
                     end
                 end
 
@@ -194,40 +196,5 @@ module watch_control_unit (
             next = state;
             n_updown = r_updown;
         end
-    end
-
-    // combinational output logic
-    always @(*) begin
-        // 초기화 필요.
-        updown = 0;
-        case (state)
-            STOP: begin
-                updown = 0;
-                cursor = 0;
-            end
-
-            MIN1: begin
-                updown = r_updown;
-                cursor = MIN1;
-            end
-            MIN10: begin
-                updown = r_updown;
-                cursor = MIN10;
-            end
-
-            HOUR1: begin
-                updown = r_updown;
-                cursor = HOUR1;
-            end
-            HOUR10: begin
-                updown = r_updown;
-                cursor = HOUR10;
-            end
-
-            default: begin
-                updown = 0;
-                cursor = 0;
-            end
-        endcase
     end
 endmodule

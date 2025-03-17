@@ -68,8 +68,6 @@ module top_my_watch #(
         .btn_d(btnD),
         .setting_sw(setting_sw),
         .watch_mod_sw(watch_mod_sw),
-        .updown(),
-        .cursor(),
         .w_msec(watch_msec),
         .w_sec(watch_sec),
         .w_min(watch_min),

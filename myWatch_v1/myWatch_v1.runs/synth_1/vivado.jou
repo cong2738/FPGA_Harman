@@ -1,12 +1,24 @@
 #-----------------------------------------------------------
-# Vivado v2020.2 (64-bit)
-# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
-# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Thu Mar 13 13:37:15 2025
-# Process ID: 6440
-# Current directory: C:/harman/FPGA_Harman-1/myWatch_v1/myWatch_v1.runs/synth_1
-# Command line: vivado.exe -log top_my_watch.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_my_watch.tcl
-# Log file: C:/harman/FPGA_Harman-1/myWatch_v1/myWatch_v1.runs/synth_1/top_my_watch.vds
-# Journal file: C:/harman/FPGA_Harman-1/myWatch_v1/myWatch_v1.runs/synth_1\vivado.jou
+# Vivado v2024.2.1 (64-bit)
+# SW Build 5266912 on Sun Dec 15 09:03:24 MST 2024
+# IP Build 5264866 on Sun Dec 15 16:27:47 MST 2024
+# SharedData Build 5264680 on Wed Dec 11 12:48:36 MST 2024
+# Start of session at: Sun Mar 16 14:34:37 2025
+# Process ID         : 21992
+# Current directory  : D:/harman/FPGA_Harman/myWatch_v1/myWatch_v1.runs/synth_1
+# Command line       : vivado.exe -log top_my_watch.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_my_watch.tcl
+# Log file           : D:/harman/FPGA_Harman/myWatch_v1/myWatch_v1.runs/synth_1/top_my_watch.vds
+# Journal file       : D:/harman/FPGA_Harman/myWatch_v1/myWatch_v1.runs/synth_1\vivado.jou
+# Running On         : PKLT
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26100
+# Processor Detail   : 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+# CPU Frequency      : 2419 MHz
+# CPU Physical cores : 4
+# CPU Logical cores  : 8
+# Host memory        : 34069 MB
+# Swap memory        : 2147 MB
+# Total Virtual      : 36216 MB
+# Available Virtual  : 18443 MB
 #-----------------------------------------------------------
 source top_my_watch.tcl -notrace

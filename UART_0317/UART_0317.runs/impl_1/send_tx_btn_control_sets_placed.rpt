@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Mon Mar 17 11:59:51 2025
+| Date         : Mon Mar 17 14:13:20 2025
 | Host         : DESKTOP-7CFQ9ND running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file send_tx_btn_control_sets_placed.rpt
 | Design       : send_tx_btn
@@ -27,7 +27,7 @@ Table of Contents
 |    Minimum number of control sets                        |     5 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    15 |
+| Unused register locations in slices containing registers |    13 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -59,10 +59,10 @@ Table of Contents
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | No           | No                    | No                     |               0 |            0 |
-| No           | No                    | Yes                    |              44 |           14 |
+| No           | No                    | Yes                    |              45 |           15 |
 | No           | Yes                   | No                     |               0 |            0 |
 | Yes          | No                    | No                     |               0 |            0 |
-| Yes          | No                    | Yes                    |              13 |            5 |
+| Yes          | No                    | Yes                    |              14 |            5 |
 | Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
@@ -70,14 +70,14 @@ Table of Contents
 4. Detailed Control Set Information
 -----------------------------------
 
-+----------------------------+-------------------------------------+------------------+------------------+----------------+--------------+
-|        Clock Signal        |            Enable Signal            | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
-+----------------------------+-------------------------------------+------------------+------------------+----------------+--------------+
-|  clk_IBUF_BUFG             | U_Uart/U_Tx/tx_next                 | rst_IBUF         |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG             | U_Uart/U_Tx/count_reg[3]_i_1__0_n_0 | rst_IBUF         |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG             | U_btn_Debounce/E[0]                 | rst_IBUF         |                3 |              8 |         2.67 |
-|  U_btn_Debounce/U_1khz/CLK |                                     | rst_IBUF         |                2 |              8 |         4.00 |
-|  clk_IBUF_BUFG             |                                     | rst_IBUF         |               12 |             36 |         3.00 |
-+----------------------------+-------------------------------------+------------------+------------------+----------------+--------------+
++----------------------------+-----------------------------------------+------------------+------------------+----------------+--------------+
+|        Clock Signal        |              Enable Signal              | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------------------+-----------------------------------------+------------------+------------------+----------------+--------------+
+|  clk_IBUF_BUFG             | U_Uart/U_Tx/tx_next                     | rst_IBUF         |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG             | U_Uart/U_Tx/FSM_onehot_state[4]_i_1_n_0 | rst_IBUF         |                1 |              5 |         5.00 |
+|  clk_IBUF_BUFG             | U_btn_Debounce/E[0]                     | rst_IBUF         |                3 |              8 |         2.67 |
+|  U_btn_Debounce/U_1khz/CLK |                                         | rst_IBUF         |                1 |              8 |         8.00 |
+|  clk_IBUF_BUFG             |                                         | rst_IBUF         |               14 |             37 |         2.64 |
++----------------------------+-----------------------------------------+------------------+------------------+----------------+--------------+
 
 

@@ -34,7 +34,7 @@ module send_tx_btn #(parameter BAUD_RATE = 9600) (
 
     always @(posedge clk, posedge rst) begin
         if (rst) begin
-            data_curr <= "0";
+            data_curr <= "0"-1;
         end else begin
             data_curr <= data_next;
         end

@@ -1,5 +1,8 @@
 `timescale 1ns / 1ps
-
+/*
+    2025.03.17
+    - UART TX module
+*/
 module uart #(
     BAUD_RATE = 9600
 ) (

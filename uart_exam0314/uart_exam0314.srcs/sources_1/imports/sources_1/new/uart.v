@@ -86,12 +86,11 @@ module uart_tx (
             RUN: begin
                 if (tick) begin
                     tx_next = i_data[count_next];
+                    count_next = count_reg + 1;
                     if (count_reg == 8) begin
                         count_next = 0;
                         tx_next = 1;
                         next = STOP;
-                    end else begin
-                        count_next = count_reg + 1;
                     end
                 end
             end

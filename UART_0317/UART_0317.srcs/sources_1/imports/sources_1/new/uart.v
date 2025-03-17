@@ -38,7 +38,7 @@ module uart_tx (
     output o_tx,
     output tx_busy
 );
-    parameter IDLE = 0, START = 1, RUN = 2, STOP = 3;
+    parameter IDLE = 0, SEND = 1, START = 2, RUN = 3, STOP = 4;
 
     reg [3:0] state, next;
     reg tx_reg, tx_next;
@@ -72,25 +72,32 @@ module uart_tx (
                 busy_next = 0;
                 tx_next   = 1;
                 if (start_triger) begin
-                    busy_next = 1;
+                    next = SEND;
+                end
+            end
+            SEND: begin
+                if (tick) begin                    
                     next = START;
                 end
             end
             START: begin
-                if (tick == 1) begin
+                tx_next = 0;
+                busy_next = 1;
+                if (tick) begin
                     count_next = 0;
-                    tx_next = 0;
                     next = RUN;
                 end
             end
             RUN: begin
+                tx_next = i_data[count_next];
                 if (tick) begin
-                    tx_next = i_data[count_next];
                     count_next = count_reg + 1;
-                    if (count_reg == 8) begin
+                    if (count_reg == 7) begin
                         count_next = 0;
                         tx_next = 1;
                         next = STOP;
+                    end else begin
+                        next = RUN;
                     end
                 end
             end

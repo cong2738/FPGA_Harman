@@ -12,14 +12,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="6159296700001fs"></ZoomEndTime>
-      <Cursor1Time time="2517238342047fs"></Cursor1Time>
+      <ZoomEndTime time="2954054700001fs"></ZoomEndTime>
+      <Cursor1Time time="1366736874378fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="212"></NameColumnWidth>
-      <ValueColumnWidth column_width="98"></ValueColumnWidth>
+      <ValueColumnWidth column_width="90"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="12" />
+   <WVObjectSize size="11" />
    <wvobject fp_name="/tb/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -36,37 +36,33 @@
       <obj_property name="ElementShortName">tx</obj_property>
       <obj_property name="ObjectShortName">tx</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb/DUT/U_Uart/U_Tx/clk" type="logic">
-      <obj_property name="ElementShortName">clk</obj_property>
-      <obj_property name="ObjectShortName">clk</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb/DUT/U_Uart/U_Tx/rst" type="logic">
-      <obj_property name="ElementShortName">rst</obj_property>
-      <obj_property name="ObjectShortName">rst</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb/DUT/U_Uart/U_Tx/tick" type="logic">
-      <obj_property name="ElementShortName">tick</obj_property>
-      <obj_property name="ObjectShortName">tick</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb/DUT/U_Uart/U_Tx/start_triger" type="logic">
-      <obj_property name="ElementShortName">start_triger</obj_property>
-      <obj_property name="ObjectShortName">start_triger</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb/DUT/U_Uart/U_Tx/i_data" type="array">
-      <obj_property name="ElementShortName">i_data[7:0]</obj_property>
-      <obj_property name="ObjectShortName">i_data[7:0]</obj_property>
+   <wvobject fp_name="/tb/DUT/data_curr" type="array">
+      <obj_property name="ElementShortName">data_curr[7:0]</obj_property>
+      <obj_property name="ObjectShortName">data_curr[7:0]</obj_property>
       <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/tb/DUT/U_Uart/U_Tx/state" type="array">
       <obj_property name="ElementShortName">state[3:0]</obj_property>
       <obj_property name="ObjectShortName">state[3:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb/DUT/U_Uart/U_Tx/next" type="array">
-      <obj_property name="ElementShortName">next[3:0]</obj_property>
-      <obj_property name="ObjectShortName">next[3:0]</obj_property>
+   <wvobject fp_name="/tb/DUT/send_count_reg" type="array">
+      <obj_property name="ElementShortName">send_count_reg[3:0]</obj_property>
+      <obj_property name="ObjectShortName">send_count_reg[3:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/tb/DUT/uart_start" type="logic">
       <obj_property name="ElementShortName">uart_start</obj_property>
       <obj_property name="ObjectShortName">uart_start</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/DUT/send_count_reg" type="array">
+      <obj_property name="ElementShortName">send_count_reg[3:0]</obj_property>
+      <obj_property name="ObjectShortName">send_count_reg[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/DUT/w_tx_busy" type="logic">
+      <obj_property name="ElementShortName">w_tx_busy</obj_property>
+      <obj_property name="ObjectShortName">w_tx_busy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/DUT/state" type="array">
+      <obj_property name="ElementShortName">state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">state[1:0]</obj_property>
    </wvobject>
 </wave_config>

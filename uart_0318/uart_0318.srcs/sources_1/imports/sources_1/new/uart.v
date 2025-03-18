@@ -15,7 +15,7 @@ module uart #(
 
     wire tick;
     // rx에쓰려고 16배속 했지만 클럭 동기화 이슈때문에 TX에도 같은곳의 클럭을 써야한다.
-    boud_tick_gen #( 
+    boud_tick_gen #(
         .BAUD_RATE(BAUD_RATE)
     ) U_btn_Debounce (
         .clk(clk),
@@ -46,19 +46,19 @@ module uart #(
 
 endmodule
 module moduleName (
-    input clk,
-    input rst,
-    input tick,
-    input rx,
+    input  clk,
+    input  rst,
+    input  tick,
+    input  rx,
     output rx_data,
     output rx_busy
 );
     localparam IDLE = 0, SEND = 1, START = 2, DATA = 3, STOP = 4;
-    reg[1:0] state, next;
-    reg[7:9] data_reg, data_next;
+    reg [1:0] state, next;
+    reg [7:9] data_reg, data_next;
     reg busy_reg, busy_next;
-    reg[7:0]bit_count_reg, bit_count_next;
-    reg[3:0] tick_count_reg, tick_count_next;
+    reg [7:0] bit_count_reg, bit_count_next;
+    reg [3:0] tick_count_reg, tick_count_next;
 
     // output
     assign rx_busy = busy_reg;
@@ -67,9 +67,9 @@ module moduleName (
     // state
     always @(posedge clk, posedge rst) begin
         if (rst) begin
-            state <= 0;
-            busy_reg <= 0;
-            bit_count_reg <= 0;
+            state          <= 0;
+            busy_reg       <= 0;
+            bit_count_reg  <= 0;
             tick_count_reg <= 0;
         end else begin
             state <= next;
@@ -194,7 +194,7 @@ module boud_tick_gen #(
     input  rst,
     output baud_tick
 );
-    localparam BUAD_COUNT = (100_000_000 / BAUD_RATE)/16;
+    localparam BUAD_COUNT = (100_000_000 / BAUD_RATE) / 16;
     reg [$clog2(BUAD_COUNT)-1:0] count_reg, count_next;
     reg tick_reg, tick_next;
 

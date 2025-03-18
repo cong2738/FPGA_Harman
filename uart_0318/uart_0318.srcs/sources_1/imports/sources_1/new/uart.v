@@ -72,9 +72,9 @@ module moduleName (
             bit_count_reg  <= 0;
             tick_count_reg <= 0;
         end else begin
-            state <= next;
-            busy_reg <= busy_next;
-            bit_count_reg <= bit_count_next;
+            state          <= next;
+            busy_reg       <= busy_next;
+            bit_count_reg  <= bit_count_next;
             tick_count_reg <= tick_count_next;
         end
     end

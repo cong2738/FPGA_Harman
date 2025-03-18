@@ -42,7 +42,7 @@ module TOP_UART (
         .clk(clk),
         .reset(rst),
         .hs_mod_sw(0),
-        .msec(w_bcd),
+        .msec(0),
         .sec(0),
         .min(0),
         .hour(0),

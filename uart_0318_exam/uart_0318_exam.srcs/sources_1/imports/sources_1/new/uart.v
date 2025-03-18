@@ -6,7 +6,9 @@ module TOP_UART (
     input  clk,
     input  rst,
     input  rx,
-    output tx
+    output tx,
+    output [7:0] fnd_font,
+    output [3:0] fnd_comm
 );
     wire w_rx_done;
     wire [7:0] w_rx_data;
@@ -23,8 +25,46 @@ module TOP_UART (
         .rx_data(w_rx_data),
         .rx_done(w_rx_done)
     );
+
+    wire [3:0] w_bcd;
+    ascii_to_bcd U_Ascii_to_Bcd (
+        .ascii(w_rx_data),
+        .bcd(w_bcd)
+    );
+
+    fnd_controller #(
+        .MSEC_MAX(100),
+        .SEC_MAX(60),
+        .MIN_MAX(60),
+        .HOUR_MAX(24),
+        .COUNT_100HZ(1_000_000)
+    ) U_Fnd (
+        .clk(clk),
+        .reset(rst),
+        .hs_mod_sw(0),
+        .msec(w_bcd),
+        .sec(0),
+        .min(0),
+        .hour(0),
+        .fnd_font(fnd_font),
+        .fnd_comm(fnd_comm)
+    );
 endmodule
 
+module ascii_to_bcd (
+    input  [7:0] ascii,
+    output [3:0] bcd
+);
+    reg [3:0] r_bcd;
+    always @(*) begin
+        if (ascii >= "0" && ascii <= "9") begin
+            r_bcd = ascii - "0";
+        end else if (ascii >= "A" && ascii <= "B") begin
+            r_bcd = ascii - "A";
+        end else r_bcd = 0;
+    end
+    assign bcd = r_bcd;
+endmodule
 
 module uart #(
     BAUD_RATE = 9600

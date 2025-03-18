@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/harman/FPGA_Harman-1/uart_0318/uart_0318.runs/synth_1/TOP_UART.tcl"
+  variable script "C:/harman/FPGA_Harman-1/uart_0318_exam/uart_0318_exam.runs/synth_1/TOP_UART.tcl"
   variable category "vivado_synth"
 }
 
@@ -81,15 +81,17 @@ create_project -in_memory -part xc7a35tcpg236-1
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir C:/harman/FPGA_Harman-1/uart_0318/uart_0318.cache/wt [current_project]
-set_property parent.project_path C:/harman/FPGA_Harman-1/uart_0318/uart_0318.xpr [current_project]
+set_property webtalk.parent_dir C:/harman/FPGA_Harman-1/uart_0318_exam/uart_0318_exam.cache/wt [current_project]
+set_property parent.project_path C:/harman/FPGA_Harman-1/uart_0318_exam/uart_0318_exam.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_output_repo c:/harman/FPGA_Harman-1/uart_0318/uart_0318.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_verilog -library xil_defaultlib C:/harman/FPGA_Harman-1/uart_0318/uart_0318.srcs/sources_1/imports/sources_1/new/uart.v
+read_verilog -library xil_defaultlib {
+  C:/harman/FPGA_Harman-1/uart_0318_exam/uart_0318_exam.srcs/sources_1/imports/MyWatch_sources/fnd_controller.v
+  C:/harman/FPGA_Harman-1/uart_0318_exam/uart_0318_exam.srcs/sources_1/imports/sources_1/new/uart.v
+}
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -99,8 +101,8 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/harman/FPGA_Harman-1/uart_0318/uart_0318.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc
-set_property used_in_implementation false [get_files C:/harman/FPGA_Harman-1/uart_0318/uart_0318.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc]
+read_xdc C:/harman/FPGA_Harman-1/uart_0318_exam/uart_0318_exam.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc
+set_property used_in_implementation false [get_files C:/harman/FPGA_Harman-1/uart_0318_exam/uart_0318_exam.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]

@@ -4,8 +4,7 @@ module fnd_controller #(
     parameter MSEC_MAX = 100,
     parameter SEC_MAX = 60,
     parameter MIN_MAX = 60,
-    parameter HOUR_MAX = 24,
-    parameter COUNT_100HZ = 1_000_000 //시뮬레이션 출력을 빠르게 나오게 하기 위한 탑 모듈 기준 타이머에 동기화 된 파라미터
+    parameter HOUR_MAX = 24
 ) (
     input clk,
     input reset,

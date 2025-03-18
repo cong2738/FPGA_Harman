@@ -89,10 +89,7 @@ set_property ip_output_repo c:/harman/FPGA_Harman-1/uart_0318_exam/uart_0318_exa
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_verilog -library xil_defaultlib {
-  C:/harman/FPGA_Harman-1/uart_0318_exam/uart_0318_exam.srcs/sources_1/imports/MyWatch_sources/fnd_controller.v
-  C:/harman/FPGA_Harman-1/uart_0318_exam/uart_0318_exam.srcs/sources_1/imports/sources_1/new/uart.v
-}
+read_verilog -library xil_defaultlib C:/harman/FPGA_Harman-1/uart_0318_exam/uart_0318_exam.srcs/sources_1/imports/sources_1/new/uart.v
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the

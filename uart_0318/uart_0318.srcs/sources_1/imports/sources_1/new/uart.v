@@ -117,6 +117,7 @@ module moduleName (
             end
             STOP: begin
                 if (tick_count_reg == 7) begin
+                    tick_count_next = 0;
                     next = IDLE;
                 end else begin
                     tick_count_next = tick_count_reg + 1;

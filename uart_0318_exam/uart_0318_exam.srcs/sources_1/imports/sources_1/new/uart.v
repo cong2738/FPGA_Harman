@@ -32,38 +32,66 @@ module TOP_UART (
         .bcd(w_bcd)
     );
 
-    fnd_controller #(
-        .MSEC_MAX(100),
-        .SEC_MAX(60),
-        .MIN_MAX(60),
-        .HOUR_MAX(24),
-        .COUNT_100HZ(1_000_000)
-    ) U_Fnd (
-        .clk(clk),
-        .reset(rst),
-        .hs_mod_sw(0),
-        .msec(w_bcd),
-        .sec(0),
-        .min(0),
-        .hour(0),
-        .fnd_font(fnd_font),
-        .fnd_comm(fnd_comm)
+    bcdtoseg U_Bcd_to_Seg (
+        .bcd(w_bcd),
+        .seg(fnd_font)
     );
+
+    assign fnd_comm = 4'b1110;
+
 endmodule
 
 module ascii_to_bcd (
     input  [7:0] ascii,
-    output [3:0] bcd
+    output [4:0] bcd
 );
-    reg [3:0] r_bcd;
+    reg [4:0] r_bcd;
     always @(*) begin
         if (ascii >= "0" && ascii <= "9") begin
             r_bcd = ascii - "0";
         end else if (ascii >= "A" && ascii <= "B") begin
-            r_bcd = ascii - "A";
+            r_bcd = ascii - "A" + 9;
         end else r_bcd = 0;
     end
     assign bcd = r_bcd;
+endmodule
+
+module bcdtoseg (
+    input [4:0] bcd,  // [3:0] sum 값 
+    output reg [7:0] seg
+);
+    reg dot;
+    // always 구문 출력으로 reg type을 가져야 한다.
+    always @(bcd) begin
+        case (bcd)
+            4'h0: seg = 8'hc0;
+            4'h1: seg = 8'hF9;
+            4'h2: seg = 8'hA4;
+            4'h3: seg = 8'hB0;
+            4'h4: seg = 8'h99;
+            4'h5: seg = 8'h92;
+            4'h6: seg = 8'h82;
+            4'h7: seg = 8'hf8;
+            4'h8: seg = 8'h80;
+            4'h9: seg = 8'h90;
+            4'hA: seg = 8'h88;
+            4'hB: begin
+                seg = 8'h83;
+                dot = 1;
+            end
+            4'hC: seg = 8'hc6;
+            4'hD: begin
+                seg = 8'ha1;
+                dot = 1;
+            end
+            4'hE: seg = 8'h86;
+            4'hF: seg = 8'h8E;
+            default: seg = 8'hff;
+        endcase
+
+        seg[7] = dot;
+    end
+
 endmodule
 
 module uart #(

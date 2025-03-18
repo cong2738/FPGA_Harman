@@ -9,3 +9,4 @@
 # Log file: C:/harman/FPGA_Harman-1/uart_0318/uart_0318.runs/synth_1/send_tx_btn.vds
 # Journal file: C:/harman/FPGA_Harman-1/uart_0318/uart_0318.runs/synth_1\vivado.jou
 #-----------------------------------------------------------
+source send_tx_btn.tcl -notrace

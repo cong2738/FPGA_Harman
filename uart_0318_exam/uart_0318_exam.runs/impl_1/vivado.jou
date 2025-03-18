@@ -9,3 +9,4 @@
 # Log file: C:/harman/FPGA_Harman-1/uart_0318_exam/uart_0318_exam.runs/impl_1/TOP_UART.vdi
 # Journal file: C:/harman/FPGA_Harman-1/uart_0318_exam/uart_0318_exam.runs/impl_1\vivado.jou
 #-----------------------------------------------------------
+source TOP_UART.tcl -notrace

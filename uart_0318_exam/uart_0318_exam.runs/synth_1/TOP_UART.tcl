@@ -85,6 +85,7 @@ set_property webtalk.parent_dir C:/harman/FPGA_Harman-1/uart_0318_exam/uart_0318
 set_property parent.project_path C:/harman/FPGA_Harman-1/uart_0318_exam/uart_0318_exam.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
+set_property ip_output_repo c:/harman/FPGA_Harman-1/uart_0318_exam/uart_0318_exam.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }

@@ -50,12 +50,12 @@ module send_tx_btn #(
 endmodule
 
 module shot_15tic (
-    input  clk,
-    input  rst,
-    input  d_start,
-    input  tx_busy,
+    input clk,
+    input rst,
+    input d_start,
+    input tx_busy,
     output uart_start,
-    output[7:0] data
+    output [7:0] data
 );
     //send tx ascii to PC
     reg [7:0] data_curr, data_next;
@@ -64,7 +64,7 @@ module shot_15tic (
     reg [3:0] send_count_reg, send_count_next;
 
     assign data = data_curr;
-    assign uart_start  = send_reg;
+    assign uart_start = send_reg;
 
     localparam IDLE = 0, START = 1, SEND = 2;
     always @(posedge clk, posedge rst) begin
@@ -102,20 +102,19 @@ module shot_15tic (
                 end
             end
             SEND: begin
-                if (tx_busy == 0) begin
+                if (!tx_busy) begin
                     send_next = 1;
                     send_count_next = send_count_reg + 1;
                     if (send_count_reg == 15) begin
                         next = IDLE;
                         send_count_next = 0;
                     end else begin
+                        if (data_next == "z") begin
+                            data_next = "0";
+                        end else begin
+                            data_next = data_curr + 1;  // increase 1 for ASCII
+                        end
                         next = START;
-                    end
-
-                    if (data_next == "z") begin
-                        data_next = "0";
-                    end else begin
-                        data_next = data_curr + 1;  // increase 1 for ASCII
                     end
                 end
             end

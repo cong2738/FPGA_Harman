@@ -3,66 +3,37 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="tb_behav.wdb" id="1">
+      <db_ref path="tb_rx_behav.wdb" id="1">
          <top_modules>
             <top_module name="glbl" />
-            <top_module name="tb" />
+            <top_module name="tb_rx" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="2954054700001fs"></ZoomEndTime>
-      <Cursor1Time time="1366736874378fs"></Cursor1Time>
+      <ZoomEndTime time="4598089047fs"></ZoomEndTime>
+      <Cursor1Time time="2001000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="212"></NameColumnWidth>
-      <ValueColumnWidth column_width="90"></ValueColumnWidth>
+      <ValueColumnWidth column_width="82"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="11" />
-   <wvobject fp_name="/tb/clk" type="logic">
+   <WVObjectSize size="4" />
+   <wvobject fp_name="/tb_rx/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb/rst" type="logic">
+   <wvobject fp_name="/tb_rx/rst" type="logic">
       <obj_property name="ElementShortName">rst</obj_property>
       <obj_property name="ObjectShortName">rst</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb/btn" type="logic">
-      <obj_property name="ElementShortName">btn</obj_property>
-      <obj_property name="ObjectShortName">btn</obj_property>
+   <wvobject fp_name="/tb_rx/rx" type="logic">
+      <obj_property name="ElementShortName">rx</obj_property>
+      <obj_property name="ObjectShortName">rx</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb/tx" type="logic">
+   <wvobject fp_name="/tb_rx/tx" type="logic">
       <obj_property name="ElementShortName">tx</obj_property>
       <obj_property name="ObjectShortName">tx</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb/DUT/data_curr" type="array">
-      <obj_property name="ElementShortName">data_curr[7:0]</obj_property>
-      <obj_property name="ObjectShortName">data_curr[7:0]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb/DUT/U_Uart/U_Tx/state" type="array">
-      <obj_property name="ElementShortName">state[3:0]</obj_property>
-      <obj_property name="ObjectShortName">state[3:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb/DUT/send_count_reg" type="array">
-      <obj_property name="ElementShortName">send_count_reg[3:0]</obj_property>
-      <obj_property name="ObjectShortName">send_count_reg[3:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb/DUT/uart_start" type="logic">
-      <obj_property name="ElementShortName">uart_start</obj_property>
-      <obj_property name="ObjectShortName">uart_start</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb/DUT/send_count_reg" type="array">
-      <obj_property name="ElementShortName">send_count_reg[3:0]</obj_property>
-      <obj_property name="ObjectShortName">send_count_reg[3:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb/DUT/w_tx_busy" type="logic">
-      <obj_property name="ElementShortName">w_tx_busy</obj_property>
-      <obj_property name="ObjectShortName">w_tx_busy</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb/DUT/state" type="array">
-      <obj_property name="ElementShortName">state[1:0]</obj_property>
-      <obj_property name="ObjectShortName">state[1:0]</obj_property>
    </wvobject>
 </wave_config>

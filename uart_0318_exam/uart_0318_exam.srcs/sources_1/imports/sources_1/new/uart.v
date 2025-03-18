@@ -3,9 +3,9 @@
     2025.03.17
 */
 module TOP_UART (
-    input  clk,
-    input  rst,
-    input  rx,
+    input clk,
+    input rst,
+    input rx,
     output tx,
     output [7:0] fnd_font,
     output [3:0] fnd_comm
@@ -29,7 +29,7 @@ module TOP_UART (
     wire [3:0] w_bcd;
     ascii_to_bcd U_Ascii_to_Bcd (
         .ascii(w_rx_data),
-        .bcd(w_bcd)
+        .bcd  (w_bcd)
     );
 
     bcdtoseg U_Bcd_to_Seg (
@@ -43,21 +43,21 @@ endmodule
 
 module ascii_to_bcd (
     input  [7:0] ascii,
-    output [4:0] bcd
+    output [3:0] bcd
 );
-    reg [4:0] r_bcd;
+    reg [3:0] r_bcd;
     always @(*) begin
         if (ascii >= "0" && ascii <= "9") begin
             r_bcd = ascii - "0";
-        end else if (ascii >= "A" && ascii <= "B") begin
-            r_bcd = ascii - "A" + 9;
+        end else if (ascii >= "A" && ascii <= "Z") begin
+            r_bcd = ascii - "A" + 10;
         end else r_bcd = 0;
     end
     assign bcd = r_bcd;
 endmodule
 
 module bcdtoseg (
-    input [4:0] bcd,  // [3:0] sum 값 
+    input [3:0] bcd,  // [3:0] sum 값 
     output reg [7:0] seg
 );
     reg dot;
@@ -75,18 +75,18 @@ module bcdtoseg (
             4'h8: seg = 8'h80;
             4'h9: seg = 8'h90;
             4'hA: seg = 8'h88;
-            4'hB: begin
-                seg = 8'h83;
-                dot = 1;
-            end
+            4'hB: seg = 8'h83;
             4'hC: seg = 8'hc6;
-            4'hD: begin
-                seg = 8'ha1;
-                dot = 1;
-            end
+            4'hD: seg = 8'ha1;
             4'hE: seg = 8'h86;
             4'hF: seg = 8'h8E;
             default: seg = 8'hff;
+        endcase
+
+        case (bcd)
+            4'hB: dot = 0;
+            4'hD: dot = 0;
+            default: dot = 1;
         endcase
 
         seg[7] = dot;
@@ -140,15 +140,15 @@ module uart #(
 endmodule
 
 module uart_rx (
-    input  clk,
-    input  rst,
-    input  tick,
-    input  rx,
+    input clk,
+    input rst,
+    input tick,
+    input rx,
     output rx_done,
     output [7:0] rx_data
 );
 
-    reg [7:0] data,data_next;
+    reg [7:0] data, data_next;
     reg [4:0] tick_count, tick_count_next;
     reg [1:0] state, next;
     reg r_rx_done, r_rx_done_next;
@@ -172,7 +172,7 @@ module uart_rx (
             data_count <= data_count_next;
             tick_count <= tick_count_next;
             data <= data_next;
-            
+
         end
     end
 
@@ -190,7 +190,7 @@ module uart_rx (
                 end
             end
             START: begin
-                if (tick == 1) begin                    
+                if (tick == 1) begin
                     if (tick_count_next == 7) begin
                         next = DATA_STATE;
                         tick_count_next = 0;
@@ -209,7 +209,7 @@ module uart_rx (
                             tick_count_next = 0;
                             next = STOP;
                         end else begin
-                            data_count_next  = data_count + 1;
+                            data_count_next = data_count + 1;
                         end
                     end else begin
                         tick_count_next = tick_count + 1;
@@ -221,13 +221,13 @@ module uart_rx (
                     if (tick_count_next == 24) begin
                         next = R_IDLE;
                         tick_count_next = 0;
-                        r_rx_done_next =1;
+                        r_rx_done_next = 1;
                     end else begin
                         tick_count_next = tick_count + 1;
                     end
                 end
             end
-            
+
             default: next = R_IDLE;
         endcase
 

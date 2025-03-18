@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "D:/harman/FPGA_Harman/uart_0317_home/uart_0317_home.runs/synth_1/send_tx_btn.tcl"
+  variable script "C:/harman/FPGA_Harman-1/uart_0318/uart_0318.runs/synth_1/send_tx_btn.tcl"
   variable category "vivado_synth"
 }
 
@@ -55,27 +55,38 @@ if {$::dispatch::connected} {
   }
 }
 
+proc create_report { reportName command } {
+  set status "."
+  append status $reportName ".fail"
+  if { [file exists $status] } {
+    eval file delete [glob $status]
+  }
+  send_msg_id runtcl-4 info "Executing : $command"
+  set retval [eval catch { $command } msg]
+  if { $retval != 0 } {
+    set fp [open $status w]
+    close $fp
+    send_msg_id runtcl-5 warning "$msg"
+  }
+}
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 2
-set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir D:/harman/FPGA_Harman/uart_0317_home/uart_0317_home.cache/wt [current_project]
-set_property parent.project_path D:/harman/FPGA_Harman/uart_0317_home/uart_0317_home.xpr [current_project]
+set_property webtalk.parent_dir C:/harman/FPGA_Harman-1/uart_0318/uart_0318.cache/wt [current_project]
+set_property parent.project_path C:/harman/FPGA_Harman-1/uart_0318/uart_0318.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_output_repo d:/harman/FPGA_Harman/uart_0317_home/uart_0317_home.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  D:/harman/FPGA_Harman/uart_0317_home/uart_0317_home.srcs/sources_1/imports/sources_1/imports/FPGA_Harman-1/my_btn_debounce.v
-  D:/harman/FPGA_Harman/uart_0317_home/uart_0317_home.srcs/sources_1/imports/sources_1/new/uart.v
-  D:/harman/FPGA_Harman/uart_0317_home/uart_0317_home.srcs/sources_1/imports/sources_1/new/send_tx_btn.v
+  C:/harman/FPGA_Harman-1/uart_0318/uart_0318.srcs/sources_1/imports/sources_1/imports/FPGA_Harman-1/my_btn_debounce.v
+  C:/harman/FPGA_Harman-1/uart_0318/uart_0318.srcs/sources_1/imports/sources_1/new/uart.v
+  C:/harman/FPGA_Harman-1/uart_0318/uart_0318.srcs/sources_1/imports/sources_1/new/send_tx_btn.v
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -86,8 +97,8 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc D:/harman/FPGA_Harman/uart_0317_home/uart_0317_home.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc
-set_property used_in_implementation false [get_files D:/harman/FPGA_Harman/uart_0317_home/uart_0317_home.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc]
+read_xdc C:/harman/FPGA_Harman-1/uart_0318/uart_0318.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc
+set_property used_in_implementation false [get_files C:/harman/FPGA_Harman-1/uart_0318/uart_0318.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
@@ -106,7 +117,7 @@ set_param constraints.enableBinaryConstraints false
 write_checkpoint -force -noxdef send_tx_btn.dcp
 OPTRACE "write_checkpoint" END { }
 OPTRACE "synth reports" START { REPORT }
-generate_parallel_reports -reports { "report_utilization -file send_tx_btn_utilization_synth.rpt -pb send_tx_btn_utilization_synth.pb"  } 
+create_report "synth_1_synth_report_utilization_0" "report_utilization -file send_tx_btn_utilization_synth.rpt -pb send_tx_btn_utilization_synth.pb"
 OPTRACE "synth reports" END { }
 file delete __synthesis_is_running__
 close [open __synthesis_is_complete__ w]

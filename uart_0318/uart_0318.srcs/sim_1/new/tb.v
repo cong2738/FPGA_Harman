@@ -1,36 +1,52 @@
-`timescale 10ns / 1ns
+`timescale 1ns / 1ps
 
-module tb ();
-    reg  clk;
-    reg  rst;
-    reg  btn;
+module tb_rx ();
+    reg clk;
+    reg rst;
+    // reg btn;
+    // wire tx;
+
+    reg rx;
     wire tx;
 
-    send_tx_btn #(
-        .BAUD_RATE(100)
-    ) DUT (
+    TOP_UART DUT (
         .clk(clk),
         .rst(rst),
-        .btn_start(btn),
-        .tx(tx)
+        .rx (rx),
+        .tx (tx)
     );
 
-    always #10 clk = ~clk;
+    always #5 clk = ~clk;
 
     initial begin
         clk = 0;
         rst = 1;
-        wait (DUT.tx == 1);
-        rst = 0;
-        #10;
-        btn = 1;
-        wait (DUT.U_btn_Debounce.o_btn == 1);
-        btn = 0;
-        // #10000000;
-        // btn = 1;
-        // wait (DUT.U_btn_Debounce.o_btn == 1);
-        // btn = 0;
+        rx  = 1;
+        #100 rst = 0;
+        rx = 1;
+        #100;
+        rx = 0;
+        #104160;
+        rx = 1;
+        #104160;
+        rx = 0;
+        #104160;
+        rx = 1;
+        #104160;
+        rx = 0;
+        #104160;
+        rx = 1;
+        #104160;
+        rx = 1;
+        #104160;
+        rx = 0;
+        #104160;
+        rx = 0;
+        #104160;
+        rx = 1;
+        #104160;
+
+
     end
 endmodule
-
 

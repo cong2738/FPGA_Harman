@@ -36,16 +36,16 @@ module send_tx_btn #(
         .data(i_uart_data)
     );
 
-    uart #(
-        .BAUD_RATE(BAUD_RATE)
-    ) U_Uart (
-        .clk(clk),
-        .rst(rst),
-        .btn_start(uart_start),
-        .uart_data(i_uart_data),
-        .tx(tx),
-        .tx_busy(w_tx_busy)
-    );
+    // uart #(
+    //     .BAUD_RATE(BAUD_RATE)
+    // ) U_Uart (
+    //     .clk(clk),
+    //     .rst(rst),
+    //     .start_triger(uart_start),
+    //     .i_data(i_uart_data),
+    //     .tx(tx),
+    //     .tx_busy(w_tx_busy)
+    // );
 
 endmodule
 

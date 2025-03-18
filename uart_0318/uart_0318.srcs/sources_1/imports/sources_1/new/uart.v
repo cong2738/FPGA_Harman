@@ -2,15 +2,42 @@
 /*
     2025.03.17
 */
+module TOP_UART (
+    input  clk,
+    input  rst,
+    input  rx,
+    output tx
+);
+    wire w_rx_done;
+    wire [7:0] w_rx_data;
+    uart #(
+        .BAUD_RATE(9600)
+    ) U_Uart (
+        .clk(clk),
+        .rst(rst),
+        .tx_start_triger(w_rx_done),
+        .tx_data(w_rx_data),
+        .rx(rx),
+        .tx(tx),
+        .tx_busy(),
+        .rx_data(w_rx_data),
+        .rx_done(w_rx_done)
+    );
+endmodule
+
+
 module uart #(
     BAUD_RATE = 9600
 ) (
     input clk,
     input rst,
-    input btn_start,
-    input [7:0] uart_data,
+    input tx_start_triger,
+    input [7:0] tx_data,
+    input rx,
     output tx,
-    output tx_busy
+    output tx_busy,
+    output [7:0] rx_data,
+    output rx_done
 );
 
     wire tick;
@@ -23,216 +50,217 @@ module uart #(
         .baud_tick(tick)
     );
 
-    // uart_rx U_Rx (
-    //     .clk(clk),
-    //     .rst(rst),
-    //     .tick(tick),
-    //     .start_triger(btn_start),
-    //     .i_data(uart_data),
-    //     .o_rx(rx),
-    //     .rx_busy(tx_busy)
-    // );
+    uart_rx U_Rx (
+        .clk(clk),
+        .rst(rst),
+        .tick(tick),
+        .rx(rx),
+        .rx_data(rx_data),
+        .rx_done(rx_done)
+    );
 
     uart_tx U_Tx (
         .clk(clk),
         .rst(rst),
         .tick(tick),
-        .start_triger(btn_start),
-        .i_data(uart_data),
+        .start_trigger(tx_start_triger),
+        .i_data(tx_data),
         .o_tx(tx),
         .tx_busy(tx_busy)
     );
 
-
 endmodule
-module moduleName (
+
+module uart_rx (
     input  clk,
     input  rst,
     input  tick,
     input  rx,
-    output rx_data,
-    output rx_busy
+    output rx_done,
+    output [7:0] rx_data
 );
-    localparam IDLE = 0, SEND = 1, START = 2, DATA = 3, STOP = 4;
+
+    reg [7:0] data,data_next;
+    reg [4:0] tick_count, tick_count_next;
     reg [1:0] state, next;
-    reg [7:9] data_reg, data_next;
-    reg busy_reg, busy_next;
-    reg [7:0] bit_count_reg, bit_count_next;
-    reg [3:0] tick_count_reg, tick_count_next;
+    reg r_rx_done, r_rx_done_next;
+    reg [3:0] data_count, data_count_next;
+    parameter R_IDLE = 4'h0, START = 4'h1, DATA_STATE = 4'h2, STOP = 4'h3;
+    assign rx_data = data;
+    assign rx_done = r_rx_done;
+    assign rx_data = data;
 
-    // output
-    assign rx_busy = busy_reg;
-    assign rx_data = data_reg;
 
-    // state
     always @(posedge clk, posedge rst) begin
         if (rst) begin
-            state          <= 0;
-            busy_reg       <= 0;
-            bit_count_reg  <= 0;
-            tick_count_reg <= 0;
+            state <= 0;
+            data <= 0;
+            data_count <= 0;
+            tick_count <= 0;
+            r_rx_done <= 0;
         end else begin
-            state          <= next;
-            busy_reg       <= busy_next;
-            bit_count_reg  <= bit_count_next;
-            tick_count_reg <= tick_count_next;
+            state <= next;
+            r_rx_done <= r_rx_done_next;
+            data_count <= data_count_next;
+            tick_count <= tick_count_next;
+            data <= data_next;
+            
         end
     end
 
-    // next
+
     always @(*) begin
         next = state;
-        tick_count_next = tick_count_reg;
-        bit_count_next = bit_count_reg;
+        r_rx_done_next = 0;
+        data_count_next = data_count;
+        tick_count_next = tick_count;
+        data_next = data;
         case (state)
-            IDLE: begin
-                tick_count_next = 0;
-                bit_count_next  = 0;
+            R_IDLE: begin
                 if (rx == 0) begin
-                    tick_count_next = 0;
                     next = START;
                 end
             end
             START: begin
-                if (tick_count_reg == 7) begin
-                    tick_count_next = 0;
-                    next = DATA;
-                end else begin
-                    tick_count_next = tick_count_reg + 1;
+                if (tick == 1) begin                    
+                    if (tick_count_next == 7) begin
+                        next = DATA_STATE;
+                        tick_count_next = 0;
+                    end else begin
+                        tick_count_next = tick_count + 1;
+                    end
                 end
             end
-            DATA: begin
-                if (tick_count_reg == 15) begin
-                    if (bit_count_reg == 7) begin
+            DATA_STATE: begin
+                if (tick == 1) begin
+                    if (tick_count_next == 15) begin
+                        data_next[data_count] = rx;
                         tick_count_next = 0;
-                        next = STOP;
+                        if (data_count_next == 7) begin
+                            data_count_next = 0;
+                            tick_count_next = 0;
+                            next = STOP;
+                        end else begin
+                            data_count_next  = data_count + 1;
+                        end
                     end else begin
-                        bit_count_next = bit_count_reg + 1;
-                        tick_count_next = 0;
-                        next = DATA;
+                        tick_count_next = tick_count + 1;
                     end
-                end else begin
-                    tick_count_next = tick_count_reg + 1;
                 end
             end
             STOP: begin
-                if (tick_count_reg == 7) begin
-                    tick_count_next = 0;
-                    next = IDLE;
-                end else begin
-                    tick_count_next = tick_count_reg + 1;
+                if (tick == 1) begin
+                    if (tick_count_next == 24) begin
+                        next = R_IDLE;
+                        tick_count_next = 0;
+                        r_rx_done_next =1;
+                    end else begin
+                        tick_count_next = tick_count + 1;
+                    end
                 end
             end
-            default: next = IDLE;
+            
+            default: next = R_IDLE;
         endcase
+
     end
 endmodule
+
 
 module uart_tx (
     input clk,
     input rst,
     input tick,
-    input start_triger,
     input [7:0] i_data,
+    input start_trigger,
     output o_tx,
     output tx_busy
 );
-    parameter IDLE = 0, SEND = 1, START = 2, DATA = 3, STOP = 4;
+    parameter R_IDLE = 4'h0, START = 4'h1, DATA_STATE = 4'h2, STOP = 4'h3;
 
+    reg [3:0] data_count, data_count_next;
     reg [3:0] state, next;
-    reg tx_reg, tx_next;
-    reg busy_reg, busy_next;
-    reg [3:0] bit_count_reg, bit_count_next;
-    reg [3:0] tick_count_reg, tick_count_next;
-
-    assign o_tx = tx_reg;
-    assign tx_busy = busy_reg;
-
+    reg [3:0] tick_count, tick_count_next;
+    reg tx, tx_next;
+    reg r_tx_busy, r_tx_busy_next;
+    assign tx_busy = r_tx_busy;
+    assign o_tx = tx;
     always @(posedge clk, posedge rst) begin
         if (rst) begin
             state <= 0;
-            tx_reg <= 1;
-            busy_reg <= 0;
-            bit_count_reg <= 0;
-            tick_count_reg <= 0;
+            tx <= 1;
+            r_tx_busy <= 0;
+            data_count <= 0;
+            tick_count <= 0;
         end else begin
             state <= next;
-            tx_reg <= tx_next;
-            busy_reg <= busy_next;
-            bit_count_reg <= bit_count_next;
-            tick_count_reg <= tick_count_next;
+            tx <= tx_next;
+            r_tx_busy <= r_tx_busy_next;
+            data_count <= data_count_next;
+            tick_count <= tick_count_next;
         end
     end
 
+
     always @(*) begin
         next = state;
-        tx_next = tx_reg;
-        busy_next = busy_reg;
-        bit_count_next = bit_count_reg;
-        tick_count_next = tick_count_reg;
+        tx_next = tx;
+        r_tx_busy_next = r_tx_busy;
+        data_count_next = data_count;
+        tick_count_next = tick_count;
         case (state)
-            IDLE: begin
+            R_IDLE: begin
+                tx_next = 1'b1;
+                r_tx_busy_next = 0;
                 tick_count_next = 0;
-                busy_next = 0;
-                tx_next = 1;
-                if (start_triger) begin
-                    next = SEND;
-                end
-            end
-            SEND: begin
-                if (tick) begin
+                if (start_trigger == 1) begin
                     next = START;
+                    r_tx_busy_next = 1;
                 end
             end
             START: begin
-                tx_next   = 0;
-                busy_next = 1;
-                if (tick) begin
-                    if (tick_count_next == 15) begin
+                if (tick == 1) begin
+                    if (tick_count == 15) begin
+                        tx_next = 1'b0;
+                        data_count_next = 0;
                         tick_count_next = 0;
-                        bit_count_next = 0;
-                        next = DATA;
+                        next = DATA_STATE;
                     end else begin
-                        tick_count_next = tick_count_reg + 1;
-                        next = START;
+                        tick_count_next = tick_count + 1;
                     end
                 end
             end
-            DATA: begin
-                tx_next = i_data[bit_count_next];
-                if (tick) begin
-                    if (tick_count_reg == 15) begin
-                        tick_count_next = 0;
-                        if (bit_count_reg == 7) begin
-                            bit_count_next = 0;
-                            tx_next = 1;
-                            next = STOP;
-                        end else begin
-                            next = DATA;
-                            bit_count_next = bit_count_reg + 1;
+
+            DATA_STATE: begin
+                if (tick == 1) begin
+                    if (tick_count == 15) begin
+                        begin
+                            tx_next = i_data[data_count];
+                            data_count_next = data_count + 1;
+                            tick_count_next = 0;
+                            if (data_count_next == 8) begin
+                                next = STOP;
+                            end
                         end
                     end else begin
-                        tick_count_next = tick_count_reg + 1;
-                        next = DATA;
+                        tick_count_next = tick_count + 1;
                     end
                 end
             end
             STOP: begin
-                tx_next = 1;
-                if (tick) begin
-                    if (tick_count_reg == 15) begin
+                if (tick == 1) begin
+                    if (tick_count == 15) begin
+                        data_count_next = 0;
+                        tx_next = 1'b1;
                         tick_count_next = 0;
-                        next = IDLE;
+                        next = R_IDLE;
                     end else begin
-                        tick_count_next = tick_count_reg + 1;
+                        tick_count_next = tick_count + 1;
                     end
                 end
             end
-
-            default: next = state;
         endcase
     end
-
 endmodule
 
 module boud_tick_gen #(

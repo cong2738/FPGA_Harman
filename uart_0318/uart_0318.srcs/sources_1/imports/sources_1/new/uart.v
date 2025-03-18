@@ -25,6 +25,20 @@ module TOP_UART (
     );
 endmodule
 
+module ascii_to_bcd (
+    input  [7:0] ascii,
+    output [3:0] bcd
+);
+    reg [3:0] r_bcd;
+    always @(*) begin
+        if (ascii >= "0" && ascii <= "9") begin
+            r_bcd = ascii - "0";
+        end else if (ascii >= "A" && ascii <= "B") begin
+            r_bcd = ascii - "A";
+        end else r_bcd = 0;
+    end
+    assign bcd = r_bcd;
+endmodule
 
 module uart #(
     BAUD_RATE = 9600
@@ -72,15 +86,15 @@ module uart #(
 endmodule
 
 module uart_rx (
-    input  clk,
-    input  rst,
-    input  tick,
-    input  rx,
+    input clk,
+    input rst,
+    input tick,
+    input rx,
     output rx_done,
     output [7:0] rx_data
 );
 
-    reg [7:0] data,data_next;
+    reg [7:0] data, data_next;
     reg [4:0] tick_count, tick_count_next;
     reg [1:0] state, next;
     reg r_rx_done, r_rx_done_next;
@@ -104,7 +118,7 @@ module uart_rx (
             data_count <= data_count_next;
             tick_count <= tick_count_next;
             data <= data_next;
-            
+
         end
     end
 
@@ -122,7 +136,7 @@ module uart_rx (
                 end
             end
             START: begin
-                if (tick == 1) begin                    
+                if (tick == 1) begin
                     if (tick_count_next == 7) begin
                         next = DATA_STATE;
                         tick_count_next = 0;
@@ -141,7 +155,7 @@ module uart_rx (
                             tick_count_next = 0;
                             next = STOP;
                         end else begin
-                            data_count_next  = data_count + 1;
+                            data_count_next = data_count + 1;
                         end
                     end else begin
                         tick_count_next = tick_count + 1;
@@ -153,13 +167,13 @@ module uart_rx (
                     if (tick_count_next == 24) begin
                         next = R_IDLE;
                         tick_count_next = 0;
-                        r_rx_done_next =1;
+                        r_rx_done_next = 1;
                     end else begin
                         tick_count_next = tick_count + 1;
                     end
                 end
             end
-            
+
             default: next = R_IDLE;
         endcase
 

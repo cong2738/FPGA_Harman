@@ -61,3 +61,5 @@
 !*.elf
 !*.bmm
 !*.xmp
+#drawio
+!*.drawio

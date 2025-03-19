@@ -49,7 +49,7 @@ module ascii_to_bcd (
     always @(*) begin
         if (ascii >= "0" && ascii <= "9") begin
             r_bcd = ascii - "0";
-        end else if (ascii >= "A" && ascii <= "Z") begin
+        end else if (ascii >= "A" && ascii <= "F") begin
             r_bcd = ascii - "A" + 10;
         end else r_bcd = 0;
     end

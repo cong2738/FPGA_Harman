@@ -10,7 +10,6 @@ module TOP_UART (
     output [7:0] fnd_font,
     output [3:0] fnd_comm
 );
-    assign fnd_comm = 4'b1110;
     wire w_rx_done;
     wire [7:0] w_rx_data;
     uart #(
@@ -33,9 +32,26 @@ module TOP_UART (
         .bcd  (w_bcd)
     );
 
-    bcdtoseg U_Bcd_to_Seg (
-        .bcd(w_bcd),
-        .seg(fnd_font)
+    // bcdtoseg U_Bcd_to_Seg (
+    //     .bcd(w_bcd),
+    //     .seg(fnd_font)
+    // );
+
+    fnd_controller #(
+        .MSEC_MAX(100),
+        .SEC_MAX (60),
+        .MIN_MAX (60),
+        .HOUR_MAX(24)
+    ) U_FND_Controller (
+        .clk(clk),
+        .reset(rst),
+        .hs_mod_sw(0),
+        .msec(w_bcd),
+        .sec(w_bcd),
+        .min(w_bcd),
+        .hour(w_bcd),
+        .fnd_font(fnd_font),
+        .fnd_comm(fnd_comm)
     );
 
 endmodule
@@ -55,44 +71,7 @@ module ascii_to_bcd (
     assign bcd = r_bcd;
 endmodule
 
-module bcdtoseg (
-    input [3:0] bcd,  // [3:0] sum 값 
-    output reg [7:0] seg
-);
-    reg dot;
-    // always 구문 출력으로 reg type을 가져야 한다.
-    always @(bcd) begin
-        case (bcd)
-            4'h0: seg = 8'hc0;
-            4'h1: seg = 8'hF9;
-            4'h2: seg = 8'hA4;
-            4'h3: seg = 8'hB0;
-            4'h4: seg = 8'h99;
-            4'h5: seg = 8'h92;
-            4'h6: seg = 8'h82;
-            4'h7: seg = 8'hf8;
-            4'h8: seg = 8'h80;
-            4'h9: seg = 8'h90;
-            4'hA: seg = 8'h88;
-            4'hB: seg = 8'h83;
-            4'hC: seg = 8'hc6;
-            4'hD: seg = 8'ha1;
-            4'hE: seg = 8'h86;
-            4'hF: seg = 8'h8E;
-            default: seg = 8'hff;
-        endcase
 
-        case (bcd)
-            4'hB: dot = 0;
-            4'hD: dot = 0;
-            4'hE: dot = 0;
-            default: dot = 1;
-        endcase
-
-        seg[7] = dot;
-    end
-
-endmodule
 
 module uart #(
     BAUD_RATE = 9600

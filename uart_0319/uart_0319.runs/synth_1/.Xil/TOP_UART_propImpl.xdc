@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:C:/harman/FPGA_Harman-1/uart_0318_exam/uart_0318_exam.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc rfile:../../../uart_0318_exam.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:C:/harman/FPGA_Harman-1/uart_0319/uart_0319.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc rfile:../../../uart_0319.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:7 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict { PACKAGE_PIN W5   IOSTANDARD LVCMOS33 } [get_ports clk]
 set_property src_info {type:XDC file:1 line:50 export:INPUT save:INPUT read:READ} [current_design]

@@ -122,7 +122,6 @@ module fnd_controller #(
     wire [7:0] w_seg;
     bcdtoseg U_bcdtoseg (
         .bcd(w_bcd),  // [3:0] sum 값 
-        .dot(w_dot),
         .seg(w_seg)
     );
 
@@ -260,9 +259,9 @@ endmodule
 
 module bcdtoseg (
     input [3:0] bcd,  // [3:0] sum 값 
-    input dot,
     output reg [7:0] seg
 );
+    reg dot;
     // always 구문 출력으로 reg type을 가져야 한다.
     always @(bcd) begin
         case (bcd)
@@ -283,6 +282,13 @@ module bcdtoseg (
             4'hE: seg = 8'h86;
             4'hF: seg = 8'h8E;
             default: seg = 8'hff;
+        endcase
+
+        case (bcd)
+            4'hB: dot = 0;
+            4'hD: dot = 0;
+            4'hE: dot = 0;
+            default: dot = 1;
         endcase
 
         seg[7] = dot;

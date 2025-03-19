@@ -46,19 +46,19 @@ endmodule
 
 module ram #(
     parameter ADDR_WIDTH = 4,  // 주소 폭 (4비트 -> 16개의 주소)
-    parameter DATA_WIDTH = 8  // 데이터 폭 (8비트)
+    parameter DATA_WIDTH = 8   // 데이터 폭 (8비트)
 ) (
-    input clk,                              // 클럭 신호
-    input wr,  
-    input rd,                             // 쓰기 활성화 신호 (1이면 쓰기)
-    input [ADDR_WIDTH-1:0] wptr,            // 쓰기주소
-    input [DATA_WIDTH-1:0] wdata,           // 쓰기 데이터 입력
-    input [ADDR_WIDTH-1:0] rptr,            // 읽기주소
-    output [DATA_WIDTH-1:0] rdata           // 읽기 데이터 출력
+    input                   clk,    // 클럭 신호
+    input                   wr,
+    input                   rd,     // 쓰기 활성화 신호 (1이면 쓰기)
+    input  [ADDR_WIDTH-1:0] wptr,   // 쓰기주소
+    input  [DATA_WIDTH-1:0] wdata,  // 쓰기 데이터 입력
+    input  [ADDR_WIDTH-1:0] rptr,   // 읽기주소
+    output [DATA_WIDTH-1:0] rdata   // 읽기 데이터 출력
 );
 
     // RAM 메모리 선언 (2^ADDR_WIDTH 크기)
-    reg [DATA_WIDTH-1:0] ram [0:(1<<ADDR_WIDTH)-1];
+    reg [DATA_WIDTH-1:0] ram[0:(1<<ADDR_WIDTH)-1];
 
     // 쓰기 동작 (동기식)
     always @(posedge clk) begin
@@ -67,8 +67,11 @@ module ram #(
         end
     end
 
-    // 읽기 동작 (조합논리)
-    assign rdata = ram[rptr];  // 주소에 해당하는 데이터 출력
+    // 읽기 동작
+    reg[7:0] w_rdata;
+    always @(*) begin
+        w_rdata = ram[rptr];  // 주소에 해당하는 데이터 출력
+    end
 
 endmodule
 
@@ -91,9 +94,9 @@ module fifo_control_unit #(
     reg [3:0] rptr_reg, rptr_next;
 
     //output
-    assign wptr = wptr_reg;
-    assign rptr = rptr_reg;
-    assign full = full_reg;
+    assign wptr  = wptr_reg;
+    assign rptr  = rptr_reg;
+    assign full  = full_reg;
     assign empty = empty_reg;
 
     always @(posedge clk or posedge rst) begin

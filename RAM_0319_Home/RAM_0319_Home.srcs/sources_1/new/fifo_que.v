@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-
+/*0319버전에서 레지스터에 RD신호를 추가*/
 module fifo (
     input clk,
     input rst,

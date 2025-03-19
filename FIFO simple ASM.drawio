@@ -12,8 +12,8 @@
         <mxCell id="kim3aclcd7hE2upSsm0B-1" value="&lt;div&gt;비동기 메모리&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;wr == 1 wptr 증가&lt;br&gt;rd == 1 rptr 증가&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;1. 초기값&lt;/div&gt;&lt;div&gt;wprt = 1, rptr = 1, full = 1, empty = 1&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;2.. wr == 1 (push)&lt;/div&gt;&lt;div&gt;empty = 0, wprt++&lt;/div&gt;&lt;div&gt;&quot;wptr == rptr&quot; =&amp;gt; full = 1&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;3. rd == 1(pop)&lt;/div&gt;&lt;div&gt;full = 0, rptr++&lt;/div&gt;&lt;div&gt;&quot;wptr == rptr&quot; =&amp;gt; empty = 1&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;4.wr == 1 and rd == 1(push and pop)&lt;/div&gt;&lt;div&gt;rptr++, wptr++&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="cw6S2BaQTqN7qknGO65E-30" vertex="1">
           <mxGeometry x="450" y="30" width="220" height="270" as="geometry" />
         </mxCell>
-        <mxCell id="cw6S2BaQTqN7qknGO65E-32" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;all state change depend on clock&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="cw6S2BaQTqN7qknGO65E-30" vertex="1">
-          <mxGeometry x="-1" y="280" width="200" height="30" as="geometry" />
+        <mxCell id="cw6S2BaQTqN7qknGO65E-32" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;all state change depend on clock, stage flag is outer input.&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;diagram has don care the empty/full&lt;/span&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="cw6S2BaQTqN7qknGO65E-30" vertex="1">
+          <mxGeometry y="270" width="221" height="30" as="geometry" />
         </mxCell>
         <mxCell id="F4llfg31fLH5viyZoIfx-65" value="" style="group" vertex="1" connectable="0" parent="cw6S2BaQTqN7qknGO65E-30">
           <mxGeometry x="10" y="40" width="440" height="200" as="geometry" />

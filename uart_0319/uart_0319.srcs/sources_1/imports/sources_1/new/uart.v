@@ -10,6 +10,7 @@ module TOP_UART (
     output [7:0] fnd_font,
     output [3:0] fnd_comm
 );
+    assign fnd_comm = 4'b1110;
     wire w_rx_done;
     wire [7:0] w_rx_data;
     uart #(
@@ -32,7 +33,6 @@ module TOP_UART (
         .bcd  (w_bcd)
     );
 
-    assign fnd_comm = 4'b1110;
     bcdtoseg U_Bcd_to_Seg (
         .bcd(w_bcd),
         .seg(fnd_font)

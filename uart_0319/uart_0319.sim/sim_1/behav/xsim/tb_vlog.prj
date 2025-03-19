@@ -1,0 +1,12 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../uart_0318.srcs/sources_1/imports/sources_1/imports/FPGA_Harman-1/my_btn_debounce.v" \
+"../../../../uart_0318.srcs/sources_1/imports/sources_1/new/send_tx_btn.v" \
+"../../../../uart_0318.srcs/sources_1/imports/sources_1/new/uart.v" \
+"../../../../uart_0318.srcs/sim_1/new/tb.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

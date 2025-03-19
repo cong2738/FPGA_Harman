@@ -1,26 +1,33 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 2025/03/19 10:39:36
-// Design Name: 
-// Module Name: tb_register
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
+module tb_register ();
+    reg clk;
+    reg [31:0] data;
+    wire [31:0] q;
 
-module tb_register(
-
+    register uut (
+        .clk(clk),
+        .data(data),
+        .q(q)
     );
+
+    always #5 clk = ~clk;
+
+    initial begin
+        clk  = 0;
+        data = 0;
+        #10;
+        data = 32'h12345678;
+        #10;
+        @(posedge clk);
+        if (data == q) begin
+            $display("Test paased");
+        end else begin
+            $display("Test failed");
+        end
+
+        @(posedge clk);
+        $finish;
+    end
+
 endmodule

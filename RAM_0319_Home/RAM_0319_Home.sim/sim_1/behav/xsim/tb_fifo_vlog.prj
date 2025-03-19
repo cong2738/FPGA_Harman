@@ -1,7 +1,7 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  \
-"../../../../RAM_0319.srcs/sources_1/new/fifo_que.v" \
-"../../../../RAM_0319.srcs/sim_1/new/tb_fifo.v" \
+"../../../../RAM_0319_Home.srcs/sources_1/new/fifo_que.v" \
+"../../../../RAM_0319_Home.srcs/sim_1/new/tb_fifo.v" \
 
 # compile glbl module
 verilog xil_defaultlib "glbl.v"

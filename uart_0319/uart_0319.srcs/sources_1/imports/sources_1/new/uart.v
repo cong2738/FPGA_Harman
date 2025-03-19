@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 /*
-    2025.03.17
+    2025.03.18
 */
 module TOP_UART (
     input clk,
@@ -32,12 +32,11 @@ module TOP_UART (
         .bcd  (w_bcd)
     );
 
+    assign fnd_comm = 4'b1110;
     bcdtoseg U_Bcd_to_Seg (
         .bcd(w_bcd),
         .seg(fnd_font)
     );
-
-    assign fnd_comm = 4'b1110;
 
 endmodule
 

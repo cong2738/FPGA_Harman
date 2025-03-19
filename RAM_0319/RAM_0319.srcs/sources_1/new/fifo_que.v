@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-
+/*이 버전 특징: ram에 rd를 쓰지 않아 읽기상태를 쓰기상태와 구분하기 힘듦*/
 module fifo (
     input clk,
     input rst,

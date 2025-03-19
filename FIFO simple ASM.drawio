@@ -1,0 +1,88 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.16 Chrome/132.0.6834.196 Electron/34.2.0 Safari/537.36" version="26.0.16">
+  <diagram name="페이지-1" id="jSP0wqziFNxwSBOyULtl">
+    <mxGraphModel dx="915" dy="823" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="cw6S2BaQTqN7qknGO65E-30" value="FIFO simple ASM" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="10" y="10" width="670" height="310" as="geometry">
+            <mxRectangle x="40" y="173.33" width="130" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kim3aclcd7hE2upSsm0B-1" value="&lt;div&gt;비동기 메모리&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;wr == 1 wptr 증가&lt;br&gt;rd == 1 rptr 증가&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;1. 초기값&lt;/div&gt;&lt;div&gt;wprt = 1, rptr = 1, full = 1, empty = 1&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;2.. wr == 1 (push)&lt;/div&gt;&lt;div&gt;empty = 0, wprt++&lt;/div&gt;&lt;div&gt;&quot;wptr == rptr&quot; =&amp;gt; full = 1&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;3. rd == 1(pop)&lt;/div&gt;&lt;div&gt;full = 0, rptr++&lt;/div&gt;&lt;div&gt;&quot;wptr == rptr&quot; =&amp;gt; empty = 1&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;4.wr == 1 and rd == 1(push and pop)&lt;/div&gt;&lt;div&gt;rptr++, wptr++&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="cw6S2BaQTqN7qknGO65E-30" vertex="1">
+          <mxGeometry x="450" y="30" width="220" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="cw6S2BaQTqN7qknGO65E-32" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;all state change depend on clock, stage flag is outer input.&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;diagram has don care the empty/full&lt;/span&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="cw6S2BaQTqN7qknGO65E-30" vertex="1">
+          <mxGeometry y="270" width="221" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="F4llfg31fLH5viyZoIfx-65" value="" style="group" vertex="1" connectable="0" parent="cw6S2BaQTqN7qknGO65E-30">
+          <mxGeometry x="10" y="40" width="440" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="F4llfg31fLH5viyZoIfx-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="F4llfg31fLH5viyZoIfx-65" source="cw6S2BaQTqN7qknGO65E-10" target="cw6S2BaQTqN7qknGO65E-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="400" />
+              <mxPoint x="60" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cw6S2BaQTqN7qknGO65E-10" value="push&amp;amp;pop" style="ellipse;whiteSpace=wrap;html=1;" parent="F4llfg31fLH5viyZoIfx-65" vertex="1">
+          <mxGeometry x="370" y="30" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F4llfg31fLH5viyZoIfx-63" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="F4llfg31fLH5viyZoIfx-65" source="cw6S2BaQTqN7qknGO65E-1" target="F4llfg31fLH5viyZoIfx-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cw6S2BaQTqN7qknGO65E-1" value="ready" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="F4llfg31fLH5viyZoIfx-65" vertex="1">
+          <mxGeometry x="30" y="30" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F4llfg31fLH5viyZoIfx-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="F4llfg31fLH5viyZoIfx-65" source="cw6S2BaQTqN7qknGO65E-8" target="cw6S2BaQTqN7qknGO65E-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint y="150" />
+              <mxPoint y="60" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cw6S2BaQTqN7qknGO65E-8" value="push" style="ellipse;whiteSpace=wrap;html=1;" parent="F4llfg31fLH5viyZoIfx-65" vertex="1">
+          <mxGeometry x="30" y="120" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F4llfg31fLH5viyZoIfx-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="F4llfg31fLH5viyZoIfx-65" source="F4llfg31fLH5viyZoIfx-24" target="cw6S2BaQTqN7qknGO65E-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="290" y="200" />
+              <mxPoint y="200" />
+              <mxPoint y="60" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="F4llfg31fLH5viyZoIfx-24" value="pop" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="F4llfg31fLH5viyZoIfx-65">
+          <mxGeometry x="260" y="120" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F4llfg31fLH5viyZoIfx-32" value="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="F4llfg31fLH5viyZoIfx-65" source="F4llfg31fLH5viyZoIfx-25" target="F4llfg31fLH5viyZoIfx-37">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F4llfg31fLH5viyZoIfx-25" value="rd" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="F4llfg31fLH5viyZoIfx-65">
+          <mxGeometry x="140" y="38.33" width="80" height="43.333333333333336" as="geometry" />
+        </mxCell>
+        <mxCell id="F4llfg31fLH5viyZoIfx-31" value="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="F4llfg31fLH5viyZoIfx-65" source="F4llfg31fLH5viyZoIfx-26" target="cw6S2BaQTqN7qknGO65E-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F4llfg31fLH5viyZoIfx-26" value="wr" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="F4llfg31fLH5viyZoIfx-65">
+          <mxGeometry x="140" y="128.33" width="80" height="43.333333333333336" as="geometry" />
+        </mxCell>
+        <mxCell id="F4llfg31fLH5viyZoIfx-38" value="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="F4llfg31fLH5viyZoIfx-65" source="F4llfg31fLH5viyZoIfx-37" target="cw6S2BaQTqN7qknGO65E-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F4llfg31fLH5viyZoIfx-37" value="wr" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="F4llfg31fLH5viyZoIfx-65">
+          <mxGeometry x="250" y="38.33" width="80" height="43.333333333333336" as="geometry" />
+        </mxCell>
+        <mxCell id="F4llfg31fLH5viyZoIfx-40" value="0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="F4llfg31fLH5viyZoIfx-65" source="F4llfg31fLH5viyZoIfx-37" target="F4llfg31fLH5viyZoIfx-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F4llfg31fLH5viyZoIfx-28" value="0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="F4llfg31fLH5viyZoIfx-65" source="F4llfg31fLH5viyZoIfx-25" target="F4llfg31fLH5viyZoIfx-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -3,14 +3,15 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="tb_behav.wdb" id="1">
+      <db_ref path="tb_rx_behav.wdb" id="1">
          <top_modules>
             <top_module name="glbl" />
-            <top_module name="tb" />
+            <top_module name="tb_rx" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
+<<<<<<< HEAD
       <ZoomStartTime time="85.268881448 ms"></ZoomStartTime>
       <ZoomEndTime time="2,222.631592129 ms"></ZoomEndTime>
       <Cursor1Time time="1,866.404473682 ms"></Cursor1Time>
@@ -21,33 +22,58 @@
    </column_width_setting>
    <WVObjectSize size="12" />
    <wvobject fp_name="/tb/clk" type="logic">
+=======
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="1473544911fs"></ZoomEndTime>
+      <Cursor1Time time="1000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="212"></NameColumnWidth>
+      <ValueColumnWidth column_width="74"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="10" />
+   <wvobject fp_name="/tb_rx/clk" type="logic">
+>>>>>>> a51a07754ab5a1e61cfe7f2b2e8473f647ce3289
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb/rst" type="logic">
+   <wvobject fp_name="/tb_rx/rst" type="logic">
       <obj_property name="ElementShortName">rst</obj_property>
       <obj_property name="ObjectShortName">rst</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb/btn" type="logic">
-      <obj_property name="ElementShortName">btn</obj_property>
-      <obj_property name="ObjectShortName">btn</obj_property>
+   <wvobject fp_name="/tb_rx/rx" type="logic">
+      <obj_property name="ElementShortName">rx</obj_property>
+      <obj_property name="ObjectShortName">rx</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb/tx" type="logic">
+   <wvobject fp_name="/tb_rx/tx" type="logic">
       <obj_property name="ElementShortName">tx</obj_property>
       <obj_property name="ObjectShortName">tx</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb/DUT/U_Uart/U_Tx/clk" type="logic">
-      <obj_property name="ElementShortName">clk</obj_property>
-      <obj_property name="ObjectShortName">clk</obj_property>
+   <wvobject fp_name="/tb_rx/fnd_font" type="array">
+      <obj_property name="ElementShortName">fnd_font[7:0]</obj_property>
+      <obj_property name="ObjectShortName">fnd_font[7:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb/DUT/U_Uart/U_Tx/rst" type="logic">
-      <obj_property name="ElementShortName">rst</obj_property>
-      <obj_property name="ObjectShortName">rst</obj_property>
+   <wvobject fp_name="/tb_rx/fnd_comm" type="array">
+      <obj_property name="ElementShortName">fnd_comm[3:0]</obj_property>
+      <obj_property name="ObjectShortName">fnd_comm[3:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb/DUT/U_Uart/U_Tx/tick" type="logic">
+   <wvobject fp_name="/tb_rx/DUT/U_Bcd_to_Seg/bcd" type="array">
+      <obj_property name="ElementShortName">bcd[3:0]</obj_property>
+      <obj_property name="ObjectShortName">bcd[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rx/DUT/w_rx_done" type="logic">
+      <obj_property name="ElementShortName">w_rx_done</obj_property>
+      <obj_property name="ObjectShortName">w_rx_done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rx/DUT/U_Uart/tx_busy" type="logic">
+      <obj_property name="ElementShortName">tx_busy</obj_property>
+      <obj_property name="ObjectShortName">tx_busy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_rx/DUT/U_Uart/tick" type="logic">
       <obj_property name="ElementShortName">tick</obj_property>
       <obj_property name="ObjectShortName">tick</obj_property>
    </wvobject>
+<<<<<<< HEAD
    <wvobject fp_name="/tb/DUT/U_Uart/U_Tx/start_triger" type="logic">
       <obj_property name="ElementShortName">start_triger</obj_property>
       <obj_property name="ObjectShortName">start_triger</obj_property>
@@ -69,4 +95,6 @@
       <obj_property name="ElementShortName">tx_busy</obj_property>
       <obj_property name="ObjectShortName">tx_busy</obj_property>
    </wvobject>
+=======
+>>>>>>> a51a07754ab5a1e61cfe7f2b2e8473f647ce3289
 </wave_config>

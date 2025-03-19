@@ -86,6 +86,7 @@ module bcdtoseg (
         case (bcd)
             4'hB: dot = 0;
             4'hD: dot = 0;
+            4'hE: dot = 0;
             default: dot = 1;
         endcase
 

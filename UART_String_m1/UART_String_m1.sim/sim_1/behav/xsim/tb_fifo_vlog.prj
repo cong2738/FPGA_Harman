@@ -1,0 +1,12 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../UART_String_m1.srcs/sources_1/new/Top_UART_String.v" \
+"../../../../UART_String_m1.srcs/sources_1/new/fifo_que.v" \
+"../../../../UART_String_m1.srcs/sources_1/new/uart.v" \
+"../../../../UART_String_m1.srcs/sim_1/new/tb_fifo.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

@@ -40,8 +40,8 @@ module tb_fifo ();
         .rdata(rdata)
     );
 
-    integer rand_rd;
-    integer rand_wr;
+    reg rand_rd;
+    reg rand_wr;
     reg [7:0] compare_data[2**4-1:0];
     integer write_count;
     integer read_count;
@@ -87,22 +87,20 @@ module tb_fifo ();
         rd = 0;
         #10 wr = 0;
         rd = 1;
-        for (i = 0; i < 16; i = i + 1) begin
+        for (i = 0; i < 17; i = i + 1) begin
             #10;
         end
         wr = 0;
+        #10
         rd = 0;
-        #10;
-        wr = 0;
-        rd = 0;
-        #10;
+        #20;
 
         write_count = 0;
         read_count  = 0;
         for (i = 0; i < 50; i = i + 1) begin
             @(negedge clk);
             rand_wr = $random % 2;
-            if (!full && rand_wr) begin  // rite test
+            if (!full & rand_wr) begin  // rite test
                 wr = 1;
                 wdata = $random % 256;
                 compare_data[write_count%16] = wdata; // read data와 비교하기 위함.
@@ -112,8 +110,9 @@ module tb_fifo ();
             end
 
             rand_rd = $random % 2;
-            if (!empty && rand_rd) begin  // read test
+            if (!empty & rand_rd) begin  // read test
                 rd = 1;
+                #2;
                 if (rdata === compare_data[read_count%16]) begin
                     $display("Pass");
                 end else begin

@@ -11,29 +11,16 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-<<<<<<< HEAD
-      <ZoomStartTime time="85.268881448 ms"></ZoomStartTime>
-      <ZoomEndTime time="2,222.631592129 ms"></ZoomEndTime>
-      <Cursor1Time time="1,866.404473682 ms"></Cursor1Time>
-   </zoom_setting>
-   <column_width_setting>
-      <NameColumnWidth column_width="212"></NameColumnWidth>
-      <ValueColumnWidth column_width="98"></ValueColumnWidth>
-   </column_width_setting>
-   <WVObjectSize size="12" />
-   <wvobject fp_name="/tb/clk" type="logic">
-=======
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="1473544911fs"></ZoomEndTime>
-      <Cursor1Time time="1000000fs"></Cursor1Time>
+      <ZoomEndTime time="14293729331fs"></ZoomEndTime>
+      <Cursor1Time time="1003602272fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="212"></NameColumnWidth>
-      <ValueColumnWidth column_width="74"></ValueColumnWidth>
+      <NameColumnWidth column_width="107"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="10" />
+   <WVObjectSize size="8" />
    <wvobject fp_name="/tb_rx/clk" type="logic">
->>>>>>> a51a07754ab5a1e61cfe7f2b2e8473f647ce3289
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
@@ -57,44 +44,12 @@
       <obj_property name="ElementShortName">fnd_comm[3:0]</obj_property>
       <obj_property name="ObjectShortName">fnd_comm[3:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_rx/DUT/U_Bcd_to_Seg/bcd" type="array">
-      <obj_property name="ElementShortName">bcd[3:0]</obj_property>
-      <obj_property name="ObjectShortName">bcd[3:0]</obj_property>
+   <wvobject fp_name="/tb_rx/i" type="array">
+      <obj_property name="ElementShortName">i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">i[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_rx/DUT/w_rx_done" type="logic">
-      <obj_property name="ElementShortName">w_rx_done</obj_property>
-      <obj_property name="ObjectShortName">w_rx_done</obj_property>
+   <wvobject fp_name="/tb_rx/rx_data" type="array">
+      <obj_property name="ElementShortName">rx_data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_data[7:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_rx/DUT/U_Uart/tx_busy" type="logic">
-      <obj_property name="ElementShortName">tx_busy</obj_property>
-      <obj_property name="ObjectShortName">tx_busy</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_rx/DUT/U_Uart/tick" type="logic">
-      <obj_property name="ElementShortName">tick</obj_property>
-      <obj_property name="ObjectShortName">tick</obj_property>
-   </wvobject>
-<<<<<<< HEAD
-   <wvobject fp_name="/tb/DUT/U_Uart/U_Tx/start_triger" type="logic">
-      <obj_property name="ElementShortName">start_triger</obj_property>
-      <obj_property name="ObjectShortName">start_triger</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb/DUT/U_Uart/U_Tx/i_data" type="array">
-      <obj_property name="ElementShortName">i_data[7:0]</obj_property>
-      <obj_property name="ObjectShortName">i_data[7:0]</obj_property>
-      <obj_property name="Radix">BINARYRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb/DUT/U_Uart/U_Tx/state" type="array">
-      <obj_property name="ElementShortName">state[3:0]</obj_property>
-      <obj_property name="ObjectShortName">state[3:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb/DUT/U_Uart/U_Tx/next" type="array">
-      <obj_property name="ElementShortName">next[3:0]</obj_property>
-      <obj_property name="ObjectShortName">next[3:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb/DUT/U_Uart/U_Tx/tx_busy" type="logic">
-      <obj_property name="ElementShortName">tx_busy</obj_property>
-      <obj_property name="ObjectShortName">tx_busy</obj_property>
-   </wvobject>
-=======
->>>>>>> a51a07754ab5a1e61cfe7f2b2e8473f647ce3289
 </wave_config>

@@ -1,24 +1,12 @@
 #-----------------------------------------------------------
-# Vivado v2024.2.1 (64-bit)
-# SW Build 5266912 on Sun Dec 15 09:03:24 MST 2024
-# IP Build 5264866 on Sun Dec 15 16:27:47 MST 2024
-# SharedData Build 5264680 on Wed Dec 11 12:48:36 MST 2024
-# Start of session at: Tue Mar 18 01:22:24 2025
-# Process ID         : 11356
-# Current directory  : D:/harman/FPGA_Harman/uart_0317_home/uart_0317_home.runs/synth_1
-# Command line       : vivado.exe -log send_tx_btn.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source send_tx_btn.tcl
-# Log file           : D:/harman/FPGA_Harman/uart_0317_home/uart_0317_home.runs/synth_1/send_tx_btn.vds
-# Journal file       : D:/harman/FPGA_Harman/uart_0317_home/uart_0317_home.runs/synth_1\vivado.jou
-# Running On         : PKLT
-# Platform           : Windows Server 2016 or Windows 10
-# Operating System   : 26100
-# Processor Detail   : 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
-# CPU Frequency      : 2419 MHz
-# CPU Physical cores : 4
-# CPU Logical cores  : 8
-# Host memory        : 34069 MB
-# Swap memory        : 2147 MB
-# Total Virtual      : 36216 MB
-# Available Virtual  : 18007 MB
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Wed Mar 19 11:47:46 2025
+# Process ID: 16616
+# Current directory: C:/harman/FPGA_Harman-1/RAM_0319/RAM_0319.runs/synth_1
+# Command line: vivado.exe -log ram_ip_.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source ram_ip_.tcl
+# Log file: C:/harman/FPGA_Harman-1/RAM_0319/RAM_0319.runs/synth_1/ram_ip_.vds
+# Journal file: C:/harman/FPGA_Harman-1/RAM_0319/RAM_0319.runs/synth_1\vivado.jou
 #-----------------------------------------------------------
-source send_tx_btn.tcl -notrace
+source ram_ip_.tcl -notrace

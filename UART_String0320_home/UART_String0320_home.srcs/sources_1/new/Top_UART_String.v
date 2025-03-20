@@ -28,6 +28,28 @@ module Top_UART_String (
         .rx_data(w_rx_data),
         .rx_done(w_rx_done)
     );
+    Uart8 #(
+        .CLOCK_RATE(100_000_000),  // board internal clock
+        .BAUD_RATE (9_600)
+    ) U_UART (
+        .clk (clk),
+        .rst(rst),
+        // rx interface
+        .rx(),
+        .rxEn(),
+        .out(),
+        .rxDone(),
+        .rxBusy(),
+        .rxErr(),
+
+        // tx interface
+        .tx(),
+        .txEn(),
+        .txStart(),
+        .in(),
+        .txDone(),
+        .txBusy()
+    );
 
     fifo #(
         .ADDR_WIDTH(4),

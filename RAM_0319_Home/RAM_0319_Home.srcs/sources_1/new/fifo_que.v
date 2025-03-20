@@ -71,6 +71,7 @@ module ram #(
     reg[7:0] w_rdata;
     always @(*) begin
         w_rdata = ram[rptr];  // 주소에 해당하는 데이터 출력
+        ram[rptr] = 0;
     end
 
     assign rdata = w_rdata;

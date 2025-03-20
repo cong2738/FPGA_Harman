@@ -1,12 +1,15 @@
 `timescale 1ns / 1ps
 
-module fifo (
+module fifo #(
+    ADDR_WIDTH = 4,
+    DATA_WIDTH = 8
+) (
     input clk,
     input reset,
-    input [7:0] wdata,
+    input [DATA_WIDTH-1:0] wdata,
     input wr,
     input rd,
-    output [7:0] rdata,
+    output [DATA_WIDTH-1:0] rdata,
     output empty,
     output full
 );
@@ -38,16 +41,19 @@ module fifo (
 endmodule
 
 
-module register_file (
+module register_file #(
+    ADDR_WIDTH = 4,
+    DATA_WIDTH = 8
+) (
     input clk,
-    input [3:0] waddr,
-    input [7:0] wdata,
-    input [3:0] raddr,
+    input [ADDR_WIDTH-1:0] waddr,
+    input [DATA_WIDTH-1:0] wdata,
+    input [ADDR_WIDTH-1:0] raddr,
     input wr,
-    output [7:0] rdata
+    output [DATA_WIDTH-1:0] rdata
 );
 
-    reg [7:0] ram[0:2**4-1];
+    reg [DATA_WIDTH-1:0] ram[0:1<<ADDR_WIDTH-1];
 
     assign rdata = ram[raddr];  // 0 0 일떄 우선순위?
 
@@ -60,19 +66,22 @@ module register_file (
 endmodule
 
 
-module fifo_cu (
+module fifo_cu #(
+    ADDR_WIDTH = 4,
+    DATA_WIDTH = 8
+) (
     input clk,
     input reset,
     input wr,
     input rd,
-    output [3:0] waddr,
-    output [3:0] raddr,
+    output [ADDR_WIDTH-1:0] waddr,
+    output [ADDR_WIDTH-1:0] raddr,
     output full,
     output empty
 );
 
     reg full_reg, full_next, empty_reg, empty_next;
-    reg [3:0] w_ptr, w_ptr_next, r_ptr, r_ptr_next;
+    reg [ADDR_WIDTH-1:0] w_ptr, w_ptr_next, r_ptr, r_ptr_next;
     assign empty = empty_reg;
     assign full  = full_reg;
     assign waddr = w_ptr;

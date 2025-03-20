@@ -60,17 +60,12 @@ module ram #(
     // RAM 메모리 선언 (2^ADDR_WIDTH 크기)
     reg [DATA_WIDTH-1:0] ram[0:(1<<ADDR_WIDTH)-1];
 
-    // 쓰기 동작 (동기식)
+    reg [7:0] w_rdata;
     always @(posedge clk) begin
-        if (wr) begin
-            ram[wptr] <= wdata;  // 쓰기 동작
-        end
-    end
+        if (wr) ram[wptr] <= wdata;  // 쓰기 동작
+        
+        if (rd) w_rdata = ram[rptr];  // 주소에 해당하는 데이터 출력
 
-    // 읽기 동작
-    reg[7:0] w_rdata;
-    always @(*) begin
-        w_rdata = ram[rptr];  // 주소에 해당하는 데이터 출력
     end
 
     assign rdata = w_rdata;

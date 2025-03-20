@@ -102,7 +102,7 @@ module tb_fifo ();
         for (i = 0; i < 50; i = i + 1) begin
             @(negedge clk);
             rand_wr = $random % 2;
-            if (~full & rand_wr) begin  // rite test
+            if (!full && rand_wr) begin  // rite test
                 wr = 1;
                 wdata = $random % 256;
                 compare_data[write_count%16] = wdata; // read data와 비교하기 위함.
@@ -112,8 +112,7 @@ module tb_fifo ();
             end
 
             rand_rd = $random % 2;
-            if (~empty & rand_rd) begin  // read test
-                #2;
+            if (!empty && rand_rd) begin  // read test
                 rd = 1;
                 if (rdata === compare_data[read_count%16]) begin
                     $display("Pass");

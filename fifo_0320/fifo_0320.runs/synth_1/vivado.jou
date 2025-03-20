@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Wed Mar 19 11:47:46 2025
+# Process ID: 16616
+# Current directory: C:/harman/FPGA_Harman-1/RAM_0319/RAM_0319.runs/synth_1
+# Command line: vivado.exe -log ram_ip_.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source ram_ip_.tcl
+# Log file: C:/harman/FPGA_Harman-1/RAM_0319/RAM_0319.runs/synth_1/ram_ip_.vds
+# Journal file: C:/harman/FPGA_Harman-1/RAM_0319/RAM_0319.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source ram_ip_.tcl -notrace

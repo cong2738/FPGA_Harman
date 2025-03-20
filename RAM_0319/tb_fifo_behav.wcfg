@@ -12,14 +12,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="359001fs"></ZoomEndTime>
-      <Cursor1Time time="25000fs"></Cursor1Time>
+      <ZoomEndTime time="1700001fs"></ZoomEndTime>
+      <Cursor1Time time="1000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="107"></NameColumnWidth>
-      <ValueColumnWidth column_width="74"></ValueColumnWidth>
+      <ValueColumnWidth column_width="70"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="9" />
+   <WVObjectSize size="15" />
    <wvobject fp_name="/tb_fifo/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -36,9 +36,9 @@
       <obj_property name="ElementShortName">rd</obj_property>
       <obj_property name="ObjectShortName">rd</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_fifo/w_data" type="array">
-      <obj_property name="ElementShortName">w_data[7:0]</obj_property>
-      <obj_property name="ObjectShortName">w_data[7:0]</obj_property>
+   <wvobject fp_name="/tb_fifo/wdata" type="array">
+      <obj_property name="ElementShortName">wdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">wdata[7:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_fifo/full" type="logic">
       <obj_property name="ElementShortName">full</obj_property>
@@ -48,10 +48,33 @@
       <obj_property name="ElementShortName">empty</obj_property>
       <obj_property name="ObjectShortName">empty</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_fifo/r_data" type="array">
-      <obj_property name="ElementShortName">r_data[7:0]</obj_property>
-      <obj_property name="ObjectShortName">r_data[7:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
+   <wvobject fp_name="/tb_fifo/rdata" type="array">
+      <obj_property name="ElementShortName">rdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rdata[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_fifo/rand_rd" type="array">
+      <obj_property name="ElementShortName">rand_rd[31:0]</obj_property>
+      <obj_property name="ObjectShortName">rand_rd[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_fifo/rand_wr" type="array">
+      <obj_property name="ElementShortName">rand_wr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">rand_wr[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_fifo/compare_data" type="array">
+      <obj_property name="ElementShortName">compare_data[15:0][7:0]</obj_property>
+      <obj_property name="ObjectShortName">compare_data[15:0][7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_fifo/write_count" type="array">
+      <obj_property name="ElementShortName">write_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">write_count[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_fifo/read_count" type="array">
+      <obj_property name="ElementShortName">read_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">read_count[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_fifo/i" type="array">
+      <obj_property name="ElementShortName">i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">i[31:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_fifo/uut/U_reg1/ram" type="array">
       <obj_property name="ElementShortName">ram[0:15][7:0]</obj_property>

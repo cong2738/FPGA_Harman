@@ -32,27 +32,27 @@ module TOP_UART (
         .bcd  (w_bcd)
     );
 
-    // bcdtoseg U_Bcd_to_Seg (
-    //     .bcd(w_bcd),
-    //     .seg(fnd_font)
-    // );
-
-    fnd_controller #(
-        .MSEC_MAX(100),
-        .SEC_MAX (60),
-        .MIN_MAX (60),
-        .HOUR_MAX(24)
-    ) U_FND_Controller (
-        .clk(clk),
-        .reset(rst),
-        .hs_mod_sw(0),
-        .msec(w_bcd),
-        .sec(w_bcd),
-        .min(w_bcd),
-        .hour(w_bcd),
-        .fnd_font(fnd_font),
-        .fnd_comm(fnd_comm)
+    bcdtoseg U_Bcd_to_Seg (
+        .bcd(w_bcd),
+        .seg(fnd_font)
     );
+
+    // fnd_controller #(
+    //     .MSEC_MAX(100),
+    //     .SEC_MAX (60),
+    //     .MIN_MAX (60),
+    //     .HOUR_MAX(24)
+    // ) U_FND_Controller (
+    //     .clk(clk),
+    //     .reset(rst),
+    //     .hs_mod_sw(0),
+    //     .msec(w_bcd),
+    //     .sec(w_bcd),
+    //     .min(w_bcd),
+    //     .hour(w_bcd),
+    //     .fnd_font(fnd_font),
+    //     .fnd_comm(fnd_comm)
+    // );
 
 endmodule
 

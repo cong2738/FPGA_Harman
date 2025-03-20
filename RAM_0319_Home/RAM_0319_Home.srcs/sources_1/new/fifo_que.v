@@ -65,7 +65,9 @@ module ram #(
     always @(posedge clk) begin
         if (wr) ram[wptr] <= wdata;  // 쓰기 동작
         
-        if (rd) w_rdata = ram[rptr];  // 주소에 해당하는 데이터 출력
+        if (rd) begin
+            w_rdata = ram[rptr];  // 주소에 해당하는 데이터 출력
+        end
 
     end
 

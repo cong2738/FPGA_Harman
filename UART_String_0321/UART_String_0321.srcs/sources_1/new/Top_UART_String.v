@@ -28,28 +28,7 @@ module Top_UART_String (
         .rx_data(w_rx_data),
         .rx_done(w_rx_done)
     );
-    // Uart8 #(
-    //     .CLOCK_RATE(100_000_000),  // board internal clock
-    //     .BAUD_RATE (9_600)
-    // ) U_UART (  
-    //     .clk (clk),
-    //     // rx interface
-    //     .rx(rx),
-    //     .rxEn(rst),
-    //     .out(w_rx_data),
-    //     .rxDone(w_rx_done),
-    //     .rxBusy(),
-    //     .rxErr(),
-
-    //     // tx interface
-    //     .tx(tx),
-    //     .txEn(rst),
-    //     .txStart(~w_txmem_empty),
-    //     .in(w_txmem_data),
-    //     .txDone(),
-    //     .txBusy(w_tx_busy)
-    // );
-
+   
     fifo #(
         .ADDR_WIDTH(4),
         .DATA_WIDTH(8)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1742534507">
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1742536154">
   <File Type="PA-TCL" Name="uart_watch.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="uart_watch_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="uart_watch_reports.tcl"/>
@@ -137,5 +137,4 @@
     <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
     <Step Id="synth_design"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="ila_0"/>
 </GenRun>

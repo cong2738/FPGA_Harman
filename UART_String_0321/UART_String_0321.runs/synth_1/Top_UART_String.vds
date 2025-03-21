@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Fri Mar 21 09:11:32 2025
-# Process ID: 19864
+# Start of session at: Fri Mar 21 09:47:58 2025
+# Process ID: 15936
 # Current directory: C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.runs/synth_1
 # Command line: vivado.exe -log Top_UART_String.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top_UART_String.tcl
 # Log file: C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.runs/synth_1/Top_UART_String.vds
@@ -17,37 +17,32 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 20556
-WARNING: [Synth 8-2507] parameter declaration becomes local in BaudRateGenerator with formal parameter declaration list [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/uart/BaudRateGenerator.v:13]
-WARNING: [Synth 8-2507] parameter declaration becomes local in BaudRateGenerator with formal parameter declaration list [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/uart/BaudRateGenerator.v:14]
-WARNING: [Synth 8-2507] parameter declaration becomes local in BaudRateGenerator with formal parameter declaration list [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/uart/BaudRateGenerator.v:15]
-WARNING: [Synth 8-2507] parameter declaration becomes local in BaudRateGenerator with formal parameter declaration list [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/uart/BaudRateGenerator.v:16]
+INFO: [Synth 8-7075] Helper process launched with PID 19200
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1103.297 ; gain = 0.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1104.426 ; gain = 0.000
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'Top_UART_String' [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/new/Top_UART_String.v:3]
-INFO: [Synth 8-6157] synthesizing module 'Uart8' [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/uart/Uart8.v:6]
-	Parameter CLOCK_RATE bound to: 100000000 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'uart' [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/_source/MyUART_verilog_files/uart.v:5]
 	Parameter BAUD_RATE bound to: 9600 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'BaudRateGenerator' [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/uart/BaudRateGenerator.v:5]
-	Parameter CLOCK_RATE bound to: 100000000 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'boud_tick_gen' [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/_source/MyUART_verilog_files/uart.v:250]
 	Parameter BAUD_RATE bound to: 9600 - type: integer 
-	Parameter MAX_RATE_RX bound to: 325 - type: integer 
-	Parameter MAX_RATE_TX bound to: 5208 - type: integer 
-	Parameter RX_CNT_WIDTH bound to: 9 - type: integer 
-	Parameter TX_CNT_WIDTH bound to: 13 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'BaudRateGenerator' (1#1) [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/uart/BaudRateGenerator.v:5]
-INFO: [Synth 8-6157] synthesizing module 'Uart8Receiver' [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/uart/Uart8Receiver.v:9]
-WARNING: [Synth 8-6090] variable 'state' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/uart/Uart8Receiver.v:116]
-INFO: [Synth 8-6155] done synthesizing module 'Uart8Receiver' (2#1) [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/uart/Uart8Receiver.v:9]
-INFO: [Synth 8-6157] synthesizing module 'Uart8Transmitter' [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/uart/Uart8Transmitter.v:8]
-	Parameter RESET bound to: 3'b001 
-	Parameter IDLE bound to: 3'b010 
-	Parameter START_BIT bound to: 3'b011 
-	Parameter DATA_BITS bound to: 3'b100 
-	Parameter STOP_BIT bound to: 3'b101 
-INFO: [Synth 8-6155] done synthesizing module 'Uart8Transmitter' (3#1) [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/uart/Uart8Transmitter.v:8]
-INFO: [Synth 8-6155] done synthesizing module 'Uart8' (4#1) [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/uart/Uart8.v:6]
+	Parameter BUAD_COUNT bound to: 651 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'boud_tick_gen' (1#1) [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/_source/MyUART_verilog_files/uart.v:250]
+INFO: [Synth 8-6157] synthesizing module 'uart_rx' [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/_source/MyUART_verilog_files/uart.v:50]
+	Parameter R_IDLE bound to: 4'b0000 
+	Parameter START bound to: 4'b0001 
+	Parameter DATA_STATE bound to: 4'b0010 
+	Parameter STOP bound to: 4'b0011 
+INFO: [Synth 8-226] default block is never used [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/_source/MyUART_verilog_files/uart.v:94]
+INFO: [Synth 8-6155] done synthesizing module 'uart_rx' (2#1) [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/_source/MyUART_verilog_files/uart.v:50]
+INFO: [Synth 8-6157] synthesizing module 'uart_tx' [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/_source/MyUART_verilog_files/uart.v:146]
+	Parameter R_IDLE bound to: 4'b0000 
+	Parameter START bound to: 4'b0001 
+	Parameter DATA_STATE bound to: 4'b0010 
+	Parameter STOP bound to: 4'b0011 
+INFO: [Synth 8-155] case statement is not full and has no default [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/_source/MyUART_verilog_files/uart.v:191]
+INFO: [Synth 8-6155] done synthesizing module 'uart_tx' (3#1) [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/_source/MyUART_verilog_files/uart.v:146]
+INFO: [Synth 8-6155] done synthesizing module 'uart' (4#1) [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/_source/MyUART_verilog_files/uart.v:5]
 INFO: [Synth 8-6157] synthesizing module 'fifo' [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/_source/MyFIFORAM_verilog_files/fifo_que.v:3]
 	Parameter ADDR_WIDTH bound to: 4 - type: integer 
 	Parameter DATA_WIDTH bound to: 8 - type: integer 
@@ -63,18 +58,18 @@ INFO: [Synth 8-6155] done synthesizing module 'fifo_cu' (6#1) [C:/harman/FPGA_Ha
 INFO: [Synth 8-6155] done synthesizing module 'fifo' (7#1) [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/_source/MyFIFORAM_verilog_files/fifo_que.v:3]
 INFO: [Synth 8-6155] done synthesizing module 'Top_UART_String' (8#1) [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/new/Top_UART_String.v:3]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1103.297 ; gain = 0.000
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1104.426 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1103.297 ; gain = 0.000
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1104.426 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1103.297 ; gain = 0.000
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1104.426 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1103.297 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1104.426 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -85,73 +80,77 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/Top_UART_String_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1167.699 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1173.750 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1167.699 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1173.750 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1167.699 ; gain = 64.402
+Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1173.750 ; gain = 69.324
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1167.699 ; gain = 64.402
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1173.750 ; gain = 69.324
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1167.699 ; gain = 64.402
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1173.750 ; gain = 69.324
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'Uart8Transmitter'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'uart_rx'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'uart_tx'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
-                  iSTATE |                            00001 |                              001
-*
-                    IDLE |                            00010 |                              010
-               START_BIT |                            00100 |                              011
-               DATA_BITS |                            01000 |                              100
-                STOP_BIT |                            10000 |                              101
+                  R_IDLE |                               00 |                               00
+                   START |                               01 |                               01
+              DATA_STATE |                               10 |                               10
+                    STOP |                               11 |                               11
 ---------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'Uart8Transmitter'
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'uart_rx'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  R_IDLE |                               00 |                             0000
+                   START |                               01 |                             0001
+              DATA_STATE |                               10 |                             0010
+                    STOP |                               11 |                             0011
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'uart_tx'
+WARNING: [Synth 8-327] inferring latch for variable 'temp_data_next_reg' [C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/_source/MyUART_verilog_files/uart.v:199]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1167.699 ; gain = 64.402
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1173.750 ; gain = 69.324
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input   13 Bit       Adders := 1     
-	   2 Input    9 Bit       Adders := 1     
-	   2 Input    4 Bit       Adders := 9     
-	   2 Input    3 Bit       Adders := 2     
+	   2 Input   10 Bit       Adders := 1     
+	   2 Input    5 Bit       Adders := 1     
+	   2 Input    4 Bit       Adders := 11    
 +---Registers : 
-	               13 Bit    Registers := 1     
-	                9 Bit    Registers := 1     
-	                8 Bit    Registers := 5     
-	                4 Bit    Registers := 5     
-	                3 Bit    Registers := 3     
-	                1 Bit    Registers := 13    
-+---RAMs : 
-	              128 Bit	(16 X 8 bit)          RAMs := 2     
+	               10 Bit    Registers := 1     
+	                8 Bit    Registers := 1     
+	                5 Bit    Registers := 1     
+	                4 Bit    Registers := 7     
+	                1 Bit    Registers := 8     
 +---Muxes : 
-	   2 Input   13 Bit        Muxes := 1     
-	   2 Input    9 Bit        Muxes := 1     
-	   2 Input    8 Bit        Muxes := 9     
-	   4 Input    8 Bit        Muxes := 3     
-	   5 Input    5 Bit        Muxes := 1     
-	   2 Input    4 Bit        Muxes := 3     
-	   4 Input    4 Bit        Muxes := 1     
-	   2 Input    3 Bit        Muxes := 14    
-	   4 Input    3 Bit        Muxes := 2     
-	   2 Input    1 Bit        Muxes := 15    
-	   4 Input    1 Bit        Muxes := 21    
-	   5 Input    1 Bit        Muxes := 5     
+	   2 Input    8 Bit        Muxes := 2     
+	   4 Input    8 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 3     
+	   4 Input    5 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 2     
+	   4 Input    4 Bit        Muxes := 2     
+	   4 Input    2 Bit        Muxes := 2     
+	   2 Input    2 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 6     
+	   3 Input    1 Bit        Muxes := 3     
+	   4 Input    1 Bit        Muxes := 23    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -168,19 +167,19 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1167.699 ; gain = 64.402
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1173.750 ; gain = 69.324
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 
 Distributed RAM: Preliminary Mapping	Report (see note below)
-+----------------+----------------------------+-----------+----------------------+---------------+
-|Module Name     | RTL Object                 | Inference | Size (Depth x Width) | Primitives    | 
-+----------------+----------------------------+-----------+----------------------+---------------+
-|Top_UART_String | U_Rx_Mem/uregister/ram_reg | Implied   | 16 x 8               | RAM16X1D x 8	 | 
-|Top_UART_String | U_Tx_Mem/uregister/ram_reg | Implied   | 16 x 8               | RAM16X1D x 8	 | 
-+----------------+----------------------------+-----------+----------------------+---------------+
++----------------+----------------------------+-----------+----------------------+-------------+
+|Module Name     | RTL Object                 | Inference | Size (Depth x Width) | Primitives  | 
++----------------+----------------------------+-----------+----------------------+-------------+
+|Top_UART_String | U_Rx_Mem/uregister/ram_reg | Implied   | 16 x 8               | RAM32M x 2	 | 
+|Top_UART_String | U_Tx_Mem/uregister/ram_reg | Implied   | 16 x 8               | RAM32M x 2	 | 
++----------------+----------------------------+-----------+----------------------+-------------+
 
 Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
 ---------------------------------------------------------------------------------
@@ -190,25 +189,25 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1167.699 ; gain = 64.402
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1173.750 ; gain = 69.324
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1172.207 ; gain = 68.910
+Finished Timing Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1173.750 ; gain = 69.324
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 
 Distributed RAM: Final Mapping	Report
-+----------------+----------------------------+-----------+----------------------+---------------+
-|Module Name     | RTL Object                 | Inference | Size (Depth x Width) | Primitives    | 
-+----------------+----------------------------+-----------+----------------------+---------------+
-|Top_UART_String | U_Rx_Mem/uregister/ram_reg | Implied   | 16 x 8               | RAM16X1D x 8	 | 
-|Top_UART_String | U_Tx_Mem/uregister/ram_reg | Implied   | 16 x 8               | RAM16X1D x 8	 | 
-+----------------+----------------------------+-----------+----------------------+---------------+
++----------------+----------------------------+-----------+----------------------+-------------+
+|Module Name     | RTL Object                 | Inference | Size (Depth x Width) | Primitives  | 
++----------------+----------------------------+-----------+----------------------+-------------+
+|Top_UART_String | U_Rx_Mem/uregister/ram_reg | Implied   | 16 x 8               | RAM32M x 2	 | 
+|Top_UART_String | U_Tx_Mem/uregister/ram_reg | Implied   | 16 x 8               | RAM32M x 2	 | 
++----------------+----------------------------+-----------+----------------------+-------------+
 
 ---------------------------------------------------------------------------------
 Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -217,7 +216,7 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1182.000 ; gain = 78.703
+Finished Technology Mapping : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1173.750 ; gain = 69.324
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -235,37 +234,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1182.000 ; gain = 78.703
+Finished IO Insertion : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1178.934 ; gain = 74.508
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1182.000 ; gain = 78.703
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1178.934 ; gain = 74.508
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1182.000 ; gain = 78.703
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1178.934 ; gain = 74.508
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1182.000 ; gain = 78.703
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1178.934 ; gain = 74.508
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1182.000 ; gain = 78.703
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1178.934 ; gain = 74.508
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1182.000 ; gain = 78.703
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1178.934 ; gain = 74.508
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -278,45 +277,46 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+---------+------+
-|      |Cell     |Count |
-+------+---------+------+
-|1     |BUFG     |     1|
-|2     |CARRY4   |     3|
-|3     |LUT1     |     6|
-|4     |LUT2     |    29|
-|5     |LUT3     |    22|
-|6     |LUT4     |    18|
-|7     |LUT5     |    15|
-|8     |LUT6     |    50|
-|9     |RAM16X1D |    16|
-|10    |FDCE     |    18|
-|11    |FDPE     |     2|
-|12    |FDRE     |    84|
-|13    |IBUF     |     3|
-|14    |OBUF     |     1|
-+------+---------+------+
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |LUT1   |     5|
+|3     |LUT2   |    12|
+|4     |LUT3   |    18|
+|5     |LUT4   |    15|
+|6     |LUT5   |    23|
+|7     |LUT6   |    32|
+|8     |MUXF7  |     1|
+|9     |RAM32M |     4|
+|10    |FDCE   |    68|
+|11    |FDPE   |     3|
+|12    |LD     |     8|
+|13    |IBUF   |     3|
+|14    |OBUF   |     1|
++------+-------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1182.000 ; gain = 78.703
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1178.934 ; gain = 74.508
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:11 ; elapsed = 00:00:18 . Memory (MB): peak = 1182.000 ; gain = 14.301
-Synthesis Optimization Complete : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1182.000 ; gain = 78.703
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:10 ; elapsed = 00:00:14 . Memory (MB): peak = 1178.934 ; gain = 5.184
+Synthesis Optimization Complete : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1178.934 ; gain = 74.508
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1191.840 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 19 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1191.004 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 13 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1192.828 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1191.004 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 16 instances were transformed.
-  RAM16X1D => RAM32X1D (RAMD32(x2)): 16 instances
+  A total of 12 instances were transformed.
+  LD => LDCE: 8 instances
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 4 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-34 Infos, 5 Warnings, 0 Critical Warnings and 0 Errors encountered.
+38 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:22 ; elapsed = 00:00:25 . Memory (MB): peak = 1192.828 ; gain = 89.531
+synth_design: Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1191.004 ; gain = 86.578
 INFO: [Common 17-1381] The checkpoint 'C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.runs/synth_1/Top_UART_String.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file Top_UART_String_utilization_synth.rpt -pb Top_UART_String_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Mar 21 09:12:00 2025...
+INFO: [Common 17-206] Exiting Vivado at Fri Mar 21 09:48:21 2025...

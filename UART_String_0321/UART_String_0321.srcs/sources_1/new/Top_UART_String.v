@@ -15,40 +15,40 @@ module Top_UART_String (
     wire w_txmem_empty;
     wire w_tx_busy;
 
-    // uart #(
-    //     .BAUD_RATE(9600)
-    // ) U_UART (
-    //     .clk(clk),
-    //     .rst(rst),
-    //     .tx_start_triger(~w_txmem_empty),
-    //     .tx_data(w_txmem_data),
-    //     .rx(rx),
-    //     .tx(tx),
-    //     .tx_busy(w_tx_busy),
-    //     .rx_data(w_rx_data),
-    //     .rx_done(w_rx_done)
-    // );
-    Uart8 #(
-        .CLOCK_RATE(100_000_000),  // board internal clock
-        .BAUD_RATE (9_600)
-    ) U_UART (  
-        .clk (clk),
-        // rx interface
+    uart #(
+        .BAUD_RATE(9600)
+    ) U_UART (
+        .clk(clk),
+        .rst(rst),
+        .tx_start_triger(~w_txmem_empty),
+        .tx_data(w_txmem_data),
         .rx(rx),
-        .rxEn(rst),
-        .out(w_rx_data),
-        .rxDone(w_rx_done),
-        .rxBusy(),
-        .rxErr(),
-
-        // tx interface
         .tx(tx),
-        .txEn(rst),
-        .txStart(~w_txmem_empty),
-        .in(w_txmem_data),
-        .txDone(),
-        .txBusy(w_tx_busy)
+        .tx_busy(w_tx_busy),
+        .rx_data(w_rx_data),
+        .rx_done(w_rx_done)
     );
+    // Uart8 #(
+    //     .CLOCK_RATE(100_000_000),  // board internal clock
+    //     .BAUD_RATE (9_600)
+    // ) U_UART (  
+    //     .clk (clk),
+    //     // rx interface
+    //     .rx(rx),
+    //     .rxEn(rst),
+    //     .out(w_rx_data),
+    //     .rxDone(w_rx_done),
+    //     .rxBusy(),
+    //     .rxErr(),
+
+    //     // tx interface
+    //     .tx(tx),
+    //     .txEn(rst),
+    //     .txStart(~w_txmem_empty),
+    //     .in(w_txmem_data),
+    //     .txDone(),
+    //     .txBusy(w_tx_busy)
+    // );
 
     fifo #(
         .ADDR_WIDTH(4),

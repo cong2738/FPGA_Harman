@@ -87,11 +87,8 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/uart/BaudRateGenerator.v
-  C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/uart/Uart8.v
-  C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/uart/Uart8Receiver.v
-  C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/uart/Uart8Transmitter.v
   C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/_source/MyFIFORAM_verilog_files/fifo_que.v
+  C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/imports/_source/MyUART_verilog_files/uart.v
   C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.srcs/sources_1/new/Top_UART_String.v
 }
 OPTRACE "Adding files" END { }

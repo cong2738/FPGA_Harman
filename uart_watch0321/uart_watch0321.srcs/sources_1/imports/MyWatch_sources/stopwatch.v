@@ -85,25 +85,25 @@ module stopwatch_control_unit (
         next = state;
         case (state)
             STOP: begin
-                if (!i_mod && i_run_stop == 1'b1) begin
-                    next = RUN;
-                end else if (i_clear == 1'b1) begin
-                    next = CLEAR;
-                end else begin
-                    next = state;
-                end
+                if (!i_mod) begin
+                    if (i_run_stop == 1'b1) begin
+                        next = RUN;
+                    end else if (i_clear == 1'b1) begin
+                        next = CLEAR;
+                    end
+                end else next = state;
             end
             RUN: begin
-                if (!i_mod && i_run_stop == 1'b1) begin
-                    next = STOP;
-                end else begin
-                    next = state;
-                end
+                if (!i_mod) begin
+                    if (i_run_stop == 1'b1) begin
+                        next = STOP;
+                    end
+                end else next = state;
             end
             CLEAR: begin
-                if (!i_mod && i_clear == 1'b0) begin
+                if (i_clear == 1'b0) begin
                     next = STOP;
-                end
+                end else next = state;
             end
             default: begin
                 next = state;

@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "D:/harman/FPGA_Harman/20250313_my_watch/20250313_my_watch.runs/synth_1/top_my_watch.tcl"
+  variable script "C:/harman/FPGA_Harman-1/2025_03_13__my_watch/2025_03_13__my_watch.runs/synth_1/top_my_watch.tcl"
   variable category "vivado_synth"
 }
 
@@ -55,10 +55,22 @@ if {$::dispatch::connected} {
   }
 }
 
+proc create_report { reportName command } {
+  set status "."
+  append status $reportName ".fail"
+  if { [file exists $status] } {
+    eval file delete [glob $status]
+  }
+  send_msg_id runtcl-4 info "Executing : $command"
+  set retval [eval catch { $command } msg]
+  if { $retval != 0 } {
+    set fp [open $status w]
+    close $fp
+    send_msg_id runtcl-5 warning "$msg"
+  }
+}
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 2
-set_param synth.incrementalSynthesisCache C:/Users/cong2/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-31368-PKLT/incrSyn
-set_param checkpoint.writeSynthRtdsInDcp 1
+set_param chipscope.maxJobs 4
 set_param xicom.use_bs_reader 1
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
@@ -68,22 +80,22 @@ create_project -in_memory -part xc7a35tcpg236-1
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir D:/harman/FPGA_Harman/20250313_my_watch/20250313_my_watch.cache/wt [current_project]
-set_property parent.project_path D:/harman/FPGA_Harman/20250313_my_watch/20250313_my_watch.xpr [current_project]
+set_property webtalk.parent_dir C:/harman/FPGA_Harman-1/2025_03_13__my_watch/2025_03_13__my_watch.cache/wt [current_project]
+set_property parent.project_path C:/harman/FPGA_Harman-1/2025_03_13__my_watch/2025_03_13__my_watch.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_output_repo d:/harman/FPGA_Harman/20250313_my_watch/20250313_my_watch.cache/ip [current_project]
+set_property ip_output_repo c:/harman/FPGA_Harman-1/2025_03_13__my_watch/2025_03_13__my_watch.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  D:/harman/FPGA_Harman/20250313_my_watch/20250313_my_watch.srcs/sources_1/imports/FPGA_Harman/btn_debounce.v
-  D:/harman/FPGA_Harman/20250313_my_watch/20250313_my_watch.srcs/sources_1/imports/FPGA_Harman/fnd_controller.v
-  D:/harman/FPGA_Harman/20250313_my_watch/20250313_my_watch.srcs/sources_1/new/stopwatch.v
-  D:/harman/FPGA_Harman/20250313_my_watch/20250313_my_watch.srcs/sources_1/new/stopwatch_dp.v
-  D:/harman/FPGA_Harman/20250313_my_watch/20250313_my_watch.srcs/sources_1/new/watch.v
-  D:/harman/FPGA_Harman/20250313_my_watch/20250313_my_watch.srcs/sources_1/new/watch_dp.v
-  D:/harman/FPGA_Harman/20250313_my_watch/20250313_my_watch.srcs/sources_1/new/top_my_watch.v
+  C:/harman/FPGA_Harman-1/2025_03_13__my_watch/2025_03_13__my_watch.srcs/sources_1/imports/FPGA_Harman/btn_debounce.v
+  C:/harman/FPGA_Harman-1/2025_03_13__my_watch/2025_03_13__my_watch.srcs/sources_1/imports/FPGA_Harman/fnd_controller.v
+  C:/harman/FPGA_Harman-1/2025_03_13__my_watch/2025_03_13__my_watch.srcs/sources_1/new/stopwatch.v
+  C:/harman/FPGA_Harman-1/2025_03_13__my_watch/2025_03_13__my_watch.srcs/sources_1/new/stopwatch_dp.v
+  C:/harman/FPGA_Harman-1/2025_03_13__my_watch/2025_03_13__my_watch.srcs/sources_1/new/watch.v
+  C:/harman/FPGA_Harman-1/2025_03_13__my_watch/2025_03_13__my_watch.srcs/sources_1/new/watch_dp.v
+  C:/harman/FPGA_Harman-1/2025_03_13__my_watch/2025_03_13__my_watch.srcs/sources_1/new/top_my_watch.v
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -94,8 +106,8 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc D:/harman/FPGA_Harman/20250313_my_watch/20250313_my_watch.srcs/constrs_1/imports/FPGA_Harman/Basys-3-Master.xdc
-set_property used_in_implementation false [get_files D:/harman/FPGA_Harman/20250313_my_watch/20250313_my_watch.srcs/constrs_1/imports/FPGA_Harman/Basys-3-Master.xdc]
+read_xdc C:/harman/FPGA_Harman-1/2025_03_13__my_watch/2025_03_13__my_watch.srcs/constrs_1/imports/FPGA_Harman/Basys-3-Master.xdc
+set_property used_in_implementation false [get_files C:/harman/FPGA_Harman-1/2025_03_13__my_watch/2025_03_13__my_watch.srcs/constrs_1/imports/FPGA_Harman/Basys-3-Master.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
@@ -114,7 +126,7 @@ set_param constraints.enableBinaryConstraints false
 write_checkpoint -force -noxdef top_my_watch.dcp
 OPTRACE "write_checkpoint" END { }
 OPTRACE "synth reports" START { REPORT }
-generate_parallel_reports -reports { "report_utilization -file top_my_watch_utilization_synth.rpt -pb top_my_watch_utilization_synth.pb"  } 
+create_report "synth_1_synth_report_utilization_0" "report_utilization -file top_my_watch_utilization_synth.rpt -pb top_my_watch_utilization_synth.pb"
 OPTRACE "synth reports" END { }
 file delete __synthesis_is_running__
 close [open __synthesis_is_complete__ w]

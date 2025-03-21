@@ -2,11 +2,11 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Fri Mar 21 10:20:12 2025
-# Process ID: 14504
-# Current directory: C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.runs/synth_1
-# Command line: vivado.exe -log Top_UART_String.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top_UART_String.tcl
-# Log file: C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.runs/synth_1/Top_UART_String.vds
-# Journal file: C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.runs/synth_1\vivado.jou
+# Start of session at: Fri Mar 21 13:54:18 2025
+# Process ID: 18428
+# Current directory: C:/harman/FPGA_Harman-1/uart_watch0321/uart_watch0321.runs/synth_1
+# Command line: vivado.exe -log uart_watch.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source uart_watch.tcl
+# Log file: C:/harman/FPGA_Harman-1/uart_watch0321/uart_watch0321.runs/synth_1/uart_watch.vds
+# Journal file: C:/harman/FPGA_Harman-1/uart_watch0321/uart_watch0321.runs/synth_1\vivado.jou
 #-----------------------------------------------------------
-source Top_UART_String.tcl -notrace
+source uart_watch.tcl -notrace

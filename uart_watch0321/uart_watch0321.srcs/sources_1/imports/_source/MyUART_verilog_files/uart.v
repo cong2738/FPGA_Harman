@@ -57,7 +57,7 @@ module uart_rx (
 );
 
     reg [7:0] data, data_next;
-    reg [4:0] tick_count, tick_count_next;
+    reg [3:0] tick_count, tick_count_next;
     reg [1:0] state, next;
     reg r_rx_done, r_rx_done_next;
     reg [3:0] data_count, data_count_next;

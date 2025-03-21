@@ -19,9 +19,13 @@ module top_my_watch #(
     output [3:0] mod_indicate_led
 );
 
+    wire btn_run_stop;
+    wire btn_clear;
     wire btn_sec;
     wire btn_min;
     wire btn_hour;
+    assign btn_run_stop = btnL;
+    assign btn_clear = btnR;
     assign btn_sec  = btnD;
     assign btn_min  = btnL;
     assign btn_hour = btnU;
@@ -30,6 +34,15 @@ module top_my_watch #(
         .hs_mod_sw(hs_mod_sw),
         .watch_mod_sw(watch_mod_sw),
         .led(mod_indicate_led)
+    );
+
+    stopwatch_BD U_Stopwatch_BD (
+        .clk(clk),
+        .reset(reset),
+        .btn_run_stop(btn_run_stop),
+        .btn_clear(btn_clear),
+        .d_run_stop(d_run_stop),
+        .d_clear(d_clear)
     );
 
     wire [$clog2(MSEC_MAX)-1:0] stopwatch_msec;
@@ -53,6 +66,17 @@ module top_my_watch #(
         .w_min(stopwatch_min),
         .w_hour(stopwatch_hour)
     );
+
+    watch_BD U_Watch_BD(
+    . clk(clk),
+    . reset(reset),
+    . btn_sec(btn_sec),
+    . btn_min(btn_min),
+    . btn_hour(btn_hour),
+    . d_sec_add(d_sec_add),
+    . d_min_add(d_min_add),
+    . d_hour_add(d_hour_add)
+);
 
     wire [$clog2(MSEC_MAX)-1:0] watch_msec;
     wire [ $clog2(SEC_MAX)-1:0] watch_sec;
@@ -189,5 +213,173 @@ module watch_mod_mux #(
     assign o_sec  = w_sec;
     assign o_min  = w_min;
     assign o_hour = w_hour;
+
+endmodule
+
+module stopwatch_BD (
+    input  clk,
+    input  reset,
+    input  btn_run_stop,
+    input  btn_clear,
+    output d_run_stop,
+    output d_clear
+);
+    btn_debounce U_BTN_Debounce_RUN_STOP (
+        .clk(clk),
+        .reset(reset),
+        .i_btn(btn_run_stop),  // from btn
+        .o_btn(d_run_stop)  // to control unit
+    );
+    btn_debounce U_BTN_Debounce_CLEAR (
+        .clk(clk),
+        .reset(reset),
+        .i_btn(btn_clear),  // from btn
+        .o_btn(d_clear)  // to control unit
+    );
+
+endmodule
+
+module watch_BD (
+    input  clk,
+    input  reset,
+    input  btn_sec,
+    input  btn_min,
+    input  btn_hour,
+    output d_sec_add,
+    output d_min_add,
+    output d_hour_add
+);
+    btn_debounce U_BTN_Debounce_Sec (
+        .clk  (clk),
+        .reset(reset),
+        .i_btn(btn_sec),   // from btn
+        .o_btn(d_sec_add)  // to control unit
+    );
+    btn_debounce U_BTN_Debounce_Min (
+        .clk  (clk),
+        .reset(reset),
+        .i_btn(btn_min),   // from btn
+        .o_btn(d_min_add)  // to control unit
+    );
+    btn_debounce U_BTN_Debounce_Hour (
+        .clk  (clk),
+        .reset(reset),
+        .i_btn(btn_hour),   // from btn
+        .o_btn(d_hour_add)  // to control unit
+    );
+
+endmodule
+
+module cmd_CU (
+    input clk,
+    input rst,
+    input [7:0] cmd_char,
+    output state_tick
+);
+    reg state, next;
+    reg [7:0] cmd_reg, cmd_next;  //상태변화 확인을 위한 reg
+
+    assign state_tick = state;
+
+    always @(posedge clk, posedge rst) begin
+        if (rst) begin
+            state   = 0;
+            cmd_reg = 0;
+        end else begin
+            state   = next;
+            cmd_reg = cmd_next;
+        end
+    end
+
+    always @(*) begin
+        next = 0;
+        cmd_next = cmd_reg;
+        case (state)
+            0: begin
+                if (cmd_reg != cmd_char) begin
+                    next = 1;
+                    cmd_next = cmd_char;
+                end
+            end
+            1: begin
+                next = 0;
+            end
+        endcase
+    end
+
+endmodule
+
+module cmd_sig_box (
+    input        clk,
+    input        rst,
+    input  [7:0] uart_char,
+    output       run_stop,
+    output       clear,
+    output       sec_add,
+    output       min_add,
+    output       hour_add,
+    output       watch_modsel
+);
+    localparam  IDLE = 0, 
+                RUNSTOP = 1, 
+                CLEAR = 2, 
+                ADDH = 3, 
+                ADDM = 4, 
+                ADDS = 5, 
+                ADDMS = 6;
+
+    reg [3:0] uart_state;
+
+    always @(*) begin
+        case (uart_char)
+            "R": begin
+                uart_state = RUNSTOP;
+            end
+            "r": begin
+                uart_state = RUNSTOP;
+            end
+            "C": begin
+                uart_state = CLEAR;
+            end
+            "c": begin
+                uart_state = CLEAR;
+            end
+            "H": begin
+                uart_state = ADDH;
+            end
+            "h": begin
+                uart_state = ADDH;
+            end
+            "M": begin
+                uart_state = ADDM;
+            end
+            "m": begin
+                uart_state = ADDM;
+            end
+            "S": begin
+                uart_state = ADDS;
+            end
+            "s": begin
+                uart_state = ADDS;
+            end
+            default: begin
+                uart_state = IDLE;
+            end
+        endcase
+    end
+
+    wire tick;
+    cmd_CU U_CU (
+        .clk(clk),
+        .rst(rst),
+        .cmd_char(uart_char),
+        .state_tick(tick)
+    );
+
+    assign run_stop =(uart_state == RUNSTOP) & tick;
+    assign clear    =(uart_state == CLEAR) & tick;
+    assign sec_add  =(uart_state == ADDS) & tick;
+    assign min_add  =(uart_state == ADDM) & tick;
+    assign hour_add =(uart_state == ADDH) & tick;
 
 endmodule

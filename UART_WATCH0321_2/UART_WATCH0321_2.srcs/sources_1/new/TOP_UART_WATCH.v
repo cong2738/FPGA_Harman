@@ -16,6 +16,7 @@ module TOP_UART_WATCH (
     output [3:0] mod_indicate_led
 );
     wire [7:0] rx_data;
+    wire rx_done;
     top_my_watch U_Watch (
         .clk(clk),
         .reset(reset),
@@ -26,6 +27,7 @@ module TOP_UART_WATCH (
         .btnR(btnR),
         .btnD(btnD),
         .cmd(rx_data),
+        .data_tick(rx_done),
         .fnd_comm(fnd_comm),
         .fnd_font(fnd_font),
         .mod_indicate_led(mod_indicate_led)
@@ -35,6 +37,7 @@ module TOP_UART_WATCH (
         .rst(reset),
         .rx(rx),
         .tx(tx),
-        .rx_data(rx_data)
+        .rx_data(rx_data),
+        .rx_done(rx_done)
     );
 endmodule

@@ -5,7 +5,8 @@ module Top_UART_String (
     input rst,
     input rx,
     output tx,
-    output [7:0] rx_data
+    output [7:0] rx_data,
+    output rx_done
 );
     wire [7:0] w_rxmem_data;
     wire [7:0] w_txmem_data;
@@ -15,6 +16,8 @@ module Top_UART_String (
     wire w_txmem_empty;
     wire w_tx_busy;
 
+    assign rx_done = w_rx_done;
+    
     uart #(
         .BAUD_RATE(9600)
     ) U_UART (

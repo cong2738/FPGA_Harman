@@ -15,6 +15,7 @@ module top_my_watch #(
     input btnR,
     input btnD,
     input [7:0] cmd,
+    input data_tick,
     output [3:0] fnd_comm,
     output [7:0] fnd_font,
     output [3:0] mod_indicate_led
@@ -46,6 +47,7 @@ module top_my_watch #(
         .clk     (clk),
         .rst     (reset),
         .cmd     (cmd),
+        .cmd_tick(data_tick),
         .run_stop(run_stop_cmd),
         .clear   (clear_cmd),
         .sec_add (sec_add_cmd),
@@ -75,8 +77,8 @@ module top_my_watch #(
     ) U_Stopwatch (
         .clk(clk),
         .reset(reset),
-        .d_run_stop(d_run_stop|run_stop_cmd),
-        .d_clear(d_clear|clear_cmd),
+        .d_run_stop(d_run_stop | run_stop_cmd),
+        .d_clear(d_clear | clear_cmd),
         .watch_mod_sw(watch_mod_sw),
         .w_msec(stopwatch_msec),
         .w_sec(stopwatch_sec),
@@ -108,14 +110,14 @@ module top_my_watch #(
     ) U_Watch (
         .clk(clk),
         .reset(reset),
-        .d_sec_add(d_sec_add),
-        .d_min_add(d_min_add),
-        .d_hour_add(d_hour_add),
+        .d_sec_add(d_sec_add | sec_add_cmd),
+        .d_min_add(d_min_add | min_add_cmd),
+        .d_hour_add(d_hour_add | hour_add_cmd),
         .watch_mod_sw(watch_mod_sw),
         .w_msec(watch_msec),
-        .w_sec(watch_sec|sec_add_cmd),
-        .w_min(watch_min|min_add_cmd),
-        .w_hour(watch_hour|hour_add_cmd)
+        .w_sec(watch_sec),
+        .w_min(watch_min),
+        .w_hour(watch_hour)
     );
 
     wire [$clog2(MSEC_MAX)-1:0] w_msec;
@@ -287,49 +289,11 @@ module watch_BD (
 
 endmodule
 
-module cmd_CU (
-    input clk,
-    input rst,
-    input [7:0] cmd_char,
-    output state_tick
-);
-    reg state, next;
-    reg [7:0] cmd_reg, cmd_next;  //상태변화 확인을 위한 reg
-
-    assign state_tick = state;
-
-    always @(posedge clk, posedge rst) begin
-        if (rst) begin
-            state   = 0;
-            cmd_reg = 0;
-        end else begin
-            state   = next;
-            cmd_reg = cmd_next;
-        end
-    end
-
-    always @(*) begin
-        next = 0;
-        cmd_next = cmd_reg;
-        case (state)
-            0: begin
-                if (cmd_reg != cmd_char) begin
-                    next = 1;
-                    cmd_next = cmd_char;
-                end
-            end
-            1: begin
-                next = 0;
-            end
-        endcase
-    end
-
-endmodule
-
 module cmd_sig_box (
     input        clk,
     input        rst,
     input  [7:0] cmd,
+    input        cmd_tick,
     output       run_stop,
     output       clear,
     output       sec_add,
@@ -345,38 +309,58 @@ module cmd_sig_box (
                 ADDMS = 6;
 
     reg [3:0] uart_state;
+    reg r_run_stop;
+    reg r_clear;
+    reg r_hour_add;
+    reg r_min_add;
+    reg r_sec_add;
 
     always @(*) begin
+        r_run_stop = 0;
+        r_clear = 0;
+        r_hour_add = 0;
+        r_min_add = 0;
+        r_sec_add = 0;
         case (cmd)
             "R": begin
                 uart_state = RUNSTOP;
+                r_run_stop = 1;
             end
             "r": begin
                 uart_state = RUNSTOP;
+                r_run_stop = 1;
             end
             "C": begin
                 uart_state = CLEAR;
+                r_clear = 1;
             end
             "c": begin
                 uart_state = CLEAR;
+                r_clear = 1;
             end
             "H": begin
                 uart_state = ADDH;
+                r_hour_add = 1;
             end
             "h": begin
                 uart_state = ADDH;
+                r_hour_add = 1;
             end
             "M": begin
                 uart_state = ADDM;
+                r_min_add = 1;
             end
             "m": begin
                 uart_state = ADDM;
+                r_min_add = 1;
             end
             "S": begin
                 uart_state = ADDS;
+                r_sec_add = 1;
             end
             "s": begin
                 uart_state = ADDS;
+                r_sec_add = 1;
             end
             default: begin
                 uart_state = IDLE;
@@ -384,18 +368,10 @@ module cmd_sig_box (
         endcase
     end
 
-    wire tick;
-    cmd_CU U_CU (
-        .clk(clk),
-        .rst(rst),
-        .cmd_char(cmd),
-        .state_tick(tick)
-    );
-
-    assign run_stop =(uart_state == RUNSTOP) & tick;
-    assign clear    =(uart_state == CLEAR) & tick;
-    assign sec_add  =(uart_state == ADDS) & tick;
-    assign min_add  =(uart_state == ADDM) & tick;
-    assign hour_add =(uart_state == ADDH) & tick;
+    assign run_stop = r_run_stop & cmd_tick;
+    assign clear    = r_clear & cmd_tick;
+    assign sec_add  = r_hour_add & cmd_tick;
+    assign min_add  = r_min_add & cmd_tick;
+    assign hour_add = r_sec_add & cmd_tick;
 
 endmodule

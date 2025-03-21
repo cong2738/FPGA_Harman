@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Fri Mar 21 14:36:34 2025
+| Date         : Fri Mar 21 14:42:15 2025
 | Host         : DESKTOP-7CFQ9ND running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file Top_UART_String_control_sets_placed.rpt
 | Design       : Top_UART_String
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    20 |
-|    Minimum number of control sets                        |    20 |
+| Total control sets                                       |    13 |
+|    Minimum number of control sets                        |    13 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    89 |
+| Unused register locations in slices containing registers |    52 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    20 |
-| >= 0 to < 4        |     9 |
+| Total control sets |    13 |
+| >= 0 to < 4        |     3 |
 | >= 4 to < 6        |     7 |
 | >= 6 to < 8        |     0 |
-| >= 8 to < 10       |     1 |
+| >= 8 to < 10       |     2 |
 | >= 10 to < 12      |     0 |
 | >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     0 |
-| >= 16              |     3 |
+| >= 16              |     1 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,11 +58,11 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               8 |            2 |
-| No           | No                    | Yes                    |              32 |           12 |
+| No           | No                    | No                     |               2 |            1 |
+| No           | No                    | Yes                    |              26 |           12 |
 | No           | Yes                   | No                     |               0 |            0 |
 | Yes          | No                    | No                     |               0 |            0 |
-| Yes          | No                    | Yes                    |              39 |           19 |
+| Yes          | No                    | Yes                    |              32 |           12 |
 | Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
@@ -73,26 +73,19 @@ Table of Contents
 +--------------------------------+---------------------------------------+------------------+------------------+----------------+--------------+
 |          Clock Signal          |             Enable Signal             | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
 +--------------------------------+---------------------------------------+------------------+------------------+----------------+--------------+
-|  clk_IBUF_BUFG                 | U_UART/U_Rx/data_next[4]              | rst_IBUF         |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG                 | U_UART/U_Rx/data_next[5]              | rst_IBUF         |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG                 | U_UART/U_Rx/data_next[2]              | rst_IBUF         |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG                 | U_UART/U_Rx/data[1]_i_1_n_0           | rst_IBUF         |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG                 | U_UART/U_Rx/data_next[3]              | rst_IBUF         |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG                 | U_UART/U_Rx/data_next[6]              | rst_IBUF         |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG                 | U_UART/U_Rx/data_next[7]              | rst_IBUF         |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG                 | U_UART/U_Rx/data[0]_i_1_n_0           | rst_IBUF         |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG                 | U_UART/U_Rx/data_next[0]              | rst_IBUF         |                1 |              1 |         1.00 |
 |  clk_IBUF_BUFG                 | U_UART/U_Tx/tx_next                   | rst_IBUF         |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG                 | U_Rx_Mem/ufifo_cu/w_ptr[3]_i_1__0_n_0 | rst_IBUF         |                2 |              4 |         2.00 |
+|  U_UART/U_Tx/temp_data_next__0 |                                       |                  |                1 |              2 |         2.00 |
+|  clk_IBUF_BUFG                 | U_Rx_Mem/ufifo_cu/w_ptr[3]_i_1__0_n_0 | rst_IBUF         |                1 |              4 |         4.00 |
 |  clk_IBUF_BUFG                 | U_Tx_Mem/ufifo_cu/r_ptr[3]_i_1_n_0    | rst_IBUF         |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG                 | U_Tx_Mem/ufifo_cu/w_ptr[3]_i_1_n_0    | rst_IBUF         |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG                 | U_Tx_Mem/ufifo_cu/wr0                 | rst_IBUF         |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG                 | U_Tx_Mem/ufifo_cu/E[0]                | rst_IBUF         |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG                 | U_Tx_Mem/ufifo_cu/w_ptr[3]_i_1_n_0    | rst_IBUF         |                2 |              4 |         2.00 |
 |  clk_IBUF_BUFG                 | U_UART/U_Tx/data_count_next           | rst_IBUF         |                1 |              4 |         4.00 |
 |  clk_IBUF_BUFG                 | U_UART/U_Rx/tick_count[4]_i_1__0_n_0  | rst_IBUF         |                2 |              5 |         2.50 |
 |  clk_IBUF_BUFG                 | U_UART/U_Tx/tick_count_next           | rst_IBUF         |                2 |              5 |         2.50 |
-|  U_UART/U_Tx/temp_data_next__0 |                                       |                  |                2 |              8 |         4.00 |
-|  clk_IBUF_BUFG                 | U_Tx_Mem/ufifo_cu/wr0                 |                  |                2 |             16 |         8.00 |
-|  clk_IBUF_BUFG                 | U_UART/U_Rx/wr0                       |                  |                2 |             16 |         8.00 |
-|  clk_IBUF_BUFG                 |                                       | rst_IBUF         |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG                 | U_Tx_Mem/ufifo_cu/E[0]                |                  |                1 |              8 |         8.00 |
+|  clk_IBUF_BUFG                 | U_UART/U_Rx/wr0                       |                  |                1 |              8 |         8.00 |
+|  clk_IBUF_BUFG                 |                                       | rst_IBUF         |               12 |             26 |         2.17 |
 +--------------------------------+---------------------------------------+------------------+------------------+----------------+--------------+
 
 

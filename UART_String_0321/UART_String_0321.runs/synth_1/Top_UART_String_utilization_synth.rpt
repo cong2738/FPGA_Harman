@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Fri Mar 21 14:36:03 2025
+| Date         : Fri Mar 21 14:41:35 2025
 | Host         : DESKTOP-7CFQ9ND running 64-bit major release  (build 9200)
 | Command      : report_utilization -file Top_UART_String_utilization_synth.rpt -pb Top_UART_String_utilization_synth.pb
 | Design       : Top_UART_String
@@ -30,14 +30,14 @@ Table of Contents
 +----------------------------+------+-------+-----------+-------+
 |          Site Type         | Used | Fixed | Available | Util% |
 +----------------------------+------+-------+-----------+-------+
-| Slice LUTs*                |   96 |     0 |     20800 |  0.46 |
-|   LUT as Logic             |   80 |     0 |     20800 |  0.38 |
-|   LUT as Memory            |   16 |     0 |      9600 |  0.17 |
-|     LUT as Distributed RAM |   16 |     0 |           |       |
+| Slice LUTs*                |   81 |     0 |     20800 |  0.39 |
+|   LUT as Logic             |   73 |     0 |     20800 |  0.35 |
+|   LUT as Memory            |    8 |     0 |      9600 |  0.08 |
+|     LUT as Distributed RAM |    8 |     0 |           |       |
 |     LUT as Shift Register  |    0 |     0 |           |       |
-| Slice Registers            |   79 |     0 |     41600 |  0.19 |
-|   Register as Flip Flop    |   71 |     0 |     41600 |  0.17 |
-|   Register as Latch        |    8 |     0 |     41600 |  0.02 |
+| Slice Registers            |   60 |     0 |     41600 |  0.14 |
+|   Register as Flip Flop    |   58 |     0 |     41600 |  0.14 |
+|   Register as Latch        |    2 |     0 |     41600 | <0.01 |
 | F7 Muxes                   |    0 |     0 |     16300 |  0.00 |
 | F8 Muxes                   |    0 |     0 |      8150 |  0.00 |
 +----------------------------+------+-------+-----------+-------+
@@ -57,7 +57,7 @@ Table of Contents
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 3     |          Yes |           - |          Set |
-| 76    |          Yes |           - |        Reset |
+| 57    |          Yes |           - |        Reset |
 | 0     |          Yes |         Set |            - |
 | 0     |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
@@ -92,7 +92,7 @@ Table of Contents
 +-----------------------------+------+-------+-----------+-------+
 |          Site Type          | Used | Fixed | Available | Util% |
 +-----------------------------+------+-------+-----------+-------+
-| Bonded IOB                  |    4 |     0 |       106 |  3.77 |
+| Bonded IOB                  |    5 |     0 |       106 |  4.72 |
 | Bonded IPADs                |    0 |     0 |        10 |  0.00 |
 | Bonded OPADs                |    0 |     0 |         4 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |         5 |  0.00 |
@@ -151,19 +151,19 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDCE     |   68 |        Flop & Latch |
-| LUT6     |   33 |                 LUT |
-| RAMD32   |   24 |  Distributed Memory |
+| FDCE     |   55 |        Flop & Latch |
+| LUT6     |   24 |                 LUT |
 | LUT5     |   22 |                 LUT |
-| LUT3     |   16 |                 LUT |
+| LUT3     |   18 |                 LUT |
 | LUT4     |   15 |                 LUT |
-| LUT2     |   13 |                 LUT |
-| RAMS32   |    8 |  Distributed Memory |
-| LDCE     |    8 |        Flop & Latch |
+| LUT2     |   15 |                 LUT |
+| RAMD32   |   12 |  Distributed Memory |
+| RAMS32   |    4 |  Distributed Memory |
 | LUT1     |    4 |                 LUT |
 | IBUF     |    3 |                  IO |
 | FDPE     |    3 |        Flop & Latch |
-| OBUF     |    1 |                  IO |
+| OBUF     |    2 |                  IO |
+| LDCE     |    2 |        Flop & Latch |
 | BUFG     |    1 |               Clock |
 +----------+------+---------------------+
 

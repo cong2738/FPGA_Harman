@@ -157,6 +157,8 @@ module uart_tx (
     reg [3:0] data_count, data_count_next;
     reg [3:0] state, next;
     reg [3:0] tick_count, tick_count_next;
+    reg [7:0] temp_data_reg, temp_data_next;  // ts data buffer 25-03-21
+
     reg tx, tx_next;
     reg r_tx_busy, r_tx_busy_next;
     assign tx_busy = r_tx_busy;
@@ -168,12 +170,14 @@ module uart_tx (
             r_tx_busy <= 0;
             data_count <= 0;
             tick_count <= 0;
+            temp_data_reg <= 0;
         end else begin
             state <= next;
             tx <= tx_next;
             r_tx_busy <= r_tx_busy_next;
             data_count <= data_count_next;
             tick_count <= tick_count_next;
+            temp_data_reg <= temp_data_next;
         end
     end
 
@@ -191,10 +195,12 @@ module uart_tx (
                 tick_count_next = 0;
                 if (start_trigger == 1) begin
                     next = START;
-                    r_tx_busy_next = 1;
+                    // at start trigger, data buffering
+                    temp_data_next = i_data;
                 end
             end
             START: begin
+                r_tx_busy_next = 1;
                 if (tick == 1) begin
                     if (tick_count == 15) begin
                         tx_next = 1'b0;
@@ -208,14 +214,16 @@ module uart_tx (
             end
 
             DATA_STATE: begin
+                tx_next = temp_data_reg[data_count];
                 if (tick == 1) begin
                     if (tick_count == 15) begin
                         begin
-                            tx_next = i_data[data_count];
-                            data_count_next = data_count + 1;
+                            // tx_next = i_data[data_count];
                             tick_count_next = 0;
-                            if (data_count_next == 8) begin
+                            if (data_count_next == 7) begin
                                 next = STOP;
+                            end else begin
+                                data_count_next = data_count + 1;
                             end
                         end
                     end else begin

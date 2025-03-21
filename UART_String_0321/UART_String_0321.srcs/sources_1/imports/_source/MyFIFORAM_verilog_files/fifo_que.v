@@ -56,15 +56,15 @@ module register_file #(
 );
     reg [DATA_WIDTH-1:0] ram[0:2**ADDR_WIDTH-1];
     reg [DATA_WIDTH-1:0] w_rdata;
-    assign rdata = w_rdata;
+    assign rdata = ram[raddr];
 
     always @(posedge clk) begin
         if (wr) begin
             ram[waddr] = wdata;
         end
-        if (rd) begin
-            w_rdata = ram[raddr];
-        end
+        // if (rd) begin
+        //     w_rdata = ram[raddr];
+        // end
     end
 
 endmodule

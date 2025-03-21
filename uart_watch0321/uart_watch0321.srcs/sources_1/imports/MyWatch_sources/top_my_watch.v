@@ -75,8 +75,8 @@ module top_my_watch #(
     ) U_Stopwatch (
         .clk(clk),
         .reset(reset),
-        .d_run_stop(d_run_stop),
-        .d_clear(d_clear),
+        .d_run_stop(d_run_stop|run_stop_cmd),
+        .d_clear(d_clear|clear_cmd),
         .watch_mod_sw(watch_mod_sw),
         .w_msec(stopwatch_msec),
         .w_sec(stopwatch_sec),
@@ -113,9 +113,9 @@ module top_my_watch #(
         .d_hour_add(d_hour_add),
         .watch_mod_sw(watch_mod_sw),
         .w_msec(watch_msec),
-        .w_sec(watch_sec),
-        .w_min(watch_min),
-        .w_hour(watch_hour)
+        .w_sec(watch_sec|sec_add_cmd),
+        .w_min(watch_min|min_add_cmd),
+        .w_hour(watch_hour|hour_add_cmd)
     );
 
     wire [$clog2(MSEC_MAX)-1:0] w_msec;

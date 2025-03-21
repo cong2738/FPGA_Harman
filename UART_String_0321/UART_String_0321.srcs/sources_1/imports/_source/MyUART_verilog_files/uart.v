@@ -156,7 +156,7 @@ module uart_tx (
 
     reg [3:0] data_count, data_count_next;
     reg [3:0] state, next;
-    reg [3:0] tick_count, tick_count_next;
+    reg [4:0] tick_count, tick_count_next;
     reg [7:0] temp_data_reg, temp_data_next;  // ts data buffer 25-03-21
 
     reg tx, tx_next;
@@ -202,7 +202,7 @@ module uart_tx (
             START: begin
                 r_tx_busy_next = 1;
                 if (tick == 1) begin
-                    if (tick_count == 15) begin
+                    if (tick_count == 7) begin
                         tx_next = 1'b0;
                         data_count_next = 0;
                         tick_count_next = 0;
@@ -214,10 +214,10 @@ module uart_tx (
             end
 
             DATA_STATE: begin
-                tx_next = temp_data_reg[data_count];
                 if (tick == 1) begin
                     if (tick_count == 15) begin
                         begin
+                            tx_next = temp_data_reg[data_count];
                             // tx_next = i_data[data_count];
                             tick_count_next = 0;
                             if (data_count_next == 7) begin
@@ -233,7 +233,7 @@ module uart_tx (
             end
             STOP: begin
                 if (tick == 1) begin
-                    if (tick_count == 15) begin
+                    if (tick_count == 23) begin
                         data_count_next = 0;
                         tx_next = 1'b1;
                         tick_count_next = 0;

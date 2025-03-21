@@ -4,7 +4,7 @@
 module tb_cmd ();
     reg  clk;
     reg  rst;
-    reg  hs_mod_sw = 0;
+    reg  hs_mod_sw;
     reg  watch_mod_sw = 0;
     reg  btnU = 0;
     reg  btnL = 0;
@@ -35,7 +35,7 @@ module tb_cmd ();
 
             //Start bit(Low)
             rx = 0;
-            #(10 * 10417);  
+            #(10 * 10417);
 
             //Data bits (LSB first)
             for (i = 0; i < 8; i = i + 1) begin
@@ -57,16 +57,47 @@ module tb_cmd ();
         clk = 0;
         rst = 1;
         rx = 1;
+        hs_mod_sw = 0;
         #50 rst = 0;
         #10000;
 
         send_data("R");
         wait (uut.U_UART.rx_done);
+        wait (uut.U_UART.U_UART.tx_busy);
+        wait (!uut.U_UART.U_UART.tx_busy);
+
+        send_data("R");
+        wait (uut.U_UART.rx_done);
+        wait (uut.U_UART.U_UART.tx_busy);
+        wait (!uut.U_UART.U_UART.tx_busy);
+
+        send_data("C");
+        wait (uut.U_UART.rx_done);
+        wait (uut.U_UART.U_UART.tx_busy);
+        wait (!uut.U_UART.U_UART.tx_busy);
+
+        hs_mod_sw = 1;
+        wait (clk);
+        wait (!clk);
+
+        send_data("H");
+        wait (uut.U_UART.rx_done);
+        wait (uut.U_UART.U_UART.tx_busy);
+        wait (!uut.U_UART.U_UART.tx_busy);
+
+        send_data("M");
+        wait (uut.U_UART.rx_done);
+        wait (uut.U_UART.U_UART.tx_busy);
+        wait (!uut.U_UART.U_UART.tx_busy);
+
+        send_data("S");
+        wait (uut.U_UART.rx_done);
+        wait (uut.U_UART.U_UART.tx_busy);
+        wait (!uut.U_UART.U_UART.tx_busy);
 
         #10000;
 
-        wait (uut.U_UART.U_UART.tx_busy);
-        wait (!uut.U_UART.U_UART.tx_busy);
+
         $stop;
 
 

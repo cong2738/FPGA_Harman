@@ -7,37 +7,15 @@ module watch #(
 ) (
     input clk,
     input reset,
-    input btn_sec,
-    input btn_min,
-    input btn_hour,
+    input d_sec_add,
+    input d_min_add,
+    input d_hour_add,
     input watch_mod_sw,
     output [$clog2(MSEC_MAX)-1:0] w_msec,
     output [$clog2(SEC_MAX)-1:0] w_sec,
     output [$clog2(MIN_MAX)-1:0] w_min,
     output [$clog2(HOUR_MAX)-1:0] w_hour
 );
-    wire d_sec_add;
-    btn_debounce U_BTN_Debounce_Sec (
-        .clk  (clk),
-        .reset(reset),
-        .i_btn(btn_sec),   // from btn
-        .o_btn(d_sec_add)  // to control unit
-    );
-    wire d_min_add;
-    btn_debounce U_BTN_Debounce_Min (
-        .clk  (clk),
-        .reset(reset),
-        .i_btn(btn_min),   // from btn
-        .o_btn(d_min_add)  // to control unit
-    );
-    wire d_hour_add;
-    btn_debounce U_BTN_Debounce_Hour (
-        .clk  (clk),
-        .reset(reset),
-        .i_btn(btn_hour),   // from btn
-        .o_btn(d_hour_add)  // to control unit
-    );
-
     wire [2:0] w_hms;
     watch_control_unit U_watch_CU (
         .clk(clk),

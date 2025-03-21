@@ -33,6 +33,7 @@ module uart_watch (
         .btnL(btnL),
         .btnR(btnR),
         .btnD(btnD),
+        .cmd(rx_data),
         .fnd_comm(fnd_comm),
         .fnd_font(fnd_font),
         .mod_indicate_led(mod_indicate_led)

@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Fri Mar 21 14:36:10 2025
+# Process ID: 16512
+# Current directory: C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.runs/impl_1
+# Command line: vivado.exe -log Top_UART_String.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source Top_UART_String.tcl -notrace
+# Log file: C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.runs/impl_1/Top_UART_String.vdi
+# Journal file: C:/harman/FPGA_Harman-1/UART_String_0321/UART_String_0321.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source Top_UART_String.tcl -notrace

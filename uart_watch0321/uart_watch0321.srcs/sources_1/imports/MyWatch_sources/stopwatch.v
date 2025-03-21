@@ -7,8 +7,8 @@ module stopwatch #(
 ) (
     input clk,
     input reset,
-    input btn_run_stop,
-    input btn_clear,
+    input d_run_stop,
+    input d_clear,
     input watch_mod_sw,
     output [$clog2(MSEC_MAX)-1:0] w_msec,
     output [$clog2(SEC_MAX)-1:0] w_sec,
@@ -16,25 +16,12 @@ module stopwatch #(
     output [$clog2(HOUR_MAX)-1:0] w_hour
 );
     wire w_run_stop, w_clear;
-    wire o_btn_run_stop, o_btn_clear;
-    btn_debounce U_BTN_Debounce_RUN_STOP (
-        .clk  (clk),
-        .reset(reset),
-        .i_btn(btn_run_stop),   // from btn
-        .o_btn(o_btn_run_stop)  // to control unit
-    );
-    btn_debounce U_BTN_Debounce_CLEAR (
-        .clk  (clk),
-        .reset(reset),
-        .i_btn(btn_clear),   // from btn
-        .o_btn(o_btn_clear)  // to control unit
-    );
 
     stopwatch_control_unit U_Stopwatch_CU (
         .clk(clk),
         .reset(reset),
-        .i_run_stop(o_btn_run_stop),  // input 
-        .i_clear(o_btn_clear),
+        .i_run_stop(d_run_stop),  // input 
+        .i_clear(d_clear),
         .i_mod(watch_mod_sw),
         .o_run_stop(w_run_stop),
         .o_clear(w_clear)

@@ -14,6 +14,7 @@ module top_my_watch #(
     input btnL,
     input btnR,
     input btnD,
+    input cmd,
     output [3:0] fnd_comm,
     output [7:0] fnd_font,
     output [3:0] mod_indicate_led
@@ -26,14 +27,30 @@ module top_my_watch #(
     wire btn_hour;
     assign btn_run_stop = btnL;
     assign btn_clear = btnR;
-    assign btn_sec  = btnD;
-    assign btn_min  = btnL;
+    assign btn_sec = btnD;
+    assign btn_min = btnL;
     assign btn_hour = btnU;
 
     mod_indicator U_Mod_Indicator (
         .hs_mod_sw(hs_mod_sw),
         .watch_mod_sw(watch_mod_sw),
         .led(mod_indicate_led)
+    );
+
+    wire run_stop_cmd;
+    wire clear_cmd;
+    wire sec_add_cmd;
+    wire min_add_cmd;
+    wire hour_add_cmd;
+    cmd_sig_box U_cmdBox (
+        .clk     (clk),
+        .rst     (reset),
+        .cmd     (cmd),
+        .run_stop(run_stop_cmd),
+        .clear   (clear_cmd),
+        .sec_add (sec_add_cmd),
+        .min_add (min_add_cmd),
+        .hour_add(hour_add_cmd)
     );
 
     stopwatch_BD U_Stopwatch_BD (
@@ -58,8 +75,8 @@ module top_my_watch #(
     ) U_Stopwatch (
         .clk(clk),
         .reset(reset),
-        .btn_run_stop(btnL),
-        .btn_clear(btnR),
+        .d_run_stop(d_run_stop),
+        .d_clear(d_clear),
         .watch_mod_sw(watch_mod_sw),
         .w_msec(stopwatch_msec),
         .w_sec(stopwatch_sec),
@@ -67,16 +84,16 @@ module top_my_watch #(
         .w_hour(stopwatch_hour)
     );
 
-    watch_BD U_Watch_BD(
-    . clk(clk),
-    . reset(reset),
-    . btn_sec(btn_sec),
-    . btn_min(btn_min),
-    . btn_hour(btn_hour),
-    . d_sec_add(d_sec_add),
-    . d_min_add(d_min_add),
-    . d_hour_add(d_hour_add)
-);
+    watch_BD U_Watch_BD (
+        .clk(clk),
+        .reset(reset),
+        .btn_sec(btn_sec),
+        .btn_min(btn_min),
+        .btn_hour(btn_hour),
+        .d_sec_add(d_sec_add),
+        .d_min_add(d_min_add),
+        .d_hour_add(d_hour_add)
+    );
 
     wire [$clog2(MSEC_MAX)-1:0] watch_msec;
     wire [ $clog2(SEC_MAX)-1:0] watch_sec;
@@ -91,9 +108,9 @@ module top_my_watch #(
     ) U_Watch (
         .clk(clk),
         .reset(reset),
-        .btn_sec(btnD),
-        .btn_min(btnL),
-        .btn_hour(btnU),
+        .d_sec_add(d_sec_add),
+        .d_min_add(d_min_add),
+        .d_hour_add(d_hour_add),
         .watch_mod_sw(watch_mod_sw),
         .w_msec(watch_msec),
         .w_sec(watch_sec),
@@ -312,13 +329,12 @@ endmodule
 module cmd_sig_box (
     input        clk,
     input        rst,
-    input  [7:0] uart_char,
+    input  [7:0] cmd,
     output       run_stop,
     output       clear,
     output       sec_add,
     output       min_add,
-    output       hour_add,
-    output       watch_modsel
+    output       hour_add
 );
     localparam  IDLE = 0, 
                 RUNSTOP = 1, 
@@ -331,7 +347,7 @@ module cmd_sig_box (
     reg [3:0] uart_state;
 
     always @(*) begin
-        case (uart_char)
+        case (cmd)
             "R": begin
                 uart_state = RUNSTOP;
             end
@@ -372,7 +388,7 @@ module cmd_sig_box (
     cmd_CU U_CU (
         .clk(clk),
         .rst(rst),
-        .cmd_char(uart_char),
+        .cmd_char(cmd),
         .state_tick(tick)
     );
 

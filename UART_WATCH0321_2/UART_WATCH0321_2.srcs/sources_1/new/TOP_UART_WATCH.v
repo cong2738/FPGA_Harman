@@ -40,4 +40,7 @@ module TOP_UART_WATCH (
         .rx_data(rx_data),
         .rx_done(rx_done)
     );
+
+
+
 endmodule

@@ -17,7 +17,7 @@ proc create_report { reportName command } {
   }
 }
 namespace eval ::optrace {
-  variable script "C:/harman/FPGA_Harman-1/UART_WATCH0321_2/UART_WATCH0321_2.runs/impl_1/TOP_UART_WATCH.tcl"
+  variable script "C:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.runs/impl_1/TOP_UART_WATCH.tcl"
   variable category "vivado_impl"
 }
 
@@ -136,15 +136,15 @@ OPTRACE "create in-memory project" START { }
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir C:/harman/FPGA_Harman-1/UART_WATCH0321_2/UART_WATCH0321_2.cache/wt [current_project]
-  set_property parent.project_path C:/harman/FPGA_Harman-1/UART_WATCH0321_2/UART_WATCH0321_2.xpr [current_project]
-  set_property ip_output_repo C:/harman/FPGA_Harman-1/UART_WATCH0321_2/UART_WATCH0321_2.cache/ip [current_project]
+  set_property webtalk.parent_dir C:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.cache/wt [current_project]
+  set_property parent.project_path C:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.xpr [current_project]
+  set_property ip_output_repo C:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet C:/harman/FPGA_Harman-1/UART_WATCH0321_2/UART_WATCH0321_2.runs/synth_1/TOP_UART_WATCH.dcp
+  add_files -quiet C:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.runs/synth_1/TOP_UART_WATCH.dcp
 OPTRACE "read constraints: implementation" START { }
-  read_xdc C:/harman/FPGA_Harman-1/UART_WATCH0321_2/UART_WATCH0321_2.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc
+  read_xdc C:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }

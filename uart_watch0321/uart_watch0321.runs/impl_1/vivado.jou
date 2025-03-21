@@ -9,3 +9,4 @@
 # Log file: C:/harman/FPGA_Harman-1/uart_watch0321/uart_watch0321.runs/impl_1/uart_watch.vdi
 # Journal file: C:/harman/FPGA_Harman-1/uart_watch0321/uart_watch0321.runs/impl_1\vivado.jou
 #-----------------------------------------------------------
+source uart_watch.tcl -notrace

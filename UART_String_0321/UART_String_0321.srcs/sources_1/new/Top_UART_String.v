@@ -4,9 +4,9 @@ module Top_UART_String (
     input  clk,
     input  rst,
     input  rx,
-    output tx
+    output tx,
+    output rx_data
 );
-    wire [7:0] w_rx_data;
     wire [7:0] w_rxmem_data;
     wire [7:0] w_txmem_data;
     wire w_rx_done;
@@ -25,7 +25,7 @@ module Top_UART_String (
         .rx(rx),
         .tx(tx),
         .tx_busy(w_tx_busy),
-        .rx_data(w_rx_data),
+        .rx_data(rx_data),
         .rx_done(w_rx_done)
     );
    
@@ -35,7 +35,7 @@ module Top_UART_String (
     ) U_Rx_Mem (
         .clk(clk),
         .rst(rst),
-        .wdata(w_rx_data),
+        .wdata(rx_data),
         .wr(w_rx_done),
         .full(),
         .rd(~w_txmem_full),

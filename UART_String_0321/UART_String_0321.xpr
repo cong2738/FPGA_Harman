@@ -45,7 +45,7 @@
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="DSABoardId" Val="basys3"/>
-    <Option Name="WTXSimLaunchSim" Val="176"/>
+    <Option Name="WTXSimLaunchSim" Val="211"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
@@ -74,28 +74,64 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sources_1/imports/_source/MyFIFORAM_verilog_files/fifo_que.v">
+      <File Path="$PSRCDIR/sources_1/imports/MyWatch_sources/btn_debounce.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../_source/MyFIFORAM_verilog_files/fifo_que.v"/>
-          <Attr Name="ImportTime" Val="1742432488"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../_source/MyWatch_source/MyWatch_sources/btn_debounce.v"/>
+          <Attr Name="ImportTime" Val="1741837534"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/_source/MyUART_verilog_files/uart.v">
+      <File Path="$PSRCDIR/sources_1/imports/MyWatch_sources/fnd_controller.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../_source/MyUART_verilog_files/uart.v"/>
-          <Attr Name="ImportTime" Val="1742347486"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../_source/MyWatch_source/MyWatch_sources/fnd_controller.v"/>
+          <Attr Name="ImportTime" Val="1742282015"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/Top_UART_String.v">
+      <File Path="$PSRCDIR/sources_1/imports/MyWatch_sources/stopwatch.v">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../UART_String0320_home/UART_String0320_home.srcs/sources_1/new/Top_UART_String.v"/>
-          <Attr Name="ImportTime" Val="1742515394"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../_source/MyWatch_source/MyWatch_sources/stopwatch.v"/>
+          <Attr Name="ImportTime" Val="1741837534"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/MyWatch_sources/stopwatch_dp.v">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../_source/MyWatch_source/MyWatch_sources/stopwatch_dp.v"/>
+          <Attr Name="ImportTime" Val="1741837534"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/MyWatch_sources/watch.v">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../_source/MyWatch_source/MyWatch_sources/watch.v"/>
+          <Attr Name="ImportTime" Val="1741837534"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/MyWatch_sources/watch_dp.v">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../_source/MyWatch_source/MyWatch_sources/watch_dp.v"/>
+          <Attr Name="ImportTime" Val="1741837534"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/MyWatch_sources/top_my_watch.v">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../_source/MyWatch_source/MyWatch_sources/top_my_watch.v"/>
+          <Attr Name="ImportTime" Val="1741837534"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -106,6 +142,16 @@
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../UART_BLOG/UART_BLOG.srcs/sources_1/imports/uart/BaudRateGenerator.v"/>
           <Attr Name="ImportTime" Val="1658577800"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/Top_UART_String.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../UART_String0320_home/UART_String0320_home.srcs/sources_1/new/Top_UART_String.v"/>
+          <Attr Name="ImportTime" Val="1742515394"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -141,6 +187,16 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sources_1/imports/_source/MyFIFORAM_verilog_files/fifo_que.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../_source/MyFIFORAM_verilog_files/fifo_que.v"/>
+          <Attr Name="ImportTime" Val="1742432488"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/imports/_source/MyFIFORAM_verilog_files/ram_ip.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
@@ -151,11 +207,19 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../UART_String0320/UART_String0320.srcs/sources_1/imports/_source/MyUART_verilog_files/uart_fsm.v">
+      <File Path="$PSRCDIR/sources_1/imports/_source/MyUART_verilog_files/uart.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../_source/MyUART_verilog_files/uart_fsm.v"/>
-          <Attr Name="ImportTime" Val="1742284365"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../_source/MyUART_verilog_files/uart.v"/>
+          <Attr Name="ImportTime" Val="1742347486"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/get_string_UART.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -163,7 +227,7 @@
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="Top_UART_String"/>
+        <Option Name="TopModule" Val="top_my_watch"/>
         <Option Name="TopAutoSet" Val="TRUE"/>
       </Config>
     </FileSet>

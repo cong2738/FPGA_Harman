@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.runs/synth_1/TOP_UART_WATCH.tcl"
+  variable script "C:/harman/FPGA_Harman-1/UART_WATCH_v1_ILA TEST/UART_WATCH_v1_ILA TEST.runs/synth_1/TOP_UART_WATCH.tcl"
   variable category "vivado_synth"
 }
 
@@ -82,29 +82,37 @@ create_project -in_memory -part xc7a35tcpg236-1
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir C:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.cache/wt [current_project]
-set_property parent.project_path C:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.xpr [current_project]
+set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
+set_property webtalk.parent_dir {C:/harman/FPGA_Harman-1/UART_WATCH_v1_ILA TEST/UART_WATCH_v1_ILA TEST.cache/wt} [current_project]
+set_property parent.project_path {C:/harman/FPGA_Harman-1/UART_WATCH_v1_ILA TEST/UART_WATCH_v1_ILA TEST.xpr} [current_project]
+set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part_repo_paths {C:/Users/kccistc/AppData/Roaming/Xilinx/Vivado/2020.2/xhub/board_store/xilinx_board_store} [current_project]
 set_property board_part digilentinc.com:basys3:part0:1.1 [current_project]
-set_property ip_output_repo c:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.cache/ip [current_project]
+set_property ip_output_repo {c:/harman/FPGA_Harman-1/UART_WATCH_v1_ILA TEST/UART_WATCH_v1_ILA TEST.cache/ip} [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  C:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.srcs/sources_1/imports/MyUART_source/Top_UART_String.v
-  C:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.srcs/sources_1/imports/CMD_Watch/btn_debounce.v
-  C:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.srcs/sources_1/imports/MyFIFORAM_source/fifo_que.v
-  C:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.srcs/sources_1/imports/CMD_Watch/fnd_controller.v
-  C:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.srcs/sources_1/imports/CMD_Watch/stopwatch.v
-  C:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.srcs/sources_1/imports/CMD_Watch/stopwatch_dp.v
-  C:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.srcs/sources_1/imports/CMD_Watch/top_my_watch.v
-  C:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.srcs/sources_1/imports/MyUART_source/uart.v
-  C:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.srcs/sources_1/imports/CMD_Watch/watch.v
-  C:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.srcs/sources_1/imports/CMD_Watch/watch_dp.v
-  C:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.srcs/sources_1/new/TOP_UART_WATCH.v
+  {C:/harman/FPGA_Harman-1/UART_WATCH_v1_ILA TEST/UART_WATCH_v1_ILA TEST.srcs/sources_1/imports/MyUART_source/Top_UART_String.v}
+  {C:/harman/FPGA_Harman-1/UART_WATCH_v1_ILA TEST/UART_WATCH_v1_ILA TEST.srcs/sources_1/imports/CMD_Watch/btn_debounce.v}
+  {C:/harman/FPGA_Harman-1/UART_WATCH_v1_ILA TEST/UART_WATCH_v1_ILA TEST.srcs/sources_1/imports/MyFIFORAM_source/fifo_que.v}
+  {C:/harman/FPGA_Harman-1/UART_WATCH_v1_ILA TEST/UART_WATCH_v1_ILA TEST.srcs/sources_1/imports/CMD_Watch/fnd_controller.v}
+  {C:/harman/FPGA_Harman-1/UART_WATCH_v1_ILA TEST/UART_WATCH_v1_ILA TEST.srcs/sources_1/imports/CMD_Watch/stopwatch.v}
+  {C:/harman/FPGA_Harman-1/UART_WATCH_v1_ILA TEST/UART_WATCH_v1_ILA TEST.srcs/sources_1/imports/CMD_Watch/stopwatch_dp.v}
+  {C:/harman/FPGA_Harman-1/UART_WATCH_v1_ILA TEST/UART_WATCH_v1_ILA TEST.srcs/sources_1/imports/CMD_Watch/top_my_watch.v}
+  {C:/harman/FPGA_Harman-1/UART_WATCH_v1_ILA TEST/UART_WATCH_v1_ILA TEST.srcs/sources_1/imports/MyUART_source/uart.v}
+  {C:/harman/FPGA_Harman-1/UART_WATCH_v1_ILA TEST/UART_WATCH_v1_ILA TEST.srcs/sources_1/imports/CMD_Watch/watch.v}
+  {C:/harman/FPGA_Harman-1/UART_WATCH_v1_ILA TEST/UART_WATCH_v1_ILA TEST.srcs/sources_1/imports/CMD_Watch/watch_dp.v}
+  {C:/harman/FPGA_Harman-1/UART_WATCH_v1_ILA TEST/UART_WATCH_v1_ILA TEST.srcs/sources_1/new/TOP_UART_WATCH.v}
 }
+read_ip -quiet {{c:/harman/FPGA_Harman-1/UART_WATCH_v1_ILA TEST/UART_WATCH_v1_ILA TEST.srcs/sources_1/ip/ila_1/ila_1.xci}}
+set_property used_in_synthesis false [get_files -all {{c:/harman/FPGA_Harman-1/UART_WATCH_v1_ILA TEST/UART_WATCH_v1_ILA TEST.gen/sources_1/ip/ila_1/ila_v6_2/constraints/ila_impl.xdc}}]
+set_property used_in_implementation false [get_files -all {{c:/harman/FPGA_Harman-1/UART_WATCH_v1_ILA TEST/UART_WATCH_v1_ILA TEST.gen/sources_1/ip/ila_1/ila_v6_2/constraints/ila_impl.xdc}}]
+set_property used_in_implementation false [get_files -all {{c:/harman/FPGA_Harman-1/UART_WATCH_v1_ILA TEST/UART_WATCH_v1_ILA TEST.gen/sources_1/ip/ila_1/ila_v6_2/constraints/ila.xdc}}]
+set_property used_in_implementation false [get_files -all {{c:/harman/FPGA_Harman-1/UART_WATCH_v1_ILA TEST/UART_WATCH_v1_ILA TEST.gen/sources_1/ip/ila_1/ila_1_ooc.xdc}}]
+
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -114,8 +122,8 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc
-set_property used_in_implementation false [get_files C:/harman/FPGA_Harman-1/UART_WATCH_v1/UART_WATCH_v1.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc]
+read_xdc {{C:/harman/FPGA_Harman-1/UART_WATCH_v1_ILA TEST/UART_WATCH_v1_ILA TEST.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc}}
+set_property used_in_implementation false [get_files {{C:/harman/FPGA_Harman-1/UART_WATCH_v1_ILA TEST/UART_WATCH_v1_ILA TEST.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc}}]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]

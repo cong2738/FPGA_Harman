@@ -18,7 +18,14 @@ module top_my_watch #(
     input data_tick,
     output [3:0] fnd_comm,
     output [7:0] fnd_font,
-    output [3:0] mod_indicate_led
+    output [3:0] mod_indicate_led,
+
+    output cmd_tick,
+    output run_stop,
+    output clear,
+    output sec_add,
+    output min_add,
+    output hour_add
 );
 
     wire btn_run_stop;
@@ -348,19 +355,19 @@ module cmd_sig_box (
             end
             "M": begin
                 uart_state = ADDM;
-                r_min_add = 1;
+                r_min_add  = 1;
             end
             "m": begin
                 uart_state = ADDM;
-                r_min_add = 1;
+                r_min_add  = 1;
             end
             "S": begin
                 uart_state = ADDS;
-                r_sec_add = 1;
+                r_sec_add  = 1;
             end
             "s": begin
                 uart_state = ADDS;
-                r_sec_add = 1;
+                r_sec_add  = 1;
             end
             default: begin
                 uart_state = IDLE;

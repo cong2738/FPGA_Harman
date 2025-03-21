@@ -1,0 +1,20 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../UART_WATCH_v1.srcs/sources_1/new/TOP_UART_WATCH.v" \
+"../../../../UART_WATCH_v1.srcs/sources_1/imports/MyUART_source/Top_UART_String.v" \
+"../../../../UART_WATCH_v1.srcs/sources_1/imports/CMD_Watch/btn_debounce.v" \
+"../../../../UART_WATCH_v1.srcs/sources_1/imports/MyFIFORAM_source/fifo_que.v" \
+"../../../../UART_WATCH_v1.srcs/sources_1/imports/CMD_Watch/fnd_controller.v" \
+"../../../../UART_WATCH_v1.srcs/sources_1/imports/CMD_Watch/stopwatch.v" \
+"../../../../UART_WATCH_v1.srcs/sources_1/imports/CMD_Watch/stopwatch_dp.v" \
+"../../../../UART_WATCH_v1.srcs/sources_1/imports/CMD_Watch/top_my_watch.v" \
+"../../../../UART_WATCH_v1.srcs/sources_1/imports/MyUART_source/uart.v" \
+"../../../../UART_WATCH_v1.srcs/sources_1/imports/CMD_Watch/watch.v" \
+"../../../../UART_WATCH_v1.srcs/sources_1/imports/CMD_Watch/watch_dp.v" \
+"../../../../UART_WATCH_v1.srcs/sim_1/new/tb_cmd.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

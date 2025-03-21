@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1742544710">
   <File Type="PA-TCL" Name="TOP_UART_WATCH.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="TOP_UART_WATCH_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="TOP_UART_WATCH_reports.tcl"/>
   <File Type="RDS-RDS" Name="TOP_UART_WATCH.vds"/>
   <File Type="RDS-UTIL" Name="TOP_UART_WATCH_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="TOP_UART_WATCH_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="TOP_UART_WATCH.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="TOP_UART_WATCH_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="TOP_UART_WATCH_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/imports/MyUART_source/Top_UART_String.v">
@@ -136,9 +133,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>

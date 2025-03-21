@@ -14,7 +14,7 @@ module top_my_watch #(
     input btnL,
     input btnR,
     input btnD,
-    input cmd,
+    input [7:0] cmd,
     output [3:0] fnd_comm,
     output [7:0] fnd_font,
     output [3:0] mod_indicate_led

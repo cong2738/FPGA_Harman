@@ -9,12 +9,13 @@ module uart_watch (
     input btnL,
     input btnR,
     input btnD,
+    input rx,
     output tx,
     output [3:0] fnd_comm,
     output [7:0] fnd_font,
     output [3:0] mod_indicate_led
 );
-    wire rx, rx_done;
+    wire rx_done;
     wire [7:0] rx_data;
     get_string_UART U_UART (
         .clk(clk),

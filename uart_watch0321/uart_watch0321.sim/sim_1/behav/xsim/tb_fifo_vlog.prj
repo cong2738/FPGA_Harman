@@ -1,9 +1,6 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  \
-"../../../../UART_String_0321.srcs/sources_1/new/Top_UART_String.v" \
-"../../../../UART_String_0321.srcs/sources_1/imports/_source/MyFIFORAM_verilog_files/fifo_que.v" \
-"../../../../UART_String_0321.srcs/sources_1/imports/_source/MyUART_verilog_files/uart.v" \
-"../../../../UART_String_0321.srcs/sim_1/imports/new/tb_fifo.v" \
+"../../../../uart_watch0321.srcs/sim_1/imports/new/tb_fifo.v" \
 
 # compile glbl module
 verilog xil_defaultlib "glbl.v"

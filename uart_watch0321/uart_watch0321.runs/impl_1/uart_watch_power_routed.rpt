@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date             : Fri Mar 21 14:51:37 2025
+| Date             : Fri Mar 21 15:06:16 2025
 | Host             : DESKTOP-7CFQ9ND running 64-bit major release  (build 9200)
 | Command          : report_power -file uart_watch_power_routed.rpt -pb uart_watch_power_summary_routed.pb -rpx uart_watch_power_routed.rpx
 | Design           : uart_watch
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.106        |
+| Total On-Chip Power (W)  | 0.103        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.035        |
+| Dynamic (W)              | 0.031        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.5         |
@@ -52,16 +52,17 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.002 |        3 |       --- |             --- |
-| Slice Logic    |     0.002 |      737 |       --- |             --- |
-|   LUT as Logic |     0.001 |      292 |     20800 |            1.40 |
-|   CARRY4       |    <0.001 |       34 |      8150 |            0.42 |
-|   Register     |    <0.001 |      273 |     41600 |            0.66 |
-|   Others       |     0.000 |       25 |       --- |             --- |
-| Signals        |     0.002 |      624 |       --- |             --- |
-| I/O            |     0.029 |       25 |       106 |           23.58 |
+| Clocks         |     0.001 |        3 |       --- |             --- |
+| Slice Logic    |     0.001 |      551 |       --- |             --- |
+|   LUT as Logic |     0.001 |      217 |     20800 |            1.04 |
+|   CARRY4       |    <0.001 |       22 |      8150 |            0.27 |
+|   Register     |    <0.001 |      199 |     41600 |            0.48 |
+|   F7/F8 Muxes  |    <0.001 |        3 |     32600 |           <0.01 |
+|   Others       |     0.000 |       17 |       --- |             --- |
+| Signals        |     0.001 |      460 |       --- |             --- |
+| I/O            |     0.027 |       24 |       106 |           22.64 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.106 |          |           |                 |
+| Total          |     0.103 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,7 +72,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.015 |       0.005 |      0.010 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.013 |       0.004 |      0.010 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.014 |       0.001 |      0.013 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.009 |       0.008 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -137,14 +138,11 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+------------------+-----------+
-| Name             | Power (W) |
-+------------------+-----------+
-| uart_watch       |     0.035 |
-|   U_Watch        |     0.005 |
-|     U_Watch      |     0.001 |
-|       U_watch_DP |     0.001 |
-|     U_Watch_BD   |     0.001 |
-+------------------+-----------+
++------------+-----------+
+| Name       | Power (W) |
++------------+-----------+
+| uart_watch |     0.031 |
+|   U_Watch  |     0.003 |
++------------+-----------+
 
 

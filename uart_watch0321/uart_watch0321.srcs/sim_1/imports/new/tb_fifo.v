@@ -5,7 +5,7 @@ module tb_fifo ();
     reg  rst;
     reg  rx;
     wire tx;
-    Top_UART_String uut (
+    get_string_UART uut (
         .clk(clk),
         .rst(rst),
         .rx (rx),

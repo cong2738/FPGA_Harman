@@ -15,7 +15,6 @@ module uart_watch (
     output [7:0] fnd_font,
     output [3:0] mod_indicate_led
 );
-    wire rx_done;
     wire [7:0] rx_data;
     get_string_UART U_UART (
         .clk(clk),

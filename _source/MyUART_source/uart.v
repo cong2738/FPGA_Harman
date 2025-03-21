@@ -2,77 +2,6 @@
 /*
     2025.03.18
 */
-module TOP_UART (
-    input clk,
-    input rst,
-    input rx,
-    output tx,
-    output [7:0] fnd_font,
-    output [3:0] fnd_comm
-);
-    wire w_rx_done;
-    wire [7:0] w_rx_data;
-    uart #(
-        .BAUD_RATE(9600)
-    ) U_Uart (
-        .clk(clk),
-        .rst(rst),
-        .tx_start_triger(w_rx_done),
-        .tx_data(w_rx_data),
-        .rx(rx),
-        .tx(tx),
-        .tx_busy(),
-        .rx_data(w_rx_data),
-        .rx_done(w_rx_done)
-    );
-
-    wire [3:0] w_bcd;
-    ascii_to_bcd U_Ascii_to_Bcd (
-        .ascii(w_rx_data),
-        .bcd  (w_bcd)
-    );
-
-    // bcdtoseg U_Bcd_to_Seg (
-    //     .bcd(w_bcd),
-    //     .seg(fnd_font)
-    // );
-
-    fnd_controller #(
-        .MSEC_MAX(100),
-        .SEC_MAX (60),
-        .MIN_MAX (60),
-        .HOUR_MAX(24)
-    ) U_FND_Controller (
-        .clk(clk),
-        .reset(rst),
-        .hs_mod_sw(0),
-        .msec(w_bcd),
-        .sec(w_bcd),
-        .min(w_bcd),
-        .hour(w_bcd),
-        .fnd_font(fnd_font),
-        .fnd_comm(fnd_comm)
-    );
-
-endmodule
-
-module ascii_to_bcd (
-    input  [7:0] ascii,
-    output [3:0] bcd
-);
-    reg [3:0] r_bcd;
-    always @(*) begin
-        if (ascii >= "0" && ascii <= "9") begin
-            r_bcd = ascii - "0";
-        end else if (ascii >= "A" && ascii <= "F") begin
-            r_bcd = ascii - "A" + 10;
-        end else r_bcd = 0;
-    end
-    assign bcd = r_bcd;
-endmodule
-
-
-
 module uart #(
     BAUD_RATE = 9600
 ) (
@@ -227,7 +156,9 @@ module uart_tx (
 
     reg [3:0] data_count, data_count_next;
     reg [3:0] state, next;
-    reg [3:0] tick_count, tick_count_next;
+    reg [4:0] tick_count, tick_count_next;
+    reg [7:0] temp_data_reg, temp_data_next;  // ts data buffer 25-03-21
+
     reg tx, tx_next;
     reg r_tx_busy, r_tx_busy_next;
     assign tx_busy = r_tx_busy;
@@ -239,12 +170,14 @@ module uart_tx (
             r_tx_busy <= 0;
             data_count <= 0;
             tick_count <= 0;
+            temp_data_reg <= 0;
         end else begin
             state <= next;
             tx <= tx_next;
             r_tx_busy <= r_tx_busy_next;
             data_count <= data_count_next;
             tick_count <= tick_count_next;
+            temp_data_reg <= temp_data_next;
         end
     end
 
@@ -262,12 +195,14 @@ module uart_tx (
                 tick_count_next = 0;
                 if (start_trigger == 1) begin
                     next = START;
-                    r_tx_busy_next = 1;
+                    // at start trigger, data buffering
+                    temp_data_next = i_data;
                 end
             end
             START: begin
+                r_tx_busy_next = 1;
                 if (tick == 1) begin
-                    if (tick_count == 15) begin
+                    if (tick_count == 7) begin
                         tx_next = 1'b0;
                         data_count_next = 0;
                         tick_count_next = 0;
@@ -282,11 +217,13 @@ module uart_tx (
                 if (tick == 1) begin
                     if (tick_count == 15) begin
                         begin
-                            tx_next = i_data[data_count];
-                            data_count_next = data_count + 1;
+                            tx_next = temp_data_reg[data_count];
+                            // tx_next = i_data[data_count];
                             tick_count_next = 0;
-                            if (data_count_next == 8) begin
+                            if (data_count_next == 7) begin
                                 next = STOP;
+                            end else begin
+                                data_count_next = data_count + 1;
                             end
                         end
                     end else begin
@@ -296,7 +233,7 @@ module uart_tx (
             end
             STOP: begin
                 if (tick == 1) begin
-                    if (tick_count == 15) begin
+                    if (tick_count == 23) begin
                         data_count_next = 0;
                         tx_next = 1'b1;
                         tick_count_next = 0;

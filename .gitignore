@@ -63,3 +63,5 @@
 !*.xmp
 #drawio
 !*.drawio
+#PPTX
+!*.pptx

@@ -91,7 +91,7 @@ module uart #(
     // rx에쓰려고 16배속 했지만 클럭 동기화 이슈때문에 TX에도 같은곳의 클럭을 써야한다.
     boud_tick_gen #(
         .BAUD_RATE(BAUD_RATE)
-    ) U_btn_Debounce (
+    ) U_Tick_generator (
         .clk(clk),
         .rst(rst),
         .baud_tick(tick)

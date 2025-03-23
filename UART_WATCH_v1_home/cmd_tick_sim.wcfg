@@ -13,13 +13,13 @@
    <zoom_setting>
       <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
       <ZoomEndTime time="12.554835001 ms"></ZoomEndTime>
-      <Cursor1Time time="12.554835000 ms"></Cursor1Time>
+      <Cursor1Time time="0.000000000 ms"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="179"></NameColumnWidth>
+      <NameColumnWidth column_width="175"></NameColumnWidth>
       <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="12" />
+   <WVObjectSize size="15" />
    <wvobject fp_name="/tb_cmd/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -35,14 +35,6 @@
    <wvobject fp_name="/tb_cmd/tx" type="logic">
       <obj_property name="ElementShortName">tx</obj_property>
       <obj_property name="ObjectShortName">tx</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_cmd/uut/U_UART/U_Rx_Mem/U_reg1/rdata" type="array">
-      <obj_property name="ElementShortName">rdata[7:0]</obj_property>
-      <obj_property name="ObjectShortName">rdata[7:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_cmd/uut/U_UART/U_UART/tx_data" type="array">
-      <obj_property name="ElementShortName">tx_data[7:0]</obj_property>
-      <obj_property name="ObjectShortName">tx_data[7:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_cmd/uut/U_UART/rx_done" type="logic">
       <obj_property name="ElementShortName">rx_done</obj_property>
@@ -67,5 +59,25 @@
    <wvobject fp_name="/tb_cmd/uut/U_Watch/U_cmdBox/r_sec_add" type="logic">
       <obj_property name="ElementShortName">r_sec_add</obj_property>
       <obj_property name="ObjectShortName">r_sec_add</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_cmd/uut/U_Watch/U_cmdBox/run_stop" type="logic">
+      <obj_property name="ElementShortName">run_stop</obj_property>
+      <obj_property name="ObjectShortName">run_stop</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_cmd/uut/U_Watch/U_cmdBox/clear" type="logic">
+      <obj_property name="ElementShortName">clear</obj_property>
+      <obj_property name="ObjectShortName">clear</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_cmd/uut/U_Watch/U_cmdBox/sec_add" type="logic">
+      <obj_property name="ElementShortName">sec_add</obj_property>
+      <obj_property name="ObjectShortName">sec_add</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_cmd/uut/U_Watch/U_cmdBox/min_add" type="logic">
+      <obj_property name="ElementShortName">min_add</obj_property>
+      <obj_property name="ObjectShortName">min_add</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_cmd/uut/U_Watch/U_cmdBox/hour_add" type="logic">
+      <obj_property name="ElementShortName">hour_add</obj_property>
+      <obj_property name="ObjectShortName">hour_add</obj_property>
    </wvobject>
 </wave_config>

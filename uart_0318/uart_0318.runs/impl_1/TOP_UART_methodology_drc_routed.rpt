@@ -1,8 +1,8 @@
-Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Tue Mar 18 17:06:56 2025
-| Host         : DESKTOP-7CFQ9ND running 64-bit major release  (build 9200)
+| Tool Version : Vivado v.2024.2.1 (win64) Build 5266912 Sun Dec 15 09:03:24 MST 2024
+| Date         : Sun Mar 23 02:05:47 2025
+| Host         : PKLT running 64-bit major release  (build 9200)
 | Command      : report_methodology -file TOP_UART_methodology_drc_routed.rpt -pb TOP_UART_methodology_drc_routed.pb -rpx TOP_UART_methodology_drc_routed.rpx
 | Design       : TOP_UART
 | Device       : xc7a35tcpg236-1
@@ -22,29 +22,29 @@ Table of Contents
             Netlist: netlist
           Floorplan: design_1
       Design limits: <entire design considered>
-             Max violations: <unlimited>
-             Violations found: 3
-+-----------+----------+-------------------------------+------------+
-| Rule      | Severity | Description                   | Violations |
-+-----------+----------+-------------------------------+------------+
-| TIMING-18 | Warning  | Missing input or output delay | 3          |
-+-----------+----------+-------------------------------+------------+
+             Max checks: <unlimited>
+             Checks found: 3
++-----------+----------+-------------------------------+--------+
+| Rule      | Severity | Description                   | Checks |
++-----------+----------+-------------------------------+--------+
+| TIMING-18 | Warning  | Missing input or output delay | 3      |
++-----------+----------+-------------------------------+--------+
 
 2. REPORT DETAILS
 -----------------
 TIMING-18#1 Warning
 Missing input or output delay  
-An input delay is missing on rst relative to clock(s) sys_clk_pin
+An input delay is missing on rst relative to the rising and/or falling clock edge(s) of sys_clk_pin.
 Related violations: <none>
 
 TIMING-18#2 Warning
 Missing input or output delay  
-An input delay is missing on rx relative to clock(s) sys_clk_pin
+An input delay is missing on rx relative to the rising and/or falling clock edge(s) of sys_clk_pin.
 Related violations: <none>
 
 TIMING-18#3 Warning
 Missing input or output delay  
-An output delay is missing on tx relative to clock(s) sys_clk_pin
+An output delay is missing on tx relative to the rising and/or falling clock edge(s) of sys_clk_pin.
 Related violations: <none>
 
 

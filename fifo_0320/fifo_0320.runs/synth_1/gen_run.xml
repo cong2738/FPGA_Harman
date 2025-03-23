@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1742352464">
-  <File Type="PA-TCL" Name="ram_ip_.tcl"/>
   <File Type="REPORTS-TCL" Name="ram_ip__reports.tcl"/>
+  <File Type="RDS-UTIL" Name="fifo_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="fifo_utilization_synth.pb"/>
+  <File Type="PA-TCL" Name="ram_ip_.tcl"/>
   <File Type="RDS-RDS" Name="ram_ip_.vds"/>
   <File Type="RDS-DCP" Name="ram_ip_.dcp"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">

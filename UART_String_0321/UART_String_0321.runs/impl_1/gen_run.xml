@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1742537339">
-  <File Type="BITSTR-BMM" Name="Top_UART_String_bd.bmm"/>
-  <File Type="OPT-METHODOLOGY-DRC" Name="Top_UART_String_methodology_drc_opted.rpt"/>
-  <File Type="INIT-TIMING" Name="Top_UART_String_timing_summary_init.rpt"/>
-  <File Type="ROUTE-PWR" Name="Top_UART_String_power_routed.rpt"/>
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1742669118">
   <File Type="PA-TCL" Name="Top_UART_String.tcl"/>
-  <File Type="OPT-TIMING" Name="Top_UART_String_timing_summary_opted.rpt"/>
-  <File Type="OPT-DCP" Name="Top_UART_String_opt.dcp"/>
-  <File Type="ROUTE-PWR-SUM" Name="Top_UART_String_power_summary_routed.pb"/>
   <File Type="REPORTS-TCL" Name="Top_UART_String_reports.tcl"/>
+  <File Type="INIT-TIMING" Name="Top_UART_String_timing_summary_init.rpt"/>
+  <File Type="OPT-DCP" Name="Top_UART_String_opt.dcp"/>
   <File Type="OPT-DRC" Name="Top_UART_String_drc_opted.rpt"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="Top_UART_String_methodology_drc_opted.rpt"/>
   <File Type="OPT-HWDEF" Name="Top_UART_String.hwdef"/>
+  <File Type="OPT-TIMING" Name="Top_UART_String_timing_summary_opted.rpt"/>
+  <File Type="OPT-RQA-PB" Name="Top_UART_String_rqa_opted.pb"/>
   <File Type="PWROPT-DCP" Name="Top_UART_String_pwropt.dcp"/>
   <File Type="PWROPT-DRC" Name="Top_UART_String_drc_pwropted.rpt"/>
   <File Type="PWROPT-TIMING" Name="Top_UART_String_timing_summary_pwropted.rpt"/>
@@ -23,12 +21,11 @@
   <File Type="PLACE-SIMILARITY" Name="Top_UART_String_incremental_reuse_placed.rpt"/>
   <File Type="PLACE-PRE-SIMILARITY" Name="Top_UART_String_incremental_reuse_pre_placed.rpt"/>
   <File Type="PLACE-TIMING" Name="Top_UART_String_timing_summary_placed.rpt"/>
+  <File Type="PLACE-RQA-PB" Name="Top_UART_String_rqa_placed.pb"/>
   <File Type="POSTPLACE-PWROPT-DCP" Name="Top_UART_String_postplace_pwropt.dcp"/>
-  <File Type="BG-BIN" Name="Top_UART_String.bin"/>
   <File Type="POSTPLACE-PWROPT-TIMING" Name="Top_UART_String_timing_summary_postplace_pwropted.rpt"/>
   <File Type="PHYSOPT-DCP" Name="Top_UART_String_physopt.dcp"/>
   <File Type="PHYSOPT-DRC" Name="Top_UART_String_drc_physopted.rpt"/>
-  <File Type="BITSTR-MSK" Name="Top_UART_String.msk"/>
   <File Type="PHYSOPT-TIMING" Name="Top_UART_String_timing_summary_physopted.rpt"/>
   <File Type="ROUTE-ERROR-DCP" Name="Top_UART_String_routed_error.dcp"/>
   <File Type="ROUTE-DCP" Name="Top_UART_String_routed.dcp"/>
@@ -36,10 +33,11 @@
   <File Type="ROUTE-DRC" Name="Top_UART_String_drc_routed.rpt"/>
   <File Type="ROUTE-DRC-PB" Name="Top_UART_String_drc_routed.pb"/>
   <File Type="ROUTE-DRC-RPX" Name="Top_UART_String_drc_routed.rpx"/>
-  <File Type="BITSTR-MMI" Name="Top_UART_String.mmi"/>
   <File Type="ROUTE-METHODOLOGY-DRC" Name="Top_UART_String_methodology_drc_routed.rpt"/>
   <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="Top_UART_String_methodology_drc_routed.rpx"/>
   <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="Top_UART_String_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="Top_UART_String_power_routed.rpt"/>
+  <File Type="ROUTE-PWR-SUM" Name="Top_UART_String_power_summary_routed.pb"/>
   <File Type="ROUTE-PWR-RPX" Name="Top_UART_String_power_routed.rpx"/>
   <File Type="ROUTE-STATUS" Name="Top_UART_String_route_status.rpt"/>
   <File Type="ROUTE-STATUS-PB" Name="Top_UART_String_route_status.pb"/>
@@ -51,6 +49,7 @@
   <File Type="ROUTE-BUS-SKEW" Name="Top_UART_String_bus_skew_routed.rpt"/>
   <File Type="ROUTE-BUS-SKEW-PB" Name="Top_UART_String_bus_skew_routed.pb"/>
   <File Type="ROUTE-BUS-SKEW-RPX" Name="Top_UART_String_bus_skew_routed.rpx"/>
+  <File Type="ROUTE-RQS-PB" Name="Top_UART_String_rqs_routed.pb"/>
   <File Type="POSTROUTE-PHYSOPT-DCP" Name="Top_UART_String_postroute_physopt.dcp"/>
   <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="Top_UART_String_postroute_physopt_bb.dcp"/>
   <File Type="POSTROUTE-PHYSOPT-TIMING" Name="Top_UART_String_timing_summary_postroute_physopted.rpt"/>
@@ -58,11 +57,17 @@
   <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="Top_UART_String_timing_summary_postroute_physopted.rpx"/>
   <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="Top_UART_String_bus_skew_postroute_physopted.rpt"/>
   <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="Top_UART_String_bus_skew_postroute_physopted.pb"/>
-  <File Type="BG-BIT" Name="Top_UART_String.bit"/>
   <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="Top_UART_String_bus_skew_postroute_physopted.rpx"/>
+  <File Type="BG-BIT" Name="Top_UART_String.bit"/>
+  <File Type="BG-BIN" Name="Top_UART_String.bin"/>
+  <File Type="BITSTR-MSK" Name="Top_UART_String.msk"/>
   <File Type="BITSTR-RBT" Name="Top_UART_String.rbt"/>
   <File Type="BITSTR-NKY" Name="Top_UART_String.nky"/>
+  <File Type="BITSTR-BMM" Name="Top_UART_String_bd.bmm"/>
+  <File Type="BITSTR-MMI" Name="Top_UART_String.mmi"/>
   <File Type="PDI-FILE" Name="Top_UART_String.pdi"/>
+  <File Type="BOOT-PDI-FILE" Name="Top_UART_String_boot.pdi"/>
+  <File Type="PL-PDI-FILE" Name="Top_UART_String_pld.pdi"/>
   <File Type="RCFI_FILE" Name="Top_UART_String.rcfi"/>
   <File Type="CFI_FILE" Name="Top_UART_String.cfi"/>
   <File Type="RNPI_FILE" Name="Top_UART_String.rnpi"/>
@@ -75,6 +80,10 @@
   <File Type="BG-DRC" Name="Top_UART_String.drc"/>
   <File Type="RDI-RDI" Name="Top_UART_String.vdi"/>
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="ROUTE-RQS" Name="Top_UART_String_routed.rqs"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS" Name="Top_UART_String_postroute_physopted.rqs"/>
+  <File Type="ROUTE-RQS-RPT" Name="route_report_qor_suggestions_0.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS-RPT" Name="postroute_physopt_report_qor_suggestions_0.rpt"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/imports/_source/MyFIFORAM_verilog_files/fifo_que.v">
@@ -237,7 +246,7 @@
       <Option Name="TopModule" Val="Top_UART_String"/>
     </Config>
   </FileSet>
-  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
     <Filter Type="Constrs"/>
     <File Path="$PPRDIR/../Basys-3-Master.xdc">
       <FileInfo>
@@ -249,7 +258,7 @@
       <Option Name="ConstrsType" Val="XDC"/>
     </Config>
   </FileSet>
-  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
     <Filter Type="Utils"/>
     <Config>
       <Option Name="TopAutoSet" Val="TRUE"/>

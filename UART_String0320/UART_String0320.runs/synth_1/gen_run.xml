@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1742452684">
-  <File Type="PA-TCL" Name="uart_fsm.tcl"/>
   <File Type="REPORTS-TCL" Name="uart_fsm_reports.tcl"/>
+  <File Type="RDS-UTIL" Name="Top_UART_String_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="Top_UART_String_utilization_synth.pb"/>
+  <File Type="PA-TCL" Name="uart_fsm.tcl"/>
   <File Type="RDS-RDS" Name="uart_fsm.vds"/>
-  <File Type="RDS-UTIL" Name="uart_fsm_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="uart_fsm_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="uart_fsm.dcp"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>

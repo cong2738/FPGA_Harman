@@ -1,8 +1,8 @@
-Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-| Tool Version     : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date             : Fri Mar 21 15:10:04 2025
-| Host             : DESKTOP-7CFQ9ND running 64-bit major release  (build 9200)
+| Tool Version     : Vivado v.2024.2.1 (win64) Build 5266912 Sun Dec 15 09:03:24 MST 2024
+| Date             : Sun Mar 23 03:47:06 2025
+| Host             : PKLT running 64-bit major release  (build 9200)
 | Command          : report_power -file Top_UART_String_power_routed.rpt -pb Top_UART_String_power_summary_routed.pb -rpx Top_UART_String_power_routed.rpx
 | Design           : Top_UART_String
 | Device           : xc7a35tcpg236-1
@@ -52,13 +52,13 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |    <0.001 |        3 |       --- |             --- |
-| Slice Logic              |    <0.001 |      223 |       --- |             --- |
-|   LUT as Logic           |    <0.001 |       77 |     20800 |            0.37 |
+| Clocks                   |     0.001 |        3 |       --- |             --- |
+| Slice Logic              |    <0.001 |      217 |       --- |             --- |
+|   LUT as Logic           |    <0.001 |       75 |     20800 |            0.36 |
 |   Register               |    <0.001 |       79 |     41600 |            0.19 |
-|   LUT as Distributed RAM |    <0.001 |       16 |      9600 |            0.17 |
+|   LUT as Distributed RAM |    <0.001 |       12 |      9600 |            0.13 |
 |   Others                 |     0.000 |        9 |       --- |             --- |
-| Signals                  |    <0.001 |      146 |       --- |             --- |
+| Signals                  |    <0.001 |      151 |       --- |             --- |
 | I/O                      |    <0.001 |        4 |       106 |            3.77 |
 | Static Power             |     0.072 |          |           |                 |
 | Total                    |     0.074 |          |           |                 |

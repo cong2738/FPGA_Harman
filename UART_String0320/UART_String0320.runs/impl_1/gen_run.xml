@@ -1,25 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1742452684">
-  <File Type="PA-TCL" Name="uart_fsm.tcl"/>
   <File Type="REPORTS-TCL" Name="uart_fsm_reports.tcl"/>
-  <File Type="BITSTR-MSK" Name="uart_fsm.msk"/>
-  <File Type="RDI-RDI" Name="uart_fsm.vdi"/>
-  <File Type="BG-BIT" Name="uart_fsm.bit"/>
-  <File Type="BG-DRC" Name="uart_fsm.drc"/>
-  <File Type="BG-BGN" Name="uart_fsm.bgn"/>
-  <File Type="BG-BIN" Name="uart_fsm.bin"/>
-  <File Type="BITSTR-RBT" Name="uart_fsm.rbt"/>
-  <File Type="BITSTR-NKY" Name="uart_fsm.nky"/>
-  <File Type="BITSTR-BMM" Name="uart_fsm_bd.bmm"/>
+  <File Type="ROUTE-PWR-SUM" Name="Top_UART_String_power_summary_routed.pb"/>
   <File Type="BITSTR-MMI" Name="uart_fsm.mmi"/>
+  <File Type="OPT-DRC" Name="Top_UART_String_drc_opted.rpt"/>
+  <File Type="BG-DRC" Name="uart_fsm.drc"/>
+  <File Type="ROUTE-STATUS-PB" Name="Top_UART_String_route_status.pb"/>
+  <File Type="BG-BGN" Name="uart_fsm.bgn"/>
+  <File Type="PLACE-UTIL" Name="Top_UART_String_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="Top_UART_String_utilization_placed.pb"/>
+  <File Type="PLACE-IO" Name="Top_UART_String_io_placed.rpt"/>
+  <File Type="BG-BIN" Name="uart_fsm.bin"/>
+  <File Type="PLACE-CTRL" Name="Top_UART_String_control_sets_placed.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="Top_UART_String_power_routed.rpx"/>
+  <File Type="ROUTE-DCP" Name="uart_fsm_routed.dcp"/>
+  <File Type="BITSTR-MSK" Name="uart_fsm.msk"/>
+  <File Type="BITSTR-RBT" Name="uart_fsm.rbt"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="Top_UART_String_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-TIMING-RPX" Name="Top_UART_String_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="Top_UART_String_route_status.rpt"/>
+  <File Type="PA-TCL" Name="uart_fsm.tcl"/>
+  <File Type="ROUTE-PWR" Name="Top_UART_String_power_routed.rpt"/>
+  <File Type="ROUTE-DRC" Name="Top_UART_String_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-RPX" Name="Top_UART_String_drc_routed.rpx"/>
+  <File Type="ROUTE-DRC-PB" Name="Top_UART_String_drc_routed.pb"/>
   <File Type="BITSTR-SYSDEF" Name="uart_fsm.sysdef"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="Top_UART_String_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="Top_UART_String_methodology_drc_routed.rpx"/>
   <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
   <File Type="BITSTR-LTX" Name="uart_fsm.ltx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="Top_UART_String_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-SIMILARITY" Name="Top_UART_String_incremental_reuse_routed.rpt"/>
+  <File Type="RDI-RDI" Name="uart_fsm.vdi"/>
+  <File Type="ROUTE-CLK" Name="Top_UART_String_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW" Name="Top_UART_String_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="Top_UART_String_bus_skew_routed.rpx"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="Top_UART_String_bus_skew_routed.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="Top_UART_String_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="Top_UART_String_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="Top_UART_String_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="Top_UART_String_bus_skew_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="Top_UART_String_bus_skew_postroute_physopted.rpx"/>
+  <File Type="BG-BIT" Name="uart_fsm.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="Top_UART_String_bus_skew_postroute_physopted.pb"/>
+  <File Type="BITSTR-NKY" Name="uart_fsm.nky"/>
+  <File Type="BITSTR-BMM" Name="uart_fsm_bd.bmm"/>
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
-  <File Type="OPT-DRC" Name="uart_fsm_drc_opted.rpt"/>
   <File Type="OPT-HWDEF" Name="uart_fsm.hwdef"/>
   <File Type="PLACE-PRE-SIMILARITY" Name="uart_fsm_incremental_reuse_pre_placed.rpt"/>
-  <File Type="ROUTE-DCP" Name="uart_fsm_routed.dcp"/>
   <File Type="ROUTE-ERROR-DCP" Name="uart_fsm_routed_error.dcp"/>
   <File Type="ROUTE-BLACKBOX-DCP" Name="uart_fsm_routed_bb.dcp"/>
   <File Type="ROUTE-TIMING-PB" Name="uart_fsm_timing_summary_routed.pb"/>

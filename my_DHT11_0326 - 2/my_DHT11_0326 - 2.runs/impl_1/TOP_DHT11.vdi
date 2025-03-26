@@ -1,0 +1,203 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Wed Mar 26 20:04:39 2025
+# Process ID: 2672
+# Current directory: C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.runs/impl_1
+# Command line: vivado.exe -log TOP_DHT11.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source TOP_DHT11.tcl -notrace
+# Log file: C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.runs/impl_1/TOP_DHT11.vdi
+# Journal file: C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source TOP_DHT11.tcl -notrace
+Command: link_design -top TOP_DHT11 -part xc7a35tcpg236-1
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Project 1-454] Reading design checkpoint 'c:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.gen/sources_1/ip/ila_0/ila_0.dcp' for cell 'U_ILA'
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.015 . Memory (MB): peak = 1105.562 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 57 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2020.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Chipscope 16-324] Core: U_ILA UUID: 9e1909bc-c55e-583e-b0ff-07dcf58e1558 
+CRITICAL WARNING: [Chipscope 16-3] Cannot debug net 'dht_IO'; it is not accessible from the fabric routing.
+Parsing XDC File [c:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.gen/sources_1/ip/ila_0/ila_v6_2/constraints/ila_impl.xdc] for cell 'U_ILA/inst'
+Finished Parsing XDC File [c:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.gen/sources_1/ip/ila_0/ila_v6_2/constraints/ila_impl.xdc] for cell 'U_ILA/inst'
+Parsing XDC File [c:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.gen/sources_1/ip/ila_0/ila_v6_2/constraints/ila.xdc] for cell 'U_ILA/inst'
+Finished Parsing XDC File [c:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.gen/sources_1/ip/ila_0/ila_v6_2/constraints/ila.xdc] for cell 'U_ILA/inst'
+Parsing XDC File [C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc]
+Finished Parsing XDC File [C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1105.562 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 33 instances were transformed.
+  CFGLUT5 => CFGLUT5 (SRL16E, SRLC32E): 32 instances
+  IOBUF => IOBUF (IBUF, OBUFT): 1 instance 
+
+9 Infos, 0 Warnings, 1 Critical Warnings and 0 Errors encountered.
+link_design completed successfully
+link_design: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1105.562 ; gain = 0.000
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a35t'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.615 . Memory (MB): peak = 1105.562 ; gain = 0.000
+
+Starting Cache Timing Information Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Cache Timing Information Task | Checksum: 1b38b2133
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1516.391 ; gain = 410.828
+
+Starting Logic Optimization Task
+
+Phase 1 Generate And Synthesize Debug Cores
+INFO: [Chipscope 16-329] Generating Script for core instance : dbg_hub 
+INFO: [IP_Flow 19-3806] Processing IP xilinx.com:ip:xsdbm:3.0 for cell dbg_hub_CV.
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.020 . Memory (MB): peak = 1783.008 ; gain = 0.000
+Phase 1 Generate And Synthesize Debug Cores | Checksum: 146e7cac9
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:49 . Memory (MB): peak = 1783.008 ; gain = 44.820
+
+Phase 2 Retarget
+INFO: [Opt 31-138] Pushed 1 inverter(s) to 1 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 2 Retarget | Checksum: 1a49f3493
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:49 . Memory (MB): peak = 1783.008 ; gain = 44.820
+INFO: [Opt 31-389] Phase Retarget created 4 cells and removed 13 cells
+INFO: [Opt 31-1021] In phase Retarget, 63 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 3 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Phase 3 Constant propagation | Checksum: 15ec2e2e0
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:49 . Memory (MB): peak = 1783.008 ; gain = 44.820
+INFO: [Opt 31-389] Phase Constant propagation created 0 cells and removed 16 cells
+INFO: [Opt 31-1021] In phase Constant propagation, 47 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 4 Sweep
+Phase 4 Sweep | Checksum: 1c30e7aa4
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:49 . Memory (MB): peak = 1783.008 ; gain = 44.820
+INFO: [Opt 31-389] Phase Sweep created 0 cells and removed 74 cells
+INFO: [Opt 31-1021] In phase Sweep, 862 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 5 BUFG optimization
+Phase 5 BUFG optimization | Checksum: 1c30e7aa4
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:49 . Memory (MB): peak = 1783.008 ; gain = 44.820
+INFO: [Opt 31-662] Phase BUFG optimization created 0 cells of which 0 are BUFGs and removed 0 cells.
+
+Phase 6 Shift Register Optimization
+INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
+Phase 6 Shift Register Optimization | Checksum: 1c30e7aa4
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:49 . Memory (MB): peak = 1783.008 ; gain = 44.820
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Phase 7 Post Processing Netlist
+Phase 7 Post Processing Netlist | Checksum: 1c30e7aa4
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:49 . Memory (MB): peak = 1783.008 ; gain = 44.820
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
+INFO: [Opt 31-1021] In phase Post Processing Netlist, 57 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |               4  |              13  |                                             63  |
+|  Constant propagation         |               0  |              16  |                                             47  |
+|  Sweep                        |               0  |              74  |                                            862  |
+|  BUFG optimization            |               0  |               0  |                                              0  |
+|  Shift Register Optimization  |               0  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |               0  |                                             57  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1783.008 ; gain = 0.000
+Ending Logic Optimization Task | Checksum: 18ffc54b7
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:49 . Memory (MB): peak = 1783.008 ; gain = 44.820
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+INFO: [Pwropt 34-9] Applying IDT optimizations ...
+INFO: [Pwropt 34-10] Applying ODC optimizations ...
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+
+
+Starting PowerOpt Patch Enables Task
+INFO: [Pwropt 34-162] WRITE_MODE attribute of 0 BRAM(s) out of a total of 1 has been updated to save power. Run report_power_opt to get a complete listing of the BRAMs updated.
+INFO: [Pwropt 34-201] Structural ODC has moved 0 WE to EN ports
+Number of BRAM Ports augmented: 1 newly gated: 0 Total Ports: 2
+Ending PowerOpt Patch Enables Task | Checksum: 1b1f27e7a
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.013 . Memory (MB): peak = 1860.137 ; gain = 0.000
+Ending Power Optimization Task | Checksum: 1b1f27e7a
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.676 . Memory (MB): peak = 1860.137 ; gain = 77.129
+
+Starting Final Cleanup Task
+Ending Final Cleanup Task | Checksum: 1b1f27e7a
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1860.137 ; gain = 0.000
+
+Starting Netlist Obfuscation Task
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1860.137 ; gain = 0.000
+Ending Netlist Obfuscation Task | Checksum: 18d4b60ce
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1860.137 ; gain = 0.000
+INFO: [Common 17-83] Releasing license: Implementation
+40 Infos, 0 Warnings, 1 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:00:09 ; elapsed = 00:00:57 . Memory (MB): peak = 1860.137 ; gain = 754.574
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 1860.137 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.runs/impl_1/TOP_DHT11_opt.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_drc -file TOP_DHT11_drc_opted.rpt -pb TOP_DHT11_drc_opted.pb -rpx TOP_DHT11_drc_opted.rpx
+Command: report_drc -file TOP_DHT11_drc_opted.rpt -pb TOP_DHT11_drc_opted.pb -rpx TOP_DHT11_drc_opted.rpx
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Coretcl 2-168] The results of DRC are in file C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.runs/impl_1/TOP_DHT11_drc_opted.rpt.
+report_drc completed successfully
+INFO: [Chipscope 16-240] Debug cores have already been implemented
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a35t'
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 2 threads
+ERROR: [DRC REQP-1582] iobuf_io_loaded: IOBUF U_DHT_CU/dht_IO_IOBUF_inst pin IO drives one or more invalid loads.
+INFO: [Vivado_Tcl 4-198] DRC finished with 1 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+ERROR: [Vivado_Tcl 4-23] Error(s) found during DRC. Placer not run.
+INFO: [Common 17-83] Releasing license: Implementation
+56 Infos, 0 Warnings, 1 Critical Warnings and 2 Errors encountered.
+place_design failed
+ERROR: [Common 17-39] 'place_design' failed due to earlier errors.
+
+INFO: [Common 17-206] Exiting Vivado at Wed Mar 26 20:05:49 2025...

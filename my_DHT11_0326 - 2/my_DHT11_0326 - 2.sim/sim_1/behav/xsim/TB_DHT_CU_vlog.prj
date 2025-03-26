@@ -1,0 +1,11 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../my_DHT11_0326 - 2.srcs/sources_1/new/TOP_DHT11.v" \
+"../../../../my_DHT11_0326 - 2.srcs/sources_1/imports/MyWatch_sources/btn_debounce.v" \
+"../../../../my_DHT11_0326 - 2.srcs/sim_1/new/TB_DHT_CU.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

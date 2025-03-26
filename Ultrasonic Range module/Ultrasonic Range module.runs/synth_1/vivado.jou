@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Tue Mar 25 15:42:55 2025
+# Process ID: 26480
+# Current directory: C:/harman/FPGA_Harman-1/Ultrasonic Range module/Ultrasonic Range module.runs/synth_1
+# Command line: vivado.exe -log top_sensor.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_sensor.tcl
+# Log file: C:/harman/FPGA_Harman-1/Ultrasonic Range module/Ultrasonic Range module.runs/synth_1/top_sensor.vds
+# Journal file: C:/harman/FPGA_Harman-1/Ultrasonic Range module/Ultrasonic Range module.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source top_sensor.tcl -notrace

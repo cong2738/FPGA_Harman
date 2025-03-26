@@ -23,7 +23,6 @@
 module TOP_DHT11 (
     input clk,
     input rst,
-    input tick_1us,
     input btn_start,
     output sensor_LED,
     output [3:0] current_state,

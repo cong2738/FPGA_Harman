@@ -29,10 +29,9 @@ module TB_DHT_CU ();
     wire [3:0] current_state;
     wire data;
     wire dht_IO;
-    DHT_CU uut (
+    TOP_DHT11 uut (
         .clk(clk),
         .rst(rst),
-        .tick_1us(tick_1us),
         .btn_start(btn_start),
         .sensor_LED(sensor_LED),
         .current_state(current_state),

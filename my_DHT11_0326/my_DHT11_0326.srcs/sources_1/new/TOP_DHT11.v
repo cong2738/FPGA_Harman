@@ -21,16 +21,30 @@
 
 
 module TOP_DHT11 (
-    input  clk,
-    input  rst,
-    output led
+    input clk,
+    input rst,
+    input tick_1us,
+    input btn_start,
+    output sensor_LED,
+    output [3:0] current_state,
+    output data,
+    inout dht_IO
 );
     tick_1us U_1us (
         .clk  (clk),
         .reset(reset),
-        .tick (tick)
+        .tick (tick_1us)
     );
-
+    DHT_CU U_DHT(
+    .clk(clk),
+    .rst(rst),
+    .tick_1us(tick_1us),
+    .btn_start(btn_start),
+    .sensor_LED(sensor_LED),
+    .current_state(current_state),
+    .data(data),
+    .dht_IO(dht_IO)
+);
 endmodule
 
 module DHT_CU (

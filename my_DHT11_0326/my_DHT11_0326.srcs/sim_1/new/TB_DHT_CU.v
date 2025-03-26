@@ -23,7 +23,6 @@
 module TB_DHT_CU ();
     reg clk;
     reg rst;
-    reg tick_1us;
     reg btn_start;
     wire sensor_LED;
     wire [3:0] current_state;

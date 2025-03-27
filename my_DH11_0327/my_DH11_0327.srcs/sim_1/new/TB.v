@@ -6,26 +6,26 @@ module TB ();
                 WAIT  = 7'b0000010,
                 SYNC0 = 7'b0000100, 
                 SYNC1 = 7'b0001000, 
-                DATA0 = 7'b0010000, 
+                READY = 7'b0010000,
                 DATA1 = 7'b0100000,
-                DEND0 = 7'b1000000;
+                DATA0 = 7'b1000000;
 
 
     reg clk;
     reg rst;
     reg start_trigger;
-    wire data;
+
+
+
     reg data_in;
     reg data_t;
-
-    assign data = (data_t) ? data_in : 1'bz;
-
-
+    wire dht_IO;
+    assign dht_IO = (data_t) ? data_in : 1'bz;
     TOP_DHT11 uut (
         .clk(clk),
         .rst(rst),
-        .data(data),
         .btn_start(start_trigger),
+        .dht_IO(dht_IO),
         .CU_LED( ),
         .ERROR_LED( ),
         .fpga_LED( ),
@@ -72,9 +72,10 @@ module TB ();
         #80000;
         data_in = 1;
         #80000;
-        send_data(40'd300000);
+        send_data(40'b10100000_00000000_00000000_00000000_00000001);
         data_in = 0;
-        #10000;
+        wait(uut.U_DHT_CU.state == IDLE);
+        #10000 $stop;
     end
 
 endmodule

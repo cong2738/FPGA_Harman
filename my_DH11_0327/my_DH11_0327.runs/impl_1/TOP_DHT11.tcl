@@ -17,7 +17,7 @@ proc create_report { reportName command } {
   }
 }
 namespace eval ::optrace {
-  variable script "C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.runs/impl_1/TOP_DHT11.tcl"
+  variable script "C:/harman/FPGA_Harman-1/my_DH11_0327/my_DH11_0327.runs/impl_1/TOP_DHT11.tcl"
   variable category "vivado_impl"
 }
 
@@ -137,17 +137,17 @@ OPTRACE "create in-memory project" START { }
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir {C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.cache/wt} [current_project]
-  set_property parent.project_path {C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.xpr} [current_project]
-  set_property ip_output_repo {{C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.cache/ip}} [current_project]
+  set_property webtalk.parent_dir C:/harman/FPGA_Harman-1/my_DH11_0327/my_DH11_0327.cache/wt [current_project]
+  set_property parent.project_path C:/harman/FPGA_Harman-1/my_DH11_0327/my_DH11_0327.xpr [current_project]
+  set_property ip_output_repo C:/harman/FPGA_Harman-1/my_DH11_0327/my_DH11_0327.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet {{C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.runs/synth_1/TOP_DHT11.dcp}}
-  read_ip -quiet {{C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.srcs/sources_1/ip/ila_0/ila_0.xci}}
+  add_files -quiet C:/harman/FPGA_Harman-1/my_DH11_0327/my_DH11_0327.runs/synth_1/TOP_DHT11.dcp
+  read_ip -quiet C:/harman/FPGA_Harman-1/my_DH11_0327/my_DH11_0327.srcs/sources_1/ip/ila_0/ila_0.xci
 OPTRACE "read constraints: implementation" START { }
-  read_xdc {{C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc}}
+  read_xdc C:/harman/FPGA_Harman-1/my_DH11_0327/my_DH11_0327.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }

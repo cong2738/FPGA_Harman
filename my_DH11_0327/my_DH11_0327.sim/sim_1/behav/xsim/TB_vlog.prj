@@ -1,10 +1,10 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  \
-"../../../../my_DHT11_0326 - 2.gen/sources_1/ip/ila_0/sim/ila_0.v" \
-"../../../../my_DHT11_0326 - 2.srcs/sources_1/new/TOP_DHT11.v" \
-"../../../../my_DHT11_0326 - 2.srcs/sources_1/imports/MyWatch_sources/btn_debounce.v" \
-"../../../../my_DHT11_0326 - 2.srcs/sources_1/imports/URM/fnd.v" \
-"../../../../my_DHT11_0326 - 2.srcs/sim_1/new/TB.v" \
+"../../../../my_DH11_0327.gen/sources_1/ip/ila_0/sim/ila_0.v" \
+"../../../../my_DH11_0327.srcs/sources_1/new/TOP_DHT11.v" \
+"../../../../my_DH11_0327.srcs/sources_1/imports/MyWatch_sources/btn_debounce.v" \
+"../../../../my_DH11_0327.srcs/sources_1/imports/URM/fnd.v" \
+"../../../../my_DH11_0327.srcs/sim_1/new/TB.v" \
 
 # compile glbl module
 verilog xil_defaultlib "glbl.v"

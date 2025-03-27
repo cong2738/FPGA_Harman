@@ -1,16 +1,15 @@
 `timescale 1ns / 1ps
 
 module TOP_DHT11 (
-    input         clk,
-    input         rst,
-    input  [39:0] data,
-    input         btn_start,
-    output [ 6:0] CU_LED,
-    output        ERROR_LED,
-    output        fpga_LED,
-    inout         dht_IO,
-    output [ 7:0] fnd_font,
-    output [ 3:0] fnd_comm
+    input        clk,
+    input        rst,
+    input        btn_start,
+    inout        dht_IO,
+    output [6:0] CU_LED,
+    output       ERROR_LED,
+    output       fpga_LED,
+    output [7:0] fnd_font,
+    output [3:0] fnd_comm
 );
     wire tick_1us;
     tick_1us U_1us (
@@ -67,7 +66,7 @@ module TOP_DHT11 (
     fnd_controlloer u_fnd_controlloer (
         .clk     (clk),
         .reset   (rst),
-        .count   (RH_i),
+        .count   (T_i),
         .seg_out (fnd_font),
         .seg_comm(fnd_comm)
     );
@@ -75,8 +74,9 @@ module TOP_DHT11 (
     ila_0 ILA0_0 (
         .clk(clk),
         .probe0(dht),
-        .probe1(CU_LED[6]),
-        .probe2(RH_i)
+        .probe1(fpga),
+        .probe2(RH_i),
+        .probe3(CU_LED[2])
     );
 
 endmodule
@@ -114,9 +114,9 @@ module DHT_CU (
                 WAIT  = 7'b0000010,
                 SYNC0 = 7'b0000100, 
                 SYNC1 = 7'b0001000, 
-                DATA0 = 7'b0010000, 
+                READY = 7'b0010000,
                 DATA1 = 7'b0100000,
-                DEND0 = 7'b1000000;
+                DATA0 = 7'b1000000;
 
     localparam  START_TIME = 18000, 
                 WAIT_TIME = 30, 
@@ -127,33 +127,32 @@ module DHT_CU (
     reg [6:0] state, next;
     reg [$clog2(START_TIME)-1:0] us_count_reg, us_count_next;
     reg io_out_reg, io_out_next;
-    reg [39:0] mem_state, mem_next;
-    reg [$clog2(40)-1:0] dataCount_reg, dataCount_next;
     reg io_sel_reg, io_sel_next;
+    reg [$clog2(41)-1:0] idx_state, idx_next;
+    reg [39:0] data_state, data_next;
 
     // out 3state on/off
     // assign dht_IO = (io_oe_reg) ? io_out_reg : 1'bz;
     assign io_sel = io_sel_reg;
     assign fpga   = io_out_reg;
-
+    assign data   = data_state;
     assign CU_LED = state;
-    assign data   = mem_state;
 
     always @(posedge clk, posedge rst) begin
         if (rst) begin
             state <= 0;
             us_count_reg <= 0;
             io_out_reg <= 1;
-            mem_state <= 0;
-            dataCount_reg <= 0;
             io_sel_reg <= 0;
+            idx_state <= 40;
+            data_state <= 0;
         end else begin
             state <= next;
             us_count_reg <= us_count_next;
             io_out_reg <= io_out_next;
-            mem_state <= mem_next;
-            dataCount_reg <= dataCount_next;
             io_sel_reg <= io_sel_next;
+            idx_state <= idx_next;
+            data_state <= data_next;
         end
     end
 
@@ -161,9 +160,9 @@ module DHT_CU (
         next = state;
         us_count_next = us_count_reg;
         io_out_next = io_out_reg;
-        mem_next = mem_state;
-        dataCount_next = dataCount_reg;
         io_sel_next = io_sel_reg;
+        idx_next = idx_state;
+        data_next = data_state;
         case (state)
             IDLE: begin
                 io_sel_next = 1;
@@ -199,30 +198,29 @@ module DHT_CU (
                 end
             end
             SYNC0: begin
-                dataCount_next = 0;
-                mem_next = 0;
-
-                if (dht == 1) begin
-                    next = SYNC1;
+                if (tick_1us) begin
+                    if (us_count_reg == 30 - 1) begin
+                        if (dht) begin
+                            next = SYNC1;
+                        end
+                    end else begin
+                        us_count_next = us_count_reg + 1;
+                    end
                 end
             end
             SYNC1: begin
-                if (dht == 0) begin
-                    next = DATA0;
+                if (!dht) begin
+                    next = READY;
                 end
             end
-            DATA0: begin
-                /*
-                    센서의 가장 처음 비트는 2^39자리 비트
-                    센서의 가장 마지막 비트는 2^0자리 비트
-                */
-                if (dht == 1) begin
-                    mem_next = mem_state << 1; //첫번째자리에 넣기 위해 좌시프트
+            READY: begin
+                idx_next = 40;
+                if (dht) begin
                     next = DATA1;
                 end
             end
             DATA1: begin
-                if (dht == 1) begin
+                if (dht) begin  //1을 유지하는동안
                     if (tick_1us) begin
                         if (us_count_reg == TIEM_OUT_TIME) begin
                             us_count_next = 0;
@@ -231,33 +229,22 @@ module DHT_CU (
                             us_count_next = us_count_reg + 1;
                         end
                     end
-                end else begin
-                    //첫번째 자리에 1또는0을 넣는다
-                    if (us_count_reg > 30) begin
-                        mem_next[0] = 1;
-                    end else begin
-                        mem_next[0] = 0;
-                    end
-
-                    if (dataCount_reg == 40) begin
-                        us_count_next = 0;
-                        dataCount_next = 0;
-                        next = DEND0;
-                    end else begin
-                        dataCount_next = dataCount_reg + 1;
-                        us_count_next = 0;
-                        next = DATA0;
-                    end
+                end else begin  //falling edge시
+                    idx_next = idx_state - 1;
+                    next = DATA0;
                 end
             end
-            DEND0: begin
-                if (tick_1us == 1) begin
-                    if (us_count_reg == 50) begin
-                        us_count_next = 0;
-                        next = IDLE;
-                    end else begin
-                        us_count_next = us_count_reg + 1;
-                    end
+            DATA0: begin
+                data_next[idx_state] = (us_count_reg > 50) ? 1 : 0;
+
+                if (dht) begin
+                    us_count_next = 0;
+                    us_count_next = 0;
+                    next = DATA1;
+                end else if (idx_state == 0) begin
+                    us_count_next = 0;
+                    idx_next = 40;
+                    next = IDLE;
                 end
             end
 

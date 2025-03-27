@@ -45,7 +45,7 @@ module TB_DHT_CU ();
         wait (uut.u_btn_debounce.o_btn);
         btn_start = 0;
         wait (uut.U_DHT_CU.state == SYNC0);
-        io_oe_reg = 1;
+        io_oe_reg = 0;
         #10000 dht_io_reg = 1;
         wait (uut.U_DHT_CU.state == SYNC1);
         #10000 dht_io_reg = 0;

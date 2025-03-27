@@ -70,12 +70,10 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
+set_param tcl.collectionResultDisplayLimit 0
 set_param chipscope.maxJobs 4
-set_param synth.incrementalSynthesisCache C:/Users/kccistc/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-17720-DESKTOP-7CFQ9ND/incrSyn
 set_param xicom.use_bs_reader 1
 set_msg_config -id {Common 17-41} -limit 10000000
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
@@ -99,7 +97,7 @@ read_verilog -library xil_defaultlib {
   {C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.srcs/sources_1/imports/URM/fnd.v}
   {C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.srcs/sources_1/new/TOP_DHT11.v}
 }
-read_ip -quiet {{c:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.srcs/sources_1/ip/ila_0/ila_0.xci}}
+read_ip -quiet {{C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.srcs/sources_1/ip/ila_0/ila_0.xci}}
 set_property used_in_synthesis false [get_files -all {{c:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.gen/sources_1/ip/ila_0/ila_v6_2/constraints/ila_impl.xdc}}]
 set_property used_in_implementation false [get_files -all {{c:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.gen/sources_1/ip/ila_0/ila_v6_2/constraints/ila_impl.xdc}}]
 set_property used_in_implementation false [get_files -all {{c:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.gen/sources_1/ip/ila_0/ila_v6_2/constraints/ila.xdc}}]

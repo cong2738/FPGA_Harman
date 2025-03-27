@@ -1,6 +1,6 @@
 webtalk_init -webtalk_dir C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.sim/sim_1/behav/xsim/xsim.dir/TB_DHT_CU_behav/webtalk/
 webtalk_register_client -client project
-webtalk_add_data -client project -key date_generated -value "Wed Mar 26 20:09:34 2025" -context "software_version_and_target_device"
+webtalk_add_data -client project -key date_generated -value "Thu Mar 27 10:48:16 2025" -context "software_version_and_target_device"
 webtalk_add_data -client project -key product_version -value "XSIM v2020.2 (64-bit)" -context "software_version_and_target_device"
 webtalk_add_data -client project -key build_version -value "3064766" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_platform -value "WIN64" -context "software_version_and_target_device"
@@ -14,7 +14,7 @@ webtalk_add_data -client project -key target_package -value "not_applicable" -co
 webtalk_add_data -client project -key target_speed -value "not_applicable" -context "software_version_and_target_device"
 webtalk_add_data -client project -key random_id -value "75af1de4-03da-4a66-ad47-61cdf71941e0" -context "software_version_and_target_device"
 webtalk_add_data -client project -key project_id -value "b7c3bfd83ad64e8ca4ad9a219e275afb" -context "software_version_and_target_device"
-webtalk_add_data -client project -key project_iteration -value "133" -context "software_version_and_target_device"
+webtalk_add_data -client project -key project_iteration -value "156" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_name -value "Windows Server 2016 or Windows 10" -context "user_environment"
 webtalk_add_data -client project -key os_release -value "major release  (build 9200)" -context "user_environment"
 webtalk_add_data -client project -key cpu_name -value "12th Gen Intel(R) Core(TM) i7-1260P" -context "user_environment"
@@ -25,9 +25,9 @@ webtalk_register_client -client xsim
 webtalk_add_data -client xsim -key runall -value "true" -context "xsim\\command_line_options"
 webtalk_add_data -client xsim -key Command -value "xsim" -context "xsim\\command_line_options"
 webtalk_add_data -client xsim -key trace_waveform -value "true" -context "xsim\\usage"
-webtalk_add_data -client xsim -key runtime -value "24981105 ns" -context "xsim\\usage"
+webtalk_add_data -client xsim -key runtime -value "26253065 ns" -context "xsim\\usage"
 webtalk_add_data -client xsim -key iteration -value "0" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Simulation_Time -value "1.55_sec" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Simulation_Memory -value "16496_KB" -context "xsim\\usage"
-webtalk_transmit -clientid 1105398034 -regid "" -xml C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.sim/sim_1/behav/xsim/xsim.dir/TB_DHT_CU_behav/webtalk/usage_statistics_ext_xsim.xml -html C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.sim/sim_1/behav/xsim/xsim.dir/TB_DHT_CU_behav/webtalk/usage_statistics_ext_xsim.html -wdm C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.sim/sim_1/behav/xsim/xsim.dir/TB_DHT_CU_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
+webtalk_add_data -client xsim -key Simulation_Time -value "1.65_sec" -context "xsim\\usage"
+webtalk_add_data -client xsim -key Simulation_Memory -value "16548_KB" -context "xsim\\usage"
+webtalk_transmit -clientid 3038801186 -regid "" -xml C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.sim/sim_1/behav/xsim/xsim.dir/TB_DHT_CU_behav/webtalk/usage_statistics_ext_xsim.xml -html C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.sim/sim_1/behav/xsim/xsim.dir/TB_DHT_CU_behav/webtalk/usage_statistics_ext_xsim.html -wdm C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.sim/sim_1/behav/xsim/xsim.dir/TB_DHT_CU_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
 webtalk_terminate

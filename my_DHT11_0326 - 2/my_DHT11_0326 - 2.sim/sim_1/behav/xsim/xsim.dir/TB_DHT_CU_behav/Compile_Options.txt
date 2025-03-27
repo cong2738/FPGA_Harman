@@ -1,1 +1,1 @@
--wto "b7c3bfd83ad64e8ca4ad9a219e275afb" --incr --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "unisims_ver" -L "unimacro_ver" -L "secureip" --snapshot "TB_DHT_CU_behav" "xil_defaultlib.TB_DHT_CU" "xil_defaultlib.glbl" -log "elaborate.log" 
+-wto "b7c3bfd83ad64e8ca4ad9a219e275afb" --incr --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "unisims_ver" -L "unimacro_ver" -L "secureip" -L "xpm" --snapshot "TB_DHT_CU_behav" "xil_defaultlib.TB_DHT_CU" "xil_defaultlib.glbl" -log "elaborate.log" 

@@ -7,7 +7,6 @@ module TOP_DHT11 (
     input        btn_start,
     output [6:0] CU_LED,
     output       ERROR_LED,
-    output       sensor_LED,
     output       fpga_LED,
     inout        dht_IO,
     output [7:0] fnd_font,
@@ -28,16 +27,15 @@ module TOP_DHT11 (
         .o_btn(o_btn)
     );
 
-    wire data_t;
+    wire io_sel;
     wire fpga;
     wire dht;
     IOBUF uIO (
         .I (fpga),
         .O (dht),
         .IO(dht_IO),
-        .T (~data_t)
+        .T (io_sel)
     );
-    assign sensor_LED = dht;
 
     wire [39:0] w_data;
     DHT_CU U_DHT_CU (
@@ -45,7 +43,7 @@ module TOP_DHT11 (
         .rst(rst),
         .tick_1us(tick_1us),
         .btn_start(o_btn),
-        .io_oe(data_t),
+        .io_sel(io_sel),
         .fpga(fpga),
         .dht(dht),
         .CU_LED(CU_LED),

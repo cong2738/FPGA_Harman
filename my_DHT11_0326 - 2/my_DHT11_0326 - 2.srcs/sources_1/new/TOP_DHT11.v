@@ -5,7 +5,9 @@ module TOP_DHT11 (
     input        rst,
     input        hs_mod_sw,
     input        btn_start,
-    output [7:0] sensor_LED,
+    output [6:0] CU_LED,
+    output       ERROR_LED,
+    output       sensor_LED,
     inout        dht_IO,
     output [7:0] fnd_font,
     output [3:0] fnd_comm
@@ -25,39 +27,56 @@ module TOP_DHT11 (
         .o_btn(o_btn)
     );
 
+    wire data_t;
+    wire fpga;
+    wire dht;
+    IOBUF uIO (
+        .I (fpga),
+        .O (dht),
+        .IO(dht_IO),
+        .T (~data_t)
+    );
+    assign sensor_LED = dht;
+
     wire [39:0] w_data;
     DHT_CU U_DHT_CU (
         .clk(clk),
         .rst(rst),
         .tick_1us(tick_1us),
         .btn_start(o_btn),
-        .sensor_LED(sensor_LED),
-        .data(w_data),
-        .dht_IO(dht_IO)
+        .io_oe(data_t),
+        .fpga(fpga),
+        .dht(dht),
+        .CU_LED(CU_LED),
+        .data(w_data)
+        // .dht_IO(dht_IO)
     );
 
+    wire [7:0] RH_i;
+    wire [7:0] RH_d;
+    wire [7:0] T_i;
+    wire [7:0] T_d;
     data_div u_data_div (
-        .data (w_data),
-        .RH_i (RH_i),
-        .RH_d (RH_d),
-        .T_i  (T_i),
-        .T_d  (T_d),
-        .check(check)
+        .data(w_data),
+        .RH_i(RH_i),
+        .RH_d(RH_d),
+        .T_i(T_i),
+        .T_d(T_d),
+        .ERROR_LED(ERROR_LED)
     );
 
     fnd_controlloer u_fnd_controlloer (
         .clk     (clk),
         .reset   (rst),
-        .count   (RH_i),
+        .count   (T_i),
         .seg_out (fnd_font),
         .seg_comm(fnd_comm)
     );
 
-    // ila_0 U_ILA (
-    //     .clk(clk),
-    //     .probe0(probe0)
-    // );
-
+    ila_0 ILA0_0 (
+        .clk(clk),
+        .probe0(dht)
+    );
 
 endmodule
 
@@ -67,13 +86,14 @@ module data_div (
     output [ 7:0] RH_d,
     output [ 7:0] T_i,
     output [ 7:0] T_d,
-    output [ 7:0] check
+    output        ERROR_LED
 );
-    assign RH_i  = data[39:32];
-    assign RH_d  = data[31:24];
-    assign T_i   = data[27:16];
-    assign T_d   = data[15:8];
-    assign check = data[7:0];
+    assign RH_i = data[39:32];
+    assign RH_d = data[31:24];
+    assign T_i = data[27:16];
+    assign T_d = data[15:8];
+    assign ERROR_LED = (RH_i + RH_d + T_i + T_d == data[7:0]) ? 0 : 1;
+
 endmodule
 
 module DHT_CU (
@@ -81,9 +101,12 @@ module DHT_CU (
     input         rst,
     input         tick_1us,
     input         btn_start,
-    output [ 7:0] sensor_LED,
-    output [39:0] data,
-    inout         dht_IO
+    input         io_oe,
+    output        fpga,
+    input         dht,
+    output [ 6:0] CU_LED,
+    output [39:0] data
+    // inout         dht_IO
 );
     localparam  IDLE  = 7'b0000000, 
                 START = 7'b0000001, 
@@ -102,16 +125,15 @@ module DHT_CU (
 
     reg [6:0] state, next;
     reg [$clog2(START_TIME)-1:0] us_count_reg, us_count_next;
-    reg LED_reg, LED_next;
-    reg io_oe_reg, io_oe_next;
     reg io_out_reg, io_out_next;
     reg [39:0] mem_state, mem_next;
     reg [$clog2(40)-1:0] dataCount_reg, dataCount_next;
 
     // out 3state on/off
-    assign dht_IO = (io_oe_reg) ? io_out_reg : 1'bz;
+    // assign dht_IO = (io_oe_reg) ? io_out_reg : 1'bz;
+    assign fpga = io_out_reg;
 
-    assign sensor_LED = {LED_reg, state};
+    assign CU_LED = state;
     assign data = mem_state;
 
     always @(posedge clk, posedge rst) begin
@@ -119,15 +141,11 @@ module DHT_CU (
             state <= 0;
             us_count_reg <= 0;
             io_out_reg <= 1;
-            LED_reg <= 0;
-            io_oe_reg <= 0;
             mem_state <= 0;
             dataCount_reg <= 0;
         end else begin
             state <= next;
             us_count_reg <= us_count_next;
-            LED_reg <= LED_next;
-            io_oe_reg <= io_oe_next;
             io_out_reg <= io_out_next;
             mem_state <= mem_next;
             dataCount_reg <= dataCount_next;
@@ -137,16 +155,12 @@ module DHT_CU (
     always @(*) begin
         next = state;
         us_count_next = us_count_reg;
-        LED_next = LED_reg;
-        io_oe_next = io_oe_reg;
         io_out_next = io_out_reg;
         mem_next = mem_state;
         dataCount_next = dataCount_reg;
         case (state)
             IDLE: begin
-                LED_next = 0;
                 io_out_next = 1;
-                io_oe_next = 1;
                 if (btn_start) begin
                     us_count_next = 0;
                     next = START;
@@ -166,7 +180,6 @@ module DHT_CU (
             WAIT: begin
                 io_out_next = 1;
                 // io oe change
-                io_oe_next  = 0;
                 if (tick_1us) begin
                     if (us_count_reg == WAIT_TIME - 1) begin
                         us_count_next = 0;
@@ -182,23 +195,23 @@ module DHT_CU (
                 dataCount_next = 0;
                 mem_next = 0;
 
-                if (dht_IO) begin
+                if (dht) begin
                     next = SYNC1;
                 end
             end
             SYNC1: begin
-                if (!dht_IO) begin
+                if (!dht) begin
                     next = DATA0;
                 end
             end
             DATA0: begin
-                if (dht_IO) begin
+                if (dht) begin
                     mem_next = mem_state >> 1;
                     next = DATA1;
                 end
             end
             DATA1: begin
-                if (dht_IO) begin
+                if (dht) begin
                     if (tick_1us) begin
                         if (us_count_reg == TIEM_OUT_TIME) begin
                             us_count_next = 0;

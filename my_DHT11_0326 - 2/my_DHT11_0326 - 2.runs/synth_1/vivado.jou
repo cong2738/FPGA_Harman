@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Thu Mar 27 11:10:16 2025
-# Process ID: 11384
+# Start of session at: Thu Mar 27 12:03:24 2025
+# Process ID: 17316
 # Current directory: C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.runs/synth_1
 # Command line: vivado.exe -log TOP_DHT11.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source TOP_DHT11.tcl
 # Log file: C:/harman/FPGA_Harman-1/my_DHT11_0326 - 2/my_DHT11_0326 - 2.runs/synth_1/TOP_DHT11.vds

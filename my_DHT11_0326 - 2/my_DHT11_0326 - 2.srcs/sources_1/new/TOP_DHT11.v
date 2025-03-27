@@ -34,7 +34,7 @@ module TOP_DHT11 (
         .I (fpga),
         .O (dht),
         .IO(dht_IO),
-        .T (io_sel)
+        .T (~io_sel)
     );
 
     wire [39:0] w_data;
@@ -74,7 +74,9 @@ module TOP_DHT11 (
 
     ila_0 ILA0_0 (
         .clk(clk),
-        .probe0(dht)
+        .probe0(dht),
+        .probe1(io_sel),
+        .probe2(RH_i)
     );
 
 endmodule
@@ -161,7 +163,7 @@ module DHT_CU (
         io_out_next = io_out_reg;
         mem_next = mem_state;
         dataCount_next = dataCount_reg;
-        io_sel_next <= io_sel_reg;
+        io_sel_next = io_sel_reg;
         case (state)
             IDLE: begin
                 io_sel_next = 1;
@@ -184,12 +186,12 @@ module DHT_CU (
             end
             WAIT: begin
                 io_out_next = 1;
-                // io oe change
                 if (tick_1us) begin
                     if (us_count_reg == WAIT_TIME - 1) begin
                         us_count_next = 0;
-                        // output open, High_z
-                        io_out_next = 1'bz;
+                        io_out_next = 0;
+                        // io oe change
+                        io_sel_next = 0;
                         next = SYNC0;
                     end else begin
                         us_count_next = us_count_reg + 1;
@@ -197,28 +199,30 @@ module DHT_CU (
                 end
             end
             SYNC0: begin
-                io_sel_next = 0;
-
                 dataCount_next = 0;
                 mem_next = 0;
 
-                if (dht) begin
+                if (dht == 1) begin
                     next = SYNC1;
                 end
             end
             SYNC1: begin
-                if (!dht) begin
+                if (dht == 0) begin
                     next = DATA0;
                 end
             end
             DATA0: begin
-                if (dht) begin
-                    mem_next = mem_state >> 1;
+                /*
+                    센서의 가장 처음 비트는 2^39자리 비트
+                    센서의 가장 마지막 비트는 2^0자리 비트
+                */
+                if (dht == 1) begin
+                    mem_next = mem_state << 1; //첫번째자리에 넣기 위해 좌시프트
                     next = DATA1;
                 end
             end
             DATA1: begin
-                if (dht) begin
+                if (dht == 1) begin
                     if (tick_1us) begin
                         if (us_count_reg == TIEM_OUT_TIME) begin
                             us_count_next = 0;
@@ -228,13 +232,14 @@ module DHT_CU (
                         end
                     end
                 end else begin
+                    //첫번째 자리에 1또는0을 넣는다
                     if (us_count_reg > 30) begin
-                        mem_next[39] = 1;
+                        mem_next[0] = 1;
                     end else begin
-                        mem_next[39] = 0;
+                        mem_next[0] = 0;
                     end
 
-                    if (dataCount_reg == 40 - 1) begin
+                    if (dataCount_reg == 40) begin
                         us_count_next = 0;
                         dataCount_next = 0;
                         next = DEND0;
@@ -246,7 +251,7 @@ module DHT_CU (
                 end
             end
             DEND0: begin
-                if (tick_1us) begin
+                if (tick_1us == 1) begin
                     if (us_count_reg == 50) begin
                         us_count_next = 0;
                         next = IDLE;

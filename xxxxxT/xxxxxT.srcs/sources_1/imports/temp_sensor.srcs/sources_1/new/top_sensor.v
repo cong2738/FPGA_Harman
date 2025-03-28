@@ -1,26 +1,6 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 2025/03/26 11:18:30
-// Design Name: 
-// Module Name: top_sensor
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
-
-module top_sensor (
+module top_DH11_module (
     input clk,
     input reset,
     inout data,
@@ -28,46 +8,34 @@ module top_sensor (
     output [4:0] led,
     output [7:0] seg_out,
     output [3:0] seg_comm,
-    output tx
+    output finish_tick
 );
-wire [39:0] w_o_data; 
-wire [15:0] w_o_data2;
-wire [5:0] data_count;
-assign w_o_data2 = {w_o_data [39:32],w_o_data[23:16]};
-wire w_finish_tick;
-wire [5:0] w_o_state;
-ila_0 uila(
-.clk(clk),
+    wire [39:0] w_o_data;
+    wire [15:0] w_o_data2;
+    wire [ 5:0] data_count;
+    assign w_o_data2 = {w_o_data[39:32], w_o_data[23:16]};
+    wire [5:0] w_o_state;
 
-
-.probe0(data_in),
-.probe1(w_o_data[39:25]),
-.probe2(data_count),
-.probe3(w_o_state)
-);
-
-    IOBUF uIO    
-    (
-    .I(data_out),
-    .O(data_in),
-    .IO(data),
-    .T(data_t)
+    IOBUF uIO (
+        .I (data_out),
+        .O (data_in),
+        .IO(data),
+        .T (data_t)
     );
-
 
     sensor_cu u_sen (
         .clk(clk),
         .reset(reset),
         .tick(w_tick),
         .start_trigger(w_start_trigger | w_tick10sec),
-        .finish_tick(w_finish_tick),
+        .finish_tick(finish_tick),
         .o_data(w_o_data),
         .led(led[4]),
         .o_state(w_o_state),
-            .data_in(data_in),
-    .data_out(data_out),
-    .data_t(data_t),
-    .data_count(data_count)
+        .data_in(data_in),
+        .data_out(data_out),
+        .data_t(data_t),
+        .data_count(data_count)
     );
 
 
@@ -76,7 +44,7 @@ ila_0 uila(
         .reset(reset),
         .tick (w_tick)
     );
-       tick_10sec u_tick10 (
+    tick_10sec u_tick10 (
         .clk  (clk),
         .reset(reset),
         .tick (w_tick10sec)
@@ -88,22 +56,15 @@ ila_0 uila(
         .reset(reset),
         .o_btn(w_start_trigger)
     );
-    fnd_controlloer ufnd (  //control anod segments
-        .clk(clk),
- .reset(reset),
-    .count(w_o_data2),
-    .seg_out(seg_out),
-     .seg_comm(seg_comm)
-);
-uart_clock uuart_clock (
-    .reset(reset),
-    .clk(clk),
-    .finish_tick(w_finish_tick),
-    .start_trigger(w_start_trigger | w_tick10sec),
-    .tx(tx),
-    .sensor_data(w_o_data2)
 
-);
+    uart_clock uuart_clock (
+        .reset(reset),
+        .clk(clk),
+        .finish_tick(w_finish_tick),
+        .start_trigger(w_start_trigger),
+        .tx(tx),
+        .sensor_data(w_o_data2)
+    );
 endmodule
 
 
@@ -133,9 +94,9 @@ module sensor_cu (
     reg [39:0] o_data_reg, o_data_next;
     reg start_tick_reg, start_tick_next;
     reg finish_tick_reg, finish_tick_next;
-    reg  [5:0]data_count_next;
+    reg [5:0] data_count_next;
     reg led_reg, led_next;
-    reg io_state,io_state_next;
+    reg io_state, io_state_next;
     reg [7:0] real_count, real_count_next;
     assign data_out = data_reg;
     assign data_t = ~io_state;  // 1이면 입력모드, 0이면 출력모드 (IOBUF에서 1=High-Z)
@@ -218,13 +179,13 @@ module sensor_cu (
             WAIT2: begin
                 if (tick == 1) begin
                     tick_count_next = tick_count + 1;
-                    if(tick_count_next == 50) begin
+                    if (tick_count_next == 50) begin
                         tick_count_next = 0;
-                    if (data_in ==1) begin
-                    next = WAIT3;
+                        if (data_in == 1) begin
+                            next = WAIT3;
+                        end
                     end
-                    end
-            
+
                 end
             end
             WAIT3: begin
@@ -235,15 +196,14 @@ module sensor_cu (
 
             SYNC: begin
                 if (data_count == 40) begin
-                    data_count_next =0;
+                    data_count_next = 0;
                     next = PAR;
-                end
-                else if (data_in == 1) begin
-                    real_count_next = real_count +1;
-                    if(real_count_next == 100) begin
-                    next = DATA;
-                    tick_count_next = 0;
-                    real_count_next = 0;
+                end else if (data_in == 1) begin
+                    real_count_next = real_count + 1;
+                    if (real_count_next == 100) begin
+                        next = DATA;
+                        tick_count_next = 0;
+                        real_count_next = 0;
                     end
 
                 end
@@ -252,45 +212,43 @@ module sensor_cu (
                 if (data_in == 1) begin
                     if (tick == 1) begin
                         tick_count_next = tick_count + 1;
-                         if (tick_count_next> 200) begin
-                            tick_count_next =0;
-                            next =IDLE;
-                    end
+                        if (tick_count_next > 200) begin
+                            tick_count_next = 0;
+                            next = IDLE;
+                        end
                     end
                 end else if (data_in == 0) begin
-                              next =DATA2; 
+                    next = DATA2;
                 end
             end
             DATA2: begin
-                  if (tick_count_next < 50) begin
-                        next = SYNC;
-                        o_data_next[39-data_count] = 0;
-                           data_count_next = data_count +1;
-                            tick_count_next = 0;
-                    end
-                    else begin
-                         next = SYNC;
-                        o_data_next[39-data_count] = 1;
-                          data_count_next = data_count +1;
-                        tick_count_next = 0;
-                    end                  
+                if (tick_count_next < 50) begin
+                    next = SYNC;
+                    o_data_next[39-data_count] = 0;
+                    data_count_next = data_count + 1;
+                    tick_count_next = 0;
+                end else begin
+                    next = SYNC;
+                    o_data_next[39-data_count] = 1;
+                    data_count_next = data_count + 1;
+                    tick_count_next = 0;
+                end
             end
             PAR: begin
                 io_state_next = 1;
-                if(tick == 1) begin
-                tick_count_next = tick_count +1;
+                if (tick == 1) begin
+                    tick_count_next = tick_count + 1;
                 end
-                if(tick_count_next == 50) begin
-                    data_next =1;
+                if (tick_count_next == 50) begin
+                    data_next = 1;
                     if( o_data_reg[39:32] + o_data_reg[31:24] + o_data_reg[23:16] +o_data_reg[15:8] != o_data_reg[7:0])
                     begin
                         led_next = 1;
-                    end
-                    else begin
+                    end else begin
                         led_next = 0;
                         finish_tick_next = 1;
                     end
-                    tick_count_next =0;
+                    tick_count_next = 0;
                     next = IDLE;
                 end
             end
@@ -346,9 +304,7 @@ module tick_10sec (
     input  reset,
     output tick
 );
-
-    parameter BAUD_RATE = 9600;
-    localparam BAUD_COUNT = 1000_000_000;
+    localparam BAUD_COUNT = 1_000_000_000;
     reg [$clog2(BAUD_COUNT)-1:0] count_reg, count_next;
 
     reg tick_reg, tick_next;

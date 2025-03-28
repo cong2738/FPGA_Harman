@@ -1,48 +1,6 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 2025/03/26 21:51:20
-// Design Name: 
-// Module Name: uart
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
-`timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 2025/03/25 15:38:54
-// Design Name: 
-// Module Name: uart
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
-
-
-    module uart_clock (
+module uart_clock (
     input reset,
     input clk,
     input finish_tick,
@@ -281,7 +239,7 @@ module clock_tx_control (
                 data_next = "m";
                 next = DATA11;
             end
-             DATA11: begin
+            DATA11: begin
                 start_next = 1;
                 data_next = ":";
                 next = DATA12;

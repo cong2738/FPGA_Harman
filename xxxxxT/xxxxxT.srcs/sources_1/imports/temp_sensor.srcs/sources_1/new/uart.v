@@ -42,7 +42,7 @@
 
 
 
-    module uart_clock (
+module uart_clock (
     input reset,
     input clk,
     input finish_tick,
@@ -281,7 +281,7 @@ module clock_tx_control (
                 data_next = "m";
                 next = DATA11;
             end
-             DATA11: begin
+            DATA11: begin
                 start_next = 1;
                 data_next = ":";
                 next = DATA12;
@@ -323,63 +323,10 @@ module bit_asci (
 );
     reg [7:0] data0, data10, data100, data1000;
     always @(*) begin
-        data0 = data % 10;
-        data10 = data / 10 % 10;
-        data100 = data / 100 % 10;
-        data1000 = data / 1000 % 10;
-        case (data0)
-            0: o_data = "0";
-            1: o_data = "1";
-            2: o_data = "2";
-            3: o_data = "3";
-            4: o_data = "4";
-            5: o_data = "5";
-            6: o_data = "6";
-            7: o_data = "7";
-            8: o_data = "8";
-            9: o_data = "9";
-
-            default: o_data = "0";
-        endcase
-        case (data10)
-            0: o_data10 = "0";
-            1: o_data10 = "1";
-            2: o_data10 = "2";
-            3: o_data10 = "3";
-            4: o_data10 = "4";
-            5: o_data10 = "5";
-            6: o_data10 = "6";
-            7: o_data10 = "7";
-            8: o_data10 = "8";
-            9: o_data10 = "9";
-            default: o_data10 = "0";
-        endcase
-        case (data100)
-            0: o_data100 = "0";
-            1: o_data100 = "1";
-            2: o_data100 = "2";
-            3: o_data100 = "3";
-            4: o_data100 = "4";
-            5: o_data100 = "5";
-            6: o_data100 = "6";
-            7: o_data100 = "7";
-            8: o_data100 = "8";
-            9: o_data100 = "9";
-            default: o_data100 = "0";
-        endcase
-        case (data1000)
-            0: o_data1000 = "0";
-            1: o_data1000 = "1";
-            2: o_data1000 = "2";
-            3: o_data1000 = "3";
-            4: o_data1000 = "4";
-            5: o_data1000 = "5";
-            6: o_data1000 = "6";
-            7: o_data1000 = "7";
-            8: o_data1000 = "8";
-            9: o_data1000 = "9";
-            default: o_data1000 = "0";
-        endcase
+        data0 = data % 10 + "0";
+        data10 = data / 10 % 10 + "0";
+        data100 = data / 100 % 10 + "0";
+        data1000 = data / 1000 % 10 + "0";
     end
 
 

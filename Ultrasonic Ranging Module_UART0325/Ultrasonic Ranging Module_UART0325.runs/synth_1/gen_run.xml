@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1742957030">
+  <File Type="PA-TCL" Name="top_sensor.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="top_sensor_drc_synth.rpt"/>
+  <File Type="REPORTS-TCL" Name="top_sensor_reports.tcl"/>
+  <File Type="RDS-RDS" Name="top_sensor.vds"/>
+  <File Type="RDS-UTIL" Name="top_sensor_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="top_sensor_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="top_sensor.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="top_sensor_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="top_sensor_timing_summary_synth.pb"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/imports/URM/btn_debounce.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../../Users/kccistc/Desktop/URM/btn_debounce.v"/>
+        <Attr Name="ImportTime" Val="1741328405"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/URM/fnd.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../../Users/kccistc/Desktop/URM/fnd.v"/>
+        <Attr Name="ImportTime" Val="1742867382"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/MyUART_source/uart.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../_source/MyUART_source/uart.v"/>
+        <Attr Name="ImportTime" Val="1742520404"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/URM/sensor_cu.v">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../../Users/kccistc/Desktop/URM/sensor_cu.v"/>
+        <Attr Name="ImportTime" Val="1742884139"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/MyUART_source/Top_UART_String.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/../_source/MyUART_source/Top_UART_String.v"/>
+        <Attr Name="ImportTime" Val="1742535865"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/MyFIFORAM_source/fifo_que.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/../_source/MyFIFORAM_source/fifo_que.v"/>
+        <Attr Name="ImportTime" Val="1742518311"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="top_sensor"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/imports/Downloads/Basys-3-Master.xdc">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/../../../Users/kccistc/Downloads/Basys-3-Master.xdc"/>
+        <Attr Name="ImportTime" Val="1742947602"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+    <Filter Type="Utils"/>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
+    <Step Id="synth_design"/>
+  </Strategy>
+</GenRun>

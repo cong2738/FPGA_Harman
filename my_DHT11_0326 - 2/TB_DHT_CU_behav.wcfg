@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="TB_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="TB" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="22856992358fs"></ZoomStartTime>
+      <ZoomEndTime time="26246582225fs"></ZoomEndTime>
+      <Cursor1Time time="34008885000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="280"></NameColumnWidth>
+      <ValueColumnWidth column_width="184"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="10" />
+   <wvobject fp_name="/TB/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TB/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TB/start_trigger" type="logic">
+      <obj_property name="ElementShortName">start_trigger</obj_property>
+      <obj_property name="ObjectShortName">start_trigger</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TB/data_in" type="logic">
+      <obj_property name="ElementShortName">data_in</obj_property>
+      <obj_property name="ObjectShortName">data_in</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TB/data_t" type="logic">
+      <obj_property name="ElementShortName">data_t</obj_property>
+      <obj_property name="ObjectShortName">data_t</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TB/uut/U_DHT_CU/io_out_reg" type="logic">
+      <obj_property name="ElementShortName">io_out_reg</obj_property>
+      <obj_property name="ObjectShortName">io_out_reg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TB/uut/CU_LED" type="array">
+      <obj_property name="ElementShortName">CU_LED[6:0]</obj_property>
+      <obj_property name="ObjectShortName">CU_LED[6:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/TB/uut/U_DHT_CU/dht" type="logic">
+      <obj_property name="ElementShortName">dht</obj_property>
+      <obj_property name="ObjectShortName">dht</obj_property>
+   </wvobject>
+   <wvobject fp_name="/TB/uut/U_DHT_CU/data" type="array">
+      <obj_property name="ElementShortName">data[39:0]</obj_property>
+      <obj_property name="ObjectShortName">data[39:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/TB/uut/U_DHT_CU/idx_state" type="array">
+      <obj_property name="ElementShortName">idx_state[5:0]</obj_property>
+      <obj_property name="ObjectShortName">idx_state[5:0]</obj_property>
+   </wvobject>
+</wave_config>

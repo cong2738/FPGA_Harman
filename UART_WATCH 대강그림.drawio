@@ -1,0 +1,69 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.1.1 Chrome/132.0.6834.210 Electron/34.3.3 Safari/537.36" version="26.1.1">
+  <diagram name="페이지-1" id="w28G62bzPW1KJdLujV46">
+    <mxGraphModel dx="1292" dy="539" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="BolupNnMAhhQHTAEtado-21" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="230" y="150" width="540" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="BolupNnMAhhQHTAEtado-15" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="390" y="200" width="370" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="BolupNnMAhhQHTAEtado-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=4;" edge="1" parent="1" source="BolupNnMAhhQHTAEtado-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="630" y="260" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="560" y="260" />
+              <mxPoint x="560" y="260" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BolupNnMAhhQHTAEtado-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=4;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="520" y="470.0000000000001" as="sourcePoint" />
+            <mxPoint x="630" y="470.0000000000001" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BolupNnMAhhQHTAEtado-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=4;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="520" y="450.0000000000001" as="sourcePoint" />
+            <mxPoint x="630" y="450.0000000000001" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BolupNnMAhhQHTAEtado-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=4;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="520" y="280.0000000000001" as="sourcePoint" />
+            <mxPoint x="630" y="280.0000000000001" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BolupNnMAhhQHTAEtado-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=4;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="520" y="430.0000000000001" as="sourcePoint" />
+            <mxPoint x="630" y="430.0000000000001" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BolupNnMAhhQHTAEtado-1" value="cmd&lt;br&gt;box" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=30;" vertex="1" parent="1">
+          <mxGeometry x="400" y="220" width="120" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="BolupNnMAhhQHTAEtado-12" value="stop&lt;br&gt;watch" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=30;" vertex="1" parent="1">
+          <mxGeometry x="630" y="220" width="120" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="BolupNnMAhhQHTAEtado-13" value="watch" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=30;" vertex="1" parent="1">
+          <mxGeometry x="630" y="400" width="120" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="BolupNnMAhhQHTAEtado-16" value="my_watch" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;fillColor=#fad7ac;strokeColor=#b46504;" vertex="1" parent="1">
+          <mxGeometry x="390" y="160" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="BolupNnMAhhQHTAEtado-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=4;" edge="1" parent="1" source="BolupNnMAhhQHTAEtado-19" target="BolupNnMAhhQHTAEtado-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="365" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BolupNnMAhhQHTAEtado-19" value="UART" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=30;" vertex="1" parent="1">
+          <mxGeometry x="240" y="300" width="130" height="130" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,47 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.1.1 Chrome/132.0.6834.210 Electron/34.3.3 Safari/537.36" version="26.1.1">
+  <diagram name="페이지-1" id="q_P1JM1lbvSpN6-FWAMQ">
+    <mxGraphModel dx="757" dy="566" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="QP1jRan6UKaBsxbEVb5r-9" value="Vertical Container" style="swimlane;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="150" y="140" width="400" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="QP1jRan6UKaBsxbEVb5r-10" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="170" y="180" width="364" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="QP1jRan6UKaBsxbEVb5r-1" value="RX" style="rounded=0;whiteSpace=wrap;html=1;fontSize=24;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="QP1jRan6UKaBsxbEVb5r-10">
+          <mxGeometry width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="QP1jRan6UKaBsxbEVb5r-3" value="TX" style="rounded=0;whiteSpace=wrap;html=1;fontSize=24;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="QP1jRan6UKaBsxbEVb5r-10">
+          <mxGeometry y="100" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="QP1jRan6UKaBsxbEVb5r-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="QP1jRan6UKaBsxbEVb5r-10" source="QP1jRan6UKaBsxbEVb5r-4" target="QP1jRan6UKaBsxbEVb5r-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="150" y="70" />
+              <mxPoint x="150" y="30" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QP1jRan6UKaBsxbEVb5r-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="QP1jRan6UKaBsxbEVb5r-10" source="QP1jRan6UKaBsxbEVb5r-4" target="QP1jRan6UKaBsxbEVb5r-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="150" y="70" />
+              <mxPoint x="150" y="130" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QP1jRan6UKaBsxbEVb5r-4" value="clock_gen" style="rounded=0;whiteSpace=wrap;html=1;fontSize=24;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="QP1jRan6UKaBsxbEVb5r-10">
+          <mxGeometry x="244" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="QP1jRan6UKaBsxbEVb5r-8" value="9600*16bps" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="QP1jRan6UKaBsxbEVb5r-10">
+          <mxGeometry x="170" y="50" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QP1jRan6UKaBsxbEVb5r-11" value="tx_stage change on count 16 tick" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;" vertex="1" parent="QP1jRan6UKaBsxbEVb5r-10">
+          <mxGeometry x="230" y="140" width="140" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

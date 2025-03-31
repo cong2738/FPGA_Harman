@@ -1,0 +1,23 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../final_project.srcs/sources_1/imports/sensor/DHT11_module.v" \
+"../../../../final_project.srcs/sources_1/imports/sensor/HC_SR04_module.v" \
+"../../../../final_project.srcs/sources_1/new/Real_Top.v" \
+"../../../../final_project.srcs/sources_1/new/Top_module.v" \
+"../../../../final_project.srcs/sources_1/imports/sources_1/imports/sources_1/imports/250310_stopwatch_fsm/btn_debounce.v" \
+"../../../../final_project.srcs/sources_1/imports/sources_1/new/clock_dp.v" \
+"../../../../final_project.srcs/sources_1/imports/new/fifo.v" \
+"../../../../final_project.srcs/sources_1/imports/sources_1/imports/sources_1/imports/250310_stopwatch_fsm/fnd_controller.v" \
+"../../../../final_project.srcs/sources_1/imports/sources_1/imports/sources_1/new/stopwatch_cu.v" \
+"../../../../final_project.srcs/sources_1/imports/sources_1/imports/sources_1/new/stopwatch_dp.v" \
+"../../../../final_project.srcs/sources_1/imports/sources_1/imports/sources_1/new/top_stopwatch.v" \
+"../../../../final_project.srcs/sources_1/new/uart_data_tx.v" \
+"../../../../final_project.srcs/sources_1/imports/new/uart_fsm.v" \
+"../../../../final_project.srcs/sources_1/new/univ_CU.v" \
+"../../../../final_project.srcs/sim_1/imports/new/tb_top_module.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

@@ -40,15 +40,17 @@ module up_down_counter #(
     always @(posedge clk, posedge reset) begin
         if (reset) begin
             r_count <= 0;
-        end else if (tick) begin
-            if (mode_sw) begin
-                if (count == 0) begin
-                    r_count <= MAX_COUNT;
-                end else r_count <= r_count - 1;
-            end else begin
-                if (count == MAX_COUNT) begin
-                    r_count <= 0;
-                end else r_count <= r_count + 1;
+        end else begin
+            if (tick) begin
+                if (mode_sw) begin
+                    if (count == 0) begin
+                        r_count <= MAX_COUNT;
+                    end else r_count <= r_count - 1;
+                end else begin
+                    if (count == MAX_COUNT) begin
+                        r_count <= 0;
+                    end else r_count <= r_count + 1;
+                end
             end
         end
     end

@@ -67,8 +67,8 @@ module count_4 (
     always @(posedge clk, posedge reset) begin
         if (reset) begin
             r_count <= 0;
-        end else if (tick) begin
-            r_count <= r_count + 1;
+        end else begin
+            if (tick) r_count <= r_count + 1;
         end
     end
 endmodule

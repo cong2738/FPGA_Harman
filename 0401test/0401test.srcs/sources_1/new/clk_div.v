@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module clk_div #(
-    parameter COUNT_MAX = 10_000_000
+    parameter COUNT_MAX = 100_000_000
 ) (
     input  clk,
     input  reset,

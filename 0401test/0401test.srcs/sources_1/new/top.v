@@ -6,30 +6,39 @@ module top #(
     input clk,
     input reset,
     input sw,
-    output [6:0] fnd,
-    output dot,
-    output [3:0] cmm
+    output [7:0] seg,
+    output [3:0] an
 );
-    clk_div CLK_100ms (
+    clk_div #(
+        .COUNT_MAX(10_000_000)
+    ) CLK_100ms (
         .clk  (clk),
         .reset(reset),
         .tick (clk_100ms)
     );
 
-    wire [$clog2(COUNT_MAX)-1:0] count;
-    counter #(
-        .COUNT_MAX(9999)
+    wire [$clog2(9999)-1:0] count;
+    two_mode_counter #(
+        .COUNT_MAX(COUNT_MAX)
     ) u_counter (
-        .clk  (tick),
+        .clk  (clk_100ms),
         .reset(reset),
         .sw   (sw),
-        .count(clk_100ms)
+        .count(count)
+    );
+
+    fnd_ctrl u_fnd_ctrl (
+        .clk  (clk),
+        .reset(reset),
+        .bcd  (count),
+        .seg  (seg),
+        .an   (an)
     );
 
 endmodule
 
-module counter #(
-    parameter COUNT_MAX = 9999
+module two_mode_counter #(
+    parameter COUNT_MAX = 10000
 ) (
     input clk,
     input reset,
@@ -50,14 +59,14 @@ module counter #(
 
     always @(*) begin
         count_next = count_curr;
-        if (count_curr == COUNT_MAX - 1) begin
-            count_next = 0;
-        end else if (count_curr == 0) begin
-            count_next = 9999;
-        end else if (sw) begin
-            count_next = count_next - 1;
+        if (sw) begin
+            if (count_curr == 0) begin
+                count_next = COUNT_MAX - 1;
+            end else count_next = count_next - 1;
         end else begin
-            count_next = count_next + 1;
+            if (count_curr == COUNT_MAX - 1) begin
+                count_next = 0;
+            end else count_next = count_next + 1;
         end
     end
 

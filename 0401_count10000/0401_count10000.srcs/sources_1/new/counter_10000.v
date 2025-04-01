@@ -14,7 +14,7 @@ module counter_10000 #(
         .tick (tick)
     );
 
-    counter u_counter (
+    up_down_counter u_counter (
         .clk    (clk),
         .tick   (tick),
         .reset  (reset),
@@ -24,7 +24,7 @@ module counter_10000 #(
 
 endmodule
 
-module counter #(
+module up_down_counter #(
     parameter MAX_COUNT = 9999
 ) (
     input clk,

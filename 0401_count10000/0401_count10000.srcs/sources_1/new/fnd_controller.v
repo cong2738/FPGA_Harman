@@ -156,9 +156,9 @@ module blink_dot (
 );
     always @(*) begin
         seg_out = seg_in;
-        seg_out[7] = 0;
-        if (msec == 5 && sel == 1) begin
-            seg_out[7] = 1;
+        seg_out[7] = 1;
+        if (msec < 5 && sel == 1) begin
+            seg_out[7] = 0;
         end
     end
 endmodule

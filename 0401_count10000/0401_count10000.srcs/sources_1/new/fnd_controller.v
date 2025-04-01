@@ -47,12 +47,19 @@ module fnd_controller (
         .num1000(num1000),
         .selNum (selNum)
     );
-    
+
+    wire [7:0]seg_in;
     digit_to_seg u_digit_to_seg (
         .num(selNum),
-        .seg(seg)
+        .seg(seg_in)
     );
 
+    blink_dot u_blink_dot (
+        .seg_in (seg_in),
+        .msec   (num1),
+        .sel    (sel),
+        .seg_out(seg)
+    );
 
 endmodule
 
@@ -137,5 +144,21 @@ module digit_to_seg (
             9: seg = 8'h90;
             default: seg = 8'hff;
         endcase
+
+    end
+endmodule
+
+module blink_dot (
+    input [7:0] seg_in,
+    input [3:0] msec,
+    input [1:0] sel,
+    output reg [7:0] seg_out
+);
+    always @(*) begin
+        seg_out = seg_in;
+        seg_out[7] = 0;
+        if (msec == 5 && sel == 1) begin
+            seg_out[7] = 1;
+        end
     end
 endmodule

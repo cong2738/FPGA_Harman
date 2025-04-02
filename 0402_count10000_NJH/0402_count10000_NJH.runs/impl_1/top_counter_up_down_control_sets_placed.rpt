@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Wed Apr  2 10:25:51 2025
+| Date         : Wed Apr  2 12:08:06 2025
 | Host         : DESKTOP-7CFQ9ND running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_counter_up_down_control_sets_placed.rpt
 | Design       : top_counter_up_down
@@ -27,7 +27,7 @@ Table of Contents
 |    Minimum number of control sets                        |     2 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |     5 |
+| Unused register locations in slices containing registers |     3 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -59,7 +59,7 @@ Table of Contents
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | No           | No                    | No                     |               0 |            0 |
-| No           | No                    | Yes                    |              45 |           13 |
+| No           | No                    | Yes                    |              47 |           14 |
 | No           | Yes                   | No                     |               0 |            0 |
 | Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |              14 |            5 |
@@ -70,11 +70,11 @@ Table of Contents
 4. Detailed Control Set Information
 -----------------------------------
 
-+----------------+-------------------------------+------------------+------------------+----------------+--------------+
-|  Clock Signal  |         Enable Signal         | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
-+----------------+-------------------------------+------------------+------------------+----------------+--------------+
-|  clk_IBUF_BUFG | U_Counter/U_Clk_Div_10Hz/E[0] | reset_IBUF       |                5 |             14 |         2.80 |
-|  clk_IBUF_BUFG |                               | reset_IBUF       |               13 |             45 |         3.46 |
-+----------------+-------------------------------+------------------+------------------+----------------+--------------+
++----------------+-------------------------------------+------------------+------------------+----------------+--------------+
+|  Clock Signal  |            Enable Signal            | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------+-------------------------------------+------------------+------------------+----------------+--------------+
+|  clk_IBUF_BUFG | u_counter_up_down/u_counter_CU/E[0] | reset_IBUF       |                5 |             14 |         2.80 |
+|  clk_IBUF_BUFG |                                     | reset_IBUF       |               14 |             47 |         3.36 |
++----------------+-------------------------------------+------------------+------------------+----------------+--------------+
 
 

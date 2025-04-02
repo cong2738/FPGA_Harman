@@ -3,6 +3,10 @@ set_property src_info {type:XDC file:1 line:8 export:INPUT save:INPUT read:READ}
 set_property -dict { PACKAGE_PIN W5   IOSTANDARD LVCMOS33 } [get_ports { clk }]; #IO_L12P_T1_MRCC_34 ,Sch=CLK100MHZ
 set_property src_info {type:XDC file:1 line:14 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict { PACKAGE_PIN V17  IOSTANDARD LVCMOS33 } [get_ports { mode  }]; #IO_L19N_T3_A09_D25_VREF_14 ,Sch=SW0
+set_property src_info {type:XDC file:1 line:15 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN V16  IOSTANDARD LVCMOS33 } [get_ports { run  }]; #IO_L19P_T3_A10_D26_14      ,Sch=SW1
+set_property src_info {type:XDC file:1 line:16 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN W16  IOSTANDARD LVCMOS33 } [get_ports { clear  }]; #IO_L20P_T3_A08_D24_14      ,Sch=SW2
 set_property src_info {type:XDC file:1 line:54 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict { PACKAGE_PIN W7  IOSTANDARD LVCMOS33 } [get_ports { fndFont[0] }]; #IO_L13P_T2_MRCC_34 ,Sch=seg[0]
 set_property src_info {type:XDC file:1 line:55 export:INPUT save:INPUT read:READ} [current_design]

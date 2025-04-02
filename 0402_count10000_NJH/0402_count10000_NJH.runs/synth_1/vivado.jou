@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Wed Apr  2 10:24:56 2025
-# Process ID: 12540
+# Start of session at: Wed Apr  2 12:07:10 2025
+# Process ID: 17844
 # Current directory: C:/harman/FPGA_Harman-1/0402_count10000_NJH/0402_count10000_NJH.runs/synth_1
 # Command line: vivado.exe -log top_counter_up_down.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_counter_up_down.tcl
 # Log file: C:/harman/FPGA_Harman-1/0402_count10000_NJH/0402_count10000_NJH.runs/synth_1/top_counter_up_down.vds

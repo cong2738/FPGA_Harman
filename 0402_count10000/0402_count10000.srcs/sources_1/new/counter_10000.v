@@ -4,7 +4,7 @@ module counter_10000 #(
     input clk,
     input reset,
     input mode_sw,
-    output [$clog2(MAX_COUNT)-1:0] count,
+    output [$clog2(MAX_COUNT)-1:0] count,   
     output dot_off
 );
     clk_div #(

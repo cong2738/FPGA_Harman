@@ -17,7 +17,7 @@ proc create_report { reportName command } {
   }
 }
 namespace eval ::optrace {
-  variable script "C:/harman/FPGA_Harman-1/0401_count10000/0401_count10000.runs/impl_1/top_count10000.tcl"
+  variable script "C:/harman/FPGA_Harman-1/0402_count10000/0402_count10000.runs/impl_1/top_count10000.tcl"
   variable category "vivado_impl"
 }
 
@@ -125,12 +125,7 @@ set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 4
-  set_param power.enableUnconnectedCarry8PinPower 1
-  set_param power.disableGlitchAnalysis 1
-  set_param power.enableCarry8RouteBelPower 1
-  set_param power.xpeLogicHierarchyThreshold 50
-  set_param power.enableLutRouteBelPower 1
-  set_param synth.incrementalSynthesisCache C:/Users/kccistc/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-8684-DESKTOP-7CFQ9ND/incrSyn
+  set_param synth.incrementalSynthesisCache C:/Users/kccistc/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-17204-DESKTOP-7CFQ9ND/incrSyn
   set_param xicom.use_bs_reader 1
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7a35tcpg236-1
@@ -140,15 +135,15 @@ OPTRACE "create in-memory project" START { }
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir C:/harman/FPGA_Harman-1/0401_count10000/0401_count10000.cache/wt [current_project]
-  set_property parent.project_path C:/harman/FPGA_Harman-1/0401_count10000/0401_count10000.xpr [current_project]
-  set_property ip_output_repo C:/harman/FPGA_Harman-1/0401_count10000/0401_count10000.cache/ip [current_project]
+  set_property webtalk.parent_dir C:/harman/FPGA_Harman-1/0402_count10000/0402_count10000.cache/wt [current_project]
+  set_property parent.project_path C:/harman/FPGA_Harman-1/0402_count10000/0402_count10000.xpr [current_project]
+  set_property ip_output_repo C:/harman/FPGA_Harman-1/0402_count10000/0402_count10000.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet C:/harman/FPGA_Harman-1/0401_count10000/0401_count10000.runs/synth_1/top_count10000.dcp
+  add_files -quiet C:/harman/FPGA_Harman-1/0402_count10000/0402_count10000.runs/synth_1/top_count10000.dcp
 OPTRACE "read constraints: implementation" START { }
-  read_xdc C:/harman/FPGA_Harman-1/0401_count10000/0401_count10000.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc
+  read_xdc C:/harman/FPGA_Harman-1/0402_count10000/0402_count10000.srcs/constrs_1/imports/FPGA_Harman-1/Basys-3-Master.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }

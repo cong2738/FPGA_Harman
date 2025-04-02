@@ -27,8 +27,7 @@ module tb ();
     reg        run;
     reg        clear;
     wire [3:0] fndCom;
-    wire [7:0] fndFont;
-    wire [3:0] count_state;
+    wire [7:0] fndFont; 
     top_counter_up_down u_top_counter_up_down (
         .clk        (clk),
         .reset      (reset),
@@ -36,8 +35,7 @@ module tb ();
         .run        (run),
         .clear      (clear),
         .fndCom     (fndCom),
-        .fndFont    (fndFont),
-        .count_state(count_state)
+        .fndFont    (fndFont)
     );
 
     always #5 clk = ~clk;

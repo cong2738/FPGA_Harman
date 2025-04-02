@@ -29,14 +29,4 @@ module top_count10000 #(
 
 endmodule
 
-module blink_dot (
-    input [$clog2(9999)-1:0] bcd,
-    output reg dot_off
-);
-    always @(*) begin
-        dot_off = 1;
-        if (bcd % 10 < 5) begin
-            dot_off = 0;
-        end
-    end
-endmodule
+

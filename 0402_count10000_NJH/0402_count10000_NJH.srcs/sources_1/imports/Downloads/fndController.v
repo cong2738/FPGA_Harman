@@ -4,6 +4,7 @@ module fndController (
     input         clk,
     input         reset,
     input  [13:0] fndData,
+    input  [ 3:0] dot_data,
     output [ 3:0] fndCom,
     output [ 7:0] fndFont
 );
@@ -11,7 +12,10 @@ module fndController (
     wire tick;
     wire [1:0] digit_sel;
     wire [3:0] digit_1, digit_10, digit_100, digit_1000, digit;
+    wire [7:0]num_seg;
 
+    assign fndFont = {fndDP,num_seg[6:0]};
+    
     clk_div_1khz U_Clk_Div_1Khz (
         .clk  (clk),
         .reset(reset),
@@ -47,10 +51,17 @@ module fndController (
         .y  (digit)
     );
 
+    mux_4x1_1bit u_mux_4x1_1bit (
+        .sel(digit_sel),
+        .x  (dot_data),
+        .y  (fndDP)
+    );
+
     BCDtoSEG_decoder U_BCDtoSEG (
         .bcd(digit),
-        .seg(fndFont)
+        .seg(num_seg)
     );
+
 
 endmodule
 
@@ -164,6 +175,21 @@ module BCDtoSEG_decoder (
             4'he: seg = 8'h86;
             4'hf: seg = 8'h8e;
             default: seg = 8'hff;
+        endcase
+    end
+endmodule
+
+module mux_4x1_1bit (
+    input      [1:0] sel,
+    input      [3:0] x,
+    output reg       y
+);
+    always @(*) begin
+        case (sel)
+            0: y = x[0];
+            1: y = x[1];
+            2: y = x[2];
+            3: y = x[3];
         endcase
     end
 endmodule

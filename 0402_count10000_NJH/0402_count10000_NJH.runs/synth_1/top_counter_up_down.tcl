@@ -92,6 +92,7 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
+  C:/harman/FPGA_Harman-1/0402_count10000_NJH/0402_count10000_NJH.srcs/sources_1/new/UART.v
   C:/harman/FPGA_Harman-1/0402_count10000_NJH/0402_count10000_NJH.srcs/sources_1/imports/Downloads/fndController.v
   C:/harman/FPGA_Harman-1/0402_count10000_NJH/0402_count10000_NJH.srcs/sources_1/imports/Downloads/counter_up_down.v
 }

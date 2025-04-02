@@ -1,5 +1,6 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  \
+"../../../../0402_count10000_NJH.srcs/sources_1/new/UART.v" \
 "../../../../0402_count10000_NJH.srcs/sources_1/imports/Downloads/counter_up_down.v" \
 "../../../../0402_count10000_NJH.srcs/sources_1/imports/Downloads/fndController.v" \
 "../../../../0402_count10000_NJH.srcs/sim_1/new/tb.v" \

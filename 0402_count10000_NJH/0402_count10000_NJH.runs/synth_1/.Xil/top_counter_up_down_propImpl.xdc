@@ -1,12 +1,6 @@
 set_property SRC_FILE_INFO {cfile:C:/harman/FPGA_Harman-1/0402_count10000_NJH/0402_count10000_NJH.srcs/constrs_1/imports/Downloads/MY_Basys-3-Master.xdc rfile:../../../0402_count10000_NJH.srcs/constrs_1/imports/Downloads/MY_Basys-3-Master.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:8 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict { PACKAGE_PIN W5   IOSTANDARD LVCMOS33 } [get_ports { clk }]; #IO_L12P_T1_MRCC_34 ,Sch=CLK100MHZ
-set_property src_info {type:XDC file:1 line:14 export:INPUT save:INPUT read:READ} [current_design]
-set_property -dict { PACKAGE_PIN V17  IOSTANDARD LVCMOS33 } [get_ports { mode  }]; #IO_L19N_T3_A09_D25_VREF_14 ,Sch=SW0
-set_property src_info {type:XDC file:1 line:15 export:INPUT save:INPUT read:READ} [current_design]
-set_property -dict { PACKAGE_PIN V16  IOSTANDARD LVCMOS33 } [get_ports { run  }]; #IO_L19P_T3_A10_D26_14      ,Sch=SW1
-set_property src_info {type:XDC file:1 line:16 export:INPUT save:INPUT read:READ} [current_design]
-set_property -dict { PACKAGE_PIN W16  IOSTANDARD LVCMOS33 } [get_ports { clear  }]; #IO_L20P_T3_A08_D24_14      ,Sch=SW2
 set_property src_info {type:XDC file:1 line:54 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict { PACKAGE_PIN W7  IOSTANDARD LVCMOS33 } [get_ports { fndFont[0] }]; #IO_L13P_T2_MRCC_34 ,Sch=seg[0]
 set_property src_info {type:XDC file:1 line:55 export:INPUT save:INPUT read:READ} [current_design]
@@ -33,3 +27,7 @@ set_property src_info {type:XDC file:1 line:66 export:INPUT save:INPUT read:READ
 set_property -dict { PACKAGE_PIN W4  IOSTANDARD LVCMOS33 } [get_ports { fndCom[3]  }]; #IO_L12N_T1_MRCC_34 ,Sch=an[3]
 set_property src_info {type:XDC file:1 line:71 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict { PACKAGE_PIN U18  IOSTANDARD LVCMOS33 } [get_ports { reset }]; #IO_L18N_T2_A11_D27_14 ,Sch=BTNC
+set_property src_info {type:XDC file:1 line:146 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN B18  IOSTANDARD LVCMOS33 } [get_ports { rx }]; #IO_L19P_T3_16      ,Sch=UART_TXD_IN
+set_property src_info {type:XDC file:1 line:147 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN A18  IOSTANDARD LVCMOS33 } [get_ports { tx }]; #IO_L19N_T3_VREF_16 ,Sch=UART_RXD_OUT

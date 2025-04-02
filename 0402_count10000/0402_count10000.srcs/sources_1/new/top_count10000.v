@@ -14,15 +14,11 @@ module top_count10000 #(
         .clk    (clk),
         .reset  (reset),
         .mode_sw(mode_sw),
-        .count  (count)
-    );
-
-    blink_dot u_blink_dot (
-        .bcd    (count),
+        .count  (count),
         .dot_off(dot_off)
     );
 
-    fnd_controller u_fnd_controller (
+        fnd_controller u_fnd_controller (
         .clk  (clk),
         .reset(reset),
         .num  (count),

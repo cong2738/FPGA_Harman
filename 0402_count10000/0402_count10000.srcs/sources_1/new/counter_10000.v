@@ -4,7 +4,8 @@ module counter_10000 #(
     input clk,
     input reset,
     input mode_sw,
-    output [$clog2(MAX_COUNT)-1:0] count
+    output [$clog2(MAX_COUNT)-1:0] count,
+    output dot_off
 );
     clk_div #(
         .MAX_COUNT(10_000_000)
@@ -20,6 +21,11 @@ module counter_10000 #(
         .reset  (reset),
         .mode_sw(mode_sw),
         .count  (count)
+    );
+
+    blink_dot u_blink_dot (
+        .bcd    (count),
+        .dot_off(dot_off)
     );
 
 endmodule

@@ -9,3 +9,4 @@
 # Log file: C:/harman/FPGA_Harman-1/0402_count10000_NJH/0402_count10000_NJH.runs/impl_1/top_counter_up_down.vdi
 # Journal file: C:/harman/FPGA_Harman-1/0402_count10000_NJH/0402_count10000_NJH.runs/impl_1\vivado.jou
 #-----------------------------------------------------------
+source top_counter_up_down.tcl -notrace

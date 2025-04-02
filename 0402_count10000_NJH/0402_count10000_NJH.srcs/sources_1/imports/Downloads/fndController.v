@@ -15,7 +15,7 @@ module fndController (
     wire [7:0]num_seg;
 
     assign fndFont = {fndDP,num_seg[6:0]};
-    
+
     clk_div_1khz U_Clk_Div_1Khz (
         .clk  (clk),
         .reset(reset),
@@ -182,14 +182,7 @@ endmodule
 module mux_4x1_1bit (
     input      [1:0] sel,
     input      [3:0] x,
-    output reg       y
+    output       y
 );
-    always @(*) begin
-        case (sel)
-            0: y = x[0];
-            1: y = x[1];
-            2: y = x[2];
-            3: y = x[3];
-        endcase
-    end
+    assign y = x[sel];
 endmodule

@@ -200,7 +200,7 @@ module control_unit (
     );
 
 
-    // state_management logic
+    // state_management
     always @(posedge clk, posedge reset) begin
         if (reset) begin
             counter_state <= STOP;
@@ -217,7 +217,7 @@ module control_unit (
         end
     end
 
-    // echo_state_next logic
+    // echo_next logic
     always @(*) begin
         tx_data = 0;
         tx_trigger = 1'b0;
@@ -241,7 +241,7 @@ module control_unit (
         endcase
     end
 
-    // watch_state_next_logic
+    // watch_mode_next_logic
     always @(*) begin
         sel = 0;
         watch_next = watch_state;
@@ -261,7 +261,7 @@ module control_unit (
         endcase
     end
 
-    // counter_mode_state_next logic
+    // counter_mode_next logic
     always @(*) begin
         counter_mode = 1'b0;
         mode_next = mode_state;
@@ -279,7 +279,7 @@ module control_unit (
         end
     end
 
-    // counter_state_next logic
+    // counter_next logic
     always @(*) begin
         counter_state_next    = counter_state;
         counter_en    = 1'b0;
@@ -306,7 +306,7 @@ module control_unit (
         end
     end
 
-    // stopwatch_state_next logic
+    // stopwatch_next logic
     always @(*) begin
         stopwatch_state_next    = stopwatch_state;
         stopwatch_en    = 1'b0;

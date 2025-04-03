@@ -38,23 +38,19 @@ module top_counter_up_down (
         .rx_busy   (rx_busy)
     );
 
-
-    control_unit U_ControlUnit (
-        .clk  (clk),
-        .reset(reset),
-
-        .tx_trigger(tx_trigger),
-        .tx_data   (tx_data),
-        .tx_done   (tx_done),
-        .tx_busy   (tx_busy),
+    control_unit u_control_unit (
+        .clk       (clk),
+        .reset     (reset),
         .rx_data   (rx_data),
         .rx_done   (rx_done),
-
-        .en   (en),
-        .clear(clear),
-        .mode (mode)
+        .tx_done   (tx_done),
+        .tx_busy   (tx_busy),
+        .tx_data   (tx_data),
+        .tx_trigger(tx_trigger),
+        .en        (en),
+        .clear     (clear),
+        .mode      (mode)
     );
-
     counter_up_down U_Counter (
         .clk     (clk),
         .reset   (reset),
@@ -82,8 +78,8 @@ module control_unit (
     input            rx_done,
     input            tx_done,
     input            tx_busy,
-    output reg       tx_trigger,
     output reg [7:0] tx_data,
+    output reg       tx_trigger,
     output reg       en,
     output reg       clear,
     output reg       mode

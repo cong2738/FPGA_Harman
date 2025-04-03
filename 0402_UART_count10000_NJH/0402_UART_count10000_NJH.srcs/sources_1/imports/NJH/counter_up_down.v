@@ -96,6 +96,7 @@ module control_unit (
     reg mode_state, mode_next;
     reg echo_state, echo_next;
 
+    // state_management logic
     always @(posedge clk, posedge reset) begin
         if (reset) begin
             state <= STOP;
@@ -108,6 +109,7 @@ module control_unit (
         end
     end
 
+    // echo_state_next logic
     always @(*) begin
         tx_data = 0;
         tx_trigger = 1'b0;
@@ -131,6 +133,7 @@ module control_unit (
         endcase
     end
 
+    // mode_state_next logic
     always @(*) begin
         mode = 1'b0;
         mode_next = mode_state;
@@ -150,6 +153,7 @@ module control_unit (
         endcase
     end
 
+    // count_state_next logic
     always @(*) begin
         state_next = state;
         en         = 1'b0;

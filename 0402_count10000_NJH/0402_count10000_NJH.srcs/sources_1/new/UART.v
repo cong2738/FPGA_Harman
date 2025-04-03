@@ -10,7 +10,7 @@ module UART (
     output [7:0] rx_data,
     output rx_done
 );
-    buadrate_gen u_buadrate_gen (
+    buadrate_x16_gen u_buadrate_gen (
         .clk  (clk),
         .reset(reset),
         .tick (tick)
@@ -98,6 +98,7 @@ module tx (
             WAIT: begin
                 tx_next = 0;
                 if (tick) begin
+                    //rx와 동일한 클록소스를 사용하기 위해(클록 싱크로나이즈) 타이밍을 맞춰주기위한 틱카운트. 
                     if (tCount == 15) begin
                         tCount_next = 0;
                         dtCount_next = 0;
@@ -187,7 +188,8 @@ module rx (
             end
             WAIT: begin
                 if (tick) begin
-                    if (tc == 7) begin
+                    // 입력 데이터를 안정적으로 받기 위해 입력되는 데이터의 START 스테이드 중간쯤에서 캐치하기 위해 기다린다.
+                    if (tc == 7) begin 
                         next = DATA;
                         tc_next = 0;
                         dc_next = 0;
@@ -219,7 +221,7 @@ module rx (
     end
 endmodule
 
-module buadrate_gen #(
+module buadrate_x16_gen #(
     parameter BUADRATE = 9600
 ) (
     input wire clk,
@@ -227,7 +229,8 @@ module buadrate_gen #(
     input [2:0] count_state,
     output reg tick
 );
-    localparam COUNTMAX = 100_000_000 / BUADRATE / 16;
+    localparam COUNTMAX = 100_000_000 / (BUADRATE * 16); 
+    // RX로 데이터를 받을때 입력데이터의 중간쯤에서 캐치하여 데이터 통신 안정성을 높히기 위해 보드레이트를 16배 한다
     reg [$clog2(COUNTMAX)-1:0] div_counter;
 
     always @(posedge clk, posedge reset) begin

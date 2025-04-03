@@ -229,8 +229,8 @@ module buadrate_x16_gen #(
     input [2:0] count_state,
     output reg tick
 );
-    localparam COUNTMAX = 100_000_000 / (BUADRATE * 16); 
     // RX로 데이터를 받을때 입력데이터의 중간쯤에서 캐치하여 데이터 통신 안정성을 높히기 위해 보드레이트를 16배 한다
+    localparam COUNTMAX = 100_000_000 / (BUADRATE * 16); 
     reg [$clog2(COUNTMAX)-1:0] div_counter;
 
     always @(posedge clk, posedge reset) begin

@@ -1,0 +1,16 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../0402_UART_count10000_NJH.srcs/sources_1/imports/MyWatch_sources/btn_debounce.v" \
+"../../../../0402_UART_count10000_NJH.srcs/sources_1/new/clk_divider.v" \
+"../../../../0402_UART_count10000_NJH.srcs/sources_1/imports/NJH/counter_up_down.v" \
+"../../../../0402_UART_count10000_NJH.srcs/sources_1/imports/NJH/fndController.v" \
+"../../../../0402_UART_count10000_NJH.srcs/sources_1/new/my_stopWatch.v" \
+"../../../../0402_UART_count10000_NJH.srcs/sources_1/new/top.v" \
+"../../../../0402_UART_count10000_NJH.srcs/sources_1/new/uart.v" \
+"../../../../0402_UART_count10000_NJH.srcs/sim_1/new/tb_btn_DB.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

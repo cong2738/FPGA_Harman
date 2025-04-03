@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_btn_DB_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_btn_DB" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="1096000fs"></ZoomStartTime>
+      <ZoomEndTime time="27461096001fs"></ZoomEndTime>
+      <Cursor1Time time="9001096000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="207"></NameColumnWidth>
+      <ValueColumnWidth column_width="88"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="37" />
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/d_btnU" type="logic">
+      <obj_property name="ElementShortName">d_btnU</obj_property>
+      <obj_property name="ObjectShortName">d_btnU</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/d_btnL" type="logic">
+      <obj_property name="ElementShortName">d_btnL</obj_property>
+      <obj_property name="ObjectShortName">d_btnL</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/d_btnR" type="logic">
+      <obj_property name="ElementShortName">d_btnR</obj_property>
+      <obj_property name="ObjectShortName">d_btnR</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/d_btnD" type="logic">
+      <obj_property name="ElementShortName">d_btnD</obj_property>
+      <obj_property name="ObjectShortName">d_btnD</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/rx_data" type="array">
+      <obj_property name="ElementShortName">rx_data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_data[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/rx_done" type="logic">
+      <obj_property name="ElementShortName">rx_done</obj_property>
+      <obj_property name="ObjectShortName">rx_done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/tx_done" type="logic">
+      <obj_property name="ElementShortName">tx_done</obj_property>
+      <obj_property name="ObjectShortName">tx_done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/tx_busy" type="logic">
+      <obj_property name="ElementShortName">tx_busy</obj_property>
+      <obj_property name="ObjectShortName">tx_busy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/tx_data" type="array">
+      <obj_property name="ElementShortName">tx_data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_data[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/tx_trigger" type="logic">
+      <obj_property name="ElementShortName">tx_trigger</obj_property>
+      <obj_property name="ObjectShortName">tx_trigger</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/counter_en" type="logic">
+      <obj_property name="ElementShortName">counter_en</obj_property>
+      <obj_property name="ObjectShortName">counter_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/counter_clear" type="logic">
+      <obj_property name="ElementShortName">counter_clear</obj_property>
+      <obj_property name="ObjectShortName">counter_clear</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/counter_mode" type="logic">
+      <obj_property name="ElementShortName">counter_mode</obj_property>
+      <obj_property name="ObjectShortName">counter_mode</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/stopwatch_en" type="logic">
+      <obj_property name="ElementShortName">stopwatch_en</obj_property>
+      <obj_property name="ObjectShortName">stopwatch_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/stopwatch_clear" type="logic">
+      <obj_property name="ElementShortName">stopwatch_clear</obj_property>
+      <obj_property name="ObjectShortName">stopwatch_clear</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/sel" type="logic">
+      <obj_property name="ElementShortName">sel</obj_property>
+      <obj_property name="ObjectShortName">sel</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/counter_state" type="array">
+      <obj_property name="ElementShortName">counter_state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">counter_state[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/counter_state_next" type="array">
+      <obj_property name="ElementShortName">counter_state_next[1:0]</obj_property>
+      <obj_property name="ObjectShortName">counter_state_next[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/stopwatch_state" type="array">
+      <obj_property name="ElementShortName">stopwatch_state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">stopwatch_state[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/stopwatch_state_next" type="array">
+      <obj_property name="ElementShortName">stopwatch_state_next[1:0]</obj_property>
+      <obj_property name="ObjectShortName">stopwatch_state_next[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/mode_state" type="logic">
+      <obj_property name="ElementShortName">mode_state</obj_property>
+      <obj_property name="ObjectShortName">mode_state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/mode_next" type="logic">
+      <obj_property name="ElementShortName">mode_next</obj_property>
+      <obj_property name="ObjectShortName">mode_next</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/echo_state" type="logic">
+      <obj_property name="ElementShortName">echo_state</obj_property>
+      <obj_property name="ObjectShortName">echo_state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/echo_next" type="logic">
+      <obj_property name="ElementShortName">echo_next</obj_property>
+      <obj_property name="ObjectShortName">echo_next</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/watch_state" type="logic">
+      <obj_property name="ElementShortName">watch_state</obj_property>
+      <obj_property name="ObjectShortName">watch_state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/watch_next" type="logic">
+      <obj_property name="ElementShortName">watch_next</obj_property>
+      <obj_property name="ObjectShortName">watch_next</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/STOP" type="array">
+      <obj_property name="ElementShortName">STOP[31:0]</obj_property>
+      <obj_property name="ObjectShortName">STOP[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/RUN" type="array">
+      <obj_property name="ElementShortName">RUN[31:0]</obj_property>
+      <obj_property name="ObjectShortName">RUN[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/CLEAR" type="array">
+      <obj_property name="ElementShortName">CLEAR[31:0]</obj_property>
+      <obj_property name="ObjectShortName">CLEAR[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/UP" type="array">
+      <obj_property name="ElementShortName">UP[31:0]</obj_property>
+      <obj_property name="ObjectShortName">UP[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/DOWN" type="array">
+      <obj_property name="ElementShortName">DOWN[31:0]</obj_property>
+      <obj_property name="ObjectShortName">DOWN[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/IDLE" type="array">
+      <obj_property name="ElementShortName">IDLE[31:0]</obj_property>
+      <obj_property name="ObjectShortName">IDLE[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/ECHO" type="array">
+      <obj_property name="ElementShortName">ECHO[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ECHO[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/COUNTER" type="array">
+      <obj_property name="ElementShortName">COUNTER[31:0]</obj_property>
+      <obj_property name="ObjectShortName">COUNTER[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_btn_DB/u_top/u_control_unit/STOPWATCH" type="array">
+      <obj_property name="ElementShortName">STOPWATCH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">STOPWATCH[31:0]</obj_property>
+   </wvobject>
+</wave_config>

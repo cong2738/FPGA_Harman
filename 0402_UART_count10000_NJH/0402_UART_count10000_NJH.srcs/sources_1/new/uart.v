@@ -20,7 +20,6 @@ module tx (
     input clk,
     input reset,
     input tx_trigger,
-    input tx_trigger,
     input [7:0] tx_data,
     output tx_done,
     output tx_busy,

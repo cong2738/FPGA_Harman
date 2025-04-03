@@ -279,7 +279,7 @@ module control_unit (
         end
     end
 
-    // counter_count_state_next logic
+    // counter_state_next logic
     always @(*) begin
         counter_state_next    = counter_state;
         counter_en    = 1'b0;

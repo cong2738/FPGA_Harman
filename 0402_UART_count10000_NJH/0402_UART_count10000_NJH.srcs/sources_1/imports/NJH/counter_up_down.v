@@ -1,190 +1,5 @@
 `timescale 1ns / 1ps
 
-module top_counter_up_down (
-    input        clk,
-    input        reset,
-    input        rx,
-    output       tx,
-    output [3:0] fndCom,
-    output [7:0] fndFont
-);
-    wire [13:0] fndData;
-    wire [ 3:0] fndDot;
-    wire en, clear, mode;
-
-    wire tx_trigger;
-    wire [7:0] tx_data;
-    wire tx_done;
-    wire tx_busy;
-    wire [7:0] rx_data;
-    wire rx_done;
-    wire rx_busy;
-
-    uart u_uart (
-        .clk       (clk),
-        .reset     (reset),
-        .tx_trigger(tx_trigger),
-        .tx_data   (tx_data),
-        .rx        (rx),
-        .tx        (tx),
-        .tx_done   (tx_done),
-        .tx_busy   (tx_busy),
-        .rx_data   (rx_data),
-        .rx_done   (rx_done),
-        .rx_busy   (rx_busy)
-    );
-
-    control_unit u_control_unit (
-        .clk       (clk),
-        .reset     (reset),
-        .rx_data   (rx_data),
-        .rx_done   (rx_done),
-        .tx_done   (tx_done),
-        .tx_busy   (tx_busy),
-        .tx_data   (tx_data),
-        .tx_trigger(tx_trigger),
-        .en        (en),
-        .clear     (clear),
-        .mode      (mode)
-    );
-    counter_up_down U_Counter (
-        .clk     (clk),
-        .reset   (reset),
-        .en      (en),
-        .clear   (clear),
-        .mode    (mode),
-        .count   (fndData),
-        .dot_data(fndDot)
-    );
-
-    fndController U_FndController (
-        .clk    (clk),
-        .reset  (reset),
-        .fndData(fndData),
-        .fndDot (fndDot),
-        .fndCom (fndCom),
-        .fndFont(fndFont)
-    );
-endmodule
-
-module control_unit (
-    input            clk,
-    input            reset,
-    input      [7:0] rx_data,
-    input            rx_done,
-    input            tx_done,
-    input            tx_busy,
-    output reg [7:0] tx_data,
-    output reg       tx_trigger,
-    output reg       en,
-    output reg       clear,
-    output reg       mode
-);
-    localparam STOP = 0, RUN = 1, CLEAR = 2;
-    localparam UP = 0, DOWN = 1;
-    localparam IDLE = 0, ECHO = 1;
-
-    reg [1:0] state, state_next;
-    reg mode_state, mode_next;
-    reg echo_state, echo_next;
-
-    // state_management logic
-    always @(posedge clk, posedge reset) begin
-        if (reset) begin
-            state <= STOP;
-            mode_state <= UP;
-            echo_state <= IDLE;
-        end else begin
-            state <= state_next;
-            mode_state <= mode_next;
-            echo_state <= echo_next;
-        end
-    end
-
-    // echo_state_next logic
-    always @(*) begin
-        tx_data = 0;
-        tx_trigger = 1'b0;
-        echo_next = echo_state;
-        case (echo_state)
-            IDLE: begin
-                tx_data = 7'b0;
-                tx_trigger = 1'b0;
-                if (rx_done) begin
-                    echo_next = ECHO;
-                end
-            end
-            ECHO: begin
-                if (tx_done) begin
-                    echo_next = IDLE;
-                end else begin
-                    tx_data = rx_data;
-                    tx_trigger = 1'b1;
-                end
-            end
-        endcase
-    end
-
-    // mode_state_next logic
-    always @(*) begin
-        mode = 1'b0;
-        mode_next = mode_state;
-        case (mode_state)
-            UP: begin
-                mode = 0;
-                if (rx_done) begin
-                    if (rx_data == 8'h4d || rx_data == 8'h6d) mode_next = DOWN;
-                end
-            end
-            DOWN: begin
-                mode = 1;
-                if (rx_done) begin
-                    if (rx_data == 8'h4d || rx_data == 8'h6d) mode_next = UP;
-                end
-            end
-        endcase
-    end
-
-    // count_state_next logic
-    always @(*) begin
-        state_next = state;
-        en         = 1'b0;
-        clear      = 1'b0;
-        case (state)
-            STOP: begin
-                en = 1'b0;
-                clear = 1'b0;
-                if (rx_done) begin
-                    if (rx_data == 8'h52 || rx_data == 8'h72) state_next = RUN;
-                    else if (rx_data == 8'h43 || rx_data == 8'h63)
-                        state_next = CLEAR;
-                end
-            end
-            RUN: begin
-                en = 1'b1;
-                clear = 1'b0;
-                if (rx_done) begin
-                    if (rx_data == 8'h53 || rx_data == 8'h73) state_next = STOP;
-                    else if (rx_data == 8'h43 || rx_data == 8'h63)
-                        state_next = CLEAR;
-                end
-            end
-            CLEAR: begin
-                en = 1'b0;
-                clear = 1'b1;
-                state_next = STOP;
-            end
-        endcase
-    end
-endmodule
-
-module comp_dot (
-    input  [13:0] count,
-    output [ 3:0] dot_data
-);
-    assign dot_data = ((count % 10) < 5) ? 4'b1101 : 4'b1111;
-endmodule
-
 module counter_up_down (
     input         clk,
     input         reset,
@@ -220,6 +35,12 @@ module counter_up_down (
     );
 endmodule
 
+module comp_dot (
+    input  [13:0] count,
+    output [ 3:0] dot_data
+);
+    assign dot_data = ((count % 10) < 5) ? 4'b1101 : 4'b1111;
+endmodule
 
 module counter (
     input         clk,
@@ -260,37 +81,6 @@ module counter (
                         end
                     end
                 end
-            end
-        end
-    end
-endmodule
-
-module clk_div_10hz (
-    input  wire clk,
-    input  wire reset,
-    input  wire en,
-    input  wire clear,
-    output reg  tick
-);
-    reg [$clog2(10_000_000)-1:0] div_counter;
-
-    always @(posedge clk, posedge reset) begin
-        if (reset) begin
-            div_counter <= 0;
-            tick <= 1'b0;
-        end else begin
-            if (en) begin
-                if (div_counter == 10_000_000 - 1) begin
-                    div_counter <= 0;
-                    tick <= 1'b1;
-                end else begin
-                    div_counter <= div_counter + 1;
-                    tick <= 1'b0;
-                end
-            end
-            if (clear) begin
-                div_counter <= 0;
-                tick <= 1'b0;
             end
         end
     end

@@ -85,6 +85,7 @@ module clk_div_1khz (
     input reset,
     output reg tick
 );
+
     reg [$clog2(100_000)-1 : 0] div_counter;
 
     always @(posedge clk, posedge reset) begin
@@ -109,6 +110,7 @@ module counter_2bit (
     input            tick,
     output reg [1:0] count
 );
+
     always @(posedge clk, posedge reset) begin
         if (reset) begin
             count <= 0;
@@ -124,6 +126,7 @@ module decoder_2x4 (
     input      [1:0] x,
     output reg [3:0] y
 );
+
     always @(*) begin
         y = 4'b1111;
         case (x)
@@ -156,6 +159,7 @@ module mux_4x1 (
     input      [3:0] x3,
     output reg [3:0] y
 );
+
     always @(*) begin
         y = 4'b0000;
         case (sel)
@@ -171,6 +175,7 @@ module BCDtoSEG_decoder (
     input      [3:0] bcd,
     output reg [7:0] seg
 );
+
     always @(bcd) begin
         case (bcd)
             4'h0: seg = 8'hc0;

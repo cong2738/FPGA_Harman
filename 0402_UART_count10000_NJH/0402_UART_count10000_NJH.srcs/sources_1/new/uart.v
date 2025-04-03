@@ -32,6 +32,17 @@ module uart (
         .tx        (tx)
     );
 
+    rx U_Receiver (
+        .clk    (clk),
+        .reset  (reset),
+        .tick   (tick),
+        .rx     (rx),
+        .rx_data(rx_data),
+        .rx_done(rx_done),
+        .rx_busy(rx_busy)
+    );
+
+
 endmodule
 
 module tx (
@@ -79,19 +90,20 @@ module tx (
         tick_count_next = tick_count;
         bit_count_next = bit_count;
         done_next = 0;
-        busy_next = 0;
+        busy_next = busy;
 
         case (state)
             IDLE: begin
                 tx = 1;
+                busy_next = 0;
                 if (tx_trigger) begin
                     temp_data_next = tx_data; // ** 데이터를 버퍼에 넣어서 "유지" 시킨다.
+                    busy_next = 1;
                     next = START;
                 end
             end
             START: begin
                 tx = 0;
-                busy_next = 1;
                 if (tick) begin
                     if (tick_count == 15) begin
                         tick_count_next = 0;
@@ -159,7 +171,7 @@ module rx (
 
     always @(posedge clk, posedge reset) begin
         if (reset) begin
-            state <= 0;
+            state <= IDLE;
             bit_count <= 0;
             tick_count <= 0;
             data <= 0;
@@ -184,16 +196,52 @@ module rx (
         done_next = 0;
         case (state)
             IDLE: begin
-
+                if (!rx) begin
+                    next = START;
+                    bit_count_next = 0;
+                    tick_count_next = 0;
+                    data_next = 0;
+                end
             end
             START: begin
-
+                busy_next = 1;
+                if (tick) begin
+                    if (tick_count == 7) begin
+                        tick_count_next = 0;
+                        next = DATA;
+                    end else begin
+                        tick_count_next = tick_count + 1;
+                    end
+                end
             end
             DATA: begin
-
+                busy_next = 1;
+                if (tick) begin
+                    if (tick_count == 15) begin
+                        tick_count_next = 0;
+                        data_next = {rx, data[7:1]};
+                        if (bit_count == 7) begin
+                            bit_count_next = 0;
+                            next = STOP;
+                        end else begin
+                            bit_count_next = bit_count + 1;
+                        end
+                    end else begin
+                        tick_count_next = tick_count + 1;
+                    end
+                end
             end
             STOP: begin
-
+                busy_next = 1;
+                if (tick) begin
+                    if (tick_count == 15) begin
+                        tick_count_next = 0;
+                        done_next = 1;
+                        next = IDLE;
+                    end else begin
+                        tick_count_next = tick_count + 1;
+                    end
+                end
             end
         endcase
     end
@@ -208,8 +256,8 @@ module baudrate_gen #(
     output tick
 );
     localparam COUNT_MAX = 100_000_000 / (BAUDRATE * 16);
-    reg [$clog2(COUNT_MAX)-1:0] r_tick;
-    reg count;
+    reg r_tick;
+    reg [$clog2(COUNT_MAX)-1:0] count;
 
     assign tick = r_tick;
 

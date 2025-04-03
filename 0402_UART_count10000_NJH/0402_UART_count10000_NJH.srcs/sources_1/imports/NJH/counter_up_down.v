@@ -3,9 +3,6 @@
 module top_counter_up_down (
     input        clk,
     input        reset,
-    // input        sw_mode,
-    // input        sw_run_stop,
-    // input        sw_clear,
     input        rx,
     output       tx,
     output [3:0] fndCom,

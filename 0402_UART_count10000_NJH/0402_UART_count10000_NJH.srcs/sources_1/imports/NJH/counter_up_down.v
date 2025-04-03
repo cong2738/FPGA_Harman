@@ -3,25 +3,56 @@
 module top_counter_up_down (
     input        clk,
     input        reset,
-    input        sw_mode,
-    input        sw_run_stop,
-    input        sw_clear,
+    // input        sw_mode,
+    // input        sw_run_stop,
+    // input        sw_clear,
+    input        rx,
+    output       tx,
     output [3:0] fndCom,
     output [7:0] fndFont
-);  
+
+);
     wire [13:0] fndData;
     wire [ 3:0] fndDot;
     wire en, clear, mode;
 
+    wire tx_trigger;
+    wire [7:0] tx_data;
+    wire tx_done;
+    wire tx_busy;
+    wire [7:0] rx_data;
+    wire rx_done;
+    wire rx_busy;
+
+    uart u_uart (
+        .clk       (clk),
+        .reset     (reset),
+        .tx_trigger(tx_trigger),
+        .tx_data   (tx_data),
+        .rx        (rx),
+        .tx        (tx),
+        .tx_done   (tx_done),
+        .tx_busy   (tx_busy),
+        .rx_data   (rx_data),
+        .rx_done   (rx_done),
+        .rx_busy   (rx_busy)
+    );
+
+
     control_unit U_ControlUnit (
-        .clk        (clk),
-        .reset      (reset),
-        .sw_mode    (sw_mode),
-        .sw_run_stop(sw_run_stop),
-        .sw_clear   (sw_clear),
-        .en         (en),
-        .clear      (clear),
-        .mode       (mode)
+        .clk  (clk),
+        .reset(reset),
+
+        .tx_trigger(tx_trigger),
+        .tx_data   (tx_data),
+        .tx_done   (tx_done),
+        .tx_busy   (tx_busy),
+        .rx_data   (rx_data),
+        .rx_done   (rx_done),
+
+        .en   (en),
+        .clear(clear),
+        .mode (mode)
     );
 
     counter_up_down U_Counter (
@@ -45,47 +76,107 @@ module top_counter_up_down (
 endmodule
 
 module control_unit (
-    input      clk,
-    input      reset,
-    input      sw_mode,
-    input      sw_run_stop,
-    input      sw_clear,
-    output reg en,
-    output reg clear,
-    output reg mode
+    input            clk,
+    input            reset,
+    input      [7:0] rx_data,
+    input            rx_done,
+    input            tx_done,
+    input            tx_busy,
+    output reg       tx_trigger,
+    output reg [7:0] tx_data,
+    output reg       en,
+    output reg       clear,
+    output reg       mode
 );
     localparam STOP = 0, RUN = 1, CLEAR = 2;
+    localparam UP = 0, DOWN = 1;
+    localparam IDLE = 0, ECHO = 1;
+
     reg [1:0] state, state_next;
+    reg mode_state, mode_next;
+    reg echo_state, echo_next;
 
     always @(posedge clk, posedge reset) begin
         if (reset) begin
             state <= STOP;
+            mode_state <= UP;
+            echo_state <= IDLE;
         end else begin
             state <= state_next;
+            mode_state <= mode_next;
+            echo_state <= echo_next;
         end
+    end
+
+    always @(*) begin
+        tx_data = 0;
+        tx_trigger = 1'b0;
+        echo_next = echo_state;
+        case (echo_state)
+            IDLE: begin
+                tx_data = 7'b0;
+                tx_trigger = 1'b0;
+                if (rx_done) begin
+                    echo_next = ECHO;
+                end
+            end
+            ECHO: begin
+                if (tx_done) begin
+                    echo_next = IDLE;
+                end else begin
+                    tx_data = rx_data;
+                    tx_trigger = 1'b1;
+                end
+            end
+        endcase
+    end
+
+    always @(*) begin
+        mode = 1'b0;
+        mode_next = mode_state;
+        case (mode_state)
+            UP: begin
+                mode = 0;
+                if (rx_done) begin
+                    if (rx_data == 8'h4d || rx_data == 8'h6d) mode_next = DOWN;
+                end
+            end
+            DOWN: begin
+                mode = 1;
+                if (rx_done) begin
+                    if (rx_data == 8'h4d || rx_data == 8'h6d) mode_next = UP;
+                end
+            end
+        endcase
     end
 
     always @(*) begin
         state_next = state;
         en         = 1'b0;
         clear      = 1'b0;
-        mode       = sw_mode;
         case (state)
             STOP: begin
                 en = 1'b0;
                 clear = 1'b0;
-                if (sw_run_stop) state_next = RUN;
-                else if (sw_clear) state_next = CLEAR;
+                if (rx_done) begin
+                    if (rx_data == 8'h52 || rx_data == 8'h72) state_next = RUN;
+                    else if (rx_data == 8'h43 || rx_data == 8'h63)
+                        state_next = CLEAR;
+                end
             end
             RUN: begin
                 en = 1'b1;
                 clear = 1'b0;
-                if (sw_run_stop == 1'b0) state_next = STOP;
+                if (rx_done) begin
+                    if (rx_data == 8'h53 || rx_data == 8'h73) state_next = STOP;
+                    else if (rx_data == 8'h43 || rx_data == 8'h63)
+                        state_next = CLEAR;
+                end
             end
             CLEAR: begin
                 en = 1'b0;
                 clear = 1'b1;
-                if (sw_clear == 1'b0) state_next = STOP;
+                state_next = STOP;
             end
         endcase
     end

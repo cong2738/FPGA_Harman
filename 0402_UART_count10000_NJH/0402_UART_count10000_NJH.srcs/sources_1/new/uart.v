@@ -39,3 +39,11 @@ module rx (
 );
 
 endmodule
+
+module baudrate_gen #(parameter BAUDRATE = 9600)(
+    input clk,
+    input reset,
+    output tick
+);
+    
+endmodule

@@ -7,7 +7,6 @@ module top_counter_up_down (
     output       tx,
     output [3:0] fndCom,
     output [7:0] fndFont
-
 );
     wire [13:0] fndData;
     wire [ 3:0] fndDot;

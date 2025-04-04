@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Thu Apr  3 20:56:46 2025
+| Date         : Fri Apr  4 09:08:00 2025
 | Host         : DESKTOP-7CFQ9ND running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
@@ -83,9 +83,9 @@ Table of Contents
 |  clk_IBUF_BUFG                           | u_uart/U_Baudrate_Gen/count_0                         | reset_IBUF       |                4 |             10 |         2.50 |
 |  clk_IBUF_BUFG                           | u_uart/U_Receiver/bit_count[2]_i_1_n_0                | reset_IBUF       |                4 |             11 |         2.75 |
 |  clk_IBUF_BUFG                           | u_control_unit/FSM_onehot_stopwatch_state_reg[2]_2[0] | reset_IBUF       |                3 |             14 |         4.67 |
+|  clk_IBUF_BUFG                           | u_control_unit/FSM_onehot_counter_state_reg[2]_0[0]   | reset_IBUF       |                5 |             14 |         2.80 |
 |  clk_IBUF_BUFG                           | u_control_unit/FSM_onehot_stopwatch_state_reg[2]_1[0] | reset_IBUF       |                3 |             14 |         4.67 |
 |  clk_IBUF_BUFG                           | u_control_unit/FSM_onehot_stopwatch_state_reg[2]_3[0] | reset_IBUF       |                2 |             14 |         7.00 |
-|  clk_IBUF_BUFG                           | u_control_unit/FSM_onehot_counter_state_reg[2]_0[0]   | reset_IBUF       |                5 |             14 |         2.80 |
 |  clk_IBUF_BUFG                           | u_control_unit/E[0]                                   | reset_IBUF       |                6 |             25 |         4.17 |
 |  clk_IBUF_BUFG                           | u_control_unit/FSM_onehot_stopwatch_state_reg[1]_0[0] | reset_IBUF       |                6 |             25 |         4.17 |
 |  clk_IBUF_BUFG                           |                                                       | reset_IBUF       |               37 |            117 |         3.16 |

@@ -199,7 +199,6 @@ module control_unit (
         .cmd_tick_M(cmd_tick_M)
     );
 
-
     // state_management
     always @(posedge clk, posedge reset) begin
         if (reset) begin
@@ -261,29 +260,13 @@ module control_unit (
         endcase
     end
 
-    // counter_mode_next logic
-    always @(*) begin
-        counter_mode = 1'b0;
-        mode_next = mode_state;
-        if (sel == COUNTER) begin
-            case (mode_state)
-                UP: begin
-                    counter_mode = 0;
-                    if (cmd_tick_M) mode_next = DOWN;
-                end
-                DOWN: begin
-                    counter_mode = 1;
-                    if (cmd_tick_M) mode_next = UP;
-                end
-            endcase
-        end
-    end
-
     // counter_next logic
     always @(*) begin
         counter_state_next    = counter_state;
         counter_en    = 1'b0;
         counter_clear = 1'b0;
+        counter_mode = 1'b0;
+        mode_next = mode_state;
         if (sel == COUNTER) begin
             case (counter_state)
                 STOP: begin
@@ -301,6 +284,17 @@ module control_unit (
                     counter_en = 1'b0;
                     counter_clear = 1'b1;
                     counter_state_next = STOP;
+                end
+            endcase
+
+            case (mode_state)
+                UP: begin
+                    counter_mode = 0;
+                    if (cmd_tick_M) mode_next = DOWN;
+                end
+                DOWN: begin
+                    counter_mode = 1;
+                    if (cmd_tick_M) mode_next = UP;
                 end
             endcase
         end

@@ -278,7 +278,7 @@ module control_unit (
                 RUN: begin
                     counter_en = 1'b1;
                     counter_clear = 1'b0;
-                    if (cmd_tick_S || d_btnD) counter_state_next = STOP;
+                    if (cmd_tick_S || d_btnL) counter_state_next = STOP;
                 end
                 CLEAR: begin
                     counter_en = 1'b0;
@@ -290,11 +290,11 @@ module control_unit (
             case (mode_state)
                 UP: begin
                     counter_mode = 0;
-                    if (cmd_tick_M) mode_next = DOWN;
+                    if (cmd_tick_M || d_btnD) mode_next = DOWN;
                 end
                 DOWN: begin
                     counter_mode = 1;
-                    if (cmd_tick_M) mode_next = UP;
+                    if (cmd_tick_M || d_btnD) mode_next = UP;
                 end
             endcase
         end
@@ -316,7 +316,7 @@ module control_unit (
                 RUN: begin
                     stopwatch_en = 1'b1;
                     stopwatch_clear = 1'b0;
-                    if (cmd_tick_S || d_btnD) stopwatch_state_next = STOP;
+                    if (cmd_tick_S || d_btnL) stopwatch_state_next = STOP;
                 end
                 CLEAR: begin
                     stopwatch_en = 1'b0;

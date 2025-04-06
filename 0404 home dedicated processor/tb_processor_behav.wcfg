@@ -12,11 +12,11 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="190.256 ns"></ZoomEndTime>
-      <Cursor1Time time="315.511 ns"></Cursor1Time>
+      <ZoomEndTime time="421.001 ns"></ZoomEndTime>
+      <Cursor1Time time="410.791 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="171"></NameColumnWidth>
+      <NameColumnWidth column_width="167"></NameColumnWidth>
       <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="11" />
@@ -28,40 +28,43 @@
       <obj_property name="ElementShortName">reset</obj_property>
       <obj_property name="ObjectShortName">reset</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_processor/A_out" type="array">
-      <obj_property name="ElementShortName">A_out[7:0]</obj_property>
-      <obj_property name="ObjectShortName">A_out[7:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_processor/uut/u_ControlUnit/clk" type="logic">
-      <obj_property name="ElementShortName">clk</obj_property>
-      <obj_property name="ObjectShortName">clk</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_processor/uut/u_ControlUnit/reset" type="logic">
-      <obj_property name="ElementShortName">reset</obj_property>
-      <obj_property name="ObjectShortName">reset</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_processor/uut/u_ControlUnit/comp_Aand10" type="logic">
-      <obj_property name="ElementShortName">comp_Aand10</obj_property>
-      <obj_property name="ObjectShortName">comp_Aand10</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_processor/uut/u_ControlUnit/A_0_sel" type="logic">
+   <wvobject fp_name="/tb_processor/uut/A_0_sel" type="logic">
       <obj_property name="ElementShortName">A_0_sel</obj_property>
       <obj_property name="ObjectShortName">A_0_sel</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_processor/uut/u_ControlUnit/A_save_sel" type="logic">
+   <wvobject fp_name="/tb_processor/uut/sum_0_sel" type="logic">
+      <obj_property name="ElementShortName">sum_0_sel</obj_property>
+      <obj_property name="ObjectShortName">sum_0_sel</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_processor/uut/A_save_sel" type="logic">
       <obj_property name="ElementShortName">A_save_sel</obj_property>
       <obj_property name="ObjectShortName">A_save_sel</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_processor/uut/u_ControlUnit/out_sel" type="logic">
+   <wvobject fp_name="/tb_processor/uut/sum_save_sel" type="logic">
+      <obj_property name="ElementShortName">sum_save_sel</obj_property>
+      <obj_property name="ObjectShortName">sum_save_sel</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_processor/uut/out_sel" type="logic">
       <obj_property name="ElementShortName">out_sel</obj_property>
       <obj_property name="ObjectShortName">out_sel</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_processor/uut/u_ControlUnit/state" type="array">
-      <obj_property name="ElementShortName">state[7:0]</obj_property>
-      <obj_property name="ObjectShortName">state[7:0]</obj_property>
+   <wvobject fp_name="/tb_processor/uut/comp_Aand10" type="logic">
+      <obj_property name="ElementShortName">comp_Aand10</obj_property>
+      <obj_property name="ObjectShortName">comp_Aand10</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_processor/uut/u_ControlUnit/next" type="array">
-      <obj_property name="ElementShortName">next[7:0]</obj_property>
-      <obj_property name="ObjectShortName">next[7:0]</obj_property>
+   <wvobject fp_name="/tb_processor/sum_out" type="array">
+      <obj_property name="ElementShortName">sum_out[7:0]</obj_property>
+      <obj_property name="ObjectShortName">sum_out[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_processor/uut/u_DataPath/A_regout" type="array">
+      <obj_property name="ElementShortName">A_regout[7:0]</obj_property>
+      <obj_property name="ObjectShortName">A_regout[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_processor/uut/u_DataPath/sum_regout" type="array">
+      <obj_property name="ElementShortName">sum_regout[7:0]</obj_property>
+      <obj_property name="ObjectShortName">sum_regout[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
 </wave_config>

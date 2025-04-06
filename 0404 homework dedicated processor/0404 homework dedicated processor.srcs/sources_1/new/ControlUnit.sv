@@ -23,9 +23,9 @@ module ControlUnit (
     a = 0;
     sum = 0;
     while (a < 10) {   
-        output = a;
-        a = a + 1;
         sum = sum + a;
+        output = sum;
+        a = a + 1;
     }
     halt;
     */

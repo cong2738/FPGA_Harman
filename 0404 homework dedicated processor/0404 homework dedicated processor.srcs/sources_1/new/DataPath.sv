@@ -33,7 +33,7 @@ module DataPath (
         .A_0_out(A_0_out)
     );
     A_0_Mux U_sum_initial (
-        .A(sum_regout),
+        .A(added_sum),
         .A_0_sel(sum_0_sel),
         .A_0_out(sum_0_out)
     );
@@ -44,13 +44,8 @@ module DataPath (
         .save_sel(A_save_sel),
         .out(A_regout)
     );
-    adder U_add_sum (
-        .A  (sum_0_out),
-        .B  (A_regout),
-        .sum(added_sum)
-    );
     save_ff U_Sum_Reg (
-        .in      (added_sum),
+        .in      (sum_0_out),
         .clk     (clk),
         .reset   (reset),
         .save_sel(sum_save_sel),
@@ -60,6 +55,11 @@ module DataPath (
         .A  (A_regout),
         .B  (1),
         .sum(App)
+    );
+    adder U_sum (
+        .A  (sum_regout),
+        .B  (A_regout),
+        .sum(added_sum)
     );
     out_buffer U_out (
         .A(sum_regout),
@@ -120,5 +120,5 @@ module out_buffer (
     input out_sel,
     output reg [7:0] out
 );
-    assign out = out_sel ? A : 8'bz;
+    assign out = out_sel ? A : out;
 endmodule

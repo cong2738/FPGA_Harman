@@ -88,5 +88,5 @@ module out_buffer (
     input out_sel,
     output reg [7:0] out
 );
-    assign out = out_sel ? A : 8'bz;
+    assign out = out_sel ? A : out;
 endmodule

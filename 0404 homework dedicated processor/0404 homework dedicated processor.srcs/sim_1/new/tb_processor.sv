@@ -18,7 +18,7 @@ module tb_processor ();
         reset = 1;
         #5 reset = 0;
         while (!uut.comp_Aand10) begin
-           @(posedge uut.sum_out) $monitor("sum:%d", uut.sum_out); 
+           @(uut.sum_out) $monitor("sum:%d", uut.sum_out); 
         end
         #100 $stop;
     end

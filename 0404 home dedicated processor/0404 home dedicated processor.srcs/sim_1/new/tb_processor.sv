@@ -17,9 +17,8 @@ module tb_processor ();
         clk   = 0;
         reset = 1;
         #5 reset = 0;
-        while (!uut.comp_Aand10) begin
-           @(uut.u_ControlUnit.out_sel) $display("A:%d", uut.A_out); 
-        end
+        $monitor("A:%d", uut.A_out);
+        wait (uut.comp_Aand10);
         #100 $stop;
     end
 endmodule

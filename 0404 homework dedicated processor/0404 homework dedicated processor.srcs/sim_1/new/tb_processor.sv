@@ -13,13 +13,15 @@ module tb_processor ();
     
     always #5 clk = ~clk;
 
+    always @(uut.sum_out) begin
+        $monitor("sum:%d", uut.sum_out); 
+    end
+
     initial begin
         clk   = 0;
         reset = 1;
         #5 reset = 0;
-        while (!uut.comp_Aand10) begin
-           @(uut.sum_out) $monitor("sum:%d", uut.sum_out); 
-        end
+        wait (uut.comp_Aand10);
         #100 $stop;
     end
 endmodule

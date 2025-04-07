@@ -46,8 +46,8 @@ module ControlUnit (
             end
             1: begin  // while (a < 10)
                 if (comp_Aand10) begin
-                    next = 5;
-                end else next = 2;
+                    next = 2;
+                end else next = 5;
             end
             2: begin  // sum = sum + a
                 add_sel = 0;

@@ -72,30 +72,36 @@ module DataPath (
     );
     comp U_A_UT_Ten (
         .A(A_regout),
-        .B(11),
+        .B(10),
         .comp_out(comp_Aand10)
     );
 endmodule
 
 module Mux_2x1 (
-    input [7:0] one,
-    input [7:0] zero,
-    input mux_sel,
-    output reg [7:0] mux_out
+    input  logic       mux_sel,
+    input  logic [7:0] one,
+    input  logic [7:0] zero,
+    output logic [7:0] mux_out
 );
-    assign mux_out = mux_sel ? one : zero;
+    always_comb begin : Mux_2x1
+        mux_out = 0;
+        case (mux_sel)
+            0: mux_out = zero;
+            1: mux_out = one;
+        endcase
+    end
 endmodule
 
 module save_ff (
-    input [7:0] in,
-    input clk,
-    input reset,
-    input save_sel,
-    output reg [7:0] out
+    input  logic       clk,
+    input  logic       reset,
+    input  logic       save_sel,
+    input  logic [7:0] in,
+    output logic [7:0] out
 );
     always_ff @(posedge clk, posedge reset) begin : A_Reg
         if (reset) begin
-            out <= 1'bz;
+            out <= 0;
         end else if (save_sel) begin
             out <= in;
         end
@@ -103,9 +109,9 @@ module save_ff (
 endmodule
 
 module adder (
-    input [7:0] A,
-    input [7:0] B,
-    output reg [7:0] sum
+    input  logic [7:0] A,
+    input  logic [7:0] B,
+    output logic [7:0] sum
 );
     always_comb begin : adder_logic
         sum = A + B;
@@ -113,17 +119,17 @@ module adder (
 endmodule
 
 module comp (
-    input [7:0] A,
-    input [7:0] B,
-    output comp_out
+    input  logic [7:0] A,
+    input  logic [7:0] B,
+    output logic       comp_out
 );
-    assign comp_out = (A == B) ? 1'b1 : 1'b0;
+    assign comp_out = (A <= B) ? 1'b1 : 1'b0;
 endmodule
 
 module out_buffer (
-    input [7:0] A,
-    input out_sel,
-    output reg [7:0] out
+    input  logic       out_sel,
+    input  logic [7:0] A,
+    output logic [7:0] out
 );
     assign out = out_sel ? A : out;
 endmodule

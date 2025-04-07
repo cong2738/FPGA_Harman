@@ -12,14 +12,24 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="380.013 ns"></ZoomEndTime>
-      <Cursor1Time time="212.151 ns"></Cursor1Time>
+      <ZoomEndTime time="1,652.001 ns"></ZoomEndTime>
+      <Cursor1Time time="642.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="151"></NameColumnWidth>
+      <NameColumnWidth column_width="147"></NameColumnWidth>
       <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="15" />
+   <WVObjectSize size="17" />
+   <wvobject fp_name="/tb_DedicatedProcessor/dut/U_DataPath/U_OutReg/d" type="array">
+      <obj_property name="ElementShortName">d[7:0]</obj_property>
+      <obj_property name="ObjectShortName">d[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_DedicatedProcessor/dut/U_DataPath/U_OutReg/q" type="array">
+      <obj_property name="ElementShortName">q[7:0]</obj_property>
+      <obj_property name="ObjectShortName">q[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
    <wvobject fp_name="/tb_DedicatedProcessor/dut/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -40,14 +50,17 @@
    <wvobject fp_name="/tb_DedicatedProcessor/dut/readAddr1" type="array">
       <obj_property name="ElementShortName">readAddr1[2:0]</obj_property>
       <obj_property name="ObjectShortName">readAddr1[2:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_DedicatedProcessor/dut/readAddr2" type="array">
       <obj_property name="ElementShortName">readAddr2[2:0]</obj_property>
       <obj_property name="ObjectShortName">readAddr2[2:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_DedicatedProcessor/dut/writeAddr" type="array">
       <obj_property name="ElementShortName">writeAddr[2:0]</obj_property>
       <obj_property name="ObjectShortName">writeAddr[2:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_DedicatedProcessor/dut/writeEn" type="logic">
       <obj_property name="ElementShortName">writeEn</obj_property>
@@ -60,6 +73,7 @@
    <wvobject fp_name="/tb_DedicatedProcessor/dut/aluOP" type="array">
       <obj_property name="ElementShortName">aluOP[2:0]</obj_property>
       <obj_property name="ObjectShortName">aluOP[2:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_DedicatedProcessor/dut/comp" type="logic">
       <obj_property name="ElementShortName">comp</obj_property>
@@ -122,6 +136,7 @@
       <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/state" type="array">
          <obj_property name="ElementShortName">state[31:0]</obj_property>
          <obj_property name="ObjectShortName">state[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/clk" type="logic">
          <obj_property name="ElementShortName">clk</obj_property>
@@ -130,6 +145,7 @@
       <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/state_next" type="array">
          <obj_property name="ElementShortName">state_next[31:0]</obj_property>
          <obj_property name="ObjectShortName">state_next[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/reset" type="logic">
          <obj_property name="ElementShortName">reset</obj_property>
@@ -142,14 +158,17 @@
       <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/readAddr1" type="array">
          <obj_property name="ElementShortName">readAddr1[2:0]</obj_property>
          <obj_property name="ObjectShortName">readAddr1[2:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/readAddr2" type="array">
          <obj_property name="ElementShortName">readAddr2[2:0]</obj_property>
          <obj_property name="ObjectShortName">readAddr2[2:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/writeAddr" type="array">
          <obj_property name="ElementShortName">writeAddr[2:0]</obj_property>
          <obj_property name="ObjectShortName">writeAddr[2:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/writeEn" type="logic">
          <obj_property name="ElementShortName">writeEn</obj_property>
@@ -162,6 +181,7 @@
       <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/aluOP" type="array">
          <obj_property name="ElementShortName">aluOP[2:0]</obj_property>
          <obj_property name="ObjectShortName">aluOP[2:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/comp" type="logic">
          <obj_property name="ElementShortName">comp</obj_property>
@@ -170,6 +190,7 @@
       <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/out_signals" type="array">
          <obj_property name="ElementShortName">out_signals[14:0]</obj_property>
          <obj_property name="ObjectShortName">out_signals[14:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
    </wvobject>
    <wvobject fp_name="group79" type="group">

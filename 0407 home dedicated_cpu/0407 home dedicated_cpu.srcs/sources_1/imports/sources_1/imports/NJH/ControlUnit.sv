@@ -101,15 +101,15 @@ module ControlUnit (
             end
 
             O0: begin  // out = R1
-                out_signals = 15'b1_001_xxx_xxx_0_1_xxx;
+                out_signals = 15'b1_001_xxx_xxx_0_0_xxx;
                 state_next  = S1;
             end
             O1: begin  // out = R2
-                out_signals = 15'b1_010_xxx_xxx_0_1_xxx;
+                out_signals = 15'b1_010_xxx_xxx_0_0_xxx;
                 state_next  = S2;
             end
             O2: begin  // out = R3 
-                out_signals = 15'b1_011_xxx_xxx_0_1_xxx;
+                out_signals = 15'b1_011_xxx_xxx_0_0_xxx;
                 state_next  = S3;
             end
             O3: begin  // out = R4 

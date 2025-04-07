@@ -65,11 +65,14 @@ module DataPath (
         .B  (A_regout),
         .sum(adder_o)
     );
-    out_buffer U_out (
-        .out_sel(out_sel),
-        .A      (sum_regout),
-        .out    (sum_out)
+    save_ff u_save_ff(
+        .clk      (clk      ),
+        .reset    (reset    ),
+        .save_sel (out_sel ),
+        .in       (sum_regout       ),
+        .out      (sum_out      )
     );
+    
     comp U_A_UT_Ten (
         .A       (A_regout),
         .B       (10),
@@ -131,5 +134,5 @@ module out_buffer (
     input  logic [7:0] A,
     output logic [7:0] out
 );
-    assign out = out_sel ? A : 8'bz;
+    assign out = out_sel ? A : out;
 endmodule

@@ -28,18 +28,10 @@ module DataPath (
     logic [7:0] rdata1;
     logic [7:0] rdata2;
     logic [7:0] sum;
-    logic [7:0] mux_01;
-
-    Mux_2x1 initial_01 (
-        .mux_sel(mux_sel01),
-        .one    (1),
-        .zero   (0),
-        .mux_out(mux_01)
-    );
 
     Mux_2x1 initial_1_to_file (
         .mux_sel(initial_sig),
-        .one    (mux_01),
+        .one    (1),
         .zero   (sum),
         .mux_out(mux_out)
     );

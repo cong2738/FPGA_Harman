@@ -5,7 +5,6 @@ module ControlUnit (
     input  logic       reset,
     input  logic       comp_10,
     output logic       initial_sig,
-    output logic       mux_sel01,
     output logic       wen,
     output logic [2:0] wptr,
     output logic [2:0] rptr1,
@@ -45,7 +44,6 @@ module ControlUnit (
     always_comb begin : next_state_logic
         next = state;
         initial_sig = 0;
-        mux_sel01 = 0;
         wen = 0;
         wptr = 0;
         rptr1 = 0;
@@ -54,7 +52,6 @@ module ControlUnit (
 
         case (state)
             S0: begin  //  initial_one
-                mux_sel01   = 1;  // choice 1
                 initial_sig = 1;
                 wen         = 1;
                 wptr        = 1;
@@ -64,7 +61,7 @@ module ControlUnit (
                 next        = S1;
             end
             S1: begin  //  initial_a
-                initial_sig = 1;
+                initial_sig = 0;
                 wen         = 1;
                 wptr        = 2;
                 rptr1       = 0;
@@ -73,7 +70,7 @@ module ControlUnit (
                 next        = S2;
             end
             S2: begin  //  initial_sum
-                initial_sig = 1;
+                initial_sig = 0;
                 wen         = 1;
                 wptr        = 3;
                 rptr1       = 0;

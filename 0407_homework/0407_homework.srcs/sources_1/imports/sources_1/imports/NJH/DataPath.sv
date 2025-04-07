@@ -113,5 +113,5 @@ module comparator (
     input  logic [7:0] b,
     output logic       le
 );
-    assign le = (a < b);
+    assign le = (a > b);
 endmodule

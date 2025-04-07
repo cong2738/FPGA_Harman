@@ -22,12 +22,12 @@ module DataPath (
     }
     halt;
     */
-    wire [7:0] A_0_out;
-    wire [7:0] A_regout;
-    wire [7:0] sum_0_out;
-    wire [7:0] sum_regout;
-    wire [7:0] adder_o;
-    wire [7:0] add_mux_o;
+    logic [7:0] A_0_out;
+    logic [7:0] A_regout;
+    logic [7:0] sum_0_out;
+    logic [7:0] sum_regout;
+    logic [7:0] adder_o;
+    logic [7:0] add_mux_o;
     Mux_2x1 U_A_initial (
         .one    (adder_o),
         .zero   (0),

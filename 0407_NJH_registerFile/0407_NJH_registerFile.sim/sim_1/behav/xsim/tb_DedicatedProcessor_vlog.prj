@@ -1,0 +1,13 @@
+# compile verilog/system verilog design source files
+sv xil_defaultlib  \
+"../../../../0407_NJH_registerFile.srcs/sources_1/new/ALU.sv" \
+"../../../../0407_NJH_registerFile.srcs/sources_1/imports/NJH/ControlUnit.sv" \
+"../../../../0407_NJH_registerFile.srcs/sources_1/imports/NJH/DataPath.sv" \
+"../../../../0407_NJH_registerFile.srcs/sources_1/imports/NJH/top_DedicatedProcessor.sv" \
+"../../../../0407_NJH_registerFile.srcs/sim_1/imports/NJH/tb_DedicatedProcessor.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

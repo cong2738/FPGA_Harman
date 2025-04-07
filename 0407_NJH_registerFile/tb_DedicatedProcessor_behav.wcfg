@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_DedicatedProcessor_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_DedicatedProcessor" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="7500fs"></ZoomStartTime>
+      <ZoomEndTime time="55809fs"></ZoomEndTime>
+      <Cursor1Time time="28271fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="159"></NameColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="7" />
+   <wvobject fp_name="/tb_DedicatedProcessor/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_DedicatedProcessor/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_DedicatedProcessor/outPort" type="array">
+      <obj_property name="ElementShortName">outPort[7:0]</obj_property>
+      <obj_property name="ObjectShortName">outPort[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="group195" type="group">
+      <obj_property name="label">DP</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_DataPath/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_DataPath/reset" type="logic">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_DataPath/RFSrcMuxSel" type="logic">
+         <obj_property name="ElementShortName">RFSrcMuxSel</obj_property>
+         <obj_property name="ObjectShortName">RFSrcMuxSel</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_DataPath/readAddr1" type="array">
+         <obj_property name="ElementShortName">readAddr1[2:0]</obj_property>
+         <obj_property name="ObjectShortName">readAddr1[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_DataPath/readAddr2" type="array">
+         <obj_property name="ElementShortName">readAddr2[2:0]</obj_property>
+         <obj_property name="ObjectShortName">readAddr2[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_DataPath/writeAddr" type="array">
+         <obj_property name="ElementShortName">writeAddr[2:0]</obj_property>
+         <obj_property name="ObjectShortName">writeAddr[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_DataPath/writeEn" type="logic">
+         <obj_property name="ElementShortName">writeEn</obj_property>
+         <obj_property name="ObjectShortName">writeEn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_DataPath/outBuf" type="logic">
+         <obj_property name="ElementShortName">outBuf</obj_property>
+         <obj_property name="ObjectShortName">outBuf</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_DataPath/aluOP" type="array">
+         <obj_property name="ElementShortName">aluOP[2:0]</obj_property>
+         <obj_property name="ObjectShortName">aluOP[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_DataPath/comp" type="logic">
+         <obj_property name="ElementShortName">comp</obj_property>
+         <obj_property name="ObjectShortName">comp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_DataPath/outPort" type="array">
+         <obj_property name="ElementShortName">outPort[7:0]</obj_property>
+         <obj_property name="ObjectShortName">outPort[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_DataPath/ALU_res" type="array">
+         <obj_property name="ElementShortName">ALU_res[7:0]</obj_property>
+         <obj_property name="ObjectShortName">ALU_res[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_DataPath/RFSrcMuxData" type="array">
+         <obj_property name="ElementShortName">RFSrcMuxData[7:0]</obj_property>
+         <obj_property name="ObjectShortName">RFSrcMuxData[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_DataPath/RFReadData1" type="array">
+         <obj_property name="ElementShortName">RFReadData1[7:0]</obj_property>
+         <obj_property name="ObjectShortName">RFReadData1[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_DataPath/RFReadData2" type="array">
+         <obj_property name="ElementShortName">RFReadData2[7:0]</obj_property>
+         <obj_property name="ObjectShortName">RFReadData2[7:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group196" type="group">
+      <obj_property name="label">CU</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/reset" type="logic">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/RFSrcMuxSel" type="logic">
+         <obj_property name="ElementShortName">RFSrcMuxSel</obj_property>
+         <obj_property name="ObjectShortName">RFSrcMuxSel</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/readAddr1" type="array">
+         <obj_property name="ElementShortName">readAddr1[2:0]</obj_property>
+         <obj_property name="ObjectShortName">readAddr1[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/readAddr2" type="array">
+         <obj_property name="ElementShortName">readAddr2[2:0]</obj_property>
+         <obj_property name="ObjectShortName">readAddr2[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/writeAddr" type="array">
+         <obj_property name="ElementShortName">writeAddr[2:0]</obj_property>
+         <obj_property name="ObjectShortName">writeAddr[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/writeEn" type="logic">
+         <obj_property name="ElementShortName">writeEn</obj_property>
+         <obj_property name="ObjectShortName">writeEn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/outBuf" type="logic">
+         <obj_property name="ElementShortName">outBuf</obj_property>
+         <obj_property name="ObjectShortName">outBuf</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/aluOP" type="array">
+         <obj_property name="ElementShortName">aluOP[2:0]</obj_property>
+         <obj_property name="ObjectShortName">aluOP[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/comp" type="logic">
+         <obj_property name="ElementShortName">comp</obj_property>
+         <obj_property name="ObjectShortName">comp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/state" type="array">
+         <obj_property name="ElementShortName">state[31:0]</obj_property>
+         <obj_property name="ObjectShortName">state[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/state_next" type="array">
+         <obj_property name="ElementShortName">state_next[31:0]</obj_property>
+         <obj_property name="ObjectShortName">state_next[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_DedicatedProcessor/dut/U_ControlUnit/out_signals" type="array">
+         <obj_property name="ElementShortName">out_signals[14:0]</obj_property>
+         <obj_property name="ObjectShortName">out_signals[14:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider226">
+   </wvobject>
+   <wvobject fp_name="/tb_DedicatedProcessor/dut/U_DataPath/U_RegFile/mem" type="array">
+      <obj_property name="ElementShortName">mem[0:7][7:0]</obj_property>
+      <obj_property name="ObjectShortName">mem[0:7][7:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+</wave_config>

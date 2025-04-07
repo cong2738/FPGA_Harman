@@ -1,11 +1,15 @@
 `timescale 1ns / 1ps
 
 module tb_processor ();
-    logic clk;
-    logic reset;
-    logic [7:0] sum_out;
+    reg clk;
+    reg reset;
+    wire [7:0] sum_out;
 
-    top_DedicatedProcessor uut (.*);
+    top_DedicatedProcessor uut (
+        .clk    (clk),
+        .reset  (reset),
+        .sum_out(sum_out)
+    );
 
     always #5 clk = ~clk;
 

@@ -1,9 +1,9 @@
 `timescale 1ns / 1ps
 
 module top_DedicatedProcessor (
-    input clk,
-    input reset,
-    output [7:0] sum_out
+    input  logic       clk,
+    input  logic       reset,
+    output logic [7:0] sum_out
 );
     ControlUnit u_ControlUnit (
         .clk         (clk),

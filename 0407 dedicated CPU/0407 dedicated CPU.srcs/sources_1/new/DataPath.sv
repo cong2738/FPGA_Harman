@@ -1,16 +1,16 @@
 `timescale 1ns / 1ps
 
 module DataPath (
-    input clk,
-    input reset,
-    input A_0_sel,
-    input sum_0_sel,
-    input A_save_sel,
-    input sum_save_sel,
-    input add_sel,
-    input out_sel,
-    output comp_Aand10,
-    output [7:0] sum_out
+    input  logic       clk,
+    input  logic       reset,
+    input  logic       A_0_sel,
+    input  logic       sum_0_sel,
+    input  logic       A_save_sel,
+    input  logic       sum_save_sel,
+    input  logic       add_sel,
+    input  logic       out_sel,
+    output logic       comp_Aand10,
+    output logic [7:0] sum_out
 );
     /* 
     a = 0;

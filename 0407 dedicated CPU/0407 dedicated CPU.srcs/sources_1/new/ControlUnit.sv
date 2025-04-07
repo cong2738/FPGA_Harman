@@ -1,15 +1,15 @@
 `timescale 1ns / 1ps
 
 module ControlUnit (
-    input clk,
-    input reset,
-    input comp_Aand10,
-    output reg A_0_sel,
-    output reg sum_0_sel,
-    output reg A_save_sel,
-    output reg sum_save_sel,
-    output reg add_sel,
-    output reg out_sel
+    input  logic clk,
+    input  logic reset,
+    input  logic comp_Aand10,
+    output logic A_0_sel,
+    output logic sum_0_sel,
+    output logic A_save_sel,
+    output logic sum_save_sel,
+    output logic add_sel,
+    output logic out_sel
 );
     reg [7:0] state, next;
 

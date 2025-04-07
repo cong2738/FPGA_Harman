@@ -9,14 +9,15 @@ module DataPath (
     input  logic [2:0] writeAddr,
     input  logic       writeEn,
     input  logic       outBuf,
-    output logic       iLe10,
+    input  logic [2:0] aluOP,
+    output logic       comp,
     output logic [7:0] outPort
 );
-    logic [7:0] adderResult, RFSrcMuxData, RFReadData1, RFReadData2;
+    logic [7:0] ALU_res, RFSrcMuxData, RFReadData1, RFReadData2;
 
     mux_2x1 U_RFSrcMux (
         .sel(RFSrcMuxSel),
-        .x0 (adderResult),
+        .x0 (ALU_res),
         .x1 (8'b1),
         .y  (RFSrcMuxData)
     );
@@ -32,16 +33,17 @@ module DataPath (
         .rData2(RFReadData2)
     );
 
-    comparator U_Comp_iLe10 (
+    comparator U_Comp (
         .a (RFReadData1),
-        .b (8'd10),
-        .le(iLe10)
+        .b (RFReadData2),
+        .le(comp)
     );
 
-    adder U_Adder (
-        .a  (RFReadData1),
-        .b  (RFReadData2),
-        .sum(adderResult)
+    ALU u_ALU (
+        .aluOP(aluOP),
+        .a    (RFReadData1),
+        .b    (RFReadData2),
+        .res  (ALU_res)
     );
 
     register U_OutReg (
@@ -66,13 +68,14 @@ module RegFile (
     output logic [7:0] rData2
 );
     logic [7:0] mem[0:7];
+    assign mem[0] = 0;
 
     always_ff @(posedge clk) begin : write
         if (writeEn) mem[writeAddr] <= wData;
     end
 
-    assign rData1 = (readAddr1 == 3'b0) ? 8'b0 : mem[readAddr1];
-    assign rData2 = (readAddr2 == 3'b0) ? 8'b0 : mem[readAddr2];
+    assign rData1 = mem[readAddr1];
+    assign rData2 = mem[readAddr2];
 endmodule
 
 module mux_2x1 (
@@ -110,13 +113,5 @@ module comparator (
     input  logic [7:0] b,
     output logic       le
 );
-    assign le = (a <= b);
-endmodule
-
-module adder (
-    input  logic [7:0] a,
-    input  logic [7:0] b,
-    output logic [7:0] sum
-);
-    assign sum = a + b;
+    assign le = (a > b);
 endmodule

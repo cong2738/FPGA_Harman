@@ -12,7 +12,8 @@ module top_DedicatedProcessor (
     logic [2:0] writeAddr;
     logic       writeEn;
     logic       outBuf;
-    logic       iLe10;
+    logic [2:0] aluOP;
+    logic       comp;
 
     DataPath U_DataPath (.*);
     ControlUnit U_ControlUnit (.*);

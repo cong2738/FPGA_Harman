@@ -41,11 +41,11 @@ module DataPath (
         .mux_out(sum_0_out)
     );
     save_ff U_A_Reg (
-        .in(A_0_out),
-        .clk(clk),
-        .reset(reset),
+        .in      (A_0_out),
+        .clk     (clk),
+        .reset   (reset),
         .save_sel(A_save_sel),
-        .out(A_regout)
+        .out     (A_regout)
     );
     save_ff U_Sum_Reg (
         .in      (sum_0_out),
@@ -66,13 +66,13 @@ module DataPath (
         .sum(adder_o)
     );
     out_buffer U_out (
-        .A(sum_regout),
+        .A      (sum_regout),
         .out_sel(out_sel),
-        .out(sum_out)
+        .out    (sum_out)
     );
     comp U_A_UT_Ten (
-        .A(A_regout),
-        .B(10),
+        .A       (A_regout),
+        .B       (10),
         .comp_out(comp_Aand10)
     );
 endmodule

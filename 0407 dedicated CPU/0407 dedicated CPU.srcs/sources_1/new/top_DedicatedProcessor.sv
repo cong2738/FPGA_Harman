@@ -5,29 +5,16 @@ module top_DedicatedProcessor (
     input  logic       reset,
     output logic [7:0] sum_out
 );
-    ControlUnit u_ControlUnit (
-        .clk         (clk),
-        .reset       (reset),
-        .comp_Aand10 (comp_Aand10),
-        .A_0_sel     (A_0_sel),
-        .sum_0_sel   (sum_0_sel),
-        .A_save_sel  (A_save_sel),
-        .sum_save_sel(sum_save_sel),
-        .add_sel     (add_sel),
-        .out_sel     (out_sel)
-    );
+    logic comp_Aand10;
+    logic A_0_sel;
+    logic sum_0_sel;
+    logic A_save_sel;
+    logic sum_save_sel;
+    logic add_sel;
+    logic out_sel;
 
-    DataPath u_DataPath (
-        .clk         (clk),
-        .reset       (reset),
-        .A_0_sel     (A_0_sel),
-        .sum_0_sel   (sum_0_sel),
-        .A_save_sel  (A_save_sel),
-        .sum_save_sel(sum_save_sel),
-        .add_sel     (add_sel),
-        .out_sel     (out_sel),
-        .comp_Aand10 (comp_Aand10),
-        .sum_out     (sum_out)
-    );
-
+    //닷스타: 이름같은건 자동연결(시스템베릴로그기능)
+    ControlUnit u_ControlUnit (.*);
+    DataPath u_DataPath (.*);
+    
 endmodule

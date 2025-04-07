@@ -11,11 +11,20 @@ module ControlUnit (
     output logic add_sel,
     output logic out_sel
 );
-    reg [7:0] state, next;
+    typedef enum {
+        S0,
+        S1,
+        S2,
+        S3,
+        S4,
+        S5
+    } state_e;
+
+    state_e state, next;
 
     always @(posedge clk, posedge reset) begin
         if (reset) begin
-            state <= 0;
+            state <= S0;
         end else begin
             state <= next;
         end
@@ -38,36 +47,36 @@ module ControlUnit (
         sum_save_sel = 0;
         add_sel = 0;
         out_sel = 0;
-        
+
         case (state)
-            0: begin  // a = 0, sum = 0
+            S0: begin  // a = 0, sum = 0
                 A_save_sel = 1;
                 sum_save_sel = 1;
-                next = 1;
+                next = S1;
             end
-            1: begin  // while (a < 10)
+            S1: begin  // while (a < 10)
                 if (comp_Aand10) begin
-                    next = 2;
-                end else next = 5;
+                    next = S2;
+                end else next = S5;
             end
-            2: begin  // sum = sum + a
+            S2: begin  // sum = sum + a
                 add_sel = 0;
                 sum_0_sel = 1;
                 sum_save_sel = 1;
-                next = 3;
+                next = S3;
             end
-            3: begin  // a = a + 1
+            S3: begin  // a = a + 1
                 add_sel = 1;
                 A_0_sel = 1;
                 A_save_sel = 1;
-                next = 4;
+                next = S4;
             end
-            4: begin  //out = sum
+            S4: begin  //out = sum
                 out_sel = 1;
-                next = 1;
+                next = S1;
             end
-            5: begin  // halt
-                next = 5;
+            S5: begin  // halt
+                next = S5;
             end
 
         endcase

@@ -71,7 +71,7 @@ module ControlUnit (
                 A_save_sel = 1;
                 next = S4;
             end
-            S4: begin  //out = sum
+            S4: begin  // out = sum
                 out_sel = 1;
                 next = S1;
             end

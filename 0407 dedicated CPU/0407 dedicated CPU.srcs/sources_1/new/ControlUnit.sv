@@ -37,11 +37,11 @@ module ControlUnit (
         out_sel = 0;
 
         case (state)
-            0: begin // a = 0
+            0: begin // a = 0, sum = 0
                 A_save_sel = 1;
                 sum_save_sel = 1;
                 next = 1;
-            end // sum = 0
+            end 
             1: begin // while (a < 10)
                 if (comp_Aand10) begin
                     next = 5;

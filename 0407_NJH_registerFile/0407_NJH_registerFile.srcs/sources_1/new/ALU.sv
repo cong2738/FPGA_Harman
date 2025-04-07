@@ -12,10 +12,10 @@ module ALU (
         AND = 3'b010,
         OR  = 3'b011,
         XOR = 3'b100,
-        NOT = 3'b101
+        NOT = 3'b101,
+        LT = 3'b110,
+        EQ = 3'b111
     } opperation;
-
-    logic [7:0] sum, sub, or_res, and_res, xor_res, not_res;
 
     always_comb begin : ALU
         case (aluOP)
@@ -25,6 +25,8 @@ module ALU (
             AND: res = a & b;
             XOR: res = a ^ b;
             NOT: res = ~a;
+            NOT: res = a < b;
+            NOT: res = a == b;
             default: res = 8'bz;
         endcase
     end

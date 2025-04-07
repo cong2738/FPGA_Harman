@@ -29,35 +29,35 @@ module DataPath (
     logic [7:0] adder_o;
     logic [7:0] add_mux_o;
     Mux_2x1 U_A_initial (
+        .mux_sel(A_0_sel),
         .one    (adder_o),
         .zero   (0),
-        .mux_sel(A_0_sel),
         .mux_out(A_0_out)
     );
     Mux_2x1 U_sum_initial (
+        .mux_sel(sum_0_sel),
         .one    (adder_o),
         .zero   (0),
-        .mux_sel(sum_0_sel),
         .mux_out(sum_0_out)
     );
     save_ff U_A_Reg (
-        .in      (A_0_out),
         .clk     (clk),
         .reset   (reset),
         .save_sel(A_save_sel),
+        .in      (A_0_out),
         .out     (A_regout)
     );
     save_ff U_Sum_Reg (
-        .in      (sum_0_out),
         .clk     (clk),
         .reset   (reset),
         .save_sel(sum_save_sel),
+        .in      (sum_0_out),
         .out     (sum_regout)
     );
     Mux_2x1 u_adderMux (
+        .mux_sel(add_sel),
         .one    (1),
         .zero   (sum_regout),
-        .mux_sel(add_sel),
         .mux_out(add_mux_o)
     );
     adder U_Adder (
@@ -66,8 +66,8 @@ module DataPath (
         .sum(adder_o)
     );
     out_buffer U_out (
-        .A      (sum_regout),
         .out_sel(out_sel),
+        .A      (sum_regout),
         .out    (sum_out)
     );
     comp U_A_UT_Ten (
@@ -131,5 +131,5 @@ module out_buffer (
     input  logic [7:0] A,
     output logic [7:0] out
 );
-    assign out = out_sel ? A : out;
+    assign out = out_sel ? A : 8'bz;
 endmodule

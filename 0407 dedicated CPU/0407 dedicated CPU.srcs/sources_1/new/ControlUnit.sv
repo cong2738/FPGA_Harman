@@ -8,6 +8,7 @@ module ControlUnit (
     output reg sum_0_sel,
     output reg A_save_sel,
     output reg sum_save_sel,
+    output reg add_sel,
     output reg out_sel
 );
     reg [7:0] state, next;
@@ -34,34 +35,37 @@ module ControlUnit (
         sum_0_sel = 0;
         A_save_sel = 0;
         sum_save_sel = 0;
+        add_sel = 0;
         out_sel = 0;
 
         case (state)
-            0: begin // a = 0, sum = 0
+            0: begin  // a = 0, sum = 0
                 A_save_sel = 1;
                 sum_save_sel = 1;
                 next = 1;
-            end 
-            1: begin // while (a < 10)
+            end
+            1: begin  // while (a < 10)
                 if (comp_Aand10) begin
                     next = 5;
                 end else next = 2;
             end
-            2: begin // sum = sum + a
+            2: begin  // sum = sum + a
+                add_sel = 0;
                 sum_0_sel = 1;
                 sum_save_sel = 1;
                 next = 3;
             end
-            3: begin //out = sum
-                out_sel = 1;
+            3: begin  // a = a + 1
+                add_sel = 1;
+                A_0_sel = 1;
+                A_save_sel = 1;
                 next = 4;
             end
-            4: begin // a = a + 1
-                A_0_sel   = 1;
-                A_save_sel = 1;
+            4: begin  //out = sum
+                out_sel = 1;
                 next = 1;
             end
-            5: begin // halt
+            5: begin  // halt
                 next = 5;
             end
 

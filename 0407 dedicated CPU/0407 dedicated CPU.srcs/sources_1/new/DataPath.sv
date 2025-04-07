@@ -7,6 +7,7 @@ module DataPath (
     input sum_0_sel,
     input A_save_sel,
     input sum_save_sel,
+    input add_sel,
     input out_sel,
     output comp_Aand10,
     output [7:0] sum_out
@@ -23,19 +24,21 @@ module DataPath (
     */
     wire [7:0] A_0_out;
     wire [7:0] A_regout;
-    wire [7:0] App;
     wire [7:0] sum_0_out;
-    wire [7:0] added_sum;
     wire [7:0] sum_regout;
-    A_0_Mux U_A_initial (
-        .A(App),
-        .A_0_sel(A_0_sel),
-        .A_0_out(A_0_out)
+    wire [7:0] adder_o;
+    wire [7:0] add_mux_o;
+    Mux_2x1 U_A_initial (
+        .one    (adder_o),
+        .zero   (0),
+        .mux_sel(A_0_sel),
+        .mux_out(A_0_out)
     );
-    A_0_Mux U_sum_initial (
-        .A(added_sum),
-        .A_0_sel(sum_0_sel),
-        .A_0_out(sum_0_out)
+    Mux_2x1 U_sum_initial (
+        .one    (adder_o),
+        .zero   (0),
+        .mux_sel(sum_0_sel),
+        .mux_out(sum_0_out)
     );
     save_ff U_A_Reg (
         .in(A_0_out),
@@ -51,15 +54,16 @@ module DataPath (
         .save_sel(sum_save_sel),
         .out     (sum_regout)
     );
-    adder U_APP (
-        .A  (A_regout),
-        .B  (1),
-        .sum(App)
+    Mux_2x1 u_adderMux (
+        .one    (1),
+        .zero   (sum_regout),
+        .mux_sel(add_sel),
+        .mux_out(add_mux_o)
     );
-    adder U_sum (
-        .A  (sum_regout),
+    adder U_Adder (
+        .A  (add_mux_o),
         .B  (A_regout),
-        .sum(added_sum)
+        .sum(adder_o)
     );
     out_buffer U_out (
         .A(sum_regout),
@@ -68,17 +72,18 @@ module DataPath (
     );
     comp U_A_UT_Ten (
         .A(A_regout),
-        .B(10),
+        .B(11),
         .comp_out(comp_Aand10)
     );
 endmodule
 
-module A_0_Mux (
-    input [7:0] A,
-    input A_0_sel,
-    output reg [7:0] A_0_out
+module Mux_2x1 (
+    input [7:0] one,
+    input [7:0] zero,
+    input mux_sel,
+    output reg [7:0] mux_out
 );
-    assign A_0_out = A_0_sel ? A : 8'b0;
+    assign mux_out = mux_sel ? one : zero;
 endmodule
 
 module save_ff (

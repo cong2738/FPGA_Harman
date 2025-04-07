@@ -31,13 +31,14 @@ module ControlUnit (
     halt;
     */
     always_comb begin : next_state_logic
+        next = state;
         A_0_sel = 0;
         sum_0_sel = 0;
         A_save_sel = 0;
         sum_save_sel = 0;
         add_sel = 0;
         out_sel = 0;
-
+        
         case (state)
             0: begin  // a = 0, sum = 0
                 A_save_sel = 1;

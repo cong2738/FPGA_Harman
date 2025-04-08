@@ -32,7 +32,7 @@ module DataPath (
         .rData1(RFReadData1),
         .rData2(RFReadData2)
     );
-
+ 
     comparator U_Comp (
         .a (RFReadData1),
         .b (RFReadData2),

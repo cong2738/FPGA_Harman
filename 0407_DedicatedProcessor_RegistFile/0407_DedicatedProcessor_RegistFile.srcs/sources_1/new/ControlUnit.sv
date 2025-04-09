@@ -63,7 +63,7 @@ module ControlUnit (
             S1: begin  //  initial_a
                 initial_sig = 0;
                 wen         = 1;
-                wptr        = 2;
+                wptr        = 2'b0;
                 rptr1       = 0;
                 rptr2       = 0;
                 out_sel     = 0;

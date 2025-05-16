@@ -131,3 +131,203 @@ set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property PROGRAM.FILE {C:/harman/FPGA_Harman-1/2025-05-16 SPI_FND/2025-05-16 SPI_FND.runs/impl_1/top_SPI_FND.bit} [get_hw_devices xc7a35t_0]
 program_hw_devices [get_hw_devices xc7a35t_0]
 refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+file mkdir C:/harman/FPGA_Harman-1/2025-05-16 SPI_FND/2025-05-16 SPI_FND.srcs/sim_1/new
+file mkdir C:/harman/FPGA_Harman-1/2025-05-16 SPI_FND/2025-05-16 SPI_FND.srcs/sim_1/new
+file mkdir C:/harman/FPGA_Harman-1/2025-05-16 SPI_FND/2025-05-16 SPI_FND.srcs/sim_1/new
+file mkdir C:/harman/FPGA_Harman-1/2025-05-16 SPI_FND/2025-05-16 SPI_FND.srcs/sim_1/new
+file mkdir C:/harman/FPGA_Harman-1/2025-05-16 SPI_FND/2025-05-16 SPI_FND.srcs/sim_1/new
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+file mkdir C:/harman/FPGA_Harman-1/2025-05-16 SPI_FND/2025-05-16 SPI_FND.srcs/sim_1/new
+file mkdir {C:/harman/FPGA_Harman-1/2025-05-16 SPI_FND/2025-05-16 SPI_FND.srcs/sim_1/new}
+close [ open {C:/harman/FPGA_Harman-1/2025-05-16 SPI_FND/2025-05-16 SPI_FND.srcs/sim_1/new/tb_fndSPI.sv} w ]
+add_files -fileset sim_1 {{C:/harman/FPGA_Harman-1/2025-05-16 SPI_FND/2025-05-16 SPI_FND.srcs/sim_1/new/tb_fndSPI.sv}}
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+launch_simulation
+source tb_fndSPI.tcl
+run 10 us
+relaunch_sim
+relaunch_sim
+relaunch_sim
+run 10 us
+run 10 us
+run 10 us
+refresh_design
+refresh_design
+refresh_design
+update_compile_order -fileset sources_1
+refresh_design
+relaunch_sim
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 16
+wait_on_run impl_1
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+run 10 us
+run 10 us
+run 10 us
+run 10 us
+relaunch_sim
+run all
+relaunch_sim
+run 10 us
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+run 10 us
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+relaunch_sim
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+relaunch_sim
+relaunch_sim
+relaunch_sim
+run 10 us
+relaunch_sim
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+relaunch_sim
+relaunch_sim
+run 10 us
+run 10 us
+run 10 us
+relaunch_sim
+relaunch_sim
+relaunch_sim
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+relaunch_sim
+run all
+run 10 us
+run 10 us
+relaunch_sim
+relaunch_sim
+run 10 us
+run 10 us
+run 10 us
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+relaunch_sim
+relaunch_sim
+run 10 us
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+run 10 us
+run 10 us
+run 10 us
+relaunch_sim
+run all
+run all
+relaunch_sim
+run 10 us
+run 10 us
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+restart
+run 10 us
+run 10 us
+run 10 us
+relaunch_sim
+relaunch_sim
+run 10 us
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+run 10 us
+run 10 us
+run 10 us
+relaunch_sim
+run 10 us
+run 10 us
+run 10 us
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 16
+wait_on_run impl_1

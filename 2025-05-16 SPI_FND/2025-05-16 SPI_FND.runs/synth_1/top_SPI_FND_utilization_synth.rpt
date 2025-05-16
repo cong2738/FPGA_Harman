@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Fri May 16 20:08:48 2025
+| Date         : Fri May 16 20:12:54 2025
 | Host         : korchamHoyoun24 running 64-bit major release  (build 9200)
 | Command      : report_utilization -file top_SPI_FND_utilization_synth.rpt -pb top_SPI_FND_utilization_synth.pb
 | Design       : top_SPI_FND
@@ -30,11 +30,11 @@ Table of Contents
 +-------------------------+------+-------+-----------+-------+
 |        Site Type        | Used | Fixed | Available | Util% |
 +-------------------------+------+-------+-----------+-------+
-| Slice LUTs*             |  225 |     0 |     20800 |  1.08 |
-|   LUT as Logic          |  225 |     0 |     20800 |  1.08 |
+| Slice LUTs*             |  240 |     0 |     20800 |  1.15 |
+|   LUT as Logic          |  240 |     0 |     20800 |  1.15 |
 |   LUT as Memory         |    0 |     0 |      9600 |  0.00 |
-| Slice Registers         |   80 |     0 |     41600 |  0.19 |
-|   Register as Flip Flop |   80 |     0 |     41600 |  0.19 |
+| Slice Registers         |  107 |     0 |     41600 |  0.26 |
+|   Register as Flip Flop |  107 |     0 |     41600 |  0.26 |
 |   Register as Latch     |    0 |     0 |     41600 |  0.00 |
 | F7 Muxes                |    0 |     0 |     16300 |  0.00 |
 | F8 Muxes                |    0 |     0 |      8150 |  0.00 |
@@ -55,7 +55,7 @@ Table of Contents
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 1     |          Yes |           - |          Set |
-| 79    |          Yes |           - |        Reset |
+| 106   |          Yes |           - |        Reset |
 | 0     |          Yes |         Set |            - |
 | 0     |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
@@ -149,16 +149,16 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDCE     |   79 |        Flop & Latch |
-| LUT2     |   73 |                 LUT |
-| LUT6     |   71 |                 LUT |
-| LUT4     |   64 |                 LUT |
-| LUT5     |   48 |                 LUT |
+| FDCE     |  106 |        Flop & Latch |
+| LUT2     |   89 |                 LUT |
+| LUT6     |   73 |                 LUT |
+| LUT4     |   66 |                 LUT |
+| LUT5     |   50 |                 LUT |
 | LUT3     |   43 |                 LUT |
 | OBUF     |   28 |                  IO |
-| CARRY4   |   24 |          CarryLogic |
+| CARRY4   |   28 |          CarryLogic |
 | IBUF     |   19 |                  IO |
-| LUT1     |    5 |                 LUT |
+| LUT1     |    7 |                 LUT |
 | BUFG     |    2 |               Clock |
 | FDPE     |    1 |        Flop & Latch |
 +----------+------+---------------------+

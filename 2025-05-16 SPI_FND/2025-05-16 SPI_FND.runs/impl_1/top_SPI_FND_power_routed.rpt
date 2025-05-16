@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date             : Fri May 16 20:09:32 2025
+| Date             : Fri May 16 20:13:34 2025
 | Host             : korchamHoyoun24 running 64-bit major release  (build 9200)
 | Command          : report_power -file top_SPI_FND_power_routed.rpt -pb top_SPI_FND_power_summary_routed.pb -rpx top_SPI_FND_power_routed.rpx
 | Design           : top_SPI_FND
@@ -33,7 +33,7 @@ Table of Contents
 | Total On-Chip Power (W)  | 0.089        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.017        |
+| Dynamic (W)              | 0.018        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.6         |
@@ -52,14 +52,14 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.001 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |      418 |       --- |             --- |
-|   LUT as Logic |    <0.001 |      221 |     20800 |            1.06 |
-|   Register     |    <0.001 |       80 |     41600 |            0.19 |
-|   CARRY4       |    <0.001 |       24 |      8150 |            0.29 |
+| Clocks         |     0.002 |        3 |       --- |             --- |
+| Slice Logic    |    <0.001 |      474 |       --- |             --- |
+|   LUT as Logic |    <0.001 |      236 |     20800 |            1.13 |
+|   Register     |    <0.001 |      107 |     41600 |            0.26 |
+|   CARRY4       |    <0.001 |       28 |      8150 |            0.34 |
 |   BUFG         |    <0.001 |        1 |        32 |            3.13 |
-|   Others       |     0.000 |       10 |       --- |             --- |
-| Signals        |    <0.001 |      311 |       --- |             --- |
+|   Others       |     0.000 |       12 |       --- |             --- |
+| Signals        |    <0.001 |      363 |       --- |             --- |
 | I/O            |     0.015 |       47 |       106 |           44.34 |
 | Static Power   |     0.072 |          |           |                 |
 | Total          |     0.089 |          |           |                 |
@@ -72,7 +72,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.012 |       0.002 |      0.010 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.012 |       0.003 |      0.010 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.013 |       0.001 |      0.013 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.005 |       0.004 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -141,7 +141,8 @@ Table of Contents
 +-------------+-----------+
 | Name        | Power (W) |
 +-------------+-----------+
-| top_SPI_FND |     0.017 |
+| top_SPI_FND |     0.018 |
+|   u_SPI_FND |     0.001 |
 +-------------+-----------+
 
 

@@ -21,7 +21,7 @@ module btn_debounce #(parameter MAX_COUNT = 100_000)(
             counter <= 0;
             r_1khz <=0;
         end else begin
-            if (counter == 100_000 - 1) begin
+            if (counter == MAX_COUNT - 1) begin
                 counter <= 0;
                 r_1khz <= 1'b1;  
             end else begin  // 1khz 1tick.

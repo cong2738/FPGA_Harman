@@ -9,8 +9,7 @@ module IP_CU (
     input  wire        done,
     output wire [13:0] bcd
 );
-    localparam IDLE = 0, L_BYTE = 1, H_BYTE = 2, WAIT = 3;
-
+    localparam IDLE = 0, L_BYTE = 1, WAIT_L = 2, H_BYTE = 3, WAIT_H = 4;
     reg [1:0] state, next;
     reg [15:0] data_reg, data_next;
 
@@ -38,10 +37,10 @@ module IP_CU (
             L_BYTE: begin
                 if (CS && done) begin
                     data_next[7:0] = i_data;
-                    next = WAIT;
+                    next = WAIT_L;
                 end
             end
-            WAIT: begin
+            WAIT_L: begin
                 if (!done) begin
                     next = H_BYTE;
                 end
@@ -49,6 +48,11 @@ module IP_CU (
             H_BYTE: begin
                 if (CS && done) begin
                     data_next[15:8] = i_data;
+                    next = H_BYTE;
+                end
+            end
+            WAIT_H: begin
+                if (!done) begin
                     next = IDLE;
                 end
             end

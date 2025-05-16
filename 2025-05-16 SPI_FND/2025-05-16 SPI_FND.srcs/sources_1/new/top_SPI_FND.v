@@ -15,13 +15,12 @@ module top_SPI_FND #(
 
     wire [7:0] tx_data;
 
-    btn_debounce u_btn_debounce (
+    btn_debounce #(MAX_COUNT) u_btn_debounce (
         .clk  (sys_clk),
         .reset(reset),
         .i_btn(btn),
         .o_btn(o_btn)
     );
-
 
     input_Master u_input_Master (
         .clk  (sys_clk),

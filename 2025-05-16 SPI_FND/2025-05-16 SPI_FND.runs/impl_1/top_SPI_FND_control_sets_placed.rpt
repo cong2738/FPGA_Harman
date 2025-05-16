@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Fri May 16 20:13:20 2025
+| Date         : Fri May 16 21:52:36 2025
 | Host         : korchamHoyoun24 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_SPI_FND_control_sets_placed.rpt
 | Design       : top_SPI_FND
@@ -59,7 +59,7 @@ Table of Contents
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | No           | No                    | No                     |               0 |            0 |
-| No           | No                    | Yes                    |              68 |           26 |
+| No           | No                    | Yes                    |              68 |           23 |
 | No           | Yes                   | No                     |               0 |            0 |
 | Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |              39 |           17 |
@@ -74,13 +74,13 @@ Table of Contents
 |      Clock Signal      |          Enable Signal          | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
 +------------------------+---------------------------------+------------------+------------------+----------------+--------------+
 |  SCLK_BUFG             |                                 | reset_IBUF       |                1 |              1 |         1.00 |
-|  sys_clk_IBUF_BUFG     | u_SPI_Master/tx_count_next      | reset_IBUF       |                2 |              6 |         3.00 |
 |  sys_clk_IBUF_BUFG     | u_SPI_FND/u_IP_CU/data_next[13] | reset_IBUF       |                2 |              6 |         3.00 |
-|  u_btn_debounce/r_1khz |                                 | reset_IBUF       |                3 |              8 |         2.67 |
-|  sys_clk_IBUF_BUFG     | u_SPI_FND/u_IP_CU/data_next[7]  | reset_IBUF       |                3 |              8 |         2.67 |
-|  sys_clk_IBUF_BUFG     | u_input_Master/data_next        | reset_IBUF       |                5 |              8 |         1.60 |
+|  sys_clk_IBUF_BUFG     | u_SPI_Master/tx_count_next      | reset_IBUF       |                2 |              6 |         3.00 |
+|  u_btn_debounce/r_1khz |                                 | reset_IBUF       |                2 |              8 |         4.00 |
+|  sys_clk_IBUF_BUFG     | u_SPI_FND/u_IP_CU/data_next[7]  | reset_IBUF       |                5 |              8 |         1.60 |
+|  sys_clk_IBUF_BUFG     | u_input_Master/data_next        | reset_IBUF       |                3 |              8 |         2.67 |
 |  SCLK_BUFG             | u_SPI_Master/E[0]               | reset_IBUF       |                5 |             11 |         2.20 |
-|  sys_clk_IBUF_BUFG     |                                 | reset_IBUF       |               22 |             59 |         2.68 |
+|  sys_clk_IBUF_BUFG     |                                 | reset_IBUF       |               20 |             59 |         2.95 |
 +------------------------+---------------------------------+------------------+------------------+----------------+--------------+
 
 

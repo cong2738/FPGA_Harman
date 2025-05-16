@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Fri May 16 20:13:20 2025
+| Date         : Fri May 16 21:52:36 2025
 | Host         : korchamHoyoun24 running 64-bit major release  (build 9200)
 | Command      : report_utilization -file top_SPI_FND_utilization_placed.rpt -pb top_SPI_FND_utilization_placed.pb
 | Design       : top_SPI_FND
@@ -67,9 +67,9 @@ Table of Contents
 +--------------------------------------------+------+-------+-----------+-------+
 |                  Site Type                 | Used | Fixed | Available | Util% |
 +--------------------------------------------+------+-------+-----------+-------+
-| Slice                                      |   87 |     0 |      8150 |  1.07 |
-|   SLICEL                                   |   63 |     0 |           |       |
-|   SLICEM                                   |   24 |     0 |           |       |
+| Slice                                      |   81 |     0 |      8150 |  0.99 |
+|   SLICEL                                   |   61 |     0 |           |       |
+|   SLICEM                                   |   20 |     0 |           |       |
 | LUT as Logic                               |  236 |     0 |     20800 |  1.13 |
 |   using O5 output only                     |    0 |       |           |       |
 |   using O6 output only                     |  146 |       |           |       |
@@ -78,9 +78,9 @@ Table of Contents
 |   LUT as Distributed RAM                   |    0 |     0 |           |       |
 |   LUT as Shift Register                    |    0 |     0 |           |       |
 | Slice Registers                            |  107 |     0 |     41600 |  0.26 |
-|   Register driven from within the Slice    |   78 |       |           |       |
-|   Register driven from outside the Slice   |   29 |       |           |       |
-|     LUT in front of the register is unused |   11 |       |           |       |
+|   Register driven from within the Slice    |   80 |       |           |       |
+|   Register driven from outside the Slice   |   27 |       |           |       |
+|     LUT in front of the register is unused |    9 |       |           |       |
 |     LUT in front of the register is used   |   18 |       |           |       |
 | Unique Control Sets                        |    8 |       |      8150 |  0.10 |
 +--------------------------------------------+------+-------+-----------+-------+

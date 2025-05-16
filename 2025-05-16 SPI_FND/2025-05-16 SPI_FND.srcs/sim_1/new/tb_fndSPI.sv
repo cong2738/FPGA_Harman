@@ -30,6 +30,7 @@ module tb_fndSPI ();
         btn = 1;
         @(DUT.start) btn = 0;
         @(DUT.u_SPI_FND.done);
+        @(!DUT.u_SPI_FND.done);
         @(DUT.u_SPI_FND.done);
         #1000 $finish;
 

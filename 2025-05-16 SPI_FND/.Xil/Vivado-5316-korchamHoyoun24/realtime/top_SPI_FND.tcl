@@ -39,6 +39,7 @@ set rt::rc [catch {
       {C:/harman/FPGA_Harman-1/2025-05-16 SPI_FND/2025-05-16 SPI_FND.srcs/sources_1/new/SPI_FND.v}
       {C:/harman/FPGA_Harman-1/2025-05-16 SPI_FND/2025-05-16 SPI_FND.srcs/sources_1/new/SPI_Master.v}
       {C:/harman/FPGA_Harman-1/2025-05-16 SPI_FND/2025-05-16 SPI_FND.srcs/sources_1/new/SPI_Slave.v}
+      {C:/harman/FPGA_Harman-1/2025-05-16 SPI_FND/2025-05-16 SPI_FND.srcs/sources_1/imports/CMD_Watch/btn_debounce.v}
       {C:/harman/FPGA_Harman-1/2025-05-16 SPI_FND/2025-05-16 SPI_FND.srcs/sources_1/imports/sources_1/fndController.v}
       {C:/harman/FPGA_Harman-1/2025-05-16 SPI_FND/2025-05-16 SPI_FND.srcs/sources_1/new/input_Master.v}
       {C:/harman/FPGA_Harman-1/2025-05-16 SPI_FND/2025-05-16 SPI_FND.srcs/sources_1/new/top_SPI_FND.v}

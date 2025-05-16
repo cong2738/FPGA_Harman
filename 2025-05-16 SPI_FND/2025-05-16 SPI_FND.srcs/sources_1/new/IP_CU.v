@@ -48,7 +48,7 @@ module IP_CU (
             H_BYTE: begin
                 if (CS && done) begin
                     data_next[15:8] = i_data;
-                    next = H_BYTE;
+                    next = WAIT_H;
                 end
             end
             WAIT_H: begin

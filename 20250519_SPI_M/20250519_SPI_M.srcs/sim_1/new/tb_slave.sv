@@ -41,14 +41,18 @@ module tb_slave ();
         SS = 0;
 
         MOSI = 0;
-        wait(write_done);
+        @(posedge write_done);
 
         rdata = 8'haa;
-        wait(done);
+        @(posedge write_done);
 
         rdata = 8'h55;
-        wait(done);
+        @(posedge write_done);
 
-        #50 $finish;
+        rdata = 8'h11;
+        @(posedge write_done);
+
+        @(negedge done) #1000;
+        $finish;
     end
 endmodule

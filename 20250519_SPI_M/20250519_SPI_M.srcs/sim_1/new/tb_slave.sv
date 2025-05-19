@@ -36,7 +36,6 @@ module tb_slave ();
         SCLK  = 0;
         reset = 1;
         SS = 1;
-        rdata = 8'haa;
         #10 reset = 0;
 
         SS = 0;
@@ -44,7 +43,12 @@ module tb_slave ();
         MOSI = 0;
         wait(write_done);
 
+        rdata = 8'haa;
         wait(done);
+
+        rdata = 8'h55;
+        wait(done);
+
         #50 $finish;
     end
 endmodule

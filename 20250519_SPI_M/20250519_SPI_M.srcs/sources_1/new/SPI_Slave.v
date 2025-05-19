@@ -33,56 +33,52 @@ module SlaveInterface (
     assign MISO  = SS ? 1'bz : temp_tx_data[7];
     assign wdata = temp_rx_data;
 
-    // MOSI sequence
-    always @(posedge SCLK, posedge reset) begin
+    // reset sequence
+    always @(posedge reset) begin
         if (reset) begin
             temp_tx_data <= 8'dz;
             temp_rx_data <= 0;
             bit_count_Write <= 0;
             bit_count_Read <= 0;
             write_done <= 0;
-        end else begin
-            write_done <= 0;
-            if (!SS) begin
-                if (bit_count_Write == 7) begin
-                    bit_count_Write <= 0;
-                    write <= temp_rx_data[7];
-                    write_done <= 1;
-                end
-            end
-        end
+        end 
     end
 
-    always @(negedge SCLK) begin
-        if (!SS) begin
-            if (bit_count_Write < 7) begin
-                temp_rx_data <= {temp_rx_data[6:0], MOSI};
+    // MOSI sequence
+    always @(posedge SCLK) begin
+        if(!reset) begin
+            write_done <= 0;
+            if (!SS) begin
+            if (bit_count_Write == 7) begin
+                bit_count_Write <= 0;
+                write_done <= 1;
+            end else begin
+                temp_rx_data[bit_count_Write] <= MOSI;
                 bit_count_Write <= bit_count_Write + 1;
             end
         end
-    end
-
-    // rdata latch
-    always @(posedge write_done) begin
-        temp_tx_data <= rdata;
+        end
     end
 
     // MISO sequence
-    always @(negedge SCLK) begin
+    always @(posedge SCLK) begin
+        if(!reset) begin
+            // rdata latch
+        if(!SS && write_done) begin
+            temp_tx_data <= rdata;
+            write <= temp_rx_data[7];
+        end
+        done = 0;
         if (!SS && !write) begin
             if (bit_count_Read == 7) begin
+                done = 1;
                 bit_count_Read <= 0;
-            end
-        end
-    end
-
-    // MISO deg seq
-    always @(posedge SCLK) begin
-        if (!SS) begin
-            if (write_done < 7) begin
-                temp_tx_data   <= write ? 8'dz : {temp_tx_data[6:0], 1'b0};
+            end else begin
+                temp_tx_data   <= {temp_tx_data[6:0], 1'b0};
                 bit_count_Read <= bit_count_Read + 1;
             end
         end
+        end
     end
+
 endmodule

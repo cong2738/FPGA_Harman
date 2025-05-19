@@ -1,0 +1,33 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Mon May 19 17:20:58 2025
+# Process ID: 23236
+# Current directory: C:/harman/FPGA_Harman-1/20250519_SPI_M
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent26032 C:\harman\FPGA_Harman-1\20250519_SPI_M\20250519_SPI_M.xpr
+# Log file: C:/harman/FPGA_Harman-1/20250519_SPI_M/vivado.log
+# Journal file: C:/harman/FPGA_Harman-1/20250519_SPI_M\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/harman/FPGA_Harman-1/20250519_SPI_M/20250519_SPI_M.xpr
+update_compile_order -fileset sources_1
+launch_simulation
+source tb_slave.tcl
+run 10 us
+run 10 us
+relaunch_sim
+relaunch_sim
+run 10 us
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim

@@ -29,3 +29,10 @@ platform generate -quick
 platform generate
 platform config -updatehw {C:/harman/FPGA_Harman-1/250520_SPI_microBlaze/design_1_wrapper.xsa}
 platform generate -domains 
+platform active {design_1_wrapper}
+platform config -updatehw {C:/harman/FPGA_Harman-1/250520_SPI_microBlaze/design_1_wrapper.xsa}
+platform generate -domains 
+platform config -updatehw {C:/harman/FPGA_Harman-1/250520_SPI_microBlaze/design_1_wrapper.xsa}
+platform clean
+platform generate
+platform generate -domains 

@@ -15,11 +15,15 @@ typedef struct {
 
 int main()
 {
-    GPSPI->CD = 0b001;
-    GPSPI->SOD = 'e';
-    usleep(100);
-    GPSPI->CD = 0b000;
-    while(!(GPSPI->SR && (1<<1)));
-    xil_printf("SID: %c\n", GPSPI->SID);
+	uint32_t data = 0;
+	while(data < 10) {
+		GPSPI->SOD = data;
+		GPSPI->CD = 0b001;
+		GPSPI->CD = 0b000;
+		while(!(GPSPI->SR && (1<<1)));
+		xil_printf("SID: %d\n", GPSPI->SID);
+		data++;
+	}
+
     return 0;
 }

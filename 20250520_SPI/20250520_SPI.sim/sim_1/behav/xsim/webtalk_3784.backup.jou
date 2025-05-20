@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Tue May 20 12:07:16 2025
+# Process ID: 3784
+# Current directory: C:/harman/FPGA_Harman-1/20250520_SPI/20250520_SPI.sim/sim_1/behav/xsim
+# Command line: wbtcv.exe -mode batch -source C:/harman/FPGA_Harman-1/20250520_SPI/20250520_SPI.sim/sim_1/behav/xsim/xsim.dir/tb_SPI_Master_behav/webtalk/xsim_webtalk.tcl -notrace
+# Log file: C:/harman/FPGA_Harman-1/20250520_SPI/20250520_SPI.sim/sim_1/behav/xsim/webtalk.log
+# Journal file: C:/harman/FPGA_Harman-1/20250520_SPI/20250520_SPI.sim/sim_1/behav/xsim\webtalk.jou
+#-----------------------------------------------------------
+source C:/harman/FPGA_Harman-1/20250520_SPI/20250520_SPI.sim/sim_1/behav/xsim/xsim.dir/tb_SPI_Master_behav/webtalk/xsim_webtalk.tcl -notrace

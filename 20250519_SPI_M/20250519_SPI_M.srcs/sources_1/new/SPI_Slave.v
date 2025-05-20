@@ -14,7 +14,7 @@ module SlaveInterface (
     input            SCLK,
     input            SS,
     input            MOSI,
-    output           MISO,
+    output reg       MISO,
     // internal signals
     output reg       done,
     output reg       write,
@@ -30,8 +30,8 @@ module SlaveInterface (
     reg [2:0] bit_count_Read;
     reg write_done;
 
-    assign MISO  = SS ? 1'bz : temp_tx_data[7];
     assign wdata = temp_rx_data;
+    // assign MISO  = SS ? 1'bz : temp_tx_data[7];
 
     // reset sequence
     always @(posedge reset) begin
@@ -49,35 +49,43 @@ module SlaveInterface (
         if(!reset) begin
             write_done <= 0;
             if (!SS) begin
-            if (bit_count_Write == 7) begin
-                bit_count_Write <= 0;
-                write_done <= 1;
-            end else begin
-                temp_rx_data[bit_count_Write] <= MOSI;
-                bit_count_Write <= bit_count_Write + 1;
+                if (bit_count_Write == 7) begin
+                    bit_count_Write <= 0;
+                    write_done <= 1;
+                end else begin
+                    temp_rx_data[bit_count_Write] <= MOSI;
+                    bit_count_Write <= bit_count_Write + 1;
+                end
             end
-        end
         end
     end
 
     // MISO sequence
     always @(posedge SCLK) begin
         if(!reset) begin
+            MISO  = SS ? 1'bz : temp_tx_data[7];
             // rdata latch
-        if(!SS && write_done) begin
-            temp_tx_data <= rdata;
-            write <= temp_rx_data[7];
-        end
-        done = 0;
-        if (!SS && !write) begin
-            if (bit_count_Read == 7) begin
-                done = 1;
-                bit_count_Read <= 0;
-            end else begin
-                temp_tx_data   <= {temp_tx_data[6:0], 1'b0};
-                bit_count_Read <= bit_count_Read + 1;
+            if(!SS) begin
+                if(write_done) begin
+                    temp_tx_data <= rdata;
+                    write <= temp_rx_data[7];
+                end
             end
         end
+    end
+
+    always @(negedge SCLK) begin
+        if(!reset) begin
+            done = 0;
+            if (!SS && !write) begin
+                if (bit_count_Read == 7) begin
+                    done = 1;
+                    bit_count_Read <= 0;
+                end else begin
+                    temp_tx_data   <= {temp_tx_data[6:0], 1'b0};
+                    bit_count_Read <= bit_count_Read + 1;
+                end
+            end
         end
     end
 

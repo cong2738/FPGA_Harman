@@ -1,6 +1,6 @@
-webtalk_init -webtalk_dir C:/harman/FPGA_Harman/20250519_SPI_M/20250519_SPI_M.sim/sim_1/behav/xsim/xsim.dir/tb_slave_behav/webtalk/
+webtalk_init -webtalk_dir C:/harman/FPGA_Harman-1/20250519_SPI_M/20250519_SPI_M.sim/sim_1/behav/xsim/xsim.dir/tb_slave_behav/webtalk/
 webtalk_register_client -client project
-webtalk_add_data -client project -key date_generated -value "Tue May 20 01:42:11 2025" -context "software_version_and_target_device"
+webtalk_add_data -client project -key date_generated -value "Tue May 20 09:56:52 2025" -context "software_version_and_target_device"
 webtalk_add_data -client project -key product_version -value "XSIM v2020.2 (64-bit)" -context "software_version_and_target_device"
 webtalk_add_data -client project -key build_version -value "3064766" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_platform -value "WIN64" -context "software_version_and_target_device"
@@ -12,12 +12,12 @@ webtalk_add_data -client project -key target_family -value "not_applicable" -con
 webtalk_add_data -client project -key target_device -value "not_applicable" -context "software_version_and_target_device"
 webtalk_add_data -client project -key target_package -value "not_applicable" -context "software_version_and_target_device"
 webtalk_add_data -client project -key target_speed -value "not_applicable" -context "software_version_and_target_device"
-webtalk_add_data -client project -key random_id -value "fd134540-188b-44cb-b9b0-9ac884800217" -context "software_version_and_target_device"
+webtalk_add_data -client project -key random_id -value "75af1de4-03da-4a66-ad47-61cdf71941e0" -context "software_version_and_target_device"
 webtalk_add_data -client project -key project_id -value "b22cad86918a451aacbc086939f93d1a" -context "software_version_and_target_device"
-webtalk_add_data -client project -key project_iteration -value "125" -context "software_version_and_target_device"
+webtalk_add_data -client project -key project_iteration -value "98" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_name -value "Windows Server 2016 or Windows 10" -context "user_environment"
 webtalk_add_data -client project -key os_release -value "major release  (build 9200)" -context "user_environment"
-webtalk_add_data -client project -key cpu_name -value "12th Gen Intel(R) Core(TM) i5-12400F" -context "user_environment"
+webtalk_add_data -client project -key cpu_name -value "12th Gen Intel(R) Core(TM) i7-1260P" -context "user_environment"
 webtalk_add_data -client project -key cpu_speed -value "2496 MHz" -context "user_environment"
 webtalk_add_data -client project -key total_processors -value "1" -context "user_environment"
 webtalk_add_data -client project -key system_ram -value "16.000 GB" -context "user_environment"
@@ -27,6 +27,6 @@ webtalk_add_data -client xsim -key trace_waveform -value "true" -context "xsim\\
 webtalk_add_data -client xsim -key runtime -value "1 us" -context "xsim\\usage"
 webtalk_add_data -client xsim -key iteration -value "1" -context "xsim\\usage"
 webtalk_add_data -client xsim -key Simulation_Time -value "0.00_sec" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Simulation_Memory -value "10012_KB" -context "xsim\\usage"
-webtalk_transmit -clientid 4139896169 -regid "" -xml C:/harman/FPGA_Harman/20250519_SPI_M/20250519_SPI_M.sim/sim_1/behav/xsim/xsim.dir/tb_slave_behav/webtalk/usage_statistics_ext_xsim.xml -html C:/harman/FPGA_Harman/20250519_SPI_M/20250519_SPI_M.sim/sim_1/behav/xsim/xsim.dir/tb_slave_behav/webtalk/usage_statistics_ext_xsim.html -wdm C:/harman/FPGA_Harman/20250519_SPI_M/20250519_SPI_M.sim/sim_1/behav/xsim/xsim.dir/tb_slave_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
+webtalk_add_data -client xsim -key Simulation_Memory -value "8428_KB" -context "xsim\\usage"
+webtalk_transmit -clientid 65516546 -regid "" -xml C:/harman/FPGA_Harman-1/20250519_SPI_M/20250519_SPI_M.sim/sim_1/behav/xsim/xsim.dir/tb_slave_behav/webtalk/usage_statistics_ext_xsim.xml -html C:/harman/FPGA_Harman-1/20250519_SPI_M/20250519_SPI_M.sim/sim_1/behav/xsim/xsim.dir/tb_slave_behav/webtalk/usage_statistics_ext_xsim.html -wdm C:/harman/FPGA_Harman-1/20250519_SPI_M/20250519_SPI_M.sim/sim_1/behav/xsim/xsim.dir/tb_slave_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
 webtalk_terminate

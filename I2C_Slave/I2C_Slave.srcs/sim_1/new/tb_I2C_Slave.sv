@@ -13,9 +13,7 @@ module tb_I2C_Slave ();
     logic reset;
     wire  sda;
     logic scl;
-    I2C_Slave u_I2C_Slave (
-        .*
-    );
+    I2C_Slave u_I2C_Slave (.*);
 
     logic IO_Sel;
     logic master_sda;

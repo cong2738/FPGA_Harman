@@ -20,13 +20,46 @@ module tb_I2C_Slave ();
         .scl  (scl)
     );
 
-    logic [7:0] data;
-    int bit_count;
-
     logic IO_Sel;
     logic master_sda;
     assign IO_Sel = u_I2C_Slave.IO_Sel;
     assign sda = IO_Sel ? master_sda : 1'bz;
+
+    logic [7:0] slave_set;
+    logic [7:0] word_addr;
+
+    task write_data(logic [7:0] data);
+        logic [7:0] temp_data;
+        int bit_count;
+        temp_data = data;
+        for (int i = 0; i < 8; i++) begin
+            wait (u_I2C_Slave.state == DATA_CL0);
+            master_sda = temp_data[7];
+            repeat (500) @(posedge clk);
+            scl = 1;
+
+            wait (u_I2C_Slave.state == DATA_CL1);
+            bit_count++;
+            repeat (500) @(posedge clk);
+            scl = 0;
+            temp_data = {temp_data[6:0], 1'b0};
+        end
+        master_sda = 1'bz;
+        repeat (500) @(posedge clk);
+        scl = 1;
+        repeat (500) @(posedge clk);
+        scl = 0;
+        bit_count = 0;
+    endtask  //
+
+    task end_transmission();
+        // master sen stopsig
+        master_sda = 1'b0;
+        repeat (500) @(posedge clk);
+        scl = 1;
+        repeat (500) @(posedge clk);
+        master_sda = 1;
+    endtask  //
 
     always #5 clk = ~clk;
 
@@ -39,135 +72,17 @@ module tb_I2C_Slave ();
         #25000 master_sda = 0;
         wait (u_I2C_Slave.state == START);
         #25000 scl = 0;
-        bit_count = 0;
+        slave_set = 8'b0000_0;
+        word_addr  = 1;
 
-        data = 8'h00;
-        for (int i = 0; i < 8; i++) begin
-            wait (u_I2C_Slave.state == DATA_CL0);
-            master_sda = data[7];
-            repeat (500) @(posedge clk);
-            scl = 1;
+        write_data(slave_set);
+        write_data(word_addr);
+        write_data(8'haa);
+        write_data(8'h99);
+        write_data(8'h88);
+        write_data(8'h77);
 
-            wait (u_I2C_Slave.state == DATA_CL1);
-            bit_count++;
-            repeat (500) @(posedge clk);
-            scl  = 0;
-            data = {data[6:0], 1'b0};
-        end
-        master_sda = 1'bz;
-        repeat (500) @(posedge clk);
-        scl = 1;
-        repeat (500) @(posedge clk);
-        scl = 0;
-        bit_count = 0;
-
-        data = 8'h01;
-        for (int i = 0; i < 8; i++) begin
-            wait (u_I2C_Slave.state == DATA_CL0);
-            master_sda = data[7];
-            repeat (500) @(posedge clk);
-            scl = 1;
-
-            wait (u_I2C_Slave.state == DATA_CL1);
-            bit_count++;
-            repeat (500) @(posedge clk);
-            scl  = 0;
-            data = {data[6:0], 1'b0};
-        end
-        master_sda = 1'bz;
-        repeat (500) @(posedge clk);
-        scl = 1;
-        repeat (500) @(posedge clk);
-        scl = 0;
-        bit_count = 0;
-
-        data = 8'haa;
-        for (int i = 0; i < 8; i++) begin
-            wait (u_I2C_Slave.state == DATA_CL0);
-            master_sda = data[7];
-            repeat (500) @(posedge clk);
-            scl = 1;
-
-            wait (u_I2C_Slave.state == DATA_CL1);
-            bit_count++;
-            repeat (500) @(posedge clk);
-            scl  = 0;
-            data = {data[6:0], 1'b0};
-        end
-        master_sda = 1'bz;
-        repeat (500) @(posedge clk);
-        scl = 1;
-        repeat (500) @(posedge clk);
-        scl = 0;
-        bit_count = 0;
-
-        data = 8'h99;
-        for (int i = 0; i < 8; i++) begin
-            wait (u_I2C_Slave.state == DATA_CL0);
-            master_sda = data[7];
-            repeat (500) @(posedge clk);
-            scl = 1;
-
-            wait (u_I2C_Slave.state == DATA_CL1);
-            bit_count++;
-            repeat (500) @(posedge clk);
-            scl  = 0;
-            data = {data[6:0], 1'b0};
-        end
-        master_sda = 1'bz;
-        repeat (500) @(posedge clk);
-        scl = 1;
-        repeat (500) @(posedge clk);
-        scl = 0;
-        bit_count = 0;
-
-        data = 8'h88;
-        for (int i = 0; i < 8; i++) begin
-            wait (u_I2C_Slave.state == DATA_CL0);
-            master_sda = data[7];
-            repeat (500) @(posedge clk);
-            scl = 1;
-
-            wait (u_I2C_Slave.state == DATA_CL1);
-            bit_count++;
-            repeat (500) @(posedge clk);
-            scl  = 0;
-            data = {data[6:0], 1'b0};
-        end
-        master_sda = 1'bz;
-        repeat (500) @(posedge clk);
-        scl = 1;
-        repeat (500) @(posedge clk);
-        scl = 0;
-        bit_count = 0;
-
-        data = 8'h77;
-        for (int i = 0; i < 8; i++) begin
-            wait (u_I2C_Slave.state == DATA_CL0);
-            master_sda = data[7];
-            repeat (500) @(posedge clk);
-            scl = 1;
-
-            wait (u_I2C_Slave.state == DATA_CL1);
-            bit_count++;
-            repeat (500) @(posedge clk);
-            scl  = 0;
-            data = {data[6:0], 1'b0};
-        end
-        master_sda = 1'bz;
-        repeat (500) @(posedge clk);
-        scl = 1;
-        repeat (500) @(posedge clk);
-        scl = 0;
-        bit_count = 0;
-
-        // master sen stopsig
-        master_sda = 1'b0;
-        repeat (500) @(posedge clk);
-        scl = 1;
-        repeat (500) @(posedge clk);
-        master_sda = 1;
-
+        end_transmission();
 
         #25000 $finish;
     end

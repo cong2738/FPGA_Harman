@@ -26,6 +26,7 @@ module tb_I2C_Slave ();
     task write_data(logic [7:0] data);
         logic [7:0] temp_data;
         int bit_count;
+        $display("Master tran %h to Slave", data);
         temp_data = data;
         for (int i = 0; i < 8; i++) begin
             wait (u_I2C_Slave.state == DATA_CL0);
@@ -44,6 +45,7 @@ module tb_I2C_Slave ();
     endtask  //
 
     task start_transmission();
+        $display("start transmission");
         // master send start sig
         master_sda = 1;
         scl = 1;
@@ -52,6 +54,7 @@ module tb_I2C_Slave ();
     endtask  //
 
     task end_transmission();
+        $display("end transmission");
         // master send stop sig
         scl = 0;
         master_sda = 1'b0;

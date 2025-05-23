@@ -13,7 +13,9 @@ module tb_I2C_Slave ();
     logic reset;
     wire  sda;
     logic scl;
-    I2C_Slave u_I2C_Slave (.*);
+    I2C_Slave u_I2C_Slave (
+        .*
+    );
 
     logic IO_Sel;
     logic master_sda;
@@ -67,6 +69,8 @@ module tb_I2C_Slave ();
     initial begin
         clk = 0;
         reset = 1;
+        master_sda = 1;
+        scl = 1;
         #10 reset = 0;
         repeat (2500) @(posedge clk);
         $display("test start");

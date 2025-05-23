@@ -162,9 +162,9 @@ module tb_I2C_Slave ();
         bit_count = 0;
 
         // master sen stopsig
+        master_sda = 1'b0;
         repeat (500) @(posedge clk);
         scl = 1;
-        master_sda = 0;
         repeat (500) @(posedge clk);
         master_sda = 1;
 

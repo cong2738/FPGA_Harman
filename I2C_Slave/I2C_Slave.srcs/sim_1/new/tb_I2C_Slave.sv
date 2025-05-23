@@ -31,26 +31,31 @@ module tb_I2C_Slave ();
         for (int i = 0; i < 8; i++) begin
             wait (u_I2C_Slave.state == DATA_CL0);
             master_sda = temp_data[7];
-            repeat (500) @(posedge clk) scl = 1;
+            repeat (1000) @(clk) scl = 1;
 
             wait (u_I2C_Slave.state == DATA_CL1);
             bit_count++;
-            repeat (500) @(posedge clk) scl = 0;
+            repeat (1000) @(clk) scl = 0;
             temp_data = {temp_data[6:0], 1'b0};
         end
+        scl = 1;
+        wait (u_I2C_Slave.state == ACK_CL1);
         master_sda = 1'bz;
-        repeat (500) @(posedge clk) scl = 1;
-        repeat (500) @(posedge clk) scl = 0;
+        repeat (1000) @(clk);
+        scl = 0;
+        repeat (1000) @(clk);
         bit_count = 0;
     endtask  //
 
     task start_transmission();
         $display("start transmission");
         // master send start sig
-        master_sda = 1;
-        scl = 1;
-        repeat (500) @(posedge clk) master_sda = 0;
-        repeat (500) @(posedge clk) scl = 0;
+        @(posedge clk) begin
+            master_sda = 1;
+            scl = 1;
+        end
+        repeat (1000) @(clk) master_sda = 0;
+        repeat (1000) @(clk) scl = 0;
     endtask  //
 
     task end_transmission();
@@ -58,8 +63,8 @@ module tb_I2C_Slave ();
         // master send stop sig
         scl = 0;
         master_sda = 1'b0;
-        repeat (500) @(posedge clk) scl = 1;
-        repeat (500) @(posedge clk) master_sda = 1;
+        repeat (1000) @(clk) scl = 1;
+        repeat (1000) @(clk) master_sda = 1;
     endtask  //
 
     always #5 clk = ~clk;
@@ -70,7 +75,7 @@ module tb_I2C_Slave ();
         master_sda = 1;
         scl = 1;
         #10 reset = 0;
-        repeat (2500) @(posedge clk);
+        repeat (5000) @(clk);
         $display("test start");
 
         slave_set = 8'b0000_0;
@@ -87,7 +92,7 @@ module tb_I2C_Slave ();
 
         end_transmission();
 
-        repeat (2500) @(posedge clk);
+        repeat (5000) @(clk);
         $finish;
     end
 

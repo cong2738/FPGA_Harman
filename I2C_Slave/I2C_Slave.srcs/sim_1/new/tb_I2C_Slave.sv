@@ -52,8 +52,16 @@ module tb_I2C_Slave ();
         bit_count = 0;
     endtask  //
 
+    task start_transmission();
+        // master send start sig
+        wait (u_I2C_Slave.state == IDLE);
+        repeat (500) @(posedge clk); master_sda = 0;
+        wait (u_I2C_Slave.state == START);
+        repeat (500) @(posedge clk); scl = 0;
+    endtask  //
+
     task end_transmission();
-        // master sen stopsig
+        // master send stop sig
         master_sda = 1'b0;
         repeat (500) @(posedge clk);
         scl = 1;
@@ -69,11 +77,12 @@ module tb_I2C_Slave ();
         master_sda = 1;
         scl = 1;
         #10 reset = 0;
-        #25000 master_sda = 0;
-        wait (u_I2C_Slave.state == START);
-        #25000 scl = 0;
+        #25000;
+        
         slave_set = 8'b0000_0;
         word_addr  = 1;
+
+        start_transmission();
 
         write_data(slave_set);
         write_data(word_addr);

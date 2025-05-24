@@ -29,15 +29,23 @@ module tb_I2C_Slave ();
         $display("Master tran %h to Slave", data);
         temp_data = data;
         for (int i = 0; i < 8; i++) begin
+            scl = 0;
             wait (u_I2C_Slave.state == DATA_CL0);
+            repeat (500) @(clk) ;
             master_sda = temp_data[7];
-            repeat (1000) @(clk) scl = 1;
-
+            repeat (500) @(clk) ;
+            scl = 1;
             wait (u_I2C_Slave.state == DATA_CL1);
-            bit_count++;
-            repeat (1000) @(clk) scl = 0;
+            repeat (500) @(clk) ;
+            repeat (500) @(clk) ;
             temp_data = {temp_data[6:0], 1'b0};
+            bit_count++;
         end
+        //ack0
+        scl = 0;
+        wait (u_I2C_Slave.state == ACK_CL0);
+        repeat (1000) @(clk);
+        //ack1
         scl = 1;
         wait (u_I2C_Slave.state == ACK_CL1);
         master_sda = 1'bz;

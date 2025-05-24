@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_I2C_Slave_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_I2C_Slave" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="640135001fs"></ZoomEndTime>
+      <Cursor1Time time="116390000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="150"></NameColumnWidth>
+      <ValueColumnWidth column_width="64"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="10" />
+   <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/state" type="array">
+      <obj_property name="ElementShortName">state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">state[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/data_stage" type="array">
+      <obj_property name="ElementShortName">data_stage[1:0]</obj_property>
+      <obj_property name="ObjectShortName">data_stage[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/reg_addr" type="array">
+      <obj_property name="ElementShortName">reg_addr[1:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_addr[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_I2C_Slave/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_I2C_Slave/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_I2C_Slave/sda" type="logic">
+      <obj_property name="ElementShortName">sda</obj_property>
+      <obj_property name="ObjectShortName">sda</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_I2C_Slave/scl" type="logic">
+      <obj_property name="ElementShortName">scl</obj_property>
+      <obj_property name="ObjectShortName">scl</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_I2C_Slave/IO_Sel" type="logic">
+      <obj_property name="ElementShortName">IO_Sel</obj_property>
+      <obj_property name="ObjectShortName">IO_Sel</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_I2C_Slave/master_sda" type="logic">
+      <obj_property name="ElementShortName">master_sda</obj_property>
+      <obj_property name="ObjectShortName">master_sda</obj_property>
+   </wvobject>
+   <wvobject fp_name="group13" type="group">
+      <obj_property name="label">slave</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/reset" type="logic">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/sda" type="logic">
+         <obj_property name="ElementShortName">sda</obj_property>
+         <obj_property name="ObjectShortName">sda</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/scl" type="logic">
+         <obj_property name="ElementShortName">scl</obj_property>
+         <obj_property name="ObjectShortName">scl</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/slv_reg0" type="array">
+         <obj_property name="ElementShortName">slv_reg0[7:0]</obj_property>
+         <obj_property name="ObjectShortName">slv_reg0[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/slv_reg1" type="array">
+         <obj_property name="ElementShortName">slv_reg1[7:0]</obj_property>
+         <obj_property name="ObjectShortName">slv_reg1[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/slv_reg2" type="array">
+         <obj_property name="ElementShortName">slv_reg2[7:0]</obj_property>
+         <obj_property name="ObjectShortName">slv_reg2[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/slv_reg3" type="array">
+         <obj_property name="ElementShortName">slv_reg3[7:0]</obj_property>
+         <obj_property name="ObjectShortName">slv_reg3[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/state" type="array">
+         <obj_property name="ElementShortName">state[3:0]</obj_property>
+         <obj_property name="ObjectShortName">state[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/next" type="array">
+         <obj_property name="ElementShortName">next[3:0]</obj_property>
+         <obj_property name="ObjectShortName">next[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/data_stage" type="array">
+         <obj_property name="ElementShortName">data_stage[1:0]</obj_property>
+         <obj_property name="ObjectShortName">data_stage[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/data_stage_next" type="array">
+         <obj_property name="ElementShortName">data_stage_next[1:0]</obj_property>
+         <obj_property name="ObjectShortName">data_stage_next[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/bit_count" type="array">
+         <obj_property name="ElementShortName">bit_count[2:0]</obj_property>
+         <obj_property name="ObjectShortName">bit_count[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/bit_count_next" type="array">
+         <obj_property name="ElementShortName">bit_count_next[2:0]</obj_property>
+         <obj_property name="ObjectShortName">bit_count_next[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/reg_addr" type="array">
+         <obj_property name="ElementShortName">reg_addr[1:0]</obj_property>
+         <obj_property name="ObjectShortName">reg_addr[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/reg_addr_next" type="array">
+         <obj_property name="ElementShortName">reg_addr_next[1:0]</obj_property>
+         <obj_property name="ObjectShortName">reg_addr_next[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/temp_data" type="array">
+         <obj_property name="ElementShortName">temp_data[7:0]</obj_property>
+         <obj_property name="ObjectShortName">temp_data[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/temp_data_next" type="array">
+         <obj_property name="ElementShortName">temp_data_next[7:0]</obj_property>
+         <obj_property name="ObjectShortName">temp_data_next[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/slv_mode" type="logic">
+         <obj_property name="ElementShortName">slv_mode</obj_property>
+         <obj_property name="ObjectShortName">slv_mode</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/slv_mode_next" type="logic">
+         <obj_property name="ElementShortName">slv_mode_next</obj_property>
+         <obj_property name="ObjectShortName">slv_mode_next</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/IO_Sel" type="logic">
+         <obj_property name="ElementShortName">IO_Sel</obj_property>
+         <obj_property name="ObjectShortName">IO_Sel</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/sda_reg" type="logic">
+         <obj_property name="ElementShortName">sda_reg</obj_property>
+         <obj_property name="ObjectShortName">sda_reg</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/SLV_ADDR" type="array">
+         <obj_property name="ElementShortName">SLV_ADDR[6:0]</obj_property>
+         <obj_property name="ObjectShortName">SLV_ADDR[6:0]</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>

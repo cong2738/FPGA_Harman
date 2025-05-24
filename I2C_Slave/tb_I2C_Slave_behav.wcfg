@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="3836509fs"></ZoomStartTime>
-      <ZoomEndTime time="613841510fs"></ZoomEndTime>
-      <Cursor1Time time="245015000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="640135001fs"></ZoomEndTime>
+      <Cursor1Time time="116390000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="150"></NameColumnWidth>
-      <ValueColumnWidth column_width="68"></ValueColumnWidth>
+      <ValueColumnWidth column_width="64"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="9" />
+   <WVObjectSize size="10" />
    <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/state" type="array">
       <obj_property name="ElementShortName">state[3:0]</obj_property>
       <obj_property name="ObjectShortName">state[3:0]</obj_property>
@@ -27,6 +27,10 @@
    <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/data_stage" type="array">
       <obj_property name="ElementShortName">data_stage[1:0]</obj_property>
       <obj_property name="ObjectShortName">data_stage[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/reg_addr" type="array">
+      <obj_property name="ElementShortName">reg_addr[1:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_addr[1:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_I2C_Slave/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
@@ -139,10 +143,6 @@
       <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/IO_Sel" type="logic">
          <obj_property name="ElementShortName">IO_Sel</obj_property>
          <obj_property name="ObjectShortName">IO_Sel</obj_property>
-      </wvobject>
-      <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/IO_Sel_next" type="logic">
-         <obj_property name="ElementShortName">IO_Sel_next</obj_property>
-         <obj_property name="ObjectShortName">IO_Sel_next</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_I2C_Slave/u_I2C_Slave/sda_reg" type="logic">
          <obj_property name="ElementShortName">sda_reg</obj_property>

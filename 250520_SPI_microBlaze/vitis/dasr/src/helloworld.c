@@ -21,6 +21,6 @@ int main()
     usleep(100);
     GPSPI->CD = 0b000;
     usleep(100);
-    printf("SID: %c\n", GPSPI->SID);
+    xil_printf("SID: %c\n", GPSPI->SID);
     return 0;
 }

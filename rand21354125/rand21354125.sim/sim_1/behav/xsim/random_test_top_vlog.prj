@@ -1,0 +1,12 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../rand21354125.srcs/sources_1/imports/CMD_Watch/fnd_controller.v" \
+
+sv xil_defaultlib  \
+"../../../../rand21354125.srcs/sources_1/new/rand.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

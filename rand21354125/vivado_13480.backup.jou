@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Mon Jun  2 14:09:20 2025
+# Process ID: 13480
+# Current directory: C:/harman/FPGA_Harman-1/rand21354125
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent10508 C:\harman\FPGA_Harman-1\rand21354125\rand21354125.xpr
+# Log file: C:/harman/FPGA_Harman-1/rand21354125/vivado.log
+# Journal file: C:/harman/FPGA_Harman-1/rand21354125\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/harman/FPGA_Harman-1/rand21354125/rand21354125.xpr
+update_compile_order -fileset sources_1
